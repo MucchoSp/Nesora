@@ -1,5 +1,8 @@
 #include "../Nesora/Nesora_for_embedded_systems.h"
 
+// Copyright (c) MucchoSP
+
+// PC用のテスト用の関数です。
 inline int NesoraWave(std::string filename, std::vector<nsfloat> wave) {
 	std::ofstream file(filename, std::ios::out | std::ios::binary);
 	if (!file) return 1;

@@ -1,5 +1,8 @@
 #include "../Nesora/Nesora_for_embedded_systems.h"
 
+// Copyright (c) MucchoSP
+
+// PC用のテスト用の関数です。
 inline int NesoraWave(std::string filename, std::vector<nsfloat> wave) {
 	std::ofstream file(filename, std::ios::out | std::ios::binary);
 	if (!file) return 1;
@@ -36,7 +39,7 @@ inline int NesoraWave(std::string filename, std::vector<nsfloat> wave) {
 	file.close();
 }
 
-int unuse_main() {
+int main() {
 	// 声の本体となるインスタンスです。
 	// ここに声のデータや台本のデータ、声の生成に使うクラスのインスタンスなんかが入っています。
 	makeVoiseFromFile MVFF;

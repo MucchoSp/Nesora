@@ -1,6 +1,6 @@
 #pragma once
 
-
+// Copyright (c) MucchoSP
 
 //utf8から無理やり音諳で使える文字列に変換します。
 //使用は非推奨です。
