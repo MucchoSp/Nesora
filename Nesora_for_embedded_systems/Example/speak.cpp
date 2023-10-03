@@ -39,7 +39,7 @@ inline int NesoraWave(std::string filename, std::vector<nsfloat> wave) {
 	file.close();
 }
 
-int _main() {
+int main() {
 	// 声の本体となるインスタンスです。
 	// ここに声のデータや台本のデータ、声の生成に使うクラスのインスタンスなんかが入っています。
 	makeVoiseFromFile MVFF;
