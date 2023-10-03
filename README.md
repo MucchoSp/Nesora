@@ -109,3 +109,21 @@ std::vector<nsfloat> wave = MVFF.textreading();
 ```
 
 そんな感じ。
+
+
+## 声
+最後に声の種類だけ書いておきます。
+
+これが音諳 風鈴
+```
+MVFF.setDefaulFurin();
+```
+
+そしてこれが音諳 詞音
+```
+MVFF.setShion();
+```
+
+いまのところ二人だけです。
+仲良くしてあげてくださいね。
+以上！
