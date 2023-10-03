@@ -89,6 +89,7 @@ int main() {
 
 
 	std::vector<nsfloat> wave = MVFF.textreading();
+
 	NesoraWave("NesoraWave.wav", wave);
 
 	return 0;

@@ -2789,6 +2789,14 @@ std::vector<nsfloat> makeVoiseFromFile::textreading() {
 
 		if (fin)break;
 	}
+
+	nsfloat max = 0;
+	for (auto w : out)
+		if (max < abs(w))max = w;
+
+	max = (nsfloat)1.0 / max;
+	for (size_t i = 0;i < out.size();i++)
+		out[i] *= max;
 	return out;
 }
 
