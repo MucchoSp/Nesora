@@ -8,6 +8,10 @@ Visual studio 2019 のプロジェクトファイルごとｴｲ!しちゃった
 
 ## うさげ
 使い方です。
+ライブラリは以下のコードのようにヘッダーファイルを呼び出して使います。
+```
+#include "Nesora_for_embedded_systems/Nesora/Nesora_for_embedded_systems.h"
+```
 
 まあ、Example見てもらった方が早いと思いますが、基本的に以下のようにインスタンスにして使います。
 ```
