@@ -1,6 +1,7 @@
-#pragma once
+ï»¿#pragma once
 
 // Copyright (c) MucchoSP
+//ğŸ¹
 
 #define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
@@ -13,679 +14,679 @@
 
 
 // +--------------------------------------------------------------------------------------------+
-// |	‰¹æ}ƒR[ƒhŠÖŒW																			|
+// |	éŸ³è«³ã‚³ãƒ¼ãƒ‰é–¢ä¿‚																			|
 // +--------------------------------------------------------------------------------------------+
 
 
-//‰¹æ}ƒR[ƒh‚Ì’è”ŒQ
+//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã®å®šæ•°ç¾¤
 // 
-//NS[•½‰¼–¼•¶š]
+//NS[å¹³ä»®åæ–‡å­—]
 // 
-//‚Åg‚¤‚±‚Æ‚ª‚Å‚«‚Ü‚·B
+//ã§ä½¿ã†ã“ã¨ãŒã§ãã¾ã™ã€‚
 
 
-//•ê‰¹
-#define NSNULL			0x00			//‰¹æ}ƒR[ƒhNULLEI’[•¶š
-#define NS‚ 			0x01			//‰¹æ}ƒR[ƒh‚ 
-#define NS‚¢			0x02			//‰¹æ}ƒR[ƒh‚¢
-#define NS‚â			0x03			//‰¹æ}ƒR[ƒh‚â
-#define NS‚ä			0x04			//‰¹æ}ƒR[ƒh‚ä
-#define NS‚¢‚¥			0x05			//‰¹æ}ƒR[ƒh‚¢‚¥
-#define NS‚æ			0x06			//‰¹æ}ƒR[ƒh‚æ
-#define NS‚¤			0x07			//‰¹æ}ƒR[ƒh‚¤
-#define NS‚í			0x08			//‰¹æ}ƒR[ƒh‚í
-#define NS‚î			0x09			//‰¹æ}ƒR[ƒh‚î
-#define NS‚¤‚¡			0x09			//‰¹æ}ƒR[ƒh‚î
-#define NS‚ï			0x0a			//‰¹æ}ƒR[ƒh‚ï
-#define NS‚¤‚¥			0x0a			//‰¹æ}ƒR[ƒh‚ï
-#define NS‚ğ			0x0b			//‰¹æ}ƒR[ƒh‚ğ
-#define NS‚¦			0x0c			//‰¹æ}ƒR[ƒh‚¦
-#define NS‚¨			0x0d			//‰¹æ}ƒR[ƒh‚¨
-#define NS_0e			0x0e			//‰¹æ}ƒR[ƒh–¢’è‹`
-#define NS_0f			0x0f			//‰¹æ}ƒR[ƒh–¢’è‹`
+//æ¯éŸ³
+#define NSNULL			0x00			//éŸ³è«³ã‚³ãƒ¼ãƒ‰NULLãƒ»çµ‚ç«¯æ–‡å­—
+#define NSã‚			0x01			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã‚
+#define NSã„			0x02			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã„
+#define NSã‚„			0x03			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã‚„
+#define NSã‚†			0x04			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã‚†
+#define NSã„ã‡			0x05			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã„ã‡
+#define NSã‚ˆ			0x06			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã‚ˆ
+#define NSã†			0x07			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã†
+#define NSã‚			0x08			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã‚
+#define NSã‚			0x09			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã‚
+#define NSã†ãƒ			0x09			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã‚
+#define NSã‚‘			0x0a			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã‚‘
+#define NSã†ã‡			0x0a			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã‚‘
+#define NSã‚’			0x0b			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã‚’
+#define NSãˆ			0x0c			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ãˆ
+#define NSãŠ			0x0d			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ãŠ
+#define NS_0e			0x0e			//éŸ³è«³ã‚³ãƒ¼ãƒ‰æœªå®šç¾©
+#define NS_0f			0x0f			//éŸ³è«³ã‚³ãƒ¼ãƒ‰æœªå®šç¾©
 
-//”j—ô‰¹
-#define NSk				0x10			//‰¹æ}ƒR[ƒhk
-#define NS‚©			0x11			//‰¹æ}ƒR[ƒh‚©
-#define NS‚«			0x12			//‰¹æ}ƒR[ƒh‚«
-#define NS‚«‚á			0x13			//‰¹æ}ƒR[ƒh‚«‚á
-#define NS‚«‚ã			0x14			//‰¹æ}ƒR[ƒh‚«‚ã
-#define NS‚«‚¥			0x15			//‰¹æ}ƒR[ƒh‚«‚¥
-#define NS‚«‚å			0x16			//‰¹æ}ƒR[ƒh‚«‚å
-#define NS‚­			0x17			//‰¹æ}ƒR[ƒh‚­
-#define NS‚­‚ì			0x18			//‰¹æ}ƒR[ƒh‚­‚ì
-#define NS‚­‚Ÿ			0x18			//‰¹æ}ƒR[ƒh‚­‚Ÿ
-#define NS‚­‚¡			0x19			//‰¹æ}ƒR[ƒh‚­‚¡
-#define NS‚­‚¥			0x1a			//‰¹æ}ƒR[ƒh‚­‚¥
-#define NS‚­‚§			0x1b			//‰¹æ}ƒR[ƒh‚­‚§
-#define NS‚¯			0x1c			//‰¹æ}ƒR[ƒh‚¯
-#define NS‚±			0x1d			//‰¹æ}ƒR[ƒh‚±
-#define NS_1e			0x1e			//‰¹æ}ƒR[ƒh–¢’è‹`
-#define NS_1f			0x1f			//‰¹æ}ƒR[ƒh–¢’è‹`
+//ç ´è£‚éŸ³
+#define NSk				0x10			//éŸ³è«³ã‚³ãƒ¼ãƒ‰k
+#define NSã‹			0x11			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã‹
+#define NSã			0x12			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã
+#define NSãã‚ƒ			0x13			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ãã‚ƒ
+#define NSãã‚…			0x14			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ãã‚…
+#define NSãã‡			0x15			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ãã‡
+#define NSãã‚‡			0x16			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ãã‚‡
+#define NSã			0x17			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã
+#define NSãã‚			0x18			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ãã‚
+#define NSãã			0x18			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ãã
+#define NSããƒ			0x19			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ããƒ
+#define NSãã‡			0x1a			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ãã‡
+#define NSãã‰			0x1b			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ãã‰
+#define NSã‘			0x1c			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã‘
+#define NSã“			0x1d			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã“
+#define NS_1e			0x1e			//éŸ³è«³ã‚³ãƒ¼ãƒ‰æœªå®šç¾©
+#define NS_1f			0x1f			//éŸ³è«³ã‚³ãƒ¼ãƒ‰æœªå®šç¾©
 
-#define NSg				0x20			//‰¹æ}ƒR[ƒhg
-#define NS‚ª			0x21			//‰¹æ}ƒR[ƒh‚ª
-#define NS‚¬			0x22			//‰¹æ}ƒR[ƒh‚¬
-#define NS‚¬‚á			0x23			//‰¹æ}ƒR[ƒh‚¬‚á
-#define NS‚¬‚ã			0x24			//‰¹æ}ƒR[ƒh‚¬‚ã
-#define NS‚¬‚¥			0x25			//‰¹æ}ƒR[ƒh‚¬‚¥
-#define NS‚¬‚å			0x26			//‰¹æ}ƒR[ƒh‚¬‚å
-#define NS‚®			0x27			//‰¹æ}ƒR[ƒh‚®
-#define NS‚®‚ì			0x28			//‰¹æ}ƒR[ƒh‚®‚ì
-#define NS‚®‚Ÿ			0x28			//‰¹æ}ƒR[ƒh‚®‚Ÿ
-#define NS‚®‚¡			0x29			//‰¹æ}ƒR[ƒh‚®‚¡
-#define NS‚®‚¥			0x2a			//‰¹æ}ƒR[ƒh‚®‚¥
-#define NS‚®‚§			0x2b			//‰¹æ}ƒR[ƒh‚®‚§
-#define NS‚°			0x2c			//‰¹æ}ƒR[ƒh‚°
-#define NS‚²			0x2d			//‰¹æ}ƒR[ƒh‚²
-#define NS_2e			0x2e			//‰¹æ}ƒR[ƒh–¢’è‹`
-#define NS_2f			0x2f			//‰¹æ}ƒR[ƒh–¢’è‹`
+#define NSg				0x20			//éŸ³è«³ã‚³ãƒ¼ãƒ‰g
+#define NSãŒ			0x21			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ãŒ
+#define NSã			0x22			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã
+#define NSãã‚ƒ			0x23			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ãã‚ƒ
+#define NSãã‚…			0x24			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ãã‚…
+#define NSãã‡			0x25			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ãã‡
+#define NSãã‚‡			0x26			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ãã‚‡
+#define NSã			0x27			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã
+#define NSãã‚			0x28			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ãã‚
+#define NSãã			0x28			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ãã
+#define NSããƒ			0x29			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ããƒ
+#define NSãã‡			0x2a			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ãã‡
+#define NSãã‰			0x2b			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ãã‰
+#define NSã’			0x2c			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã’
+#define NSã”			0x2d			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã”
+#define NS_2e			0x2e			//éŸ³è«³ã‚³ãƒ¼ãƒ‰æœªå®šç¾©
+#define NS_2f			0x2f			//éŸ³è«³ã‚³ãƒ¼ãƒ‰æœªå®šç¾©
 
-#define NSt				0x30			//‰¹æ}ƒR[ƒht
-#define NS‚½			0x31			//‰¹æ}ƒR[ƒh‚½
-#define NS‚¿			0x32			//‰¹æ}ƒR[ƒh‚¿
-#define NS‚¿‚á			0x33			//‰¹æ}ƒR[ƒh‚¿‚á
-#define NS‚¿‚ã			0x34			//‰¹æ}ƒR[ƒh‚¿‚ã
-#define NS‚¿‚¥			0x35			//‰¹æ}ƒR[ƒh‚¿‚¥
-#define NS‚¿‚å			0x36			//‰¹æ}ƒR[ƒh‚¿‚å
-#define NS‚Â			0x37			//‰¹æ}ƒR[ƒh‚Â
-#define NS‚Â‚ì			0x38			//‰¹æ}ƒR[ƒh‚Â‚ì
-#define NS‚Â‚Ÿ			0x38			//‰¹æ}ƒR[ƒh‚Â‚Ÿ
-#define NS‚Â‚¡			0x39			//‰¹æ}ƒR[ƒh‚Â‚¡
-#define NS‚Â‚¥			0x3a			//‰¹æ}ƒR[ƒh‚Â‚¥
-#define NS‚Â‚§			0x3b			//‰¹æ}ƒR[ƒh‚Â‚§
-#define NS‚Ä			0x3c			//‰¹æ}ƒR[ƒh‚Ä
-#define NS‚Æ			0x3d			//‰¹æ}ƒR[ƒh‚Æ
-#define NS_3e			0x3e			//‰¹æ}ƒR[ƒh–¢’è‹`
-#define NS_3f			0x3f			//‰¹æ}ƒR[ƒh–¢’è‹`
+#define NSt				0x30			//éŸ³è«³ã‚³ãƒ¼ãƒ‰t
+#define NSãŸ			0x31			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ãŸ
+#define NSã¡			0x32			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã¡
+#define NSã¡ã‚ƒ			0x33			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã¡ã‚ƒ
+#define NSã¡ã‚…			0x34			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã¡ã‚…
+#define NSã¡ã‡			0x35			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã¡ã‡
+#define NSã¡ã‚‡			0x36			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã¡ã‚‡
+#define NSã¤			0x37			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã¤
+#define NSã¤ã‚			0x38			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã¤ã‚
+#define NSã¤ã			0x38			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã¤ã
+#define NSã¤ãƒ			0x39			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã¤ãƒ
+#define NSã¤ã‡			0x3a			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã¤ã‡
+#define NSã¤ã‰			0x3b			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã¤ã‰
+#define NSã¦			0x3c			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã¦
+#define NSã¨			0x3d			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã¨
+#define NS_3e			0x3e			//éŸ³è«³ã‚³ãƒ¼ãƒ‰æœªå®šç¾©
+#define NS_3f			0x3f			//éŸ³è«³ã‚³ãƒ¼ãƒ‰æœªå®šç¾©
 
-#define NSd				0x40			//‰¹æ}ƒR[ƒhd
-#define NS‚¾			0x41			//‰¹æ}ƒR[ƒh‚¾
-#define NS‚À			0x42			//‰¹æ}ƒR[ƒh‚À
-#define NS‚À‚á			0x43			//‰¹æ}ƒR[ƒh‚À‚á
-#define NS‚À‚ã			0x44			//‰¹æ}ƒR[ƒh‚À‚ã
-#define NS‚À‚¥			0x45			//‰¹æ}ƒR[ƒh‚À‚¥
-#define NS‚À‚å			0x46			//‰¹æ}ƒR[ƒh‚À‚å
-#define NS‚Ã			0x47			//‰¹æ}ƒR[ƒh‚Ã
-#define NS‚Ã‚ì			0x48			//‰¹æ}ƒR[ƒh‚Ã‚ì
-#define NS‚Ã‚Ÿ			0x48			//‰¹æ}ƒR[ƒh‚Ã‚Ÿ
-#define NS‚Ã‚¡			0x49			//‰¹æ}ƒR[ƒh‚Ã‚¡
-#define NS‚Ã‚¥			0x4a			//‰¹æ}ƒR[ƒh‚Ã‚¥
-#define NS‚Ã‚§			0x4b			//‰¹æ}ƒR[ƒh‚Ã‚§
-#define NS‚Å			0x4c			//‰¹æ}ƒR[ƒh‚Å
-#define NS‚Ç			0x4d			//‰¹æ}ƒR[ƒh‚Ç
-#define NS_4e			0x4e			//‰¹æ}ƒR[ƒh–¢’è‹`
-#define NS_4f			0x4f			//‰¹æ}ƒR[ƒh–¢’è‹`
+#define NSd				0x40			//éŸ³è«³ã‚³ãƒ¼ãƒ‰d
+#define NSã 			0x41			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã 
+#define NSã¢			0x42			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã¢
+#define NSã¢ã‚ƒ			0x43			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã¢ã‚ƒ
+#define NSã¢ã‚…			0x44			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã¢ã‚…
+#define NSã¢ã‡			0x45			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã¢ã‡
+#define NSã¢ã‚‡			0x46			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã¢ã‚‡
+#define NSã¥			0x47			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã¥
+#define NSã¥ã‚			0x48			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã¥ã‚
+#define NSã¥ã			0x48			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã¥ã
+#define NSã¥ãƒ			0x49			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã¥ãƒ
+#define NSã¥ã‡			0x4a			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã¥ã‡
+#define NSã¥ã‰			0x4b			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã¥ã‰
+#define NSã§			0x4c			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã§
+#define NSã©			0x4d			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã©
+#define NS_4e			0x4e			//éŸ³è«³ã‚³ãƒ¼ãƒ‰æœªå®šç¾©
+#define NS_4f			0x4f			//éŸ³è«³ã‚³ãƒ¼ãƒ‰æœªå®šç¾©
 
-#define NSp				0x50			//‰¹æ}ƒR[ƒhp
-#define NS‚Ï			0x51			//‰¹æ}ƒR[ƒh‚Ï
-#define NS‚Ò			0x52			//‰¹æ}ƒR[ƒh‚Ò
-#define NS‚Ò‚á			0x53			//‰¹æ}ƒR[ƒh‚Ò‚á
-#define NS‚Ò‚ã			0x54			//‰¹æ}ƒR[ƒh‚Ò‚ã
-#define NS‚Ò‚¥			0x55			//‰¹æ}ƒR[ƒh‚Ò‚¥
-#define NS‚Ò‚å			0x56			//‰¹æ}ƒR[ƒh‚Ò‚å
-#define NS‚Õ			0x57			//‰¹æ}ƒR[ƒh‚Õ
-#define NS‚Õ‚ì			0x58			//‰¹æ}ƒR[ƒh‚Õ‚ì
-#define NS‚Õ‚Ÿ			0x58			//‰¹æ}ƒR[ƒh‚Õ‚Ÿ
-#define NS‚Õ‚¡			0x59			//‰¹æ}ƒR[ƒh‚Õ‚¡
-#define NS‚Õ‚¥			0x5a			//‰¹æ}ƒR[ƒh‚Õ‚¥
-#define NS‚Õ‚§			0x5b			//‰¹æ}ƒR[ƒh‚Õ‚§
-#define NS‚Ø			0x5c			//‰¹æ}ƒR[ƒh‚Ø
-#define NS‚Û			0x5d			//‰¹æ}ƒR[ƒh‚Û
-#define NS_5e			0x5e			//‰¹æ}ƒR[ƒh–¢’è‹`
-#define NS_5f			0x5f			//‰¹æ}ƒR[ƒh–¢’è‹`
+#define NSp				0x50			//éŸ³è«³ã‚³ãƒ¼ãƒ‰p
+#define NSã±			0x51			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã±
+#define NSã´			0x52			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã´
+#define NSã´ã‚ƒ			0x53			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã´ã‚ƒ
+#define NSã´ã‚…			0x54			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã´ã‚…
+#define NSã´ã‡			0x55			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã´ã‡
+#define NSã´ã‚‡			0x56			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã´ã‚‡
+#define NSã·			0x57			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã·
+#define NSã·ã‚			0x58			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã·ã‚
+#define NSã·ã			0x58			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã·ã
+#define NSã·ãƒ			0x59			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã·ãƒ
+#define NSã·ã‡			0x5a			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã·ã‡
+#define NSã·ã‰			0x5b			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã·ã‰
+#define NSãº			0x5c			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ãº
+#define NSã½			0x5d			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã½
+#define NS_5e			0x5e			//éŸ³è«³ã‚³ãƒ¼ãƒ‰æœªå®šç¾©
+#define NS_5f			0x5f			//éŸ³è«³ã‚³ãƒ¼ãƒ‰æœªå®šç¾©
 
-#define NSb				0x60			//‰¹æ}ƒR[ƒhb
-#define NS‚Î			0x61			//‰¹æ}ƒR[ƒh‚Î
-#define NS‚Ñ			0x62			//‰¹æ}ƒR[ƒh‚Ñ
-#define NS‚Ñ‚á			0x63			//‰¹æ}ƒR[ƒh‚Ñ‚á
-#define NS‚Ñ‚ã			0x64			//‰¹æ}ƒR[ƒh‚Ñ‚ã
-#define NS‚Ñ‚¥			0x65			//‰¹æ}ƒR[ƒh‚Ñ‚¥
-#define NS‚Ñ‚å			0x66			//‰¹æ}ƒR[ƒh‚Ñ‚å
-#define NS‚Ô			0x67			//‰¹æ}ƒR[ƒh‚Ô
-#define NS‚Ô‚ì			0x68			//‰¹æ}ƒR[ƒh‚Ô‚ì
-#define NS‚Ô‚Ÿ			0x68			//‰¹æ}ƒR[ƒh‚Ô‚Ÿ
-#define NS‚Ô‚¡			0x69			//‰¹æ}ƒR[ƒh‚Ô‚¡
-#define NS‚Ô‚¥			0x6a			//‰¹æ}ƒR[ƒh‚Ô‚¥
-#define NS‚Ô‚§			0x6b			//‰¹æ}ƒR[ƒh‚Ô‚§
-#define NS‚×			0x6c			//‰¹æ}ƒR[ƒh‚×
-#define NS‚Ú			0x6d			//‰¹æ}ƒR[ƒh‚Ú
-#define NS_6e			0x6e			//‰¹æ}ƒR[ƒh–¢’è‹`
-#define NS_6f			0x6f			//‰¹æ}ƒR[ƒh–¢’è‹`
+#define NSb				0x60			//éŸ³è«³ã‚³ãƒ¼ãƒ‰b
+#define NSã°			0x61			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã°
+#define NSã³			0x62			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã³
+#define NSã³ã‚ƒ			0x63			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã³ã‚ƒ
+#define NSã³ã‚…			0x64			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã³ã‚…
+#define NSã³ã‡			0x65			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã³ã‡
+#define NSã³ã‚‡			0x66			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã³ã‚‡
+#define NSã¶			0x67			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã¶
+#define NSã¶ã‚			0x68			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã¶ã‚
+#define NSã¶ã			0x68			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã¶ã
+#define NSã¶ãƒ			0x69			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã¶ãƒ
+#define NSã¶ã‡			0x6a			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã¶ã‡
+#define NSã¶ã‰			0x6b			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã¶ã‰
+#define NSã¹			0x6c			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã¹
+#define NSã¼			0x6d			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã¼
+#define NS_6e			0x6e			//éŸ³è«³ã‚³ãƒ¼ãƒ‰æœªå®šç¾©
+#define NS_6f			0x6f			//éŸ³è«³ã‚³ãƒ¼ãƒ‰æœªå®šç¾©
 
-//–€C‰¹
-#define NSs				0x70			//‰¹æ}ƒR[ƒhs
-#define NS‚³			0x71			//‰¹æ}ƒR[ƒh‚³
-#define NS‚µ			0x72			//‰¹æ}ƒR[ƒh‚µ
-#define NS‚µ‚á			0x73			//‰¹æ}ƒR[ƒh‚µ‚á
-#define NS‚µ‚ã			0x74			//‰¹æ}ƒR[ƒh‚µ‚ã
-#define NS‚µ‚¥			0x75			//‰¹æ}ƒR[ƒh‚µ‚¥
-#define NS‚µ‚å			0x76			//‰¹æ}ƒR[ƒh‚µ‚å
-#define NS‚·			0x77			//‰¹æ}ƒR[ƒh‚·
-#define NS‚·‚ì			0x78			//‰¹æ}ƒR[ƒh‚·‚ì
-#define NS‚·‚Ÿ			0x78			//‰¹æ}ƒR[ƒh‚·‚Ÿ
-#define NS‚·‚¡			0x79			//‰¹æ}ƒR[ƒh‚·‚¡
-#define NS‚·‚¥			0x7a			//‰¹æ}ƒR[ƒh‚·‚¥
-#define NS‚·‚§			0x7b			//‰¹æ}ƒR[ƒh‚·‚§
-#define NS‚¹			0x7c			//‰¹æ}ƒR[ƒh‚¹
-#define NS‚»			0x7d			//‰¹æ}ƒR[ƒh‚»
-#define NS_7e			0x7e			//‰¹æ}ƒR[ƒh–¢’è‹`
-#define NS_7f			0x7f			//‰¹æ}ƒR[ƒh–¢’è‹`
+//æ‘©æ“¦éŸ³
+#define NSs				0x70			//éŸ³è«³ã‚³ãƒ¼ãƒ‰s
+#define NSã•			0x71			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã•
+#define NSã—			0x72			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã—
+#define NSã—ã‚ƒ			0x73			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã—ã‚ƒ
+#define NSã—ã‚…			0x74			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã—ã‚…
+#define NSã—ã‡			0x75			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã—ã‡
+#define NSã—ã‚‡			0x76			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã—ã‚‡
+#define NSã™			0x77			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã™
+#define NSã™ã‚			0x78			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã™ã‚
+#define NSã™ã			0x78			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã™ã
+#define NSã™ãƒ			0x79			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã™ãƒ
+#define NSã™ã‡			0x7a			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã™ã‡
+#define NSã™ã‰			0x7b			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã™ã‰
+#define NSã›			0x7c			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã›
+#define NSã			0x7d			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã
+#define NS_7e			0x7e			//éŸ³è«³ã‚³ãƒ¼ãƒ‰æœªå®šç¾©
+#define NS_7f			0x7f			//éŸ³è«³ã‚³ãƒ¼ãƒ‰æœªå®šç¾©
 
-#define NSz				0x80			//‰¹æ}ƒR[ƒhz
-#define NS‚´			0x81			//‰¹æ}ƒR[ƒh‚´
-#define NS‚¶			0x82			//‰¹æ}ƒR[ƒh‚¶
-#define NS‚¶‚á			0x83			//‰¹æ}ƒR[ƒh‚¶‚á
-#define NS‚¶‚ã			0x84			//‰¹æ}ƒR[ƒh‚¶‚ã
-#define NS‚¶‚¥			0x85			//‰¹æ}ƒR[ƒh‚¶‚¥
-#define NS‚¶‚å			0x86			//‰¹æ}ƒR[ƒh‚¶‚å
-#define NS‚¸			0x87			//‰¹æ}ƒR[ƒh‚¸
-#define NS‚¸‚ì			0x88			//‰¹æ}ƒR[ƒh‚¸‚ì
-#define NS‚¸‚Ÿ			0x88			//‰¹æ}ƒR[ƒh‚¸‚Ÿ
-#define NS‚¸‚¡			0x89			//‰¹æ}ƒR[ƒh‚¸‚¡
-#define NS‚¸‚¥			0x8a			//‰¹æ}ƒR[ƒh‚¸‚¥
-#define NS‚¸‚§			0x8b			//‰¹æ}ƒR[ƒh‚¸‚§
-#define NS‚º			0x8c			//‰¹æ}ƒR[ƒh‚º
-#define NS‚¼			0x8d			//‰¹æ}ƒR[ƒh‚¼
-#define NS_8e			0x8e			//‰¹æ}ƒR[ƒh–¢’è‹`
-#define NS_8f			0x8f			//‰¹æ}ƒR[ƒh–¢’è‹`
+#define NSz				0x80			//éŸ³è«³ã‚³ãƒ¼ãƒ‰z
+#define NSã–			0x81			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã–
+#define NSã˜			0x82			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã˜
+#define NSã˜ã‚ƒ			0x83			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã˜ã‚ƒ
+#define NSã˜ã‚…			0x84			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã˜ã‚…
+#define NSã˜ã‡			0x85			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã˜ã‡
+#define NSã˜ã‚‡			0x86			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã˜ã‚‡
+#define NSãš			0x87			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ãš
+#define NSãšã‚			0x88			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ãšã‚
+#define NSãšã			0x88			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ãšã
+#define NSãšãƒ			0x89			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ãšãƒ
+#define NSãšã‡			0x8a			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ãšã‡
+#define NSãšã‰			0x8b			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ãšã‰
+#define NSãœ			0x8c			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ãœ
+#define NSã			0x8d			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã
+#define NS_8e			0x8e			//éŸ³è«³ã‚³ãƒ¼ãƒ‰æœªå®šç¾©
+#define NS_8f			0x8f			//éŸ³è«³ã‚³ãƒ¼ãƒ‰æœªå®šç¾©
 
-#define NSh				0x90			//‰¹æ}ƒR[ƒhh
-#define NS‚Í			0x91			//‰¹æ}ƒR[ƒh‚Í
-#define NS‚Ğ			0x92			//‰¹æ}ƒR[ƒh‚Ğ
-#define NS‚Ğ‚á			0x93			//‰¹æ}ƒR[ƒh‚Ğ‚á
-#define NS‚Ğ‚ã			0x94			//‰¹æ}ƒR[ƒh‚Ğ‚ã
-#define NS‚Ğ‚¥			0x95			//‰¹æ}ƒR[ƒh‚Ğ‚¥
-#define NS‚Ğ‚å			0x96			//‰¹æ}ƒR[ƒh‚Ğ‚å
-#define NS‚Ó			0x97			//‰¹æ}ƒR[ƒh‚Ó
-#define NS‚Ó‚ì			0x98			//‰¹æ}ƒR[ƒh‚Ó‚ì
-#define NS‚Ó‚Ÿ			0x98			//‰¹æ}ƒR[ƒh‚Ó‚Ÿ
-#define NS‚Ó‚¡			0x99			//‰¹æ}ƒR[ƒh‚Ó‚¡
-#define NS‚Ó‚¥			0x9a			//‰¹æ}ƒR[ƒh‚Ó‚¥
-#define NS‚Ó‚§			0x9b			//‰¹æ}ƒR[ƒh‚Ó‚§
-#define NS‚Ö			0x9c			//‰¹æ}ƒR[ƒh‚Ö
-#define NS‚Ù			0x9d			//‰¹æ}ƒR[ƒh‚Ù
-#define NS_9e			0x9e			//‰¹æ}ƒR[ƒh–¢’è‹`
-#define NS_9f			0x9f			//‰¹æ}ƒR[ƒh–¢’è‹`
+#define NSh				0x90			//éŸ³è«³ã‚³ãƒ¼ãƒ‰h
+#define NSã¯			0x91			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã¯
+#define NSã²			0x92			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã²
+#define NSã²ã‚ƒ			0x93			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã²ã‚ƒ
+#define NSã²ã‚…			0x94			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã²ã‚…
+#define NSã²ã‡			0x95			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã²ã‡
+#define NSã²ã‚‡			0x96			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã²ã‚‡
+#define NSãµ			0x97			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ãµ
+#define NSãµã‚			0x98			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ãµã‚
+#define NSãµã			0x98			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ãµã
+#define NSãµãƒ			0x99			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ãµãƒ
+#define NSãµã‡			0x9a			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ãµã‡
+#define NSãµã‰			0x9b			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ãµã‰
+#define NSã¸			0x9c			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã¸
+#define NSã»			0x9d			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã»
+#define NS_9e			0x9e			//éŸ³è«³ã‚³ãƒ¼ãƒ‰æœªå®šç¾©
+#define NS_9f			0x9f			//éŸ³è«³ã‚³ãƒ¼ãƒ‰æœªå®šç¾©
 
-//•@‰¹
-#define NSn				0xa0			//‰¹æ}ƒR[ƒhn
-#define NS‚È			0xa1			//‰¹æ}ƒR[ƒh‚È
-#define NS‚É			0xa2			//‰¹æ}ƒR[ƒh‚É
-#define NS‚É‚á			0xa3			//‰¹æ}ƒR[ƒh‚É‚á
-#define NS‚É‚ã			0xa4			//‰¹æ}ƒR[ƒh‚É‚ã
-#define NS‚É‚¥			0xa5			//‰¹æ}ƒR[ƒh‚É‚¥
-#define NS‚É‚å			0xa6			//‰¹æ}ƒR[ƒh‚É‚å
-#define NS‚Ê			0xa7			//‰¹æ}ƒR[ƒh‚Ê
-#define NS‚Ê‚ì			0xa8			//‰¹æ}ƒR[ƒh‚Ê‚ì
-#define NS‚Ê‚Ÿ			0xa8			//‰¹æ}ƒR[ƒh‚Ê‚Ÿ
-#define NS‚Ê‚¡			0xa9			//‰¹æ}ƒR[ƒh‚Ê‚¡
-#define NS‚Ê‚¥			0xaa			//‰¹æ}ƒR[ƒh‚Ê‚¥
-#define NS‚Ê‚§			0xab			//‰¹æ}ƒR[ƒh‚Ê‚§
-#define NS‚Ë			0xac			//‰¹æ}ƒR[ƒh‚Ë
-#define NS‚Ì			0xad			//‰¹æ}ƒR[ƒh‚Ì
-#define NS_ae			0xae			//‰¹æ}ƒR[ƒh–¢’è‹`
-#define NS_af			0xaf			//‰¹æ}ƒR[ƒh–¢’è‹`
+//é¼»éŸ³
+#define NSn				0xa0			//éŸ³è«³ã‚³ãƒ¼ãƒ‰n
+#define NSãª			0xa1			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ãª
+#define NSã«			0xa2			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã«
+#define NSã«ã‚ƒ			0xa3			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã«ã‚ƒ
+#define NSã«ã‚…			0xa4			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã«ã‚…
+#define NSã«ã‡			0xa5			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã«ã‡
+#define NSã«ã‚‡			0xa6			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã«ã‚‡
+#define NSã¬			0xa7			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã¬
+#define NSã¬ã‚			0xa8			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã¬ã‚
+#define NSã¬ã			0xa8			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã¬ã
+#define NSã¬ãƒ			0xa9			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã¬ãƒ
+#define NSã¬ã‡			0xaa			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã¬ã‡
+#define NSã¬ã‰			0xab			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã¬ã‰
+#define NSã­			0xac			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã­
+#define NSã®			0xad			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã®
+#define NS_ae			0xae			//éŸ³è«³ã‚³ãƒ¼ãƒ‰æœªå®šç¾©
+#define NS_af			0xaf			//éŸ³è«³ã‚³ãƒ¼ãƒ‰æœªå®šç¾©
 
-#define NSm				0xb0			//‰¹æ}ƒR[ƒhm
-#define NS‚Ü			0xb1			//‰¹æ}ƒR[ƒh‚Ü
-#define NS‚İ			0xb2			//‰¹æ}ƒR[ƒh‚İ
-#define NS‚İ‚á			0xb3			//‰¹æ}ƒR[ƒh‚İ‚á
-#define NS‚İ‚ã			0xb4			//‰¹æ}ƒR[ƒh‚İ‚ã
-#define NS‚İ‚¥			0xb5			//‰¹æ}ƒR[ƒh‚İ‚¥
-#define NS‚İ‚å			0xb6			//‰¹æ}ƒR[ƒh‚İ‚å
-#define NS‚Ş			0xb7			//‰¹æ}ƒR[ƒh‚Ş
-#define NS‚Ş‚ì			0xb8			//‰¹æ}ƒR[ƒh‚Ş‚ì
-#define NS‚Ş‚Ÿ			0xb8			//‰¹æ}ƒR[ƒh‚Ş‚Ÿ
-#define NS‚Ş‚¡			0xb9			//‰¹æ}ƒR[ƒh‚Ş‚¡
-#define NS‚Ş‚¥			0xba			//‰¹æ}ƒR[ƒh‚Ş‚¥
-#define NS‚Ş‚§			0xbb			//‰¹æ}ƒR[ƒh‚Ş‚§
-#define NS‚ß			0xbc			//‰¹æ}ƒR[ƒh‚ß
-#define NS‚à			0xbd			//‰¹æ}ƒR[ƒh‚à
-#define NS_be			0xbe			//‰¹æ}ƒR[ƒh–¢’è‹`
-#define NS_bf			0xbf			//‰¹æ}ƒR[ƒh–¢’è‹`
+#define NSm				0xb0			//éŸ³è«³ã‚³ãƒ¼ãƒ‰m
+#define NSã¾			0xb1			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã¾
+#define NSã¿			0xb2			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã¿
+#define NSã¿ã‚ƒ			0xb3			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã¿ã‚ƒ
+#define NSã¿ã‚…			0xb4			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã¿ã‚…
+#define NSã¿ã‡			0xb5			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã¿ã‡
+#define NSã¿ã‚‡			0xb6			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã¿ã‚‡
+#define NSã‚€			0xb7			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã‚€
+#define NSã‚€ã‚			0xb8			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã‚€ã‚
+#define NSã‚€ã			0xb8			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã‚€ã
+#define NSã‚€ãƒ			0xb9			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã‚€ãƒ
+#define NSã‚€ã‡			0xba			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã‚€ã‡
+#define NSã‚€ã‰			0xbb			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã‚€ã‰
+#define NSã‚			0xbc			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã‚
+#define NSã‚‚			0xbd			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã‚‚
+#define NS_be			0xbe			//éŸ³è«³ã‚³ãƒ¼ãƒ‰æœªå®šç¾©
+#define NS_bf			0xbf			//éŸ³è«³ã‚³ãƒ¼ãƒ‰æœªå®šç¾©
 
-//‚Í‚¶‚«‰¹
-#define NSr				0xc0			//‰¹æ}ƒR[ƒhr
-#define NS‚ç			0xc1			//‰¹æ}ƒR[ƒh‚ç
-#define NS‚è			0xc2			//‰¹æ}ƒR[ƒh‚è
-#define NS‚è‚á			0xc3			//‰¹æ}ƒR[ƒh‚è‚á
-#define NS‚è‚ã			0xc4			//‰¹æ}ƒR[ƒh‚è‚ã
-#define NS‚è‚¥			0xc5			//‰¹æ}ƒR[ƒh‚è‚¥
-#define NS‚è‚å			0xc6			//‰¹æ}ƒR[ƒh‚è‚å
-#define NS‚é			0xc7			//‰¹æ}ƒR[ƒh‚é
-#define NS‚é‚ì			0xc8			//‰¹æ}ƒR[ƒh‚é‚ì
-#define NS‚é‚Ÿ			0xc8			//‰¹æ}ƒR[ƒh‚é‚Ÿ
-#define NS‚é‚¡			0xc9			//‰¹æ}ƒR[ƒh‚é‚¡
-#define NS‚é‚¥			0xca			//‰¹æ}ƒR[ƒh‚é‚¥
-#define NS‚é‚§			0xcb			//‰¹æ}ƒR[ƒh‚é‚§
-#define NS‚ê			0xcc			//‰¹æ}ƒR[ƒh‚ê
-#define NS‚ë			0xcd			//‰¹æ}ƒR[ƒh‚ë
-#define NS_ce			0xce			//‰¹æ}ƒR[ƒh–¢’è‹`
-#define NS_cf			0xcf			//‰¹æ}ƒR[ƒh–¢’è‹`
+//ã¯ã˜ãéŸ³
+#define NSr				0xc0			//éŸ³è«³ã‚³ãƒ¼ãƒ‰r
+#define NSã‚‰			0xc1			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã‚‰
+#define NSã‚Š			0xc2			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã‚Š
+#define NSã‚Šã‚ƒ			0xc3			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã‚Šã‚ƒ
+#define NSã‚Šã‚…			0xc4			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã‚Šã‚…
+#define NSã‚Šã‡			0xc5			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã‚Šã‡
+#define NSã‚Šã‚‡			0xc6			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã‚Šã‚‡
+#define NSã‚‹			0xc7			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã‚‹
+#define NSã‚‹ã‚			0xc8			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã‚‹ã‚
+#define NSã‚‹ã			0xc8			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã‚‹ã
+#define NSã‚‹ãƒ			0xc9			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã‚‹ãƒ
+#define NSã‚‹ã‡			0xca			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã‚‹ã‡
+#define NSã‚‹ã‰			0xcb			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã‚‹ã‰
+#define NSã‚Œ			0xcc			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã‚Œ
+#define NSã‚			0xcd			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã‚
+#define NS_ce			0xce			//éŸ³è«³ã‚³ãƒ¼ãƒ‰æœªå®šç¾©
+#define NS_cf			0xcf			//éŸ³è«³ã‚³ãƒ¼ãƒ‰æœªå®šç¾©
 
-//‚ñ
-#define NSnn			0xd0			//‰¹æ}ƒR[ƒhnn
-#define NS‚ñ1			0xd1			//‰¹æ}ƒR[ƒh‚ñ1
-#define NS‚ñ2			0xd2			//‰¹æ}ƒR[ƒh‚ñ2
-#define NS_d3			0xd3			//‰¹æ}ƒR[ƒh–¢’è‹`
-#define NS_d4			0xd4			//‰¹æ}ƒR[ƒh–¢’è‹`
-#define NS_d5			0xd5			//‰¹æ}ƒR[ƒh–¢’è‹`
-#define NS_d6			0xd6			//‰¹æ}ƒR[ƒh–¢’è‹`
-#define NS_d7			0xd7			//‰¹æ}ƒR[ƒh–¢’è‹`
-#define NS_d8			0xd8			//‰¹æ}ƒR[ƒh–¢’è‹`
-#define NS_d9			0xd9			//‰¹æ}ƒR[ƒh–¢’è‹`
-#define NS_da			0xda			//‰¹æ}ƒR[ƒh–¢’è‹`
-#define NS_db			0xdb			//‰¹æ}ƒR[ƒh–¢’è‹`
-#define NS_dc			0xdc			//‰¹æ}ƒR[ƒh–¢’è‹`
-#define NS_dd			0xdd			//‰¹æ}ƒR[ƒh–¢’è‹`
-#define NS_de			0xde			//‰¹æ}ƒR[ƒh–¢’è‹`
-#define NS_df			0xdf			//‰¹æ}ƒR[ƒh–¢’è‹`
+//ã‚“
+#define NSnn			0xd0			//éŸ³è«³ã‚³ãƒ¼ãƒ‰nn
+#define NSã‚“1			0xd1			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã‚“1
+#define NSã‚“2			0xd2			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã‚“2
+#define NS_d3			0xd3			//éŸ³è«³ã‚³ãƒ¼ãƒ‰æœªå®šç¾©
+#define NS_d4			0xd4			//éŸ³è«³ã‚³ãƒ¼ãƒ‰æœªå®šç¾©
+#define NS_d5			0xd5			//éŸ³è«³ã‚³ãƒ¼ãƒ‰æœªå®šç¾©
+#define NS_d6			0xd6			//éŸ³è«³ã‚³ãƒ¼ãƒ‰æœªå®šç¾©
+#define NS_d7			0xd7			//éŸ³è«³ã‚³ãƒ¼ãƒ‰æœªå®šç¾©
+#define NS_d8			0xd8			//éŸ³è«³ã‚³ãƒ¼ãƒ‰æœªå®šç¾©
+#define NS_d9			0xd9			//éŸ³è«³ã‚³ãƒ¼ãƒ‰æœªå®šç¾©
+#define NS_da			0xda			//éŸ³è«³ã‚³ãƒ¼ãƒ‰æœªå®šç¾©
+#define NS_db			0xdb			//éŸ³è«³ã‚³ãƒ¼ãƒ‰æœªå®šç¾©
+#define NS_dc			0xdc			//éŸ³è«³ã‚³ãƒ¼ãƒ‰æœªå®šç¾©
+#define NS_dd			0xdd			//éŸ³è«³ã‚³ãƒ¼ãƒ‰æœªå®šç¾©
+#define NS_de			0xde			//éŸ³è«³ã‚³ãƒ¼ãƒ‰æœªå®šç¾©
+#define NS_df			0xdf			//éŸ³è«³ã‚³ãƒ¼ãƒ‰æœªå®šç¾©
 
-//‚»‚Ì‘¼
-#define NS_e0			0xe0			//‰¹æ}ƒR[ƒh–¢’è‹`
-#define NS‹ó			0xe1			//‰¹æ}ƒR[ƒh‹ó”’
-#define NS‘§			0xe2			//‰¹æ}ƒR[ƒh‘§Œp
-#define NS_e3			0xe3			//‰¹æ}ƒR[ƒh–¢’è‹`
-#define NS_e4			0xe4			//‰¹æ}ƒR[ƒh–¢’è‹`
-#define NS_e5			0xe5			//‰¹æ}ƒR[ƒh–¢’è‹`
-#define NS_e6			0xe6			//‰¹æ}ƒR[ƒh–¢’è‹`
-#define NS_e7			0xe7			//‰¹æ}ƒR[ƒh–¢’è‹`
-#define NS_e8			0xe8			//‰¹æ}ƒR[ƒh–¢’è‹`
-#define NS_e9			0xe9			//‰¹æ}ƒR[ƒh–¢’è‹`
-#define NS_ea			0xea			//‰¹æ}ƒR[ƒh–¢’è‹`
-#define NS_eb			0xeb			//‰¹æ}ƒR[ƒh–¢’è‹`
-#define NS_ec			0xec			//‰¹æ}ƒR[ƒh–¢’è‹`
-#define NS_ed			0xed			//‰¹æ}ƒR[ƒh–¢’è‹`
-#define NS_ee			0xee			//‰¹æ}ƒR[ƒh–¢’è‹`
-#define NS_ef			0xef			//‰¹æ}ƒR[ƒh–¢’è‹`
+//ãã®ä»–
+#define NS_e0			0xe0			//éŸ³è«³ã‚³ãƒ¼ãƒ‰æœªå®šç¾©
+#define NSç©º			0xe1			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ç©ºç™½
+#define NSæ¯			0xe2			//éŸ³è«³ã‚³ãƒ¼ãƒ‰æ¯ç¶™
+#define NS_e3			0xe3			//éŸ³è«³ã‚³ãƒ¼ãƒ‰æœªå®šç¾©
+#define NS_e4			0xe4			//éŸ³è«³ã‚³ãƒ¼ãƒ‰æœªå®šç¾©
+#define NS_e5			0xe5			//éŸ³è«³ã‚³ãƒ¼ãƒ‰æœªå®šç¾©
+#define NS_e6			0xe6			//éŸ³è«³ã‚³ãƒ¼ãƒ‰æœªå®šç¾©
+#define NS_e7			0xe7			//éŸ³è«³ã‚³ãƒ¼ãƒ‰æœªå®šç¾©
+#define NS_e8			0xe8			//éŸ³è«³ã‚³ãƒ¼ãƒ‰æœªå®šç¾©
+#define NS_e9			0xe9			//éŸ³è«³ã‚³ãƒ¼ãƒ‰æœªå®šç¾©
+#define NS_ea			0xea			//éŸ³è«³ã‚³ãƒ¼ãƒ‰æœªå®šç¾©
+#define NS_eb			0xeb			//éŸ³è«³ã‚³ãƒ¼ãƒ‰æœªå®šç¾©
+#define NS_ec			0xec			//éŸ³è«³ã‚³ãƒ¼ãƒ‰æœªå®šç¾©
+#define NS_ed			0xed			//éŸ³è«³ã‚³ãƒ¼ãƒ‰æœªå®šç¾©
+#define NS_ee			0xee			//éŸ³è«³ã‚³ãƒ¼ãƒ‰æœªå®šç¾©
+#define NS_ef			0xef			//éŸ³è«³ã‚³ãƒ¼ãƒ‰æœªå®šç¾©
 
-#define NS_f0			0xf0			//‰¹æ}ƒR[ƒh–¢’è‹`
-#define NSp1			0xf1			//‰¹æ}ƒR[ƒhX+1
-#define NSp2			0xf2			//‰¹æ}ƒR[ƒhX+2
-#define NSp3			0xf3			//‰¹æ}ƒR[ƒhX+3
-#define NSp4			0xf4			//‰¹æ}ƒR[ƒhX+4
-#define NS_f5			0xf5			//‰¹æ}ƒR[ƒh–¢’è‹`
-#define NS_f6			0xf6			//‰¹æ}ƒR[ƒh–¢’è‹`
-#define NS_f7			0xf7			//‰¹æ}ƒR[ƒh–¢’è‹`
-#define NS_f8			0xf8			//‰¹æ}ƒR[ƒh–¢’è‹`
-#define NS_f9			0xf9			//‰¹æ}ƒR[ƒh–¢’è‹`
-#define NS_fa			0xfa			//‰¹æ}ƒR[ƒh–¢’è‹`
-#define NS_fb			0xfb			//‰¹æ}ƒR[ƒh–¢’è‹`
-#define NS_fc			0xfc			//‰¹æ}ƒR[ƒh–¢’è‹`
-#define NS_fd			0xfd			//‰¹æ}ƒR[ƒh–¢’è‹`
-#define NS_fe			0xfe			//‰¹æ}ƒR[ƒh–¢’è‹`
-#define NS_ff			0xff			//‰¹æ}ƒR[ƒh–¢’è‹`
+#define NS_f0			0xf0			//éŸ³è«³ã‚³ãƒ¼ãƒ‰æœªå®šç¾©
+#define NSp1			0xf1			//éŸ³è«³ã‚³ãƒ¼ãƒ‰æ‹—+1
+#define NSp2			0xf2			//éŸ³è«³ã‚³ãƒ¼ãƒ‰æ‹—+2
+#define NSp3			0xf3			//éŸ³è«³ã‚³ãƒ¼ãƒ‰æ‹—+3
+#define NSp4			0xf4			//éŸ³è«³ã‚³ãƒ¼ãƒ‰æ‹—+4
+#define NS_f5			0xf5			//éŸ³è«³ã‚³ãƒ¼ãƒ‰æœªå®šç¾©
+#define NS_f6			0xf6			//éŸ³è«³ã‚³ãƒ¼ãƒ‰æœªå®šç¾©
+#define NS_f7			0xf7			//éŸ³è«³ã‚³ãƒ¼ãƒ‰æœªå®šç¾©
+#define NS_f8			0xf8			//éŸ³è«³ã‚³ãƒ¼ãƒ‰æœªå®šç¾©
+#define NS_f9			0xf9			//éŸ³è«³ã‚³ãƒ¼ãƒ‰æœªå®šç¾©
+#define NS_fa			0xfa			//éŸ³è«³ã‚³ãƒ¼ãƒ‰æœªå®šç¾©
+#define NS_fb			0xfb			//éŸ³è«³ã‚³ãƒ¼ãƒ‰æœªå®šç¾©
+#define NS_fc			0xfc			//éŸ³è«³ã‚³ãƒ¼ãƒ‰æœªå®šç¾©
+#define NS_fd			0xfd			//éŸ³è«³ã‚³ãƒ¼ãƒ‰æœªå®šç¾©
+#define NS_fe			0xfe			//éŸ³è«³ã‚³ãƒ¼ãƒ‰æœªå®šç¾©
+#define NS_ff			0xff			//éŸ³è«³ã‚³ãƒ¼ãƒ‰æœªå®šç¾©
 
 
 // +--------------------------------------------------------------------------------------------+
-// |	‚±‚±‚©‚ç‰º‚ÍAƒ[ƒ}š‚Ì’è”‚Å‚·B														|
-// |	NS[ƒ[ƒ}š]‚Åg‚¤‚±‚Æ‚ª‚Å‚«‚Ü‚·B														|
-// |	ƒRƒ“ƒpƒCƒ‰[‚É‚æ‚Á‚Ä‚Í•½‰¼–¼g‚¦‚È‚¢‚©‚ç‚ËB											|
-// |	ŒãAã‚Ì‚â‚Â‚Æ‚ÍŠÖ˜A•t‚¯‚³‚ê‚Ä‚È‚¢‚©‚çAƒR[ƒh•Ï‚¦‚½‚¢‚È‚ç—¼•û•Ï‚¦‚Ä‚Ë™				|
+// |	ã“ã“ã‹ã‚‰ä¸‹ã¯ã€ãƒ­ãƒ¼ãƒå­—ã®å®šæ•°ã§ã™ã€‚														|
+// |	NS[ãƒ­ãƒ¼ãƒå­—]ã§ä½¿ã†ã“ã¨ãŒã§ãã¾ã™ã€‚														|
+// |	ã‚³ãƒ³ãƒ‘ã‚¤ãƒ©ãƒ¼ã«ã‚ˆã£ã¦ã¯å¹³ä»®åä½¿ãˆãªã„ã‹ã‚‰ã­ã€‚											|
+// |	å¾Œã€ä¸Šã®ã‚„ã¤ã¨ã¯é–¢é€£ä»˜ã‘ã•ã‚Œã¦ãªã„ã‹ã‚‰ã€ã‚³ãƒ¼ãƒ‰å¤‰ãˆãŸã„ãªã‚‰ä¸¡æ–¹å¤‰ãˆã¦ã­â˜†				|
 // +--------------------------------------------------------------------------------------------+
 
 
-//•ê‰¹
-#define NSNUL			0x00			//‰¹æ}ƒR[ƒhNULLEI’[•¶š
-#define NSa				0x01			//‰¹æ}ƒR[ƒh‚ 
-#define NSi				0x02			//‰¹æ}ƒR[ƒh‚¢
-#define NSya			0x03			//‰¹æ}ƒR[ƒh‚â
-#define NSyu			0x04			//‰¹æ}ƒR[ƒh‚ä
-#define NSye			0x05			//‰¹æ}ƒR[ƒh‚¢‚¥
-#define NSyo			0x06			//‰¹æ}ƒR[ƒh‚æ
-#define NSu				0x07			//‰¹æ}ƒR[ƒh‚¤
-#define NSwa			0x08			//‰¹æ}ƒR[ƒh‚í
-#define NSwi			0x09			//‰¹æ}ƒR[ƒh‚î
-#define NSwe			0x0a			//‰¹æ}ƒR[ƒh‚ï
-#define NSwo			0x0b			//‰¹æ}ƒR[ƒh‚ğ
-#define NSe				0x0c			//‰¹æ}ƒR[ƒh‚¦
-#define NSo				0x0d			//‰¹æ}ƒR[ƒh‚¨
-#define NS_0e			0x0e			//‰¹æ}ƒR[ƒh–¢’è‹`
-#define NS_0f			0x0f			//‰¹æ}ƒR[ƒh–¢’è‹`
+//æ¯éŸ³
+#define NSNUL			0x00			//éŸ³è«³ã‚³ãƒ¼ãƒ‰NULLãƒ»çµ‚ç«¯æ–‡å­—
+#define NSa				0x01			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã‚
+#define NSi				0x02			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã„
+#define NSya			0x03			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã‚„
+#define NSyu			0x04			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã‚†
+#define NSye			0x05			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã„ã‡
+#define NSyo			0x06			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã‚ˆ
+#define NSu				0x07			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã†
+#define NSwa			0x08			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã‚
+#define NSwi			0x09			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã‚
+#define NSwe			0x0a			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã‚‘
+#define NSwo			0x0b			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã‚’
+#define NSe				0x0c			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ãˆ
+#define NSo				0x0d			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ãŠ
+#define NS_0e			0x0e			//éŸ³è«³ã‚³ãƒ¼ãƒ‰æœªå®šç¾©
+#define NS_0f			0x0f			//éŸ³è«³ã‚³ãƒ¼ãƒ‰æœªå®šç¾©
 
-//”j—ô‰¹
-#define NSk				0x10			//‰¹æ}ƒR[ƒhk
-#define NSka			0x11			//‰¹æ}ƒR[ƒh‚©
-#define NSki			0x12			//‰¹æ}ƒR[ƒh‚«
-#define NSkya			0x13			//‰¹æ}ƒR[ƒh‚«‚á
-#define NSkyu			0x14			//‰¹æ}ƒR[ƒh‚«‚ã
-#define NSkye			0x15			//‰¹æ}ƒR[ƒh‚«‚¥
-#define NSkyo			0x16			//‰¹æ}ƒR[ƒh‚«‚å
-#define NSku			0x17			//‰¹æ}ƒR[ƒh‚­
-#define NSkwa			0x18			//‰¹æ}ƒR[ƒh‚­‚ì
-#define NSkwi			0x19			//‰¹æ}ƒR[ƒh‚­‚¡
-#define NSkwe			0x1a			//‰¹æ}ƒR[ƒh‚­‚¥
-#define NSkwo			0x1b			//‰¹æ}ƒR[ƒh‚­‚§
-#define NSke			0x1c			//‰¹æ}ƒR[ƒh‚¯
-#define NSko			0x1d			//‰¹æ}ƒR[ƒh‚±
-#define NS_1e			0x1e			//‰¹æ}ƒR[ƒh–¢’è‹`
-#define NS_1f			0x1f			//‰¹æ}ƒR[ƒh–¢’è‹`
+//ç ´è£‚éŸ³
+#define NSk				0x10			//éŸ³è«³ã‚³ãƒ¼ãƒ‰k
+#define NSka			0x11			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã‹
+#define NSki			0x12			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã
+#define NSkya			0x13			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ãã‚ƒ
+#define NSkyu			0x14			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ãã‚…
+#define NSkye			0x15			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ãã‡
+#define NSkyo			0x16			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ãã‚‡
+#define NSku			0x17			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã
+#define NSkwa			0x18			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ãã‚
+#define NSkwi			0x19			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ããƒ
+#define NSkwe			0x1a			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ãã‡
+#define NSkwo			0x1b			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ãã‰
+#define NSke			0x1c			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã‘
+#define NSko			0x1d			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã“
+#define NS_1e			0x1e			//éŸ³è«³ã‚³ãƒ¼ãƒ‰æœªå®šç¾©
+#define NS_1f			0x1f			//éŸ³è«³ã‚³ãƒ¼ãƒ‰æœªå®šç¾©
 
-#define NSg				0x20			//‰¹æ}ƒR[ƒhg
-#define NSga			0x21			//‰¹æ}ƒR[ƒh‚ª
-#define NSgi			0x22			//‰¹æ}ƒR[ƒh‚¬
-#define NSgya			0x23			//‰¹æ}ƒR[ƒh‚¬‚á
-#define NSgyu			0x24			//‰¹æ}ƒR[ƒh‚¬‚ã
-#define NSgye			0x25			//‰¹æ}ƒR[ƒh‚¬‚¥
-#define NSgyo			0x26			//‰¹æ}ƒR[ƒh‚¬‚å
-#define NSgu			0x27			//‰¹æ}ƒR[ƒh‚®
-#define NSgwa			0x28			//‰¹æ}ƒR[ƒh‚®‚ì
-#define NSgwi			0x29			//‰¹æ}ƒR[ƒh‚®‚¡
-#define NSgwe			0x2a			//‰¹æ}ƒR[ƒh‚®‚¥
-#define NSgwo			0x2b			//‰¹æ}ƒR[ƒh‚®‚§
-#define NSge			0x2c			//‰¹æ}ƒR[ƒh‚°
-#define NSgo			0x2d			//‰¹æ}ƒR[ƒh‚²
-#define NS_2e			0x2e			//‰¹æ}ƒR[ƒh–¢’è‹`
-#define NS_2f			0x2f			//‰¹æ}ƒR[ƒh–¢’è‹`
+#define NSg				0x20			//éŸ³è«³ã‚³ãƒ¼ãƒ‰g
+#define NSga			0x21			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ãŒ
+#define NSgi			0x22			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã
+#define NSgya			0x23			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ãã‚ƒ
+#define NSgyu			0x24			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ãã‚…
+#define NSgye			0x25			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ãã‡
+#define NSgyo			0x26			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ãã‚‡
+#define NSgu			0x27			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã
+#define NSgwa			0x28			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ãã‚
+#define NSgwi			0x29			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ããƒ
+#define NSgwe			0x2a			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ãã‡
+#define NSgwo			0x2b			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ãã‰
+#define NSge			0x2c			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã’
+#define NSgo			0x2d			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã”
+#define NS_2e			0x2e			//éŸ³è«³ã‚³ãƒ¼ãƒ‰æœªå®šç¾©
+#define NS_2f			0x2f			//éŸ³è«³ã‚³ãƒ¼ãƒ‰æœªå®šç¾©
 
-#define NSt				0x30			//‰¹æ}ƒR[ƒht
-#define NSta			0x31			//‰¹æ}ƒR[ƒh‚½
-#define NSti			0x32			//‰¹æ}ƒR[ƒh‚¿
-#define NStya			0x33			//‰¹æ}ƒR[ƒh‚¿‚á
-#define NStyu			0x34			//‰¹æ}ƒR[ƒh‚¿‚ã
-#define NStye			0x35			//‰¹æ}ƒR[ƒh‚¿‚¥
-#define NStyo			0x36			//‰¹æ}ƒR[ƒh‚¿‚å
-#define NSchi			NSti			//‰¹æ}ƒR[ƒh‚¿
-#define NScha			NStya			//‰¹æ}ƒR[ƒh‚¿‚á
-#define NSchu			NStyu			//‰¹æ}ƒR[ƒh‚¿‚ã
-#define NSche			NStye			//‰¹æ}ƒR[ƒh‚¿‚¥
-#define NScho			NStyo			//‰¹æ}ƒR[ƒh‚¿‚å
-#define NStu			0x37			//‰¹æ}ƒR[ƒh‚Â
-#define NStwa			0x38			//‰¹æ}ƒR[ƒh‚Â‚ì
-#define NStwi			0x39			//‰¹æ}ƒR[ƒh‚Â‚¡
-#define NStwe			0x3a			//‰¹æ}ƒR[ƒh‚Â‚¥
-#define NStwo			0x3b			//‰¹æ}ƒR[ƒh‚Â‚§
-#define NStsu			NStu			//‰¹æ}ƒR[ƒh‚Â
-#define NStsa			NStwa			//‰¹æ}ƒR[ƒh‚Â‚ì
-#define NStsi			NStwi			//‰¹æ}ƒR[ƒh‚Â‚¡
-#define NStse			NStwe			//‰¹æ}ƒR[ƒh‚Â‚¥
-#define NStso			NStwo			//‰¹æ}ƒR[ƒh‚Â‚§
-#define NSte			0x3c			//‰¹æ}ƒR[ƒh‚Ä
-#define NSto			0x3d			//‰¹æ}ƒR[ƒh‚Æ
-#define NS_3e			0x3e			//‰¹æ}ƒR[ƒh–¢’è‹`
-#define NS_3f			0x3f			//‰¹æ}ƒR[ƒh–¢’è‹`
+#define NSt				0x30			//éŸ³è«³ã‚³ãƒ¼ãƒ‰t
+#define NSta			0x31			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ãŸ
+#define NSti			0x32			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã¡
+#define NStya			0x33			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã¡ã‚ƒ
+#define NStyu			0x34			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã¡ã‚…
+#define NStye			0x35			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã¡ã‡
+#define NStyo			0x36			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã¡ã‚‡
+#define NSchi			NSti			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã¡
+#define NScha			NStya			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã¡ã‚ƒ
+#define NSchu			NStyu			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã¡ã‚…
+#define NSche			NStye			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã¡ã‡
+#define NScho			NStyo			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã¡ã‚‡
+#define NStu			0x37			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã¤
+#define NStwa			0x38			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã¤ã‚
+#define NStwi			0x39			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã¤ãƒ
+#define NStwe			0x3a			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã¤ã‡
+#define NStwo			0x3b			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã¤ã‰
+#define NStsu			NStu			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã¤
+#define NStsa			NStwa			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã¤ã‚
+#define NStsi			NStwi			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã¤ãƒ
+#define NStse			NStwe			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã¤ã‡
+#define NStso			NStwo			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã¤ã‰
+#define NSte			0x3c			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã¦
+#define NSto			0x3d			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã¨
+#define NS_3e			0x3e			//éŸ³è«³ã‚³ãƒ¼ãƒ‰æœªå®šç¾©
+#define NS_3f			0x3f			//éŸ³è«³ã‚³ãƒ¼ãƒ‰æœªå®šç¾©
 
-#define NSd				0x40			//‰¹æ}ƒR[ƒhd
-#define NSda			0x41			//‰¹æ}ƒR[ƒh‚¾
-#define NSdi			0x42			//‰¹æ}ƒR[ƒh‚À
-#define NSdya			0x43			//‰¹æ}ƒR[ƒh‚À‚á
-#define NSdyu			0x44			//‰¹æ}ƒR[ƒh‚À‚ã
-#define NSdye			0x45			//‰¹æ}ƒR[ƒh‚À‚¥
-#define NSdyo			0x46			//‰¹æ}ƒR[ƒh‚À‚å
-#define NSdu			0x47			//‰¹æ}ƒR[ƒh‚Ã
-#define NSdwa			0x48			//‰¹æ}ƒR[ƒh‚Ã‚ì
-#define NSdwi			0x49			//‰¹æ}ƒR[ƒh‚Ã‚¡
-#define NSdwe			0x4a			//‰¹æ}ƒR[ƒh‚Ã‚¥
-#define NSdwo			0x4b			//‰¹æ}ƒR[ƒh‚Ã‚§
-#define NSde			0x4c			//‰¹æ}ƒR[ƒh‚Å
-#define NSdo			0x4d			//‰¹æ}ƒR[ƒh‚Ç
-#define NS_4e			0x4e			//‰¹æ}ƒR[ƒh–¢’è‹`
-#define NS_4f			0x4f			//‰¹æ}ƒR[ƒh–¢’è‹`
+#define NSd				0x40			//éŸ³è«³ã‚³ãƒ¼ãƒ‰d
+#define NSda			0x41			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã 
+#define NSdi			0x42			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã¢
+#define NSdya			0x43			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã¢ã‚ƒ
+#define NSdyu			0x44			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã¢ã‚…
+#define NSdye			0x45			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã¢ã‡
+#define NSdyo			0x46			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã¢ã‚‡
+#define NSdu			0x47			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã¥
+#define NSdwa			0x48			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã¥ã‚
+#define NSdwi			0x49			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã¥ãƒ
+#define NSdwe			0x4a			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã¥ã‡
+#define NSdwo			0x4b			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã¥ã‰
+#define NSde			0x4c			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã§
+#define NSdo			0x4d			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã©
+#define NS_4e			0x4e			//éŸ³è«³ã‚³ãƒ¼ãƒ‰æœªå®šç¾©
+#define NS_4f			0x4f			//éŸ³è«³ã‚³ãƒ¼ãƒ‰æœªå®šç¾©
 
-#define NSp				0x50			//‰¹æ}ƒR[ƒhp
-#define NSpa			0x51			//‰¹æ}ƒR[ƒh‚Ï
-#define NSpi			0x52			//‰¹æ}ƒR[ƒh‚Ò
-#define NSpya			0x53			//‰¹æ}ƒR[ƒh‚Ò‚á
-#define NSpyu			0x54			//‰¹æ}ƒR[ƒh‚Ò‚ã
-#define NSpye			0x55			//‰¹æ}ƒR[ƒh‚Ò‚¥
-#define NSpyo			0x56			//‰¹æ}ƒR[ƒh‚Ò‚å
-#define NSpu			0x57			//‰¹æ}ƒR[ƒh‚Õ
-#define NSpwa			0x58			//‰¹æ}ƒR[ƒh‚Õ‚ì
-#define NSpwi			0x59			//‰¹æ}ƒR[ƒh‚Õ‚¡
-#define NSpwe			0x5a			//‰¹æ}ƒR[ƒh‚Õ‚¥
-#define NSpwo			0x5b			//‰¹æ}ƒR[ƒh‚Õ‚§
-#define NSpe			0x5c			//‰¹æ}ƒR[ƒh‚Ø
-#define NSpo			0x5d			//‰¹æ}ƒR[ƒh‚Û
-#define NS_5e			0x5e			//‰¹æ}ƒR[ƒh–¢’è‹`
-#define NS_5f			0x5f			//‰¹æ}ƒR[ƒh–¢’è‹`
+#define NSp				0x50			//éŸ³è«³ã‚³ãƒ¼ãƒ‰p
+#define NSpa			0x51			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã±
+#define NSpi			0x52			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã´
+#define NSpya			0x53			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã´ã‚ƒ
+#define NSpyu			0x54			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã´ã‚…
+#define NSpye			0x55			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã´ã‡
+#define NSpyo			0x56			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã´ã‚‡
+#define NSpu			0x57			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã·
+#define NSpwa			0x58			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã·ã‚
+#define NSpwi			0x59			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã·ãƒ
+#define NSpwe			0x5a			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã·ã‡
+#define NSpwo			0x5b			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã·ã‰
+#define NSpe			0x5c			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ãº
+#define NSpo			0x5d			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã½
+#define NS_5e			0x5e			//éŸ³è«³ã‚³ãƒ¼ãƒ‰æœªå®šç¾©
+#define NS_5f			0x5f			//éŸ³è«³ã‚³ãƒ¼ãƒ‰æœªå®šç¾©
 
-#define NSb				0x60			//‰¹æ}ƒR[ƒhb
-#define NSba			0x61			//‰¹æ}ƒR[ƒh‚Î
-#define NSbi			0x62			//‰¹æ}ƒR[ƒh‚Ñ
-#define NSbya			0x63			//‰¹æ}ƒR[ƒh‚Ñ‚á
-#define NSbyu			0x64			//‰¹æ}ƒR[ƒh‚Ñ‚ã
-#define NSbye			0x65			//‰¹æ}ƒR[ƒh‚Ñ‚¥
-#define NSbyo			0x66			//‰¹æ}ƒR[ƒh‚Ñ‚å
-#define NSbu			0x67			//‰¹æ}ƒR[ƒh‚Ô
-#define NSbwa			0x68			//‰¹æ}ƒR[ƒh‚Ô‚ì
-#define NSbwi			0x69			//‰¹æ}ƒR[ƒh‚Ô‚¡
-#define NSbwe			0x6a			//‰¹æ}ƒR[ƒh‚Ô‚¥
-#define NSbwo			0x6b			//‰¹æ}ƒR[ƒh‚Ô‚§
-#define NSbe			0x6c			//‰¹æ}ƒR[ƒh‚×
-#define NSbo			0x6d			//‰¹æ}ƒR[ƒh‚Ú
-#define NS_6e			0x6e			//‰¹æ}ƒR[ƒh–¢’è‹`
-#define NS_6f			0x6f			//‰¹æ}ƒR[ƒh–¢’è‹`
+#define NSb				0x60			//éŸ³è«³ã‚³ãƒ¼ãƒ‰b
+#define NSba			0x61			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã°
+#define NSbi			0x62			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã³
+#define NSbya			0x63			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã³ã‚ƒ
+#define NSbyu			0x64			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã³ã‚…
+#define NSbye			0x65			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã³ã‡
+#define NSbyo			0x66			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã³ã‚‡
+#define NSbu			0x67			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã¶
+#define NSbwa			0x68			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã¶ã‚
+#define NSbwi			0x69			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã¶ãƒ
+#define NSbwe			0x6a			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã¶ã‡
+#define NSbwo			0x6b			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã¶ã‰
+#define NSbe			0x6c			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã¹
+#define NSbo			0x6d			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã¼
+#define NS_6e			0x6e			//éŸ³è«³ã‚³ãƒ¼ãƒ‰æœªå®šç¾©
+#define NS_6f			0x6f			//éŸ³è«³ã‚³ãƒ¼ãƒ‰æœªå®šç¾©
 
-//–€C‰¹
-#define NSs				0x70			//‰¹æ}ƒR[ƒhs
-#define NSsa			0x71			//‰¹æ}ƒR[ƒh‚³
-#define NSsi			0x72			//‰¹æ}ƒR[ƒh‚µ
-#define NSsya			0x73			//‰¹æ}ƒR[ƒh‚µ‚á
-#define NSsyu			0x74			//‰¹æ}ƒR[ƒh‚µ‚ã
-#define NSsye			0x75			//‰¹æ}ƒR[ƒh‚µ‚¥
-#define NSsyo			0x76			//‰¹æ}ƒR[ƒh‚µ‚å
-#define NSshi			NSsi			//‰¹æ}ƒR[ƒh‚µ
-#define NSsha			NSsya			//‰¹æ}ƒR[ƒh‚µ‚á
-#define NSshu			NSsyu			//‰¹æ}ƒR[ƒh‚µ‚ã
-#define NSshe			NSsye			//‰¹æ}ƒR[ƒh‚µ‚¥
-#define NSsho			NSsyo			//‰¹æ}ƒR[ƒh‚µ‚å
-#define NSsu			0x77			//‰¹æ}ƒR[ƒh‚·
-#define NSswa			0x78			//‰¹æ}ƒR[ƒh‚·‚ì
-#define NSswi			0x79			//‰¹æ}ƒR[ƒh‚·‚¡
-#define NSswe			0x7a			//‰¹æ}ƒR[ƒh‚·‚¥
-#define NSswo			0x7b			//‰¹æ}ƒR[ƒh‚·‚§
-#define NSse			0x7c			//‰¹æ}ƒR[ƒh‚¹
-#define NSso			0x7d			//‰¹æ}ƒR[ƒh‚»
-#define NS_7e			0x7e			//‰¹æ}ƒR[ƒh–¢’è‹`
-#define NS_7f			0x7f			//‰¹æ}ƒR[ƒh–¢’è‹`
+//æ‘©æ“¦éŸ³
+#define NSs				0x70			//éŸ³è«³ã‚³ãƒ¼ãƒ‰s
+#define NSsa			0x71			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã•
+#define NSsi			0x72			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã—
+#define NSsya			0x73			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã—ã‚ƒ
+#define NSsyu			0x74			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã—ã‚…
+#define NSsye			0x75			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã—ã‡
+#define NSsyo			0x76			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã—ã‚‡
+#define NSshi			NSsi			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã—
+#define NSsha			NSsya			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã—ã‚ƒ
+#define NSshu			NSsyu			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã—ã‚…
+#define NSshe			NSsye			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã—ã‡
+#define NSsho			NSsyo			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã—ã‚‡
+#define NSsu			0x77			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã™
+#define NSswa			0x78			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã™ã‚
+#define NSswi			0x79			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã™ãƒ
+#define NSswe			0x7a			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã™ã‡
+#define NSswo			0x7b			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã™ã‰
+#define NSse			0x7c			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã›
+#define NSso			0x7d			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã
+#define NS_7e			0x7e			//éŸ³è«³ã‚³ãƒ¼ãƒ‰æœªå®šç¾©
+#define NS_7f			0x7f			//éŸ³è«³ã‚³ãƒ¼ãƒ‰æœªå®šç¾©
 
-#define NSz				0x80			//‰¹æ}ƒR[ƒhz
-#define NSza			0x81			//‰¹æ}ƒR[ƒh‚´
-#define NSzi			0x82			//‰¹æ}ƒR[ƒh‚¶
-#define NSzya			0x83			//‰¹æ}ƒR[ƒh‚¶‚á
-#define NSzyu			0x84			//‰¹æ}ƒR[ƒh‚¶‚ã
-#define NSzye			0x85			//‰¹æ}ƒR[ƒh‚¶‚¥
-#define NSzyo			0x86			//‰¹æ}ƒR[ƒh‚¶‚å
-#define NSji			NSzi			//‰¹æ}ƒR[ƒh‚¶
-#define NSja			NSzya			//‰¹æ}ƒR[ƒh‚¶‚á
-#define NSju			NSzyu			//‰¹æ}ƒR[ƒh‚¶‚ã
-#define NSje			NSzye			//‰¹æ}ƒR[ƒh‚¶‚¥
-#define NSjo			NSzyo			//‰¹æ}ƒR[ƒh‚¶‚å
-#define NSzu			0x87			//‰¹æ}ƒR[ƒh‚¸
-#define NSzwa			0x88			//‰¹æ}ƒR[ƒh‚¸‚ì
-#define NSzwi			0x89			//‰¹æ}ƒR[ƒh‚¸‚¡
-#define NSzwe			0x8a			//‰¹æ}ƒR[ƒh‚¸‚¥
-#define NSzwo			0x8b			//‰¹æ}ƒR[ƒh‚¸‚§
-#define NSze			0x8c			//‰¹æ}ƒR[ƒh‚º
-#define NSzo			0x8d			//‰¹æ}ƒR[ƒh‚¼
-#define NS_8e			0x8e			//‰¹æ}ƒR[ƒh–¢’è‹`
-#define NS_8f			0x8f			//‰¹æ}ƒR[ƒh–¢’è‹`
+#define NSz				0x80			//éŸ³è«³ã‚³ãƒ¼ãƒ‰z
+#define NSza			0x81			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã–
+#define NSzi			0x82			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã˜
+#define NSzya			0x83			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã˜ã‚ƒ
+#define NSzyu			0x84			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã˜ã‚…
+#define NSzye			0x85			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã˜ã‡
+#define NSzyo			0x86			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã˜ã‚‡
+#define NSji			NSzi			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã˜
+#define NSja			NSzya			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã˜ã‚ƒ
+#define NSju			NSzyu			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã˜ã‚…
+#define NSje			NSzye			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã˜ã‡
+#define NSjo			NSzyo			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã˜ã‚‡
+#define NSzu			0x87			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ãš
+#define NSzwa			0x88			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ãšã‚
+#define NSzwi			0x89			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ãšãƒ
+#define NSzwe			0x8a			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ãšã‡
+#define NSzwo			0x8b			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ãšã‰
+#define NSze			0x8c			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ãœ
+#define NSzo			0x8d			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã
+#define NS_8e			0x8e			//éŸ³è«³ã‚³ãƒ¼ãƒ‰æœªå®šç¾©
+#define NS_8f			0x8f			//éŸ³è«³ã‚³ãƒ¼ãƒ‰æœªå®šç¾©
 
-#define NSh				0x90			//‰¹æ}ƒR[ƒhh
-#define NSha			0x91			//‰¹æ}ƒR[ƒh‚Í
-#define NShi			0x92			//‰¹æ}ƒR[ƒh‚Ğ
-#define NShya			0x93			//‰¹æ}ƒR[ƒh‚Ğ‚á
-#define NShyu			0x94			//‰¹æ}ƒR[ƒh‚Ğ‚ã
-#define NShye			0x95			//‰¹æ}ƒR[ƒh‚Ğ‚¥
-#define NShyo			0x96			//‰¹æ}ƒR[ƒh‚Ğ‚å
-#define NShu			0x97			//‰¹æ}ƒR[ƒh‚Ó
-#define NShwa			0x98			//‰¹æ}ƒR[ƒh‚Ó‚ì
-#define NShwi			0x99			//‰¹æ}ƒR[ƒh‚Ó‚¡
-#define NShwe			0x9a			//‰¹æ}ƒR[ƒh‚Ó‚¥
-#define NShwo			0x9b			//‰¹æ}ƒR[ƒh‚Ó‚§
-#define NSfu			NShu			//‰¹æ}ƒR[ƒh‚Ó
-#define NSfa			NShwa			//‰¹æ}ƒR[ƒh‚Ó‚ì
-#define NSfi			NShwi			//‰¹æ}ƒR[ƒh‚Ó‚¡
-#define NSfe			NShwe			//‰¹æ}ƒR[ƒh‚Ó‚¥
-#define NSfo			NShwo			//‰¹æ}ƒR[ƒh‚Ó‚§
-#define NShe			0x9c			//‰¹æ}ƒR[ƒh‚Ö
-#define NSho			0x9d			//‰¹æ}ƒR[ƒh‚Ù
-#define NS_9e			0x9e			//‰¹æ}ƒR[ƒh–¢’è‹`
-#define NS_9f			0x9f			//‰¹æ}ƒR[ƒh–¢’è‹`
+#define NSh				0x90			//éŸ³è«³ã‚³ãƒ¼ãƒ‰h
+#define NSha			0x91			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã¯
+#define NShi			0x92			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã²
+#define NShya			0x93			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã²ã‚ƒ
+#define NShyu			0x94			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã²ã‚…
+#define NShye			0x95			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã²ã‡
+#define NShyo			0x96			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã²ã‚‡
+#define NShu			0x97			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ãµ
+#define NShwa			0x98			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ãµã‚
+#define NShwi			0x99			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ãµãƒ
+#define NShwe			0x9a			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ãµã‡
+#define NShwo			0x9b			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ãµã‰
+#define NSfu			NShu			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ãµ
+#define NSfa			NShwa			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ãµã‚
+#define NSfi			NShwi			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ãµãƒ
+#define NSfe			NShwe			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ãµã‡
+#define NSfo			NShwo			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ãµã‰
+#define NShe			0x9c			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã¸
+#define NSho			0x9d			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã»
+#define NS_9e			0x9e			//éŸ³è«³ã‚³ãƒ¼ãƒ‰æœªå®šç¾©
+#define NS_9f			0x9f			//éŸ³è«³ã‚³ãƒ¼ãƒ‰æœªå®šç¾©
 
-//•@‰¹
-#define NSn				0xa0			//‰¹æ}ƒR[ƒhn
-#define NSna			0xa1			//‰¹æ}ƒR[ƒh‚È
-#define NSni			0xa2			//‰¹æ}ƒR[ƒh‚É
-#define NSnya			0xa3			//‰¹æ}ƒR[ƒh‚É‚á
-#define NSnyu			0xa4			//‰¹æ}ƒR[ƒh‚É‚ã
-#define NSnye			0xa5			//‰¹æ}ƒR[ƒh‚É‚¥
-#define NSnyo			0xa6			//‰¹æ}ƒR[ƒh‚É‚å
-#define NSnu			0xa7			//‰¹æ}ƒR[ƒh‚Ê
-#define NSnwa			0xa8			//‰¹æ}ƒR[ƒh‚Ê‚ì
-#define NSnwi			0xa9			//‰¹æ}ƒR[ƒh‚Ê‚¡
-#define NSnwe			0xaa			//‰¹æ}ƒR[ƒh‚Ê‚¥
-#define NSnwo			0xab			//‰¹æ}ƒR[ƒh‚Ê‚§
-#define NSne			0xac			//‰¹æ}ƒR[ƒh‚Ë
-#define NSno			0xad			//‰¹æ}ƒR[ƒh‚Ì
-#define NS_ae			0xae			//‰¹æ}ƒR[ƒh–¢’è‹`
-#define NS_af			0xaf			//‰¹æ}ƒR[ƒh–¢’è‹`
+//é¼»éŸ³
+#define NSn				0xa0			//éŸ³è«³ã‚³ãƒ¼ãƒ‰n
+#define NSna			0xa1			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ãª
+#define NSni			0xa2			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã«
+#define NSnya			0xa3			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã«ã‚ƒ
+#define NSnyu			0xa4			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã«ã‚…
+#define NSnye			0xa5			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã«ã‡
+#define NSnyo			0xa6			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã«ã‚‡
+#define NSnu			0xa7			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã¬
+#define NSnwa			0xa8			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã¬ã‚
+#define NSnwi			0xa9			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã¬ãƒ
+#define NSnwe			0xaa			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã¬ã‡
+#define NSnwo			0xab			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã¬ã‰
+#define NSne			0xac			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã­
+#define NSno			0xad			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã®
+#define NS_ae			0xae			//éŸ³è«³ã‚³ãƒ¼ãƒ‰æœªå®šç¾©
+#define NS_af			0xaf			//éŸ³è«³ã‚³ãƒ¼ãƒ‰æœªå®šç¾©
 
-#define NSm				0xb0			//‰¹æ}ƒR[ƒhm
-#define NSma			0xb1			//‰¹æ}ƒR[ƒh‚Ü
-#define NSmi			0xb2			//‰¹æ}ƒR[ƒh‚İ
-#define NSmya			0xb3			//‰¹æ}ƒR[ƒh‚İ‚á
-#define NSmyu			0xb4			//‰¹æ}ƒR[ƒh‚İ‚ã
-#define NSmye			0xb5			//‰¹æ}ƒR[ƒh‚İ‚¥
-#define NSmyo			0xb6			//‰¹æ}ƒR[ƒh‚İ‚å
-#define NSmu			0xb7			//‰¹æ}ƒR[ƒh‚Ş
-#define NSmwa			0xb8			//‰¹æ}ƒR[ƒh‚Ş‚ì
-#define NSmwi			0xb9			//‰¹æ}ƒR[ƒh‚Ş‚¡
-#define NSmwe			0xba			//‰¹æ}ƒR[ƒh‚Ş‚¥
-#define NSmwo			0xbb			//‰¹æ}ƒR[ƒh‚Ş‚§
-#define NSme			0xbc			//‰¹æ}ƒR[ƒh‚ß
-#define NSmo			0xbd			//‰¹æ}ƒR[ƒh‚à
-#define NS_be			0xbe			//‰¹æ}ƒR[ƒh–¢’è‹`
-#define NS_bf			0xbf			//‰¹æ}ƒR[ƒh–¢’è‹`
+#define NSm				0xb0			//éŸ³è«³ã‚³ãƒ¼ãƒ‰m
+#define NSma			0xb1			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã¾
+#define NSmi			0xb2			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã¿
+#define NSmya			0xb3			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã¿ã‚ƒ
+#define NSmyu			0xb4			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã¿ã‚…
+#define NSmye			0xb5			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã¿ã‡
+#define NSmyo			0xb6			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã¿ã‚‡
+#define NSmu			0xb7			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã‚€
+#define NSmwa			0xb8			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã‚€ã‚
+#define NSmwi			0xb9			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã‚€ãƒ
+#define NSmwe			0xba			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã‚€ã‡
+#define NSmwo			0xbb			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã‚€ã‰
+#define NSme			0xbc			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã‚
+#define NSmo			0xbd			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã‚‚
+#define NS_be			0xbe			//éŸ³è«³ã‚³ãƒ¼ãƒ‰æœªå®šç¾©
+#define NS_bf			0xbf			//éŸ³è«³ã‚³ãƒ¼ãƒ‰æœªå®šç¾©
 
-//‚Í‚¶‚«‰¹
-#define NSr				0xc0			//‰¹æ}ƒR[ƒhr
-#define NSra			0xc1			//‰¹æ}ƒR[ƒh‚ç
-#define NSri			0xc2			//‰¹æ}ƒR[ƒh‚è
-#define NSrya			0xc3			//‰¹æ}ƒR[ƒh‚è‚á
-#define NSryu			0xc4			//‰¹æ}ƒR[ƒh‚è‚ã
-#define NSrye			0xc5			//‰¹æ}ƒR[ƒh‚è‚¥
-#define NSryo			0xc6			//‰¹æ}ƒR[ƒh‚è‚å
-#define NSru			0xc7			//‰¹æ}ƒR[ƒh‚é
-#define NSrwa			0xc8			//‰¹æ}ƒR[ƒh‚é‚ì
-#define NSrwi			0xc9			//‰¹æ}ƒR[ƒh‚é‚¡
-#define NSrwe			0xca			//‰¹æ}ƒR[ƒh‚é‚¥
-#define NSrwo			0xcb			//‰¹æ}ƒR[ƒh‚é‚§
-#define NSre			0xcc			//‰¹æ}ƒR[ƒh‚ê
-#define NSro			0xcd			//‰¹æ}ƒR[ƒh‚ë
-#define NS_ce			0xce			//‰¹æ}ƒR[ƒh–¢’è‹`
-#define NS_cf			0xcf			//‰¹æ}ƒR[ƒh–¢’è‹`
+//ã¯ã˜ãéŸ³
+#define NSr				0xc0			//éŸ³è«³ã‚³ãƒ¼ãƒ‰r
+#define NSra			0xc1			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã‚‰
+#define NSri			0xc2			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã‚Š
+#define NSrya			0xc3			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã‚Šã‚ƒ
+#define NSryu			0xc4			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã‚Šã‚…
+#define NSrye			0xc5			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã‚Šã‡
+#define NSryo			0xc6			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã‚Šã‚‡
+#define NSru			0xc7			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã‚‹
+#define NSrwa			0xc8			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã‚‹ã‚
+#define NSrwi			0xc9			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã‚‹ãƒ
+#define NSrwe			0xca			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã‚‹ã‡
+#define NSrwo			0xcb			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã‚‹ã‰
+#define NSre			0xcc			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã‚Œ
+#define NSro			0xcd			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã‚
+#define NS_ce			0xce			//éŸ³è«³ã‚³ãƒ¼ãƒ‰æœªå®šç¾©
+#define NS_cf			0xcf			//éŸ³è«³ã‚³ãƒ¼ãƒ‰æœªå®šç¾©
 
-//‚ñ
-#define NSnn			0xd0			//‰¹æ}ƒR[ƒhnn
-#define NSnn1			0xd1			//‰¹æ}ƒR[ƒh‚ñ1
-#define NSnn2			0xd2			//‰¹æ}ƒR[ƒh‚ñ2
-#define NS_d3			0xd3			//‰¹æ}ƒR[ƒh–¢’è‹`
-#define NS_d4			0xd4			//‰¹æ}ƒR[ƒh–¢’è‹`
-#define NS_d5			0xd5			//‰¹æ}ƒR[ƒh–¢’è‹`
-#define NS_d6			0xd6			//‰¹æ}ƒR[ƒh–¢’è‹`
-#define NS_d7			0xd7			//‰¹æ}ƒR[ƒh–¢’è‹`
-#define NS_d8			0xd8			//‰¹æ}ƒR[ƒh–¢’è‹`
-#define NS_d9			0xd9			//‰¹æ}ƒR[ƒh–¢’è‹`
-#define NS_da			0xda			//‰¹æ}ƒR[ƒh–¢’è‹`
-#define NS_db			0xdb			//‰¹æ}ƒR[ƒh–¢’è‹`
-#define NS_dc			0xdc			//‰¹æ}ƒR[ƒh–¢’è‹`
-#define NS_dd			0xdd			//‰¹æ}ƒR[ƒh–¢’è‹`
-#define NS_de			0xde			//‰¹æ}ƒR[ƒh–¢’è‹`
-#define NS_df			0xdf			//‰¹æ}ƒR[ƒh–¢’è‹`
+//ã‚“
+#define NSnn			0xd0			//éŸ³è«³ã‚³ãƒ¼ãƒ‰nn
+#define NSnn1			0xd1			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã‚“1
+#define NSnn2			0xd2			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã‚“2
+#define NS_d3			0xd3			//éŸ³è«³ã‚³ãƒ¼ãƒ‰æœªå®šç¾©
+#define NS_d4			0xd4			//éŸ³è«³ã‚³ãƒ¼ãƒ‰æœªå®šç¾©
+#define NS_d5			0xd5			//éŸ³è«³ã‚³ãƒ¼ãƒ‰æœªå®šç¾©
+#define NS_d6			0xd6			//éŸ³è«³ã‚³ãƒ¼ãƒ‰æœªå®šç¾©
+#define NS_d7			0xd7			//éŸ³è«³ã‚³ãƒ¼ãƒ‰æœªå®šç¾©
+#define NS_d8			0xd8			//éŸ³è«³ã‚³ãƒ¼ãƒ‰æœªå®šç¾©
+#define NS_d9			0xd9			//éŸ³è«³ã‚³ãƒ¼ãƒ‰æœªå®šç¾©
+#define NS_da			0xda			//éŸ³è«³ã‚³ãƒ¼ãƒ‰æœªå®šç¾©
+#define NS_db			0xdb			//éŸ³è«³ã‚³ãƒ¼ãƒ‰æœªå®šç¾©
+#define NS_dc			0xdc			//éŸ³è«³ã‚³ãƒ¼ãƒ‰æœªå®šç¾©
+#define NS_dd			0xdd			//éŸ³è«³ã‚³ãƒ¼ãƒ‰æœªå®šç¾©
+#define NS_de			0xde			//éŸ³è«³ã‚³ãƒ¼ãƒ‰æœªå®šç¾©
+#define NS_df			0xdf			//éŸ³è«³ã‚³ãƒ¼ãƒ‰æœªå®šç¾©
 
-//‚»‚Ì‘¼
-#define NS_e0			0xe0			//‰¹æ}ƒR[ƒh–¢’è‹`
-#define NSspc			0xe1			//‰¹æ}ƒR[ƒh‹ó”’
-#define NSvls			0xe2			//‰¹æ}ƒR[ƒh‘§Œp
-#define NS_e3			0xe3			//‰¹æ}ƒR[ƒh–¢’è‹`
-#define NS_e4			0xe4			//‰¹æ}ƒR[ƒh–¢’è‹`
-#define NS_e5			0xe5			//‰¹æ}ƒR[ƒh–¢’è‹`
-#define NS_e6			0xe6			//‰¹æ}ƒR[ƒh–¢’è‹`
-#define NS_e7			0xe7			//‰¹æ}ƒR[ƒh–¢’è‹`
-#define NS_e8			0xe8			//‰¹æ}ƒR[ƒh–¢’è‹`
-#define NS_e9			0xe9			//‰¹æ}ƒR[ƒh–¢’è‹`
-#define NS_ea			0xea			//‰¹æ}ƒR[ƒh–¢’è‹`
-#define NS_eb			0xeb			//‰¹æ}ƒR[ƒh–¢’è‹`
-#define NS_ec			0xec			//‰¹æ}ƒR[ƒh–¢’è‹`
-#define NS_ed			0xed			//‰¹æ}ƒR[ƒh–¢’è‹`
-#define NS_ee			0xee			//‰¹æ}ƒR[ƒh–¢’è‹`
-#define NS_ef			0xef			//‰¹æ}ƒR[ƒh–¢’è‹`
+//ãã®ä»–
+#define NS_e0			0xe0			//éŸ³è«³ã‚³ãƒ¼ãƒ‰æœªå®šç¾©
+#define NSspc			0xe1			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ç©ºç™½
+#define NSvls			0xe2			//éŸ³è«³ã‚³ãƒ¼ãƒ‰æ¯ç¶™
+#define NS_e3			0xe3			//éŸ³è«³ã‚³ãƒ¼ãƒ‰æœªå®šç¾©
+#define NS_e4			0xe4			//éŸ³è«³ã‚³ãƒ¼ãƒ‰æœªå®šç¾©
+#define NS_e5			0xe5			//éŸ³è«³ã‚³ãƒ¼ãƒ‰æœªå®šç¾©
+#define NS_e6			0xe6			//éŸ³è«³ã‚³ãƒ¼ãƒ‰æœªå®šç¾©
+#define NS_e7			0xe7			//éŸ³è«³ã‚³ãƒ¼ãƒ‰æœªå®šç¾©
+#define NS_e8			0xe8			//éŸ³è«³ã‚³ãƒ¼ãƒ‰æœªå®šç¾©
+#define NS_e9			0xe9			//éŸ³è«³ã‚³ãƒ¼ãƒ‰æœªå®šç¾©
+#define NS_ea			0xea			//éŸ³è«³ã‚³ãƒ¼ãƒ‰æœªå®šç¾©
+#define NS_eb			0xeb			//éŸ³è«³ã‚³ãƒ¼ãƒ‰æœªå®šç¾©
+#define NS_ec			0xec			//éŸ³è«³ã‚³ãƒ¼ãƒ‰æœªå®šç¾©
+#define NS_ed			0xed			//éŸ³è«³ã‚³ãƒ¼ãƒ‰æœªå®šç¾©
+#define NS_ee			0xee			//éŸ³è«³ã‚³ãƒ¼ãƒ‰æœªå®šç¾©
+#define NS_ef			0xef			//éŸ³è«³ã‚³ãƒ¼ãƒ‰æœªå®šç¾©
 
-#define NS_f0			0xf0			//‰¹æ}ƒR[ƒh–¢’è‹`
-#define NSp1			0xf1			//‰¹æ}ƒR[ƒhX+1
-#define NSp2			0xf2			//‰¹æ}ƒR[ƒhX+2
-#define NSp3			0xf3			//‰¹æ}ƒR[ƒhX+3
-#define NSp4			0xf4			//‰¹æ}ƒR[ƒhX+4
-#define NStt			0xf5			//‰¹æ}ƒR[ƒh‘£‰¹
-#define NS_f6			0xf6			//‰¹æ}ƒR[ƒh–¢’è‹`
-#define NS_f7			0xf7			//‰¹æ}ƒR[ƒh–¢’è‹`
-#define NS_f8			0xf8			//‰¹æ}ƒR[ƒh–¢’è‹`
-#define NS_f9			0xf9			//‰¹æ}ƒR[ƒh–¢’è‹`
-#define NS_fa			0xfa			//‰¹æ}ƒR[ƒh–¢’è‹`
-#define NS_fb			0xfb			//‰¹æ}ƒR[ƒh–¢’è‹`
-#define NS_fc			0xfc			//‰¹æ}ƒR[ƒh–¢’è‹`
-#define NS_fd			0xfd			//‰¹æ}ƒR[ƒh–¢’è‹`
-#define NS_fe			0xfe			//‰¹æ}ƒR[ƒh–¢’è‹`
-#define NS_ff			0xff			//‰¹æ}ƒR[ƒh–¢’è‹`
+#define NS_f0			0xf0			//éŸ³è«³ã‚³ãƒ¼ãƒ‰æœªå®šç¾©
+#define NSp1			0xf1			//éŸ³è«³ã‚³ãƒ¼ãƒ‰æ‹—+1
+#define NSp2			0xf2			//éŸ³è«³ã‚³ãƒ¼ãƒ‰æ‹—+2
+#define NSp3			0xf3			//éŸ³è«³ã‚³ãƒ¼ãƒ‰æ‹—+3
+#define NSp4			0xf4			//éŸ³è«³ã‚³ãƒ¼ãƒ‰æ‹—+4
+#define NStt			0xf5			//éŸ³è«³ã‚³ãƒ¼ãƒ‰ä¿ƒéŸ³
+#define NS_f6			0xf6			//éŸ³è«³ã‚³ãƒ¼ãƒ‰æœªå®šç¾©
+#define NS_f7			0xf7			//éŸ³è«³ã‚³ãƒ¼ãƒ‰æœªå®šç¾©
+#define NS_f8			0xf8			//éŸ³è«³ã‚³ãƒ¼ãƒ‰æœªå®šç¾©
+#define NS_f9			0xf9			//éŸ³è«³ã‚³ãƒ¼ãƒ‰æœªå®šç¾©
+#define NS_fa			0xfa			//éŸ³è«³ã‚³ãƒ¼ãƒ‰æœªå®šç¾©
+#define NS_fb			0xfb			//éŸ³è«³ã‚³ãƒ¼ãƒ‰æœªå®šç¾©
+#define NS_fc			0xfc			//éŸ³è«³ã‚³ãƒ¼ãƒ‰æœªå®šç¾©
+#define NS_fd			0xfd			//éŸ³è«³ã‚³ãƒ¼ãƒ‰æœªå®šç¾©
+#define NS_fe			0xfe			//éŸ³è«³ã‚³ãƒ¼ãƒ‰æœªå®šç¾©
+#define NS_ff			0xff			//éŸ³è«³ã‚³ãƒ¼ãƒ‰æœªå®šç¾©
 
 
-#define NSDATAINIT_P	0				//‰¹æ}ƒf[ƒ^‚Ìƒsƒbƒ`‚Ì‰Šú’l
-#define NSDATAINIT_T	25				//‰¹æ}ƒf[ƒ^‚Ì‘¬‚³‚Ì‰Šú’l
+#define NSDATAINIT_P	0				//éŸ³è«³ãƒ‡ãƒ¼ã‚¿ã®ãƒ”ãƒƒãƒã®åˆæœŸå€¤
+#define NSDATAINIT_T	25				//éŸ³è«³ãƒ‡ãƒ¼ã‚¿ã®é€Ÿã•ã®åˆæœŸå€¤
 
 
 typedef float nsfloat;
 
-typedef unsigned char NSCHAR;							//‰¹æ}ƒR[ƒh—p‚Ì•Ï”
-typedef NSCHAR* NSSTRING;								//‰¹æ}ƒR[ƒh‚Ì•¶š—ñ—p‚Ì•Ï”
+typedef unsigned char NSCHAR;							//éŸ³è«³ã‚³ãƒ¼ãƒ‰ç”¨ã®å¤‰æ•°
+typedef NSCHAR* NSSTRING;								//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã®æ–‡å­—åˆ—ç”¨ã®å¤‰æ•°
 
-// ‰¹æ}‚Ìº‚Ìƒf[ƒ^\‘¢‘Ì
+// éŸ³è«³ã®å£°ã®ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“
 // 
-// ˆê•¶š9byte
+// ä¸€æ–‡å­—9byte
 // 
-// Œ´e—p†(400š)300–‡ = 120,000•¶š‚Å
+// åŸç¨¿ç”¨ç´™(400å­—)300æš = 120,000æ–‡å­—ã§
 // 1.08Mbyte
 // 
 typedef struct NSCHARDATA {
 
-	uint32_t time;										//‘S‘Ì‚Å‚ÌŠÔ(0.01•b)(0~4,294,967,295)
-	uint16_t ctime;										//•¶š‚ÌŠÔ(0.01•b)(0~65,535)
-	NSCHAR c;											//•¶š(0~255)
-	int16_t pitch;										//Hz’PˆÊ‚Å‚Ìƒsƒbƒ`(Hz)(-32,768~32,767)
+	uint32_t time;										//å…¨ä½“ã§ã®æ™‚é–“(0.01ç§’)(0~4,294,967,295)
+	uint16_t ctime;										//æ–‡å­—ã®æ™‚é–“(0.01ç§’)(0~65,535)
+	NSCHAR c;											//æ–‡å­—(0~255)
+	int16_t pitch;										//Hzå˜ä½ã§ã®ãƒ”ãƒƒãƒ(Hz)(-32,768~32,767)
 
 } NSCHARDATA;
 
-typedef NSCHARDATA* NSSTRINGDATA;						//NSCHARDATA‚Ì”z—ñ
+typedef NSCHARDATA* NSSTRINGDATA;						//NSCHARDATAã®é…åˆ—
 
 
-//‰¹æ}ƒR[ƒhŠÖŒW
+//éŸ³è«³ã‚³ãƒ¼ãƒ‰é–¢ä¿‚
 namespace nsc {
 
-	//---- ƒGƒ“ƒR[ƒhŠÖŒW ----
+	//---- ã‚¨ãƒ³ã‚³ãƒ¼ãƒ‰é–¢ä¿‚ ----
 
-	//‰¹æ}‘®‚Å‘‚©‚ê‚½ƒ}ƒ‹ƒ`ƒoƒCƒg•¶š—ñ‚ğ‰¹æ}ƒR[ƒh‚ÉƒGƒ“ƒR[ƒh
+	//éŸ³è«³æ›¸å¼ã§æ›¸ã‹ã‚ŒãŸãƒãƒ«ãƒãƒã‚¤ãƒˆæ–‡å­—åˆ—ã‚’éŸ³è«³ã‚³ãƒ¼ãƒ‰ã«ã‚¨ãƒ³ã‚³ãƒ¼ãƒ‰
 	NSSTRINGDATA nsstrencode(const char* str);
-	//‰¹æ}‘®‚Å‘‚©‚ê‚½ƒ}ƒ‹ƒ`ƒoƒCƒg•¶š—ñ‚ğ‰¹æ}ƒR[ƒh‚ÉƒGƒ“ƒR[ƒh
+	//éŸ³è«³æ›¸å¼ã§æ›¸ã‹ã‚ŒãŸãƒãƒ«ãƒãƒã‚¤ãƒˆæ–‡å­—åˆ—ã‚’éŸ³è«³ã‚³ãƒ¼ãƒ‰ã«ã‚¨ãƒ³ã‚³ãƒ¼ãƒ‰
 	NSSTRINGDATA nsstrencode(const unsigned char* str);
-	//shift-jis‚ÌãˆÊƒrƒbƒg0x82‚ğ‰¹æ}ƒR[ƒh‚ÉƒGƒ“ƒR[ƒh
+	//shift-jisã®ä¸Šä½ãƒ“ãƒƒãƒˆ0x82ã‚’éŸ³è«³ã‚³ãƒ¼ãƒ‰ã«ã‚¨ãƒ³ã‚³ãƒ¼ãƒ‰
 	NSCHAR nscharencode(unsigned char c);
 
-	//‰¹æ}‘®‚Å‘‚©‚ê‚½ƒ[ƒ}š•¶š—ñ‚ğ‰¹æ}ƒR[ƒh‚ÉƒGƒ“ƒR[ƒh
+	//éŸ³è«³æ›¸å¼ã§æ›¸ã‹ã‚ŒãŸãƒ­ãƒ¼ãƒå­—æ–‡å­—åˆ—ã‚’éŸ³è«³ã‚³ãƒ¼ãƒ‰ã«ã‚¨ãƒ³ã‚³ãƒ¼ãƒ‰
 	NSSTRINGDATA nsromajiencode(const char* str);
-	//‰¹æ}‘®‚Å‘‚©‚ê‚½ƒ[ƒ}š•¶š—ñ‚ğ‰¹æ}ƒR[ƒh‚ÉƒGƒ“ƒR[ƒh
+	//éŸ³è«³æ›¸å¼ã§æ›¸ã‹ã‚ŒãŸãƒ­ãƒ¼ãƒå­—æ–‡å­—åˆ—ã‚’éŸ³è«³ã‚³ãƒ¼ãƒ‰ã«ã‚¨ãƒ³ã‚³ãƒ¼ãƒ‰
 	NSSTRINGDATA nsromajiencode(const unsigned char* str);
 
-	//----- ƒfƒR[ƒhŠÖ” -----
+	//----- ãƒ‡ã‚³ãƒ¼ãƒ‰é–¢æ•° -----
 
 	const char* nsstrdecode(NSSTRINGDATA str);
 	const char* nsstrdecode(NSSTRING str);
 	const char* nschardecode(NSCHAR c);
 
-	//NSSTRINGDATAŒ^‚Ì•Ï”‚ğƒRƒs[
+	//NSSTRINGDATAå‹ã®å¤‰æ•°ã‚’ã‚³ãƒ”ãƒ¼
 	void nsstrcpy(NSSTRINGDATA destination, const NSSTRINGDATA source);
 
-	//NSCHARDATAŒ^‚Ì•Ï”‚ğì¬
+	//NSCHARDATAå‹ã®å¤‰æ•°ã‚’ä½œæˆ
 	NSCHARDATA nscreateCharData(uint32_t time, uint16_t ctime, NSCHAR c, int16_t pitch);
 
 	size_t nsstrlen(NSSTRINGDATA str);
@@ -694,14 +695,14 @@ namespace nsc {
 
 };
 
-//‰¹æ}•¶š—ñŒ^
+//éŸ³è«³æ–‡å­—åˆ—å‹
 class NSString {
 
-	size_t n_size;										//ƒf[ƒ^ƒTƒCƒY
-	size_t n_capacity;									//Å‘åƒf[ƒ^ƒTƒCƒY
-	size_t n_wsize;										//•¶š”
-	size_t n_wcapacity;									//Å‘å•¶š”
-	NSSTRINGDATA n_string;								//•¶š—ñ
+	size_t n_size;										//ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º
+	size_t n_capacity;									//æœ€å¤§ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º
+	size_t n_wsize;										//æ–‡å­—æ•°
+	size_t n_wcapacity;									//æœ€å¤§æ–‡å­—æ•°
+	NSSTRINGDATA n_string;								//æ–‡å­—åˆ—
 
 public:
 
@@ -710,16 +711,16 @@ public:
 	NSString(const NSSTRING c);
 	NSString(const NSSTRINGDATA c);
 	NSString(const NSString& s);
-	//ƒfƒXƒgƒ‰ƒNƒ^
+	//ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	~NSString();
-	//‰‰Zq
+	//æ¼”ç®—å­
 	NSCHARDATA& operator [](const size_t n);
 	const NSCHARDATA& operator [](const size_t n) const;
 	NSString operator +(const char* c);
 	NSString operator +(const NSString& str);
 	NSString& operator +=(const char* c);
 	NSString& operator +=(const NSString& str);
-	//ƒƒ“ƒoŠÖ”
+	//ãƒ¡ãƒ³ãƒé–¢æ•°
 	bool empty() const;
 	size_t size() const;
 	size_t length() const;
@@ -736,48 +737,48 @@ public:
 
 
 //	+-------------------------------------------------------------------------------------------+
-//	|	‰¹æ}—ë†‹@																				|
+//	|	éŸ³è«³é›¶å·æ©Ÿ																				|
 //	+-------------------------------------------------------------------------------------------+
 
 
 
-#define SMPL		44100										//ƒTƒ“ƒvƒŠƒ“ƒOü”g”
+#define SMPL		44100										//ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°å‘¨æ³¢æ•°
 #define TRANSTIME	5											//?
-#define MAXFREQ		20000										//Å‘åü”g”
-#define PI			3.141592653589793238462643					//‰~ü—¦
-#define DB			1.0											//wavƒtƒ@ƒCƒ‹‚ÌãŒÀA‰ºŒÀ
-#define MAXTEXTS	65536										//Å‘å•¶š—ñ
+#define MAXFREQ		20000										//æœ€å¤§å‘¨æ³¢æ•°
+#define PI			3.141592653589793238462643					//å††å‘¨ç‡
+#define DB			1.0											//wavãƒ•ã‚¡ã‚¤ãƒ«ã®ä¸Šé™ã€ä¸‹é™
+#define MAXTEXTS	65536										//æœ€å¤§æ–‡å­—åˆ—
 
-#define BIT 8													//wavƒtƒ@ƒCƒ‹ì¬—p
-#define FILTERWIDTH 1000										//ƒtƒBƒ‹ƒ^[‚Ì•(ƒtƒHƒ‹ƒ}ƒ“ƒgü”g”‚©‚ç‚Ç‚Ì”ÍˆÍ‚Ü‚Å‚ğ’Ê‚·‚©)
+#define BIT 8													//wavãƒ•ã‚¡ã‚¤ãƒ«ä½œæˆç”¨
+#define FILTERWIDTH 1000										//ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼ã®å¹…(ãƒ•ã‚©ãƒ«ãƒãƒ³ãƒˆå‘¨æ³¢æ•°ã‹ã‚‰ã©ã®ç¯„å›²ã¾ã§ã‚’é€šã™ã‹)
 
-#define GETSIZE(a)  (sizeof(a)/sizeof(a[0]))					//•Ï”‚ÌƒTƒCƒY‚ğæ“¾
-#define POW2(a)     ((a) * (a))									//“ñæ
-#define MAX(a,b)    (((a)<(b))?(b):(a))							//‚Ç‚¿‚ç‚ª‘å‚«‚¢‚©
-#define MIN(a,b)    (((a)<(b))?(a):(b))							//‚Ç‚Á‚¿‚ª¬‚³‚¢‚©
+#define GETSIZE(a)  (sizeof(a)/sizeof(a[0]))					//å¤‰æ•°ã®ã‚µã‚¤ã‚ºã‚’å–å¾—
+#define POW2(a)     ((a) * (a))									//äºŒä¹—
+#define MAX(a,b)    (((a)<(b))?(b):(a))							//ã©ã¡ã‚‰ãŒå¤§ãã„ã‹
+#define MIN(a,b)    (((a)<(b))?(a):(b))							//ã©ã£ã¡ãŒå°ã•ã„ã‹
 
-#define unprocessed	0											//ˆ—‚È‚µ
+#define unprocessed	0											//å‡¦ç†ãªã—
 
-#define TESTPLAYVOISEFILENAME		"NesoraTestVoiseFromMvff.wav"	//¶¬‚µ‚½wavƒtƒ@ƒCƒ‹‚Ì•W€‚Ì–¼‘O
+#define TESTPLAYVOISEFILENAME		"NesoraTestVoiseFromMvff.wav"	//ç”Ÿæˆã—ãŸwavãƒ•ã‚¡ã‚¤ãƒ«ã®æ¨™æº–ã®åå‰
 
-#define GEMINATE_CONSONANT_SPEED	2							//u‚Áv‚Ì’·‚³
-#define GEMINATE_CONSONANT_TMAG		1.5							//u‚Áv‚Ì‚ ‚Æ‚Ì’·‚³‚Ì”{—¦
-#define MAXSHIONSPEED				4410						//q‰¹‚Ì’·‚³
-#define MAXBYOUONSPEED				2200						//X‰¹‚Ì‘O‚Ì•ê‰¹‚Ì’·‚³
-#define MAXYOUONSPEED				2200						//X‰¹‚Ì’·‚³
-#define SEMIVOWELSPEED				882							//º‚ÌŒã”¼‚Ì•Ï‰»‚·‚é‚Æ‚±‚ë‚Ì’·‚³
-#define PLOSIVESPEED				220							//”j—ô‰¹‚Ì’·‚³
-#define PLOSIVEPOWER				2							//”j—ô‰¹‚Ì‹­‚³
-#define NASALSPEED					331							//•@‰¹‚Ì’·‚³
-#define TAPSPEED					331							//‚Í‚¶‚«‰¹‚Ì’·‚³
-#define FRICATIVENOISESCOPE			50							//–€C‰¹‚ÌG‰¹‚Ì”ÍˆÍ
-#define FRICATIVENOISEACC			200							//–€C‰¹‚ÌG‰¹‚Ì¸“x
-#define PLOSIVEPOWER				2							//–€E‰¹‚Ì‹­‚³
-#define CTIME						4410						//“Á’è‚Ì’·‚³‚Ì‰¹‚ğØ‚èæ‚é‚Æ‚«‚Ì‘OŒã‚Ì—]”’
+#define GEMINATE_CONSONANT_SPEED	2							//ã€Œã£ã€ã®é•·ã•
+#define GEMINATE_CONSONANT_TMAG		1.5							//ã€Œã£ã€ã®ã‚ã¨ã®é•·ã•ã®å€ç‡
+#define MAXSHIONSPEED				4410						//å­éŸ³ã®é•·ã•
+#define MAXBYOUONSPEED				2200						//æ‹—éŸ³ã®å‰ã®æ¯éŸ³ã®é•·ã•
+#define MAXYOUONSPEED				2200						//æ‹—éŸ³ã®é•·ã•
+#define SEMIVOWELSPEED				882							//å£°ã®å¾ŒåŠã®å¤‰åŒ–ã™ã‚‹ã¨ã“ã‚ã®é•·ã•
+#define PLOSIVESPEED				220							//ç ´è£‚éŸ³ã®é•·ã•
+#define PLOSIVEPOWER				2							//ç ´è£‚éŸ³ã®å¼·ã•
+#define NASALSPEED					331							//é¼»éŸ³ã®é•·ã•
+#define TAPSPEED					331							//ã¯ã˜ãéŸ³ã®é•·ã•
+#define FRICATIVENOISESCOPE			50							//æ‘©æ“¦éŸ³ã®é›‘éŸ³ã®ç¯„å›²
+#define FRICATIVENOISEACC			200							//æ‘©æ“¦éŸ³ã®é›‘éŸ³ã®ç²¾åº¦
+#define PLOSIVEPOWER				2							//æ‘©æ®ºéŸ³ã®å¼·ã•
+#define CTIME						4410						//ç‰¹å®šã®é•·ã•ã®éŸ³ã‚’åˆ‡ã‚Šå–ã‚‹ã¨ãã®å‰å¾Œã®ä½™ç™½
 
-#define SPACE						0xd3						//‹ó”’
-#define SPARETIME					441000						//—\”õŠÔ
-#define CHANGETIMEMAGN				0.01 * SMPL					//ŠÔ‚Ì”ä—¦
+#define SPACE						0xd3						//ç©ºç™½
+#define SPARETIME					441000						//äºˆå‚™æ™‚é–“
+#define CHANGETIMEMAGN				0.01 * SMPL					//æ™‚é–“ã®æ¯”ç‡
 
 struct FriKILLive {
 	std::vector<nsfloat> Hz, s;
@@ -788,32 +789,32 @@ struct FriKILLive {
 class mainMakeVoiseF {
 public:
 
-	int makeSinWave(int num, std::vector<nsfloat> Hz, std::vector<nsfloat> s, std::vector<nsfloat>& out, nsfloat a = 0.0, bool doformant = true);	//ƒŠƒXƒg‚©‚ç‡¬‚³‚ê‚½sin”g‚ğ¶¬
-	int makeSinha(nsfloat Hz, nsfloat s, std::vector<nsfloat>& out);													//’Pƒ‚Èsin”g‚ğ¶¬
+	int makeSinWave(int num, std::vector<nsfloat> Hz, std::vector<nsfloat> s, std::vector<nsfloat>& out, nsfloat a = 0.0, bool doformant = true);	//ãƒªã‚¹ãƒˆã‹ã‚‰åˆæˆã•ã‚ŒãŸsinæ³¢ã‚’ç”Ÿæˆ
+	int makeSinha(nsfloat Hz, nsfloat s, std::vector<nsfloat>& out);													//å˜ç´”ãªsinæ³¢ã‚’ç”Ÿæˆ
 
-	int makeHarmonicOvertone(nsfloat bf);																			//Šî–{”{‰¹İ’è
-	int setFormants(nsfloat F1, nsfloat F2, nsfloat F3, nsfloat F4);													//ƒtƒHƒ‹ƒ}ƒ“ƒgƒŠƒXƒg‚Éü”g”‚ğİ’è
-	int makeFilter();																								//Šî–{”{‰¹‚Ì‘å‚«‚³‚ğ©“®¶¬
-	int makeSinWaveFromClass(std::vector<nsfloat>& out, nsfloat a = 0.0);												//ƒNƒ‰ƒX“à‚Ìƒpƒ‰ƒ[ƒ^‚©‚çsin”g‚ğ‡¬
+	int makeHarmonicOvertone(nsfloat bf);																			//åŸºæœ¬å€éŸ³è¨­å®š
+	int setFormants(nsfloat F1, nsfloat F2, nsfloat F3, nsfloat F4);													//ãƒ•ã‚©ãƒ«ãƒãƒ³ãƒˆãƒªã‚¹ãƒˆã«å‘¨æ³¢æ•°ã‚’è¨­å®š
+	int makeFilter();																								//åŸºæœ¬å€éŸ³ã®å¤§ãã•ã‚’è‡ªå‹•ç”Ÿæˆ
+	int makeSinWaveFromClass(std::vector<nsfloat>& out, nsfloat a = 0.0);												//ã‚¯ãƒ©ã‚¹å†…ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‹ã‚‰sinæ³¢ã‚’åˆæˆ
 
-	nsfloat makeMomentSinWave(int num, std::vector<nsfloat> Hz, std::vector<nsfloat> s, int gets);												//“Á’è‚ÌŠÔ‚Ìü”g”‚ğæ“¾
-	nsfloat makeMomentSinWaveFromClass(int t);																		//ƒNƒ‰ƒX“à‚Ìƒpƒ‰ƒ[ƒ^‚©‚ç“Á’è‚ÌŠÔ‚Ìü”g”‚ğæ“¾
+	nsfloat makeMomentSinWave(int num, std::vector<nsfloat> Hz, std::vector<nsfloat> s, int gets);												//ç‰¹å®šã®æ™‚é–“ã®å‘¨æ³¢æ•°ã‚’å–å¾—
+	nsfloat makeMomentSinWaveFromClass(int t);																		//ã‚¯ãƒ©ã‚¹å†…ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‹ã‚‰ç‰¹å®šã®æ™‚é–“ã®å‘¨æ³¢æ•°ã‚’å–å¾—
 
 
-	nsfloat mostMax(std::vector<nsfloat> list);																	//”z—ñ“à‚ÌÅ‚à‘å‚«‚¢’l‚ğ•Ô‚·ŠÖ”
+	nsfloat mostMax(std::vector<nsfloat> list);																	//é…åˆ—å†…ã®æœ€ã‚‚å¤§ãã„å€¤ã‚’è¿”ã™é–¢æ•°
 
-	int hipassFilter(std::vector<nsfloat> input, std::vector<nsfloat>& out, nsfloat samplerate, nsfloat freq, nsfloat q);				//ƒnƒCƒpƒXƒtƒBƒ‹ƒ^[
-	int lowpassFilter(std::vector<nsfloat> input, std::vector<nsfloat>& out, nsfloat samplerate, nsfloat freq, nsfloat q);				//ƒ[ƒpƒXƒtƒBƒ‹ƒ^[
-	int notchpassFilter(std::vector<nsfloat> input, std::vector<nsfloat>& out, nsfloat samplerate, nsfloat freq, nsfloat bw);			//ƒmƒbƒ`ƒpƒXƒtƒBƒ‹ƒ^[
+	int hipassFilter(std::vector<nsfloat> input, std::vector<nsfloat>& out, nsfloat samplerate, nsfloat freq, nsfloat q);				//ãƒã‚¤ãƒ‘ã‚¹ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼
+	int lowpassFilter(std::vector<nsfloat> input, std::vector<nsfloat>& out, nsfloat samplerate, nsfloat freq, nsfloat q);				//ãƒ­ãƒ¼ãƒ‘ã‚¹ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼
+	int notchpassFilter(std::vector<nsfloat> input, std::vector<nsfloat>& out, nsfloat samplerate, nsfloat freq, nsfloat bw);			//ãƒãƒƒãƒãƒ‘ã‚¹ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼
 
-	int getstate(int state);																						//Œ»İ‚ÌmainMakeVoiseF.cpp‚Ìó‘Ô‚ğæ“¾‚·‚éB
-	int setSoftness(nsfloat sn);																						//softness•Ï”‚ğ•ÏX
+	int getstate(int state);																						//ç¾åœ¨ã®mainMakeVoiseF.cppã®çŠ¶æ…‹ã‚’å–å¾—ã™ã‚‹ã€‚
+	int setSoftness(nsfloat sn);																						//softnesså¤‰æ•°ã‚’å¤‰æ›´
 private:
 
-	int fsize = 4, hosize = 0;																						//ƒtƒHƒ‹ƒ}ƒ“ƒg‚Ì”A”{‰¹‚Ì”
-	std::vector<nsfloat> formants = { 0.0,0.0,0.0,0.0 }, harmonicOvertones = { 0.0 }, harmonictoneFilters = { 0.0 };	//ƒf[ƒ^”z—ñ
-	nsfloat bf = 0;																									//Šî’êü”g”
-	nsfloat softness = 0;																							//_‚ç‚©‚³
+	int fsize = 4, hosize = 0;																						//ãƒ•ã‚©ãƒ«ãƒãƒ³ãƒˆã®æ•°ã€å€éŸ³ã®æ•°
+	std::vector<nsfloat> formants = { 0.0,0.0,0.0,0.0 }, harmonicOvertones = { 0.0 }, harmonictoneFilters = { 0.0 };	//ãƒ‡ãƒ¼ã‚¿é…åˆ—
+	nsfloat bf = 0;																									//åŸºåº•å‘¨æ³¢æ•°
+	nsfloat softness = 0;																							//æŸ”ã‚‰ã‹ã•
 
 };
 
@@ -821,56 +822,56 @@ private:
 class makeVoiseFromFile {
 public:
 
-	int setDefaulFurin();																							//‰¹æ} •——é‚ğg‚¤
-	int setShion();																									//‰¹æ} Œ‰¹‚ğg‚¤
+	int setDefaulFurin();																							//éŸ³è«³ é¢¨éˆ´ã‚’ä½¿ã†
+	int setShion();																									//éŸ³è«³ è©éŸ³ã‚’ä½¿ã†
 
-	//V
-	int textread(const char* text);																					//‰¹æ}‘®‚Å‘‚©‚ê‚½•¶Í‚ğ“Ç‚İ‚İ
-	std::vector<nsfloat> textreading();																				//textread‚Å“Ç‚İ‚ñ‚¾•¶Í‚ğ“Ç‚İã‚°
+	//æ–°
+	int textread(const char* text);																					//éŸ³è«³æ›¸å¼ã§æ›¸ã‹ã‚ŒãŸæ–‡ç« ã‚’èª­ã¿è¾¼ã¿
+	std::vector<nsfloat> textreading();																				//textreadã§èª­ã¿è¾¼ã‚“ã æ–‡ç« ã‚’èª­ã¿ä¸Šã’
 
-	int loadFromChar(char* data);																					//•¶š—ñ‚©‚çƒf[ƒ^‚ğ“Ç‚İ‚İ
+	int loadFromChar(char* data);																					//æ–‡å­—åˆ—ã‹ã‚‰ãƒ‡ãƒ¼ã‚¿ã‚’èª­ã¿è¾¼ã¿
 
-	nsfloat getPrivatebf();																							//ƒf[ƒ^•ÛŠÇŒÉ‚©‚çŠî‰¹ƒf[ƒ^‚ğ“Ç‚İ‚Ş
-	nsfloat getPrivatebFormant(int b, int f);																		//ƒf[ƒ^•ÛŠÇŒÉ‚©‚çƒtƒHƒ‹ƒ}ƒ“ƒgƒf[ƒ^‚ğ“Ç‚İ‚Ş
+	nsfloat getPrivatebf();																							//ãƒ‡ãƒ¼ã‚¿ä¿ç®¡åº«ã‹ã‚‰åŸºéŸ³ãƒ‡ãƒ¼ã‚¿ã‚’èª­ã¿è¾¼ã‚€
+	nsfloat getPrivatebFormant(int b, int f);																		//ãƒ‡ãƒ¼ã‚¿ä¿ç®¡åº«ã‹ã‚‰ãƒ•ã‚©ãƒ«ãƒãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ã‚’èª­ã¿è¾¼ã‚€
 
-	int decodeVoise0(char* data);																					//—ë†‹@‚Ìƒf[ƒ^‚ğ“Ç‚İ‚Ş
-	int decodeVoise2(char* data);																					//—ë†‹@‚Ìƒf[ƒ^‚ğ“Ç‚İ‚Ş
+	int decodeVoise0(char* data);																					//é›¶å·æ©Ÿã®ãƒ‡ãƒ¼ã‚¿ã‚’èª­ã¿è¾¼ã‚€
+	int decodeVoise2(char* data);																					//é›¶å·æ©Ÿã®ãƒ‡ãƒ¼ã‚¿ã‚’èª­ã¿è¾¼ã‚€
 
 private:
 
-	int makeWhitenoise(std::vector<nsfloat> out, int time, nsfloat hz, nsfloat um);									//ƒzƒƒCƒgƒmƒCƒY‚ğì¬
-	int makeWhitenoise1(std::vector<nsfloat> out, int time, nsfloat hz);												//ƒzƒƒCƒgƒmƒCƒY‚ğì¬
+	int makeWhitenoise(std::vector<nsfloat> out, int time, nsfloat hz, nsfloat um);									//ãƒ›ãƒ¯ã‚¤ãƒˆãƒã‚¤ã‚ºã‚’ä½œæˆ
+	int makeWhitenoise1(std::vector<nsfloat> out, int time, nsfloat hz);												//ãƒ›ãƒ¯ã‚¤ãƒˆãƒã‚¤ã‚ºã‚’ä½œæˆ
 
-	int hipassFilter(std::vector<nsfloat> input, std::vector<nsfloat>& out, nsfloat samplerate, nsfloat freq, nsfloat q);				//ƒnƒCƒpƒXƒtƒBƒ‹ƒ^[
-	int lowpassFilter(std::vector<nsfloat> input, std::vector<nsfloat>& out, nsfloat samplerate, nsfloat freq, nsfloat q);				//ƒ[ƒpƒXƒtƒBƒ‹ƒ^[
-	int notchpassFilter(std::vector<nsfloat> input, std::vector<nsfloat>& out, nsfloat samplerate, nsfloat freq, nsfloat bw);			//ƒmƒbƒ`ƒpƒXƒtƒBƒ‹ƒ^[
+	int hipassFilter(std::vector<nsfloat> input, std::vector<nsfloat>& out, nsfloat samplerate, nsfloat freq, nsfloat q);				//ãƒã‚¤ãƒ‘ã‚¹ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼
+	int lowpassFilter(std::vector<nsfloat> input, std::vector<nsfloat>& out, nsfloat samplerate, nsfloat freq, nsfloat q);				//ãƒ­ãƒ¼ãƒ‘ã‚¹ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼
+	int notchpassFilter(std::vector<nsfloat> input, std::vector<nsfloat>& out, nsfloat samplerate, nsfloat freq, nsfloat bw);			//ãƒãƒƒãƒãƒ‘ã‚¹ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼
 
-	nsfloat privatebf = 0, privateFormant[5][4] = { 0 };																//makeVoiseFromFile‚Ìƒf[ƒ^•ÛŠÇŒÉ
-	nsfloat allmojiFormant[2][16][16][4] = { 0 };																	//•¶š‚ÌƒtƒHƒ‹ƒ}ƒ“ƒg‚Ì•ÛŠÇŒÉ
-	nsfloat softness = 0;																							//_‚ç‚©‚³‚Ì•ÛŠÇŒÉ
+	nsfloat privatebf = 0, privateFormant[5][4] = { 0 };																//makeVoiseFromFileã®ãƒ‡ãƒ¼ã‚¿ä¿ç®¡åº«
+	nsfloat allmojiFormant[2][16][16][4] = { 0 };																	//æ–‡å­—ã®ãƒ•ã‚©ãƒ«ãƒãƒ³ãƒˆã®ä¿ç®¡åº«
+	nsfloat softness = 0;																							//æŸ”ã‚‰ã‹ã•ã®ä¿ç®¡åº«
 
-	int createAllMojiFromantFromClass();																			//privateFormant‚©‚çallmojiFormant‚ğì¬
-	nsfloat getMojiFormant(int f, int moji, int formant);															//allmojiFormant‚©‚çƒtƒHƒ‹ƒ}ƒ“ƒg‚ğæ“¾
+	int createAllMojiFromantFromClass();																			//privateFormantã‹ã‚‰allmojiFormantã‚’ä½œæˆ
+	nsfloat getMojiFormant(int f, int moji, int formant);															//allmojiFormantã‹ã‚‰ãƒ•ã‚©ãƒ«ãƒãƒ³ãƒˆã‚’å–å¾—
 
-	bool doVoiselessPlosive(NSCHAR moji);																			//–³º”j—ô‰¹
-	bool doVoisedPlosive(NSCHAR moji);																				//—Lº”j—ô‰¹
-	bool doNasal(NSCHAR moji);																						//•@‰¹
-	bool doTap(NSCHAR moji);																						//‚Í‚¶‚«‰¹
-	bool doVoiselessFricative(NSCHAR moji);																			//–³º–€C‰¹
-	bool doVoisedFricative(NSCHAR moji);																			//—Lº–€C‰¹
-	bool doFriKILLive(NSCHAR moji);																					//–€E‰¹
+	bool doVoiselessPlosive(NSCHAR moji);																			//ç„¡å£°ç ´è£‚éŸ³
+	bool doVoisedPlosive(NSCHAR moji);																				//æœ‰å£°ç ´è£‚éŸ³
+	bool doNasal(NSCHAR moji);																						//é¼»éŸ³
+	bool doTap(NSCHAR moji);																						//ã¯ã˜ãéŸ³
+	bool doVoiselessFricative(NSCHAR moji);																			//ç„¡å£°æ‘©æ“¦éŸ³
+	bool doVoisedFricative(NSCHAR moji);																			//æœ‰å£°æ‘©æ“¦éŸ³
+	bool doFriKILLive(NSCHAR moji);																					//æ‘©æ®ºéŸ³
 
-	int ftInit(int size);																							//”jC‰¹‚ÌŠp“x‚Ì‰Šú‰»
-	nsfloat* ft;																										//”jC‰¹‚ÌŠp“x‚Ì•ÛŠÇŒÉ
+	int ftInit(int size);																							//ç ´æ“¦éŸ³ã®è§’åº¦ã®åˆæœŸåŒ–
+	nsfloat* ft;																										//ç ´æ“¦éŸ³ã®è§’åº¦ã®ä¿ç®¡åº«
 
-	int getTimeFromSpeed(char speed, char moji = 0x00);																//‰¹æ}Œ`®‚ÌŠÔ’PˆÊ‚©‚çº‚Ì’·‚³[•b]‚Ö•ÏŠ·
+	int getTimeFromSpeed(char speed, char moji = 0x00);																//éŸ³è«³å½¢å¼ã®æ™‚é–“å˜ä½ã‹ã‚‰å£°ã®é•·ã•[ç§’]ã¸å¤‰æ›
 
-	//V
-	NSString pstringdata = NSString();																				//“Ç‚İã‚°—p‚Ìƒf[ƒ^•ÛŠÇŒÉ
+	//æ–°
+	NSString pstringdata = NSString();																				//èª­ã¿ä¸Šã’ç”¨ã®ãƒ‡ãƒ¼ã‚¿ä¿ç®¡åº«
 
 	time_t nextplaytime = 0;
 
-	//‰¹æ}‡¬ŠÖ”ŒQ
+	//éŸ³è«³åˆæˆé–¢æ•°ç¾¤
 
 	void textreadingHanboin(std::vector<nsfloat>& out, NSCHAR nowmoji, nsfloat pitch, int targettime);
 	void textreadingHaretuon(std::vector<nsfloat>& out, NSCHAR nowmoji1, NSCHAR nowmoji2, nsfloat pitch, int targettime);

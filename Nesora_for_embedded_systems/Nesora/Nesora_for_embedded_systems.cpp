@@ -1,284 +1,284 @@
-// 
+ï»¿// 
 // +--------------------------------------------------------------------------------------------+
-// |	‰¹æ}—ë†‹@“óŒ^ - CUI - ‰¹æ}ƒR[ƒh														|
-// |	Copyright (c) 2021 ‚Ş[‚¿‚åsp															|
-// +--------------------------------------------------------------------------------------------+
-// |																							|
-// |	‰¹æ}ƒR[ƒhŠÖŒW‚ÌƒNƒ‰ƒX‚âŠÖ”‚Ì’è‹`‚Å‚·B												|
-// |																							|
+// |	éŸ³è«³é›¶å·æ©Ÿå¼å‹ - CUI - éŸ³è«³ã‚³ãƒ¼ãƒ‰														|
+// |	Copyright (c) 2021 ã‚€ãƒ¼ã¡ã‚‡sp															|
 // +--------------------------------------------------------------------------------------------+
 // |																							|
-// |	NSString‚ÍAstd::string‚Æ“¯‚¶‚æ‚¤‚Ég‚¦‚Ü‚·B											|
+// |	éŸ³è«³ã‚³ãƒ¼ãƒ‰é–¢ä¿‚ã®ã‚¯ãƒ©ã‚¹ã‚„é–¢æ•°ã®å®šç¾©ã§ã™ã€‚												|
+// |																							|
+// +--------------------------------------------------------------------------------------------+
+// |																							|
+// |	NSStringã¯ã€std::stringã¨åŒã˜ã‚ˆã†ã«ä½¿ãˆã¾ã™ã€‚											|
 // |																							|
 // +--------------------------------------------------------------------------------------------+
 //
-// 2023”N‚É‰ü‘¢Ï‚İ
+// 2023å¹´ã«æ”¹é€ æ¸ˆã¿ğŸ¹
 
 #include "Nesora_for_embedded_systems.h"
 
-//shift-jis‚ÌãˆÊƒrƒbƒg0x82‚ğ‰¹æ}ƒR[ƒh‚ÉƒGƒ“ƒR[ƒh
+//shift-jisã®ä¸Šä½ãƒ“ãƒƒãƒˆ0x82ã‚’éŸ³è«³ã‚³ãƒ¼ãƒ‰ã«ã‚¨ãƒ³ã‚³ãƒ¼ãƒ‰
 NSCHAR nsc::nscharencode(unsigned char c) {
 	switch (c) {
-		//-----JISƒR[ƒh‡-----
+		//-----JISã‚³ãƒ¼ãƒ‰é †-----
 	case 0x9f:
-		//‚Ÿ
+		//ã
 		return NSp1;
 		//===== 0xa0 =====
 	case 0xa0:
-		//‚ 
+		//ã‚
 		return NSa;
 	case 0xa1:
-		//‚¡
+		//ãƒ
 		return NSp2;
 	case 0xa2:
-		//‚¢
+		//ã„
 		return NSi;
 	case 0xa3:
-		//‚£
-		//u‚¤v‚Æ“‡
+		//ã…
+		//ã€Œã†ã€ã¨çµ±åˆ
 	case 0xa4:
-		//‚¤
+		//ã†
 		return NSu;
 	case 0xa5:
-		//‚¥
+		//ã‡
 		return NSp3;
 	case 0xa6:
-		//‚¦
+		//ãˆ
 		return NSe;
 	case 0xa7:
-		//‚§
+		//ã‰
 		return NSp4;
 	case 0xa8:
-		//‚¨
+		//ãŠ
 		return NSo;
 	case 0xa9:
-		//‚©
+		//ã‹
 		return NSka;
 	case 0xaa:
-		//‚ª
+		//ãŒ
 		return NSga;
 	case 0xab:
-		//‚«
+		//ã
 		return NSki;
 	case 0xac:
-		//‚¬
+		//ã
 		return NSgi;
 	case 0xad:
-		//‚­
+		//ã
 		return NSku;
 	case 0xae:
-		//‚®
+		//ã
 		return NSgu;
 	case 0xaf:
-		//‚¯
+		//ã‘
 		return NSke;
 
 		//===== 0xb0 =====
 	case 0xb0:
-		//‚°
+		//ã’
 		return NSge;
 	case 0xb1:
-		//‚±
+		//ã“
 		return NSko;
 	case 0xb2:
-		//‚²
+		//ã”
 		return NSgo;
 	case 0xb3:
-		//‚³
+		//ã•
 		return NSsa;
 	case 0xb4:
-		//‚´
+		//ã–
 		return NSza;
 	case 0xb5:
-		//‚µ
+		//ã—
 		return NSshi;
 	case 0xb6:
-		//‚¶
+		//ã˜
 		return NSji;
 	case 0xb7:
-		//‚·
+		//ã™
 		return NSsu;
 	case 0xb8:
-		//‚¸
+		//ãš
 		return NSzu;
 	case 0xb9:
-		//‚¹
+		//ã›
 		return NSse;
 	case 0xba:
-		//‚º
+		//ãœ
 		return NSze;
 	case 0xbb:
-		//‚»
+		//ã
 		return NSso;
 	case 0xbc:
-		//‚¼
+		//ã
 		return NSzo;
 	case 0xbd:
-		//‚½
+		//ãŸ
 		return NSta;
 	case 0xbe:
-		//‚¾
+		//ã 
 		return NSda;
 	case 0xbf:
-		//‚¿
+		//ã¡
 		return NSti;
 
 		//===== 0xc0 =====
 	case 0xc0:
-		//‚À
+		//ã¢
 		return NSdi;
 	case 0xc1:
-		//‚Á
+		//ã£
 		return NStt;
 	case 0xc2:
-		//‚Â
+		//ã¤
 		return NStu;
 	case 0xc3:
-		//‚Ã
+		//ã¥
 		return NSdu;
 	case 0xc4:
-		//‚Ä
+		//ã¦
 		return NSte;
 	case 0xc5:
-		//‚Å
+		//ã§
 		return NSde;
 	case 0xc6:
-		//‚Æ
+		//ã¨
 		return NSto;
 	case 0xc7:
-		//‚Ç
+		//ã©
 		return NSdo;
 	case 0xc8:
-		//‚È
+		//ãª
 		return NSna;
 	case 0xc9:
-		//‚É
+		//ã«
 		return NSni;
 	case 0xca:
-		//‚Ê
+		//ã¬
 		return NSnu;
 	case 0xcb:
-		//‚Ë
+		//ã­
 		return NSne;
 	case 0xcc:
-		//‚Ì
+		//ã®
 		return NSno;
 	case 0xcd:
-		//‚Í
+		//ã¯
 		return NSha;
 	case 0xce:
-		//‚Î
+		//ã°
 		return NSba;
 	case 0xcf:
-		//‚Ï
+		//ã±
 		return NSpa;
 
 		//===== 0xd0 =====
 	case 0xd0:
-		//‚Ğ
+		//ã²
 		return NShi;
 	case 0xd1:
-		//‚Ñ
+		//ã³
 		return NSbi;
 	case 0xd2:
-		//‚Ò
+		//ã´
 		return NSpi;
 	case 0xd3:
-		//‚Ó
+		//ãµ
 		return NShu;
 	case 0xd4:
-		//‚Ô
+		//ã¶
 		return NSbu;
 	case 0xd5:
-		//‚Õ
+		//ã·
 		return NSpu;
 	case 0xd6:
-		//‚Ö
+		//ã¸
 		return NShe;
 	case 0xd7:
-		//‚×
+		//ã¹
 		return NSbe;
 	case 0xd8:
-		//‚Ø
+		//ãº
 		return NSpe;
 	case 0xd9:
-		//‚Ù
+		//ã»
 		return NSho;
 	case 0xda:
-		//‚Ú
+		//ã¼
 		return NSbo;
 	case 0xdb:
-		//‚Û
+		//ã½
 		return NSpo;
 	case 0xdc:
-		//‚Ü
+		//ã¾
 		return NSma;
 	case 0xdd:
-		//‚İ
+		//ã¿
 		return NSmi;
 	case 0xde:
-		//‚Ş
+		//ã‚€
 		return NSmu;
 	case 0xdf:
-		//‚ß
+		//ã‚
 		return NSme;
 
 		//===== 0xe0 =====
 	case 0xe0:
-		//‚à
+		//ã‚‚
 		return NSmo;
 	case 0xe1:
-		//‚á
+		//ã‚ƒ
 		return NSp1;
 	case 0xe2:
-		//‚â
+		//ã‚„
 		return NSya;
 	case 0xe3:
-		//‚ã
+		//ã‚…
 		return NSp2;
 	case 0xe4:
-		//‚ä
+		//ã‚†
 		return NSyu;
 	case 0xe5:
-		//‚å
+		//ã‚‡
 		return NSp4;
 	case 0xe6:
-		//‚æ
+		//ã‚ˆ
 		return NSyo;
 	case 0xe7:
-		//‚ç
+		//ã‚‰
 		return NSra;
 	case 0xe8:
-		//‚è
+		//ã‚Š
 		return NSri;
 	case 0xe9:
-		//‚é
+		//ã‚‹
 		return NSru;
 	case 0xea:
-		//‚ê
+		//ã‚Œ
 		return NSre;
 	case 0xeb:
-		//‚ë
+		//ã‚
 		return NSro;
 	case 0xec:
-		//‚ì
+		//ã‚
 		return NSp1;
 	case 0xed:
-		//‚í
+		//ã‚
 		return NSwa;
 	case 0xee:
-		//‚î
+		//ã‚
 		return NSwi;
 	case 0xef:
-		//‚ï
+		//ã‚‘
 		return NSwe;
 
 		//===== 0xf0 =====
 	case 0xf0:
-		//‚ğ
+		//ã‚’
 		return NSwo;
 	case 0xf1:
-		//‚ñ
+		//ã‚“
 		return NSnn1;
 	default:
 
@@ -288,12 +288,12 @@ NSCHAR nsc::nscharencode(unsigned char c) {
 	return NSNULL;
 }
 
-//‰¹æ}‘®‚Å‘‚©‚ê‚½ƒ}ƒ‹ƒ`ƒoƒCƒg•¶š—ñ‚ğ‰¹æ}ƒR[ƒh‚ÉƒGƒ“ƒR[ƒh
+//éŸ³è«³æ›¸å¼ã§æ›¸ã‹ã‚ŒãŸãƒãƒ«ãƒãƒã‚¤ãƒˆæ–‡å­—åˆ—ã‚’éŸ³è«³ã‚³ãƒ¼ãƒ‰ã«ã‚¨ãƒ³ã‚³ãƒ¼ãƒ‰
 NSSTRINGDATA nsc::nsstrencode(const unsigned char* str) {
 
 	size_t textlen = 0, youon = 0;
 
-	//•¶š‚Ì‘I•Ê(textlen‚É‚Í•½‰¼–¼‚Ì”‚ğAyouon‚É‚Í•½‰¼–¼‚ÌX‰¹‚Ì”‚ğƒJƒEƒ“ƒg‚·‚éB)
+	//æ–‡å­—ã®é¸åˆ¥(textlenã«ã¯å¹³ä»®åã®æ•°ã‚’ã€youonã«ã¯å¹³ä»®åã®æ‹—éŸ³ã®æ•°ã‚’ã‚«ã‚¦ãƒ³ãƒˆã™ã‚‹ã€‚)
 	for (size_t i = 0;i < strlen((const char*)str);i++) {
 		if (str[i] == 0x81 or str[i] == 0x82) {
 			textlen++;
@@ -311,11 +311,11 @@ NSSTRINGDATA nsc::nsstrencode(const unsigned char* str) {
 	NSCHARDATA nowmoji = {};
 	uint16_t ctime = NSDATAINIT_T;uint32_t alltime = 0;int16_t pitch = NSDATAINIT_P;
 	while (str[i] != 0 and n < textlen + 1) {
-		//’Êí‚Ìˆ—
+		//é€šå¸¸ã®å‡¦ç†
 		if (nowmode == 0) {
-			//•½‰¼–¼
+			//å¹³ä»®å
 			if (str[i] == 0x82) {
-				//•’Ê‚Ì•¶š
+				//æ™®é€šã®æ–‡å­—
 				if ((nscharencode(str[i + 1]) & 0xf0) != 0xf0) {
 					alltime += ctime;
 					nowmoji.c = nscharencode(str[i + 1]);
@@ -326,7 +326,7 @@ NSSTRINGDATA nsc::nsstrencode(const unsigned char* str) {
 					n++;
 					i += 2;
 				}
-				//“Áê§Œä•¶š(X‰¹)
+				//ç‰¹æ®Šåˆ¶å¾¡æ–‡å­—(æ‹—éŸ³)
 				else {
 					if (n) {
 						if (nscharencode(str[i + 1]) == NStt) {
@@ -348,11 +348,11 @@ NSSTRINGDATA nsc::nsstrencode(const unsigned char* str) {
 					i += 2;
 				}
 			}
-			//‹L†
+			//è¨˜å·
 			else if (str[i] == 0x81) {
 				switch (str[i + 1]) {
 				case 0x41:
-					//‹å“_
+					//å¥ç‚¹
 					nowmoji.c = NSspc;
 					nowmoji.time = alltime;
 					nowmoji.ctime = ctime;
@@ -361,7 +361,7 @@ NSSTRINGDATA nsc::nsstrencode(const unsigned char* str) {
 					n++;alltime += ctime;
 					break;
 				case 0x42:
-					//‹å“Ç“_
+					//å¥èª­ç‚¹
 					nowmoji.c = NSspc;
 					nowmoji.time = alltime;
 					nowmoji.ctime = ctime * 2;
@@ -373,7 +373,7 @@ NSSTRINGDATA nsc::nsstrencode(const unsigned char* str) {
 				}
 				i += 2;
 			}
-			//ƒXƒs[ƒhAƒsƒbƒ`w’è
+			//ã‚¹ãƒ”ãƒ¼ãƒ‰ã€ãƒ”ãƒƒãƒæŒ‡å®š
 			else if (str[i] == '<') {
 				if (str[i + 1] == 'S' or str[i + 1] == 's') {
 					nowmode = 1;
@@ -396,16 +396,16 @@ NSSTRINGDATA nsc::nsstrencode(const unsigned char* str) {
 					}
 				}
 			}
-			//ƒRƒƒ“ƒg
+			//ã‚³ãƒ¡ãƒ³ãƒˆ
 			else if (str[i] == '(') {
 				nowmode = 4;
 			}
-			//‚»‚Ì‘¼
+			//ãã®ä»–
 			else {
 				i++;
 			}
 		}
-		//ƒXƒs[ƒh‚Ì”š‚Ìˆ—
+		//ã‚¹ãƒ”ãƒ¼ãƒ‰ã®æ•°å­—ã®å‡¦ç†
 		else if (nowmode == 1) {
 			if (str[i] == '>')
 				nowmode = 0;
@@ -420,7 +420,7 @@ NSSTRINGDATA nsc::nsstrencode(const unsigned char* str) {
 			}
 			i++;
 		}
-		//ƒsƒbƒ`‚Ì•„†‚Ìˆ—
+		//ãƒ”ãƒƒãƒã®ç¬¦å·ã®å‡¦ç†
 		else if (nowmode == 2) {
 			if (str[i] == '+') {
 				nowmodepitchpm = 1;
@@ -437,7 +437,7 @@ NSSTRINGDATA nsc::nsstrencode(const unsigned char* str) {
 				nowmode = 3;
 			}
 		}
-		//ƒsƒbƒ`‚Ì”š‚Ìˆ—
+		//ãƒ”ãƒƒãƒã®æ•°å­—ã®å‡¦ç†
 		else if (nowmode == 3) {
 			if (str[i] == '>') {
 				pitch *= nowmodepitchpm;
@@ -454,7 +454,7 @@ NSSTRINGDATA nsc::nsstrencode(const unsigned char* str) {
 			}
 			i++;
 		}
-		//ƒRƒƒ“ƒg
+		//ã‚³ãƒ¡ãƒ³ãƒˆ
 		else if (nowmode == 4) {
 			if (str[i] == ')')
 				nowmode = 0;
@@ -465,14 +465,14 @@ NSSTRINGDATA nsc::nsstrencode(const unsigned char* str) {
 	return out;
 }
 
-//‰¹æ}‘®‚Å‘‚©‚ê‚½ƒ}ƒ‹ƒ`ƒoƒCƒg•¶š—ñ‚ğ‰¹æ}ƒR[ƒh‚ÉƒGƒ“ƒR[ƒh
+//éŸ³è«³æ›¸å¼ã§æ›¸ã‹ã‚ŒãŸãƒãƒ«ãƒãƒã‚¤ãƒˆæ–‡å­—åˆ—ã‚’éŸ³è«³ã‚³ãƒ¼ãƒ‰ã«ã‚¨ãƒ³ã‚³ãƒ¼ãƒ‰
 NSSTRINGDATA nsc::nsstrencode(const char* str) {
 
 	size_t stringlen = strlen(str) + 1;
 	unsigned char* text = new unsigned char[stringlen];
 	for (size_t i = 0; i < stringlen;i++)text[i] = 0;
 
-	//charŒ^‚Ì•¶š—ñ‚ğunsigned charŒ^‚É•ÏŠ·
+	//charå‹ã®æ–‡å­—åˆ—ã‚’unsigned charå‹ã«å¤‰æ›
 	for (size_t i = 0; i < stringlen;i++)
 		text[i] = (unsigned char)((int)str[i] & 0xff);
 
@@ -483,7 +483,7 @@ NSSTRINGDATA nsc::nsromajiencode(const unsigned char* str) {
 
 	size_t textlen = 0, youon = 0;
 
-	//•¶š‚Ì‘I•Ê(textlen‚É‚Í•½‰¼–¼‚Ì”‚ğAyouon‚É‚Í•½‰¼–¼‚ÌX‰¹‚Ì”‚ğƒJƒEƒ“ƒg‚·‚éB)
+	//æ–‡å­—ã®é¸åˆ¥(textlenã«ã¯å¹³ä»®åã®æ•°ã‚’ã€youonã«ã¯å¹³ä»®åã®æ‹—éŸ³ã®æ•°ã‚’ã‚«ã‚¦ãƒ³ãƒˆã™ã‚‹ã€‚)
 	for (size_t i = 0;i < strlen((const char*)str);i++) {
 		if (('A' <= str[i] and str[i] <= 'Z') or ('a' <= str[i] and str[i] <= 'z')) {
 			textlen++;
@@ -499,62 +499,62 @@ NSSTRINGDATA nsc::nsromajiencode(const unsigned char* str) {
 	NSCHARDATA nowmoji = {};
 	uint16_t ctime = NSDATAINIT_T;uint32_t alltime = 0;int16_t pitch = NSDATAINIT_P;
 	while (str[i] != 0 and n < textlen + 1) {
-		//’Êí‚Ìˆ—
+		//é€šå¸¸ã®å‡¦ç†
 		if (nowmode == 0) {
-			//•½‰¼–¼
+			//å¹³ä»®å
 			if (('A' <= str[i] and str[i] <= 'Z') or ('a' <= str[i] and str[i] <= 'z')) {
 				if (str[i] == 'a' or str[i] == 'A') {
-					//‚ 
+					//ã‚
 					nowmoji.c = NSa;
 				}
 				else if (str[i] == 'i' or str[i] == 'I') {
-					//‚¢
+					//ã„
 					nowmoji.c = NSi;
 				}
 				else if (str[i] == 'u' or str[i] == 'U') {
-					//‚¤
+					//ã†
 					nowmoji.c = NSu;
 				}
 				else if (str[i] == 'e' or str[i] == 'E') {
-					//‚¦
+					//ãˆ
 					nowmoji.c = NSe;
 				}
 				else if (str[i] == 'o' or str[i] == 'O') {
-					//‚¨
+					//ãŠ
 					nowmoji.c = NSo;
 				}
 				else if (str[i] == 'k' or str[i] == 'K') {
 					i++;
-					if (str[i] == 'a' or str[i] == 'A') //‚©
+					if (str[i] == 'a' or str[i] == 'A') //ã‹
 						nowmoji.c = NSka;
-					else if (str[i] == 'i' or str[i] == 'I') //‚«
+					else if (str[i] == 'i' or str[i] == 'I') //ã
 						nowmoji.c = NSki;
-					else if (str[i] == 'u' or str[i] == 'U') //‚­
+					else if (str[i] == 'u' or str[i] == 'U') //ã
 						nowmoji.c = NSku;
-					else if (str[i] == 'e' or str[i] == 'E') //‚¯
+					else if (str[i] == 'e' or str[i] == 'E') //ã‘
 						nowmoji.c = NSke;
-					else if (str[i] == 'o' or str[i] == 'O') //‚±
+					else if (str[i] == 'o' or str[i] == 'O') //ã“
 						nowmoji.c = NSko;
 					else if (str[i] == 'y' or str[i] == 'Y') {
 						i++;
-						if (str[i] == 'a' or str[i] == 'A') //‚«‚á
+						if (str[i] == 'a' or str[i] == 'A') //ãã‚ƒ
 							nowmoji.c = NSkya;
-						else if (str[i] == 'u' or str[i] == 'U') //‚«‚ã
+						else if (str[i] == 'u' or str[i] == 'U') //ãã‚…
 							nowmoji.c = NSkyu;
-						else if (str[i] == 'e' or str[i] == 'E') //‚«‚¥
+						else if (str[i] == 'e' or str[i] == 'E') //ãã‡
 							nowmoji.c = NSkye;
-						else if (str[i] == 'o' or str[i] == 'O') //‚«‚å
+						else if (str[i] == 'o' or str[i] == 'O') //ãã‚‡
 							nowmoji.c = NSkyo;
 					}
 					else if (str[i] == 'w' or str[i] == 'W') {
 						i++;
-						if (str[i] == 'a' or str[i] == 'A') //‚­‚ì
+						if (str[i] == 'a' or str[i] == 'A') //ãã‚
 							nowmoji.c = NSkwa;
-						else if (str[i] == 'i' or str[i] == 'I') //‚­‚¡
+						else if (str[i] == 'i' or str[i] == 'I') //ããƒ
 							nowmoji.c = NSkwi;
-						else if (str[i] == 'e' or str[i] == 'E') //‚­‚¥
+						else if (str[i] == 'e' or str[i] == 'E') //ãã‡
 							nowmoji.c = NSkwe;
-						else if (str[i] == 'o' or str[i] == 'O') //‚­‚§
+						else if (str[i] == 'o' or str[i] == 'O') //ãã‰
 							nowmoji.c = NSkwo;
 					}
 				}
@@ -975,9 +975,9 @@ NSSTRINGDATA nsc::nsromajiencode(const unsigned char* str) {
 				alltime += ctime;
 				n++;i++;
 			}
-			//‹L†
+			//è¨˜å·
 			else if (str[i] == ',') {
-				//‹å“_
+				//å¥ç‚¹
 				nowmoji.c = NSspc;
 				nowmoji.time = alltime;
 				nowmoji.ctime = ctime;
@@ -987,7 +987,7 @@ NSSTRINGDATA nsc::nsromajiencode(const unsigned char* str) {
 				i++;
 			}
 			else if(str[i] == '.'){
-				//‹å“Ç“_
+				//å¥èª­ç‚¹
 				nowmoji.c = NSspc;
 				nowmoji.time = alltime;
 				nowmoji.ctime = ctime * 2;
@@ -996,7 +996,7 @@ NSSTRINGDATA nsc::nsromajiencode(const unsigned char* str) {
 				n++;alltime += ctime * 2;
 				i++;
 			}
-			//ƒXƒs[ƒhAƒsƒbƒ`w’è
+			//ã‚¹ãƒ”ãƒ¼ãƒ‰ã€ãƒ”ãƒƒãƒæŒ‡å®š
 			else if (str[i] == '<') {
 				if (str[i + 1] == 'S' or str[i + 1] == 's') {
 					nowmode = 1;
@@ -1019,16 +1019,16 @@ NSSTRINGDATA nsc::nsromajiencode(const unsigned char* str) {
 					}
 				}
 			}
-			//ƒRƒƒ“ƒg
+			//ã‚³ãƒ¡ãƒ³ãƒˆ
 			else if (str[i] == '(') {
 				nowmode = 4;
 			}
-			//‚»‚Ì‘¼
+			//ãã®ä»–
 			else {
 				i++;
 			}
 		}
-		//ƒXƒs[ƒh‚Ì”š‚Ìˆ—
+		//ã‚¹ãƒ”ãƒ¼ãƒ‰ã®æ•°å­—ã®å‡¦ç†
 		else if (nowmode == 1) {
 			if (str[i] == '>')
 				nowmode = 0;
@@ -1043,7 +1043,7 @@ NSSTRINGDATA nsc::nsromajiencode(const unsigned char* str) {
 			}
 			i++;
 		}
-		//ƒsƒbƒ`‚Ì•„†‚Ìˆ—
+		//ãƒ”ãƒƒãƒã®ç¬¦å·ã®å‡¦ç†
 		else if (nowmode == 2) {
 			if (str[i] == '+') {
 				nowmodepitchpm = 1;
@@ -1060,7 +1060,7 @@ NSSTRINGDATA nsc::nsromajiencode(const unsigned char* str) {
 				nowmode = 3;
 			}
 		}
-		//ƒsƒbƒ`‚Ì”š‚Ìˆ—
+		//ãƒ”ãƒƒãƒã®æ•°å­—ã®å‡¦ç†
 		else if (nowmode == 3) {
 			if (str[i] == '>') {
 				pitch *= nowmodepitchpm;
@@ -1077,7 +1077,7 @@ NSSTRINGDATA nsc::nsromajiencode(const unsigned char* str) {
 			}
 			i++;
 		}
-		//ƒRƒƒ“ƒg
+		//ã‚³ãƒ¡ãƒ³ãƒˆ
 		else if (nowmode == 4) {
 			if (str[i] == ')')
 				nowmode = 0;
@@ -1088,28 +1088,28 @@ NSSTRINGDATA nsc::nsromajiencode(const unsigned char* str) {
 	return out;
 }
 
-//‰¹æ}‘®‚Å‘‚©‚ê‚½ƒ}ƒ‹ƒ`ƒoƒCƒg•¶š—ñ‚ğ‰¹æ}ƒR[ƒh‚ÉƒGƒ“ƒR[ƒh
+//éŸ³è«³æ›¸å¼ã§æ›¸ã‹ã‚ŒãŸãƒãƒ«ãƒãƒã‚¤ãƒˆæ–‡å­—åˆ—ã‚’éŸ³è«³ã‚³ãƒ¼ãƒ‰ã«ã‚¨ãƒ³ã‚³ãƒ¼ãƒ‰
 NSSTRINGDATA nsc::nsromajiencode(const char* str) {
 
 	size_t stringlen = strlen(str) + 1;
 	unsigned char* text = new unsigned char[stringlen];
 	for (size_t i = 0; i < stringlen;i++)text[i] = 0;
 
-	//charŒ^‚Ì•¶š—ñ‚ğunsigned charŒ^‚É•ÏŠ·
+	//charå‹ã®æ–‡å­—åˆ—ã‚’unsigned charå‹ã«å¤‰æ›
 	for (size_t i = 0; i < stringlen;i++)
 		text[i] = (unsigned char)((int)str[i] & 0xff);
 
 	return nsromajiencode(text);
 }
 
-//NSCHARDATAŒ^‚Ì•Ï”‚ğì¬
+//NSCHARDATAå‹ã®å¤‰æ•°ã‚’ä½œæˆ
 NSCHARDATA nsc::nscreateCharData(uint32_t time, uint16_t ctime, NSCHAR c, int16_t pitch) {
 	NSCHARDATA out = {};
 	out.c = c;out.ctime = ctime;out.pitch = pitch;out.time = time;
 	return out;
 }
 
-//NSSTRINGDATAŒ^‚Ì•Ï”‚ğƒRƒs[
+//NSSTRINGDATAå‹ã®å¤‰æ•°ã‚’ã‚³ãƒ”ãƒ¼
 void nsc::nsstrcpy(NSSTRINGDATA destination, const NSSTRINGDATA source) {
 	int i = 0;
 	while (source[i].c != 0) {
@@ -1121,7 +1121,7 @@ void nsc::nsstrcpy(NSSTRINGDATA destination, const NSSTRINGDATA source) {
 	}
 }
 
-//NSSTRINGDATAŒ^‚Ì•¶š”‚ğæ“¾
+//NSSTRINGDATAå‹ã®æ–‡å­—æ•°ã‚’å–å¾—
 size_t nsc::nsstrlen(NSSTRINGDATA str) {
 	size_t size = 0;
 	while (str[size].c != 0)
@@ -1129,7 +1129,7 @@ size_t nsc::nsstrlen(NSSTRINGDATA str) {
 	return size;
 }
 
-//NSSTRINGŒ^‚Ì•¶š”‚ğæ“¾
+//NSSTRINGå‹ã®æ–‡å­—æ•°ã‚’å–å¾—
 size_t nsc::nsstrlen(NSSTRING str) {
 	size_t size = 0;
 	while (str[size] != 0)
@@ -1137,7 +1137,7 @@ size_t nsc::nsstrlen(NSSTRING str) {
 	return size;
 }
 
-//const unsigned charŒ^‚Ì•¶š”‚ğæ“¾
+//const unsigned charå‹ã®æ–‡å­—æ•°ã‚’å–å¾—
 size_t nsc::nsstrlen(const unsigned char* str) {
 	size_t size = 0;
 	while (str[size] != 0)
@@ -1145,38 +1145,38 @@ size_t nsc::nsstrlen(const unsigned char* str) {
 	return size;
 }
 
-//‰¹æ}ƒR[ƒh‚ğ•½‰¼–¼‚ÉƒGƒ“ƒR[ƒh
+//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã‚’å¹³ä»®åã«ã‚¨ãƒ³ã‚³ãƒ¼ãƒ‰
 const char* nsc::nschardecode(NSCHAR c) {
 	switch (c) {
 		// --- 0x00 ---
 	case NSNUL:
 		return 0;
 	case NSa:
-		return "‚ ";
+		return "ã‚";
 	case NSi:
-		return "‚¢";
+		return "ã„";
 	case NSya:
-		return "‚â";
+		return "ã‚„";
 	case NSyu:
-		return "‚ä";
+		return "ã‚†";
 	case NSye:
-		return "]";
+		return "æ±Ÿ";
 	case NSyo:
-		return "‚æ";
+		return "ã‚ˆ";
 	case NSu:
-		return "‚¤";
+		return "ã†";
 	case NSwa:
-		return "‚í";
+		return "ã‚";
 	case NSwi:
-		return "‚î";
+		return "ã‚";
 	case NSwe:
-		return "‚ï";
+		return "ã‚‘";
 	case NSwo:
-		return "‚ğ";
+		return "ã‚’";
 	case NSe:
-		return "‚¦";
+		return "ãˆ";
 	case NSo:
-		return "‚¨";
+		return "ãŠ";
 	case NS_0e:
 		return "0e";
 	case NS_0f:
@@ -1186,65 +1186,65 @@ const char* nsc::nschardecode(NSCHAR c) {
 	case NSk:
 		return "k";
 	case NSka:
-		return "‚©";
+		return "ã‹";
 	case NSki:
-		return "‚«";
+		return "ã";
 	case NSkya:
-		return "‚«‚á";
+		return "ãã‚ƒ";
 	case NSkyu:
-		return "‚«‚ã";
+		return "ãã‚…";
 	case NSkye:
-		return "‚«‚¥";
+		return "ãã‡";
 	case NSkyo:
-		return "‚«‚å";
+		return "ãã‚‡";
 	case NSku:
-		return "‚­";
+		return "ã";
 	case NSkwa:
-		return "‚­‚Ÿ";
+		return "ãã";
 	case NSkwi:
-		return "‚­‚¡";
+		return "ããƒ";
 	case NSkwe:
-		return "‚­‚¥";
+		return "ãã‡";
 	case NSkwo:
-		return "‚­‚§";
+		return "ãã‰";
 	case NSke:
-		return "‚¯";
+		return "ã‘";
 	case NSko:
-		return "‚±";
+		return "ã“";
 	case NS_1e:
-		return "‚ ";
+		return "ã‚";
 	case NS_1f:
-		return "‚ ";
+		return "ã‚";
 
 		// --- 0x20 ---
 	case NSg:
 		return "g";
 	case NSga:
-		return "‚ª";
+		return "ãŒ";
 	case NSgi:
-		return "‚¬";
+		return "ã";
 	case NSgya:
-		return "‚¬‚á";
+		return "ãã‚ƒ";
 	case NSgyu:
-		return "‚¬‚ã";
+		return "ãã‚…";
 	case NSgye:
-		return "‚¬‚¥";
+		return "ãã‡";
 	case NSgyo:
-		return "‚¬‚å";
+		return "ãã‚‡";
 	case NSgu:
-		return "‚®";
+		return "ã";
 	case NSgwa:
-		return "‚®‚Ÿ";
+		return "ãã";
 	case NSgwi:
-		return "‚®‚¡";
+		return "ããƒ";
 	case NSgwe:
-		return "‚®‚¥";
+		return "ãã‡";
 	case NSgwo:
-		return "‚®‚§";
+		return "ãã‰";
 	case NSge:
-		return "‚°";
+		return "ã’";
 	case NSgo:
-		return "‚²";
+		return "ã”";
 	case NS_2e:
 		return "2e";
 	case NS_2f:
@@ -1254,31 +1254,31 @@ const char* nsc::nschardecode(NSCHAR c) {
 	case NSt:
 		return "t";
 	case NSta:
-		return "‚½";
+		return "ãŸ";
 	case NSti:
-		return "‚¿";
+		return "ã¡";
 	case NStya:
-		return "‚¿‚á";
+		return "ã¡ã‚ƒ";
 	case NStyu:
-		return "‚¿‚ã";
+		return "ã¡ã‚…";
 	case NStye:
-		return "‚¿‚¥";
+		return "ã¡ã‡";
 	case NStyo:
-		return "‚¿‚å";
+		return "ã¡ã‚‡";
 	case NStu:
-		return "‚Â";
+		return "ã¤";
 	case NStwa:
-		return "‚Â‚Ÿ";
+		return "ã¤ã";
 	case NStwi:
-		return "‚Â‚¡";
+		return "ã¤ãƒ";
 	case NStwe:
-		return "‚Â‚¥";
+		return "ã¤ã‡";
 	case NStwo:
-		return "‚Â‚§";
+		return "ã¤ã‰";
 	case NSte:
-		return "‚Ä";
+		return "ã¦";
 	case NSto:
-		return "‚Æ";
+		return "ã¨";
 	case NS_3e:
 		return "3e";
 	case NS_3f:
@@ -1288,31 +1288,31 @@ const char* nsc::nschardecode(NSCHAR c) {
 	case NSd:
 		return "d";
 	case NSda:
-		return "‚¾";
+		return "ã ";
 	case NSdi:
-		return "‚À";
+		return "ã¢";
 	case NSdya:
-		return "‚À‚á";
+		return "ã¢ã‚ƒ";
 	case NSdyu:
-		return "‚À‚ã";
+		return "ã¢ã‚…";
 	case NSdye:
-		return "‚À‚¥";
+		return "ã¢ã‡";
 	case NSdyo:
-		return "‚À‚å";
+		return "ã¢ã‚‡";
 	case NSdu:
-		return "‚Ã";
+		return "ã¥";
 	case NSdwa:
-		return "‚Ã‚Ÿ";
+		return "ã¥ã";
 	case NSdwi:
-		return "‚Ã‚¡";
+		return "ã¥ãƒ";
 	case NSdwe:
-		return "‚Ã‚¥";
+		return "ã¥ã‡";
 	case NSdwo:
-		return "‚Ã‚§";
+		return "ã¥ã‰";
 	case NSde:
-		return "‚Å";
+		return "ã§";
 	case NSdo:
-		return "‚Ç";
+		return "ã©";
 	case NS_4e:
 		return "4e";
 	case NS_4f:
@@ -1322,31 +1322,31 @@ const char* nsc::nschardecode(NSCHAR c) {
 	case NSp:
 		return "p";
 	case NSpa:
-		return "‚Ï";
+		return "ã±";
 	case NSpi:
-		return "‚Ò";
+		return "ã´";
 	case NSpya:
-		return "‚Ò‚á";
+		return "ã´ã‚ƒ";
 	case NSpyu:
-		return "‚Ò‚ã";
+		return "ã´ã‚…";
 	case NSpye:
-		return "‚Ò‚¥";
+		return "ã´ã‡";
 	case NSpyo:
-		return "‚Ò‚å";
+		return "ã´ã‚‡";
 	case NSpu:
-		return "‚Õ";
+		return "ã·";
 	case NSpwa:
-		return "‚Õ‚Ÿ";
+		return "ã·ã";
 	case NSpwi:
-		return "‚Õ‚¡";
+		return "ã·ãƒ";
 	case NSpwe:
-		return "‚Õ‚¥";
+		return "ã·ã‡";
 	case NSpwo:
-		return "‚Õ‚§";
+		return "ã·ã‰";
 	case NSpe:
-		return "‚Ø";
+		return "ãº";
 	case NSpo:
-		return "‚Û";
+		return "ã½";
 	case NS_5e:
 		return "5e";
 	case NS_5f:
@@ -1356,31 +1356,31 @@ const char* nsc::nschardecode(NSCHAR c) {
 	case NSb:
 		return "b";
 	case NSba:
-		return "‚Î";
+		return "ã°";
 	case NSbi:
-		return "‚Ñ";
+		return "ã³";
 	case NSbya:
-		return "‚Ñ‚á";
+		return "ã³ã‚ƒ";
 	case NSbyu:
-		return "‚Ñ‚ã";
+		return "ã³ã‚…";
 	case NSbye:
-		return "‚Ñ‚¥";
+		return "ã³ã‡";
 	case NSbyo:
-		return "‚Ñ‚å";
+		return "ã³ã‚‡";
 	case NSbu:
-		return "‚Ô";
+		return "ã¶";
 	case NSbwa:
-		return "‚Ô‚Ÿ";
+		return "ã¶ã";
 	case NSbwi:
-		return "‚Ô‚¡";
+		return "ã¶ãƒ";
 	case NSbwe:
-		return "‚Ô‚¥";
+		return "ã¶ã‡";
 	case NSbwo:
-		return "‚Ô‚§";
+		return "ã¶ã‰";
 	case NSbe:
-		return "‚×";
+		return "ã¹";
 	case NSbo:
-		return "‚Ú";
+		return "ã¼";
 	case NS_6e:
 		return "6e";
 	case NS_6f:
@@ -1390,31 +1390,31 @@ const char* nsc::nschardecode(NSCHAR c) {
 	case NSs:
 		return "s";
 	case NSsa:
-		return "‚³";
+		return "ã•";
 	case NSsi:
-		return "‚µ";
+		return "ã—";
 	case NSsya:
-		return "‚µ‚á";
+		return "ã—ã‚ƒ";
 	case NSsyu:
-		return "‚µ‚ã";
+		return "ã—ã‚…";
 	case NSsye:
-		return "‚µ‚¥";
+		return "ã—ã‡";
 	case NSsyo:
-		return "‚µ‚å";
+		return "ã—ã‚‡";
 	case NSsu:
-		return "‚·";
+		return "ã™";
 	case NSswa:
-		return "‚·‚Ÿ";
+		return "ã™ã";
 	case NSswi:
-		return "‚·‚¡";
+		return "ã™ãƒ";
 	case NSswe:
-		return "‚·‚¥";
+		return "ã™ã‡";
 	case NSswo:
-		return "‚·‚§";
+		return "ã™ã‰";
 	case NSse:
-		return "‚¹";
+		return "ã›";
 	case NSso:
-		return "‚»";
+		return "ã";
 	case NS_7e:
 		return "7e";
 	case NS_7f:
@@ -1424,31 +1424,31 @@ const char* nsc::nschardecode(NSCHAR c) {
 	case NSz:
 		return "z";
 	case NSza:
-		return "‚´";
+		return "ã–";
 	case NSzi:
-		return "‚¶";
+		return "ã˜";
 	case NSzya:
-		return "‚¶‚á";
+		return "ã˜ã‚ƒ";
 	case NSzyu:
-		return "‚¶‚ã";
+		return "ã˜ã‚…";
 	case NSzye:
-		return "‚¶‚¥";
+		return "ã˜ã‡";
 	case NSzyo:
-		return "‚¶‚å";
+		return "ã˜ã‚‡";
 	case NSzu:
-		return "‚¸";
+		return "ãš";
 	case NSzwa:
-		return "‚¸‚Ÿ";
+		return "ãšã";
 	case NSzwi:
-		return "‚¸‚¡";
+		return "ãšãƒ";
 	case NSzwe:
-		return "‚¸‚¥";
+		return "ãšã‡";
 	case NSzwo:
-		return "‚¸‚§";
+		return "ãšã‰";
 	case NSze:
-		return "‚º";
+		return "ãœ";
 	case NSzo:
-		return "‚¼";
+		return "ã";
 	case NS_8e:
 		return "8e";
 	case NS_8f:
@@ -1458,31 +1458,31 @@ const char* nsc::nschardecode(NSCHAR c) {
 	case NSh:
 		return "h";
 	case NSha:
-		return "‚Í";
+		return "ã¯";
 	case NShi:
-		return "‚Ğ";
+		return "ã²";
 	case NShya:
-		return "‚Ğ‚á";
+		return "ã²ã‚ƒ";
 	case NShyu:
-		return "‚Ğ‚ã";
+		return "ã²ã‚…";
 	case NShye:
-		return "‚Ğ‚¥";
+		return "ã²ã‡";
 	case NShyo:
-		return "‚Ğ‚å";
+		return "ã²ã‚‡";
 	case NShu:
-		return "‚Ó";
+		return "ãµ";
 	case NShwa:
-		return "‚Ó‚Ÿ";
+		return "ãµã";
 	case NShwi:
-		return "‚Ó‚¡";
+		return "ãµãƒ";
 	case NShwe:
-		return "‚Ó‚¥";
+		return "ãµã‡";
 	case NShwo:
-		return "‚Ó‚§";
+		return "ãµã‰";
 	case NShe:
-		return "‚Ö";
+		return "ã¸";
 	case NSho:
-		return "‚Ù";
+		return "ã»";
 	case NS_9e:
 		return "9e";
 	case NS_9f:
@@ -1492,31 +1492,31 @@ const char* nsc::nschardecode(NSCHAR c) {
 	case NSn:
 		return "n";
 	case NSna:
-		return "‚È";
+		return "ãª";
 	case NSni:
-		return "‚É";
+		return "ã«";
 	case NSnya:
-		return "‚É‚á";
+		return "ã«ã‚ƒ";
 	case NSnyu:
-		return "‚É‚ã";
+		return "ã«ã‚…";
 	case NSnye:
-		return "‚É‚¥";
+		return "ã«ã‡";
 	case NSnyo:
-		return "‚É‚å";
+		return "ã«ã‚‡";
 	case NSnu:
-		return "‚Ê";
+		return "ã¬";
 	case NSnwa:
-		return "‚Ê‚Ÿ";
+		return "ã¬ã";
 	case NSnwi:
-		return "‚Ê‚¡";
+		return "ã¬ãƒ";
 	case NSnwe:
-		return "‚Ê‚¥";
+		return "ã¬ã‡";
 	case NSnwo:
-		return "‚Ê‚§";
+		return "ã¬ã‰";
 	case NSne:
-		return "‚Ë";
+		return "ã­";
 	case NSno:
-		return "‚Ì";
+		return "ã®";
 	case NS_ae:
 		return "ae";
 	case NS_af:
@@ -1526,31 +1526,31 @@ const char* nsc::nschardecode(NSCHAR c) {
 	case NSm:
 		return "m";
 	case NSma:
-		return "‚Ü";
+		return "ã¾";
 	case NSmi:
-		return "‚İ";
+		return "ã¿";
 	case NSmya:
-		return "‚İ‚á";
+		return "ã¿ã‚ƒ";
 	case NSmyu:
-		return "‚İ‚ã";
+		return "ã¿ã‚…";
 	case NSmye:
-		return "‚İ‚¥";
+		return "ã¿ã‡";
 	case NSmyo:
-		return "‚İ‚å";
+		return "ã¿ã‚‡";
 	case NSmu:
-		return "‚Ş";
+		return "ã‚€";
 	case NSmwa:
-		return "‚Ş‚Ÿ";
+		return "ã‚€ã";
 	case NSmwi:
-		return "‚Ş‚¡";
+		return "ã‚€ãƒ";
 	case NSmwe:
-		return "‚Ş‚¥";
+		return "ã‚€ã‡";
 	case NSmwo:
-		return "‚Ş‚§";
+		return "ã‚€ã‰";
 	case NSme:
-		return "‚ß";
+		return "ã‚";
 	case NSmo:
-		return "‚à";
+		return "ã‚‚";
 	case NS_be:
 		return "be";
 	case NS_bf:
@@ -1560,31 +1560,31 @@ const char* nsc::nschardecode(NSCHAR c) {
 	case NSr:
 		return "r";
 	case NSra:
-		return "‚ç";
+		return "ã‚‰";
 	case NSri:
-		return "‚è";
+		return "ã‚Š";
 	case NSrya:
-		return "‚è‚á";
+		return "ã‚Šã‚ƒ";
 	case NSryu:
-		return "‚è‚ã";
+		return "ã‚Šã‚…";
 	case NSrye:
-		return "‚è‚¥";
+		return "ã‚Šã‡";
 	case NSryo:
-		return "‚è‚å";
+		return "ã‚Šã‚‡";
 	case NSru:
-		return "‚é";
+		return "ã‚‹";
 	case NSrwa:
-		return "‚é‚Ÿ";
+		return "ã‚‹ã";
 	case NSrwi:
-		return "‚é‚¡";
+		return "ã‚‹ãƒ";
 	case NSrwe:
-		return "‚é‚¥";
+		return "ã‚‹ã‡";
 	case NSrwo:
-		return "‚é‚§";
+		return "ã‚‹ã‰";
 	case NSre:
-		return "‚ê";
+		return "ã‚Œ";
 	case NSro:
-		return "‚ë";
+		return "ã‚";
 	case NS_ce:
 		return "ce";
 	case NS_cf:
@@ -1594,9 +1594,9 @@ const char* nsc::nschardecode(NSCHAR c) {
 	case NSnn:
 		return "nn";
 	case NSnn1:
-		return "‚ñ";
+		return "ã‚“";
 	case NSnn2:
-		return "‚ñ";
+		return "ã‚“";
 	case NS_d3:
 		return "d3";
 	case NS_d4:
@@ -1628,9 +1628,9 @@ const char* nsc::nschardecode(NSCHAR c) {
 	case NS_e0:
 		return "e0";
 	case NSspc:
-		return "‹ó";
+		return "ç©º";
 	case NSvls:
-		return "‘§";
+		return "æ¯";
 	case NS_e3:
 		return "e3";
 	case NS_e4:
@@ -1662,15 +1662,15 @@ const char* nsc::nschardecode(NSCHAR c) {
 	case NS_f0:
 		return "f0";
 	case NSp1:
-		return "X1";
+		return "æ‹—1";
 	case NSp2:
-		return "X2";
+		return "æ‹—2";
 	case NSp3:
-		return "X3";
+		return "æ‹—3";
 	case NSp4:
-		return "X4";
+		return "æ‹—4";
 	case NStt:
-		return "‘£";
+		return "ä¿ƒ";
 	case NS_f6:
 		return "f6";
 	case NS_f7:
@@ -1698,7 +1698,7 @@ const char* nsc::nschardecode(NSCHAR c) {
 	return 0;
 }
 
-//‰¹æ}ƒR[ƒh‚Ì•¶š—ñ‚ğƒ}ƒ‹ƒ`ƒoƒCƒg•¶š—ñ‚ÉƒfƒR[ƒh
+//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã®æ–‡å­—åˆ—ã‚’ãƒãƒ«ãƒãƒã‚¤ãƒˆæ–‡å­—åˆ—ã«ãƒ‡ã‚³ãƒ¼ãƒ‰
 const char* nsc::nsstrdecode(NSSTRINGDATA str) {
 	NSSTRING out = new NSCHAR[nsstrlen(str) + 1];
 	for (size_t i = 0;i < nsstrlen(str) + 1;i++)
@@ -1710,7 +1710,7 @@ const char* nsc::nsstrdecode(NSSTRINGDATA str) {
 	return nsstrdecode(out);
 }
 
-//‰¹æ}ƒR[ƒh‚Ì•¶š—ñ‚ğƒ}ƒ‹ƒ`ƒoƒCƒg•¶š—ñ‚ÉƒfƒR[ƒh
+//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã®æ–‡å­—åˆ—ã‚’ãƒãƒ«ãƒãƒã‚¤ãƒˆæ–‡å­—åˆ—ã«ãƒ‡ã‚³ãƒ¼ãƒ‰
 const char* nsc::nsstrdecode(NSSTRING str) {
 	char* out = new char[nsstrlen(str) + 1];
 	for (size_t i = 0;i < nsstrlen(str) + 1;i++)
@@ -1724,18 +1724,18 @@ const char* nsc::nsstrdecode(NSSTRING str) {
 
 
 //  +-------------------------------------------------------------------------------------------+
-//  |   ‰¹æ}•¶š—ñŒ^‚Ì”Xê—p‚ÌƒNƒ‰ƒX                                                          |
-//  |   stringŒ^‚İ‚½‚¢‚Ég‚¦‚é‚æ™                                                              |
+//  |   éŸ³è«³æ–‡å­—åˆ—å‹ã®è«¸ã€…å°‚ç”¨ã®ã‚¯ãƒ©ã‚¹                                                          |
+//  |   stringå‹ã¿ãŸã„ã«ä½¿ãˆã‚‹ã‚ˆâ˜†                                                              |
 //  +-------------------------------------------------------------------------------------------+
 
-//‹ó‚Ì‰¹æ}•¶š—ñŒ^‚ğì¬
+//ç©ºã®éŸ³è«³æ–‡å­—åˆ—å‹ã‚’ä½œæˆ
 NSString::NSString() {
 	n_capacity = n_size = n_wsize = n_wcapacity = 0;
 	n_string = new NSCHARDATA[n_size + 1];
 	n_string[0] = nsc::nscreateCharData(0, 0, 0, 0);
 }
 
-//ƒ}ƒ‹ƒ`ƒoƒCƒg•¶š—ñ‚©‚ç‰¹æ}•¶š—ñŒ^‚ğì¬
+//ãƒãƒ«ãƒãƒã‚¤ãƒˆæ–‡å­—åˆ—ã‹ã‚‰éŸ³è«³æ–‡å­—åˆ—å‹ã‚’ä½œæˆ
 NSString::NSString(const char* c) {
 	bool isJis = false;
 	const unsigned char* work = (const unsigned char*)c;
@@ -1751,7 +1751,7 @@ NSString::NSString(const char* c) {
 	n_size = n_wsize * sizeof(NSCHARDATA);
 }
 
-//‰¹æ}ƒR[ƒhŒ^‚©‚ç‰¹æ}•¶š—ñŒ^‚ğì¬
+//éŸ³è«³ã‚³ãƒ¼ãƒ‰å‹ã‹ã‚‰éŸ³è«³æ–‡å­—åˆ—å‹ã‚’ä½œæˆ
 NSString::NSString(const NSSTRING c) {
 	size_t size = nsc::nsstrlen(c);
 	NSSTRINGDATA str = new NSCHARDATA[size];
@@ -1769,7 +1769,7 @@ NSString::NSString(const NSSTRING c) {
 	n_size = n_wsize * sizeof(NSCHARDATA);
 }
 
-//‰¹æ}ƒf[ƒ^Œ^‚©‚ç‰¹æ}•¶š—ñŒ^‚ğì¬
+//éŸ³è«³ãƒ‡ãƒ¼ã‚¿å‹ã‹ã‚‰éŸ³è«³æ–‡å­—åˆ—å‹ã‚’ä½œæˆ
 NSString::NSString(const NSSTRINGDATA c) {
 	size_t size = nsc::nsstrlen(c);
 	n_string = c;
@@ -1778,7 +1778,7 @@ NSString::NSString(const NSSTRINGDATA c) {
 	n_size = n_wsize * sizeof(NSCHARDATA);
 }
 
-//‰¹æ}•¶š—ñŒ^‚Ì•¡»
+//éŸ³è«³æ–‡å­—åˆ—å‹ã®è¤‡è£½
 NSString::NSString(const NSString& s) {
 	n_capacity = s.n_capacity;
 	n_wcapacity = s.n_wcapacity;
@@ -1792,7 +1792,7 @@ NSString::NSString(const NSString& s) {
 NSString::~NSString() {
 }
 
-//  ----‰‰Zq----
+//  ----æ¼”ç®—å­----
 
 NSCHARDATA& NSString::operator [](const size_t n) {
 	return n_string[n];
@@ -1836,54 +1836,54 @@ NSString& NSString::operator +=(const NSString& str) {
 	return *this;
 }
 
-//  ----ƒƒ“ƒoŠÖ”----
+//  ----ãƒ¡ãƒ³ãƒé–¢æ•°----
 
-//•¶š‚ª“ü‚Á‚Ä‚¢‚é‚©
+//æ–‡å­—ãŒå…¥ã£ã¦ã„ã‚‹ã‹
 bool NSString::empty() const {
 	return (n_wsize == 0);
 }
 
-//ƒTƒCƒY(ƒoƒCƒg”)
+//ã‚µã‚¤ã‚º(ãƒã‚¤ãƒˆæ•°)
 size_t NSString::size() const {
 	return n_size;
 }
 
-//•¶š”
+//æ–‡å­—æ•°
 size_t NSString::length() const {
 	return n_wsize;
 }
 
-//Å‘å‚Ì•¶š”
+//æœ€å¤§ã®æ–‡å­—æ•°
 size_t NSString::capacity() const {
 	return n_capacity;
 }
 
-//‰‚ß‚Ì•¶š
+//åˆã‚ã®æ–‡å­—
 const NSCHARDATA& NSString::front() const {
 	return n_string[0];
 }
 
-//Œã‚í‚è‚Ì•¶š
+//å¾Œã‚ã‚Šã®æ–‡å­—
 const NSCHARDATA& NSString::back() const {
 	return n_string[n_wsize - 1];
 }
 
-//‰‚ß‚Ì•¶š
+//åˆã‚ã®æ–‡å­—
 NSCHARDATA& NSString::front() {
 	return n_string[0];
 }
 
-//I‚í‚è‚Ì•¶š
+//çµ‚ã‚ã‚Šã®æ–‡å­—
 NSCHARDATA& NSString::back() {
 	return n_string[n_wsize - 1];
 }
 
-//char*•¶š—ñ‚É•ÏŠ·
+//char*æ–‡å­—åˆ—ã«å¤‰æ›
 const char* NSString::c_str() const {
 	return nsc::nsstrdecode(this->n_string);
 }
 
-//0.01•b’PˆÊ‚Å‚Ì‘S‘Ì‚ÌŠÔ
+//0.01ç§’å˜ä½ã§ã®å…¨ä½“ã®æ™‚é–“
 size_t NSString::alltime() const {
 	size_t size = 0;
 	for (size_t i = 0;i < n_wsize;i++)
@@ -1895,17 +1895,17 @@ size_t NSString::alltime() const {
 
 
 
-//	‰¹æ}—ë†‹@ ƒƒCƒ“ƒvƒƒOƒ‰ƒ€
+//	éŸ³è«³é›¶å·æ©Ÿ ãƒ¡ã‚¤ãƒ³ãƒ—ãƒ­ã‚°ãƒ©ãƒ 
 //	
-//	‰¹æ}—ë†‹@‚ÌƒƒCƒ“ƒvƒƒOƒ‰ƒ€‚Å‚·B
+//	éŸ³è«³é›¶å·æ©Ÿã®ãƒ¡ã‚¤ãƒ³ãƒ—ãƒ­ã‚°ãƒ©ãƒ ã§ã™ã€‚
 // 
 //	Copyright (c) 2021 MucchoSP
 
-//=====‰¹ì¬=====
+//=====éŸ³ä½œæˆ=====
 
-//ƒŠƒXƒg‚©‚ç‡¬‚³‚ê‚½sin”g‚ğ¶¬
+//ãƒªã‚¹ãƒˆã‹ã‚‰åˆæˆã•ã‚ŒãŸsinæ³¢ã‚’ç”Ÿæˆ
 int mainMakeVoiseF::makeSinWave(int num, std::vector<nsfloat> Hz, std::vector<nsfloat> s, std::vector<nsfloat>& out, nsfloat a, bool doformant) {
-	//num...Hz‚âs‚Ì’·‚³ Hz...”{‰¹ s...Še”{‰¹‚Ì‘å‚«‚³ out...o—Í”z—ñ size...o—Í”z—ñ‚ÌƒTƒCƒY
+	//num...Hzã‚„sã®é•·ã• Hz...å€éŸ³ s...å„å€éŸ³ã®å¤§ãã• out...å‡ºåŠ›é…åˆ— size...å‡ºåŠ›é…åˆ—ã®ã‚µã‚¤ã‚º
 
 	nsfloat sinha = 0.0;
 	int* canUseHz;
@@ -1914,81 +1914,79 @@ int mainMakeVoiseF::makeSinWave(int num, std::vector<nsfloat> Hz, std::vector<ns
 	std::vector<nsfloat> output2(out.size(), 0.0);
 	std::vector<nsfloat> output3(out.size(), 0.0);
 
-	//‰¹‚Ì‘å‚«‚³‚ª0‚Å‚È‚¢ê‡‚Ì‚İ’Ê‚·B
+	//éŸ³ã®å¤§ãã•ãŒ0ã§ãªã„å ´åˆã®ã¿é€šã™ã€‚
 	for (int i = 0;i < num;i++)
 		if (s[i])
 			num2++;
 	canUseHz = new int[num2 + 1];
 	size_t work = 0;
 	for (int i = 0;i < num;i++)
-		if (s[i]) {
-			canUseHz[work] = i;
-			work++;
-		}
+		if (s[i])
+			canUseHz[work++] = i;
 
 	nsfloat alls = 0;
 	for (int i = 0;i < num;i++)alls += s[i];
 	alls *= 2;
 
 	if (doformant) {
-		//sin”g‚Ì‡¬
+		//sinæ³¢ã®åˆæˆ
 		for (size_t i = 0;i < out.size();i++) {
 			for (int j = 0;j < num2;j++) {
 				if (formants[2] > out.size())
-					sinha = sin(((nsfloat)i + a) * 2.0 * (nsfloat)PI / ((nsfloat)SMPL / Hz[canUseHz[j]]));						//j‚Ìü”g”‚Ìi‚Ì‚Ìsin”g‚Ì’l‚ğŒvZ‚·‚éB
+					sinha = sin(((nsfloat)i + a) * 2.0 * (nsfloat)PI / ((nsfloat)SMPL / Hz[canUseHz[j]]));						//jã®å‘¨æ³¢æ•°ã®iã®æ™‚ã®sinæ³¢ã®å€¤ã‚’è¨ˆç®—ã™ã‚‹ã€‚
 				else
-					sinha = cos(((nsfloat)i + a) * 2.0 * (nsfloat)PI / ((nsfloat)SMPL / Hz[canUseHz[j]]));						//j‚Ìü”g”‚Ìi‚Ì‚Ìcos”g‚Ì’l‚ğŒvZ‚·‚éB
-				output1[i] = output1[i] + sinha * s[canUseHz[j]];															//sinha‚ğA‚»‚ê‚¼‚ê‚Ì‘å‚«‚³‚Å‚©‚¯‡‚í‚¹‚Ä‘«‚·B
+					sinha = cos(((nsfloat)i + a) * 2.0 * (nsfloat)PI / ((nsfloat)SMPL / Hz[canUseHz[j]]));						//jã®å‘¨æ³¢æ•°ã®iã®æ™‚ã®cosæ³¢ã®å€¤ã‚’è¨ˆç®—ã™ã‚‹ã€‚
+				output1[i] = output1[i] + sinha * s[canUseHz[j]];															//sinhaã‚’ã€ãã‚Œãã‚Œã®å¤§ãã•ã§ã‹ã‘åˆã‚ã›ã¦è¶³ã™ã€‚
 			}
-			output1[i] /= alls;																								//•½‹Ï‰»‚µ‚Äo—Í‚·‚éB
+			output1[i] /= alls;																								//å¹³å‡åŒ–ã—ã¦å‡ºåŠ›ã™ã‚‹ã€‚
 		}
 
-		//ƒtƒBƒ‹ƒ^[‚Ìí—Ş(ƒmƒbƒ`ƒtƒBƒ‹ƒ^[)
-		//1.ƒmƒbƒ`ƒtƒBƒ‹ƒ^[–³‚µ	2.‚·‚×‚Ä‚Éƒmƒbƒ`ƒtƒBƒ‹ƒ^[‚ğ“K—p	3.‚ ‚é’ö“x‹——£‚ª‚ ‚ê‚Îƒmƒbƒ`ƒtƒBƒ‹ƒ^[‚ğ“K—p
+		//ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼ã®ç¨®é¡(ãƒãƒƒãƒãƒ•ã‚£ãƒ«ã‚¿ãƒ¼)
+		//1.ãƒãƒƒãƒãƒ•ã‚£ãƒ«ã‚¿ãƒ¼ç„¡ã—	2.ã™ã¹ã¦ã«ãƒãƒƒãƒãƒ•ã‚£ãƒ«ã‚¿ãƒ¼ã‚’é©ç”¨	3.ã‚ã‚‹ç¨‹åº¦è·é›¢ãŒã‚ã‚Œã°ãƒãƒƒãƒãƒ•ã‚£ãƒ«ã‚¿ãƒ¼ã‚’é©ç”¨
 		switch (3) {
 		case 1:
-			hipassFilter(output1, output2, SMPL, formants[0], 0.707);															//ƒnƒCƒpƒXƒtƒBƒ‹ƒ^[
-			lowpassFilter(output2, out, SMPL, formants[3], 1.0);																//ƒ[ƒpƒXƒtƒBƒ‹ƒ^[
+			hipassFilter(output1, output2, SMPL, formants[0], 0.707);															//ãƒã‚¤ãƒ‘ã‚¹ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼
+			lowpassFilter(output2, out, SMPL, formants[3], 1.0);																//ãƒ­ãƒ¼ãƒ‘ã‚¹ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼
 			break;
 		case 2:
-			hipassFilter(output1, output2, SMPL, formants[0], 0.707);															//ƒnƒCƒpƒXƒtƒBƒ‹ƒ^[
-			lowpassFilter(output2, output3, SMPL, formants[3], 1.0);															//ƒ[ƒpƒXƒtƒBƒ‹ƒ^[
+			hipassFilter(output1, output2, SMPL, formants[0], 0.707);															//ãƒã‚¤ãƒ‘ã‚¹ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼
+			lowpassFilter(output2, output3, SMPL, formants[3], 1.0);															//ãƒ­ãƒ¼ãƒ‘ã‚¹ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼
 			for (int i = 0; i < 3;i++)
-				notchpassFilter(output3, out, SMPL, (formants[i] + formants[i + 1]) / 3.0, formants[i + 1] / formants[i] / 4.0);	//ƒmƒbƒ`ƒpƒXƒtƒBƒ‹ƒ^[
+				notchpassFilter(output3, out, SMPL, (formants[i] + formants[i + 1]) / 3.0, formants[i + 1] / formants[i] / 4.0);	//ãƒãƒƒãƒãƒ‘ã‚¹ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼
 			break;
 		default:
 
-			hipassFilter(output1, output2, SMPL, formants[0], 0.707);															//ƒnƒCƒpƒXƒtƒBƒ‹ƒ^[
-			lowpassFilter(output2, output3, SMPL, formants[3], 1.0);															//ƒ[ƒpƒXƒtƒBƒ‹ƒ^[
+			hipassFilter(output1, output2, SMPL, formants[0], 0.707);															//ãƒã‚¤ãƒ‘ã‚¹ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼
+			lowpassFilter(output2, output3, SMPL, formants[3], 1.0);															//ãƒ­ãƒ¼ãƒ‘ã‚¹ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼
 
 			for (int i = 0; i < 3;i++) {
 				if (formants[i] * 2 < formants[i + 1])
-					notchpassFilter(output3, out, SMPL, (formants[i] + formants[i + 1]) / 3.0, formants[i + 1] / formants[i] / 4.0);	//ƒmƒbƒ`ƒpƒXƒtƒBƒ‹ƒ^[
+					notchpassFilter(output3, out, SMPL, (formants[i] + formants[i + 1]) / 3.0, formants[i + 1] / formants[i] / 4.0);	//ãƒãƒƒãƒãƒ‘ã‚¹ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼
 			}
 		}
 	}
 	else {
-		//sin”g‚Ì‡¬
+		//sinæ³¢ã®åˆæˆ
 		for (size_t i = 0;i < out.size();i++) {
 			for (int j = 0;j < num2;j++) {
-				sinha = sin(((nsfloat)i + a) * 2.0 * (nsfloat)PI / ((nsfloat)SMPL / Hz[canUseHz[j]]));							//j‚Ìü”g”‚Ìi‚Ì‚Ìsin”g‚Ì’l‚ğŒvZ‚·‚éB
-				output1[i] = output1[i] + sinha * s[canUseHz[j]];															//sinha‚ğA‚»‚ê‚¼‚ê‚Ì‘å‚«‚³‚Å‚©‚¯‡‚í‚¹‚Ä‘«‚·B
+				sinha = sin(((nsfloat)i + a) * 2.0 * (nsfloat)PI / ((nsfloat)SMPL / Hz[canUseHz[j]]));							//jã®å‘¨æ³¢æ•°ã®iã®æ™‚ã®sinæ³¢ã®å€¤ã‚’è¨ˆç®—ã™ã‚‹ã€‚
+				output1[i] = output1[i] + sinha * s[canUseHz[j]];															//sinhaã‚’ã€ãã‚Œãã‚Œã®å¤§ãã•ã§ã‹ã‘åˆã‚ã›ã¦è¶³ã™ã€‚
 			}
-			output1[i] /= alls;																								//•½‹Ï‰»‚µ‚Äo—Í‚·‚éB
+			output1[i] /= alls;																								//å¹³å‡åŒ–ã—ã¦å‡ºåŠ›ã™ã‚‹ã€‚
 		}
-		hipassFilter(output1, output2, SMPL, Hz[0], 0.707);															//ƒnƒCƒpƒXƒtƒBƒ‹ƒ^[
-		lowpassFilter(output2, out, SMPL, Hz[num - 1], 1.0);																//ƒ[ƒpƒXƒtƒBƒ‹ƒ^[
+		hipassFilter(output1, output2, SMPL, Hz[0], 0.707);															//ãƒã‚¤ãƒ‘ã‚¹ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼
+		lowpassFilter(output2, out, SMPL, Hz[num - 1], 1.0);																//ãƒ­ãƒ¼ãƒ‘ã‚¹ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼
 	}
 
 	return 0;
 }
 
-//’Pƒ‚Èsin”g‚ğ¶¬
+//å˜ç´”ãªsinæ³¢ã‚’ç”Ÿæˆ
 int mainMakeVoiseF::makeSinha(nsfloat Hz, nsfloat s, std::vector<nsfloat>& out) {
 
 	nsfloat sinha;
 	nsfloat t = SMPL / Hz;
-	nsfloat hr = 1 / t;		//•Ï‰»—Ê
+	nsfloat hr = 1 / t;		//å¤‰åŒ–é‡
 
 	for (int i = 0; i < out.size(); i++) {
 		sinha = sin(hr * i * 2 * PI);
@@ -1998,7 +1996,7 @@ int mainMakeVoiseF::makeSinha(nsfloat Hz, nsfloat s, std::vector<nsfloat>& out) 
 	return 0;
 }
 
-//“Á’è‚ÌŠÔ‚Ìü”g”‚ğæ“¾
+//ç‰¹å®šã®æ™‚é–“ã®å‘¨æ³¢æ•°ã‚’å–å¾—
 nsfloat mainMakeVoiseF::makeMomentSinWave(int num, std::vector<nsfloat> Hz, std::vector<nsfloat> s, int gets) {
 
 	int ho0 = SMPL / 2;//(int)(4.0 / (nsfloat)Hz[0] * SMPL);
@@ -2011,19 +2009,19 @@ nsfloat mainMakeVoiseF::makeMomentSinWave(int num, std::vector<nsfloat> Hz, std:
 	return ret;
 }
 
-//Šî–{”{‰¹İ’è
+//åŸºæœ¬å€éŸ³è¨­å®š
 int mainMakeVoiseF::makeHarmonicOvertone(nsfloat bsf) {
 
 	hosize = (int)(MAXFREQ / bsf);
 	harmonicOvertones.resize(hosize);
 	harmonictoneFilters.resize(hosize);
 	for (int i = 1; i <= hosize;i++)
-		harmonicOvertones[i - 1] = bsf * i;		//”{‰¹ì¬
+		harmonicOvertones[i - 1] = bsf * i;		//å€éŸ³ä½œæˆ
 	bf = bsf;
 	return 0;
 }
 
-//ƒtƒHƒ‹ƒ}ƒ“ƒgƒŠƒXƒg‚Éü”g”‚ğİ’è
+//ãƒ•ã‚©ãƒ«ãƒãƒ³ãƒˆãƒªã‚¹ãƒˆã«å‘¨æ³¢æ•°ã‚’è¨­å®š
 int mainMakeVoiseF::setFormants(nsfloat F1, nsfloat F2, nsfloat F3, nsfloat F4) {
 
 	formants[0] = F1;
@@ -2034,34 +2032,34 @@ int mainMakeVoiseF::setFormants(nsfloat F1, nsfloat F2, nsfloat F3, nsfloat F4) 
 	return 0;
 }
 
-//=====‰¹©“®¶¬=====
+//=====éŸ³è‡ªå‹•ç”Ÿæˆ=====
 
-//Šî–{”{‰¹‚Ì‘å‚«‚³‚ğ©“®¶¬
+//åŸºæœ¬å€éŸ³ã®å¤§ãã•ã‚’è‡ªå‹•ç”Ÿæˆ
 int mainMakeVoiseF::makeFilter() {
 
 	nsfloat a = 0.0, b = 0.0;
 	int c = 0;
 
-	//ƒtƒBƒ‹ƒ^[‰Šú‰»
+	//ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼åˆæœŸåŒ–
 	for (int i = 0;i < hosize;i++)
 		harmonictoneFilters[i] = 0.0;
 
-	//ƒtƒBƒ‹ƒ^[ì¬
+	//ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼ä½œæˆ
 	for (int j = 0;j < hosize;j++) {
 		for (int i = 0;i < 4;i++) {
-			b = (nsfloat)harmonicOvertones[j] - (nsfloat)formants[i];														//¡‚Ìü”g”‚ÆƒtƒHƒ‹ƒ}ƒ“ƒg‚Ì‹——£‚ğŒvZ
-			a = (-1.0 * sqrt(pow(POW2(b * (1.0 / (nsfloat)FILTERWIDTH)), (1.0 / 3.0))) + 1.0);							//ƒTƒCƒNƒƒCƒhŠÖ”‚ğ‰—p‚µ‚½ƒtƒBƒ‹ƒ^[‚ÌŒvZ®
+			b = (nsfloat)harmonicOvertones[j] - (nsfloat)formants[i];														//ä»Šã®å‘¨æ³¢æ•°ã¨ãƒ•ã‚©ãƒ«ãƒãƒ³ãƒˆã®è·é›¢ã‚’è¨ˆç®—
+			a = (-1.0 * sqrt(pow(POW2(b * (1.0 / (nsfloat)FILTERWIDTH)), (1.0 / 3.0))) + 1.0);							//ã‚µã‚¤ã‚¯ãƒ­ã‚¤ãƒ‰é–¢æ•°ã‚’å¿œç”¨ã—ãŸãƒ•ã‚£ãƒ«ã‚¿ãƒ¼ã®è¨ˆç®—å¼
 			if (!isfinite(a) || (a < 0))
-				continue;																								//‹•”‚Ìê‡A”ò‚Î‚·B
-			harmonictoneFilters[j] = harmonictoneFilters[j] + a;														//o‚µ‚½’l‚ğ‘«‚·B
+				continue;																								//è™šæ•°ã®å ´åˆã€é£›ã°ã™ã€‚
+			harmonictoneFilters[j] = harmonictoneFilters[j] + a;														//å‡ºã—ãŸå€¤ã‚’è¶³ã™ã€‚
 		}
-		if (formants[0] < harmonicOvertones[j])																			//ƒtƒHƒ‹ƒ}ƒ“ƒg1‚æ‚è¬‚³‚¢‚©‚Ç‚¤‚©
-			harmonictoneFilters[j] = harmonictoneFilters[j] / 4.0 * (1.0 / ((nsfloat)j + formants[0] / harmonicOvertones[0] + 1.0)) * 12;	//ƒtƒBƒ‹ƒ^[‚Ì•½‹Ï’l‚ğo‚µAj‚Ì”½”ä—á‚ÌŒ`‚ÅƒtƒBƒ‹ƒ^[‚ğ‚©‚¯A\“ñ”{‚·‚éB
+		if (formants[0] < harmonicOvertones[j])																			//ãƒ•ã‚©ãƒ«ãƒãƒ³ãƒˆ1ã‚ˆã‚Šå°ã•ã„ã‹ã©ã†ã‹
+			harmonictoneFilters[j] = harmonictoneFilters[j] / 4.0 * (1.0 / ((nsfloat)j + formants[0] / harmonicOvertones[0] + 1.0)) * 12;	//ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼ã®å¹³å‡å€¤ã‚’å‡ºã—ã€jã®åæ¯”ä¾‹ã®å½¢ã§ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼ã‚’ã‹ã‘ã€åäºŒå€ã™ã‚‹ã€‚
 		else
-			harmonictoneFilters[j] = harmonictoneFilters[j] / 4.0 * (1.0 / ((nsfloat)-j + formants[0] / harmonicOvertones[0] + 1.0)) * 12;	//ƒtƒBƒ‹ƒ^[‚Ì•½‹Ï’l‚ğo‚µA-j‚Ì”½”ä—á‚ÌŒ`‚ÅƒtƒBƒ‹ƒ^[‚ğ‚©‚¯A\“ñ”{‚·‚éB
+			harmonictoneFilters[j] = harmonictoneFilters[j] / 4.0 * (1.0 / ((nsfloat)-j + formants[0] / harmonicOvertones[0] + 1.0)) * 12;	//ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼ã®å¹³å‡å€¤ã‚’å‡ºã—ã€-jã®åæ¯”ä¾‹ã®å½¢ã§ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼ã‚’ã‹ã‘ã€åäºŒå€ã™ã‚‹ã€‚
 	}
 
-	//‰¹‚ÌŒ¸Š
+	//éŸ³ã®æ¸›è¡°
 	if (softness) {
 		for (int i = 0;i < hosize;i++) {
 			nsfloat sn = log(softness / harmonicOvertones[i]) / log(softness / bf);
@@ -2069,13 +2067,13 @@ int mainMakeVoiseF::makeFilter() {
 		}
 	}
 
-	//ƒtƒBƒ‹ƒ^[‚ÌƒtƒBƒ‹ƒ^[
+	//ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼ã®ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼
 	for (int i = 0;i < hosize;i++) {
 		if (harmonictoneFilters[i] < 0.01)
-			harmonictoneFilters[i] = 0;																					//0.01ˆÈ‰º‚Ì¬‚³‚È‰¹‚Íæ‚èœ‚­B
+			harmonictoneFilters[i] = 0;																					//0.01ä»¥ä¸‹ã®å°ã•ãªéŸ³ã¯å–ã‚Šé™¤ãã€‚
 		else {
-			//harmonictoneFilters[i] *= harmonictoneFilters[i] * 2;														//ƒtƒBƒ‹ƒ^[‚Ì·‚ğL‚°‚éB
-			c = (int)(harmonictoneFilters[i] * 100);harmonictoneFilters[i] = (nsfloat)c / 100.0;							//ƒtƒBƒ‹ƒ^[‚Ì’l‚ğ¬”“_‘æOˆÊ‚ÅØ‚èÌ‚Ä‚éB
+			//harmonictoneFilters[i] *= harmonictoneFilters[i] * 2;														//ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼ã®å·®ã‚’åºƒã’ã‚‹ã€‚
+			c = (int)(harmonictoneFilters[i] * 100);harmonictoneFilters[i] = (nsfloat)c / 100.0;							//ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼ã®å€¤ã‚’å°æ•°ç‚¹ç¬¬ä¸‰ä½ã§åˆ‡ã‚Šæ¨ã¦ã‚‹ã€‚
 		}
 	}
 
@@ -2084,12 +2082,12 @@ int mainMakeVoiseF::makeFilter() {
 	return 0;
 }
 
-//ƒNƒ‰ƒX“à‚Ìƒpƒ‰ƒ[ƒ^‚©‚çsin”g‚ğ‡¬
+//ã‚¯ãƒ©ã‚¹å†…ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‹ã‚‰sinæ³¢ã‚’åˆæˆ
 int mainMakeVoiseF::makeSinWaveFromClass(std::vector<nsfloat>& out, nsfloat a) {
-	/*ƒNƒ‰ƒX‚Ì’l‚©‚çº‚ğì¬
-	* out	...o—Í”z—ñ
-	* size	...out‚Ì‘å‚«‚³
-	* a		...‰‚ß‚ÌŠp“x
+	/*ã‚¯ãƒ©ã‚¹ã®å€¤ã‹ã‚‰å£°ã‚’ä½œæˆ
+	* out	...å‡ºåŠ›é…åˆ—
+	* size	...outã®å¤§ãã•
+	* a		...åˆã‚ã®è§’åº¦
 	*/
 	makeFilter();
 
@@ -2098,19 +2096,19 @@ int mainMakeVoiseF::makeSinWaveFromClass(std::vector<nsfloat>& out, nsfloat a) {
 	return 0;
 }
 
-//ƒNƒ‰ƒX“à‚Ìƒpƒ‰ƒ[ƒ^‚©‚ç“Á’è‚ÌŠÔ‚Ìü”g”‚ğæ“¾
+//ã‚¯ãƒ©ã‚¹å†…ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‹ã‚‰ç‰¹å®šã®æ™‚é–“ã®å‘¨æ³¢æ•°ã‚’å–å¾—
 nsfloat mainMakeVoiseF::makeMomentSinWaveFromClass(int t) {
-	/*ƒNƒ‰ƒX‚Ì’l‚©‚çº‚ğì¬
-	* out	...o—Í”z—ñ
-	* size	...out‚Ì‘å‚«‚³
-	* a		...‰‚ß‚ÌŠp“x
+	/*ã‚¯ãƒ©ã‚¹ã®å€¤ã‹ã‚‰å£°ã‚’ä½œæˆ
+	* out	...å‡ºåŠ›é…åˆ—
+	* size	...outã®å¤§ãã•
+	* a		...åˆã‚ã®è§’åº¦
 	*/
 	makeFilter();
 
 	return makeMomentSinWave(hosize, harmonicOvertones, harmonictoneFilters, t % SMPL);
 }
 
-//Œ»İ‚ÌmainMakeVoiseF.cpp‚Ìó‘Ô‚ğæ“¾‚·‚éB
+//ç¾åœ¨ã®mainMakeVoiseF.cppã®çŠ¶æ…‹ã‚’å–å¾—ã™ã‚‹ã€‚
 int mainMakeVoiseF::getstate(int state) {
 
 	if (state == 0) {
@@ -2126,7 +2124,7 @@ int mainMakeVoiseF::getstate(int state) {
 	return 0;
 }
 
-//softness•Ï”‚ğ•ÏX
+//softnesså¤‰æ•°ã‚’å¤‰æ›´
 int mainMakeVoiseF::setSoftness(nsfloat sn) {
 	softness = sn;
 	return 0;
@@ -2145,10 +2143,10 @@ nsfloat mainMakeVoiseF::mostMax(std::vector<nsfloat> list) {
 
 int mainMakeVoiseF::hipassFilter(std::vector<nsfloat> input, std::vector<nsfloat>& out, nsfloat samplerate, nsfloat freq, nsfloat q) {
 
-	// ‚»‚ê‚¼‚ê‚Ì•Ï”‚Í‰º‹L‚Ì‚Æ‚¨‚è‚Æ‚·‚é
-	// float samplerate c ƒTƒ“ƒvƒŠƒ“ƒOü”g”
-	// float freq c ƒJƒbƒgƒIƒtü”g”
-	// float q    c ƒtƒBƒ‹ƒ^‚ÌQ’l
+	// ãã‚Œãã‚Œã®å¤‰æ•°ã¯ä¸‹è¨˜ã®ã¨ãŠã‚Šã¨ã™ã‚‹
+	// float samplerate â€¦ ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°å‘¨æ³¢æ•°
+	// float freq â€¦ ã‚«ãƒƒãƒˆã‚ªãƒ•å‘¨æ³¢æ•°
+	// float q    â€¦ ãƒ•ã‚£ãƒ«ã‚¿ã®Qå€¤
 	nsfloat omega = 2.0f * 3.14159265f * freq / samplerate;
 	nsfloat alpha = sin(omega) / (2.0f * q);
 
@@ -2159,25 +2157,25 @@ int mainMakeVoiseF::hipassFilter(std::vector<nsfloat> input, std::vector<nsfloat
 	nsfloat b1 = -(1.0f + cos(omega));
 	nsfloat b2 = (1.0f + cos(omega)) / 2.0f;
 
-	// ‚»‚ê‚¼‚ê‚Ì•Ï”‚Í‰º‹L‚Ì‚Æ‚¨‚è‚Æ‚·‚é
-	// @float input[]  c“ü—ÍM†‚ÌŠi”[‚³‚ê‚½ƒoƒbƒtƒ@B
-	// @flaot output[] cƒtƒBƒ‹ƒ^ˆ—‚µ‚½’l‚ğ‘‚«o‚·o—ÍM†‚Ìƒoƒbƒtƒ@B
-	// @int   size     c“ü—ÍM†Eo—ÍM†‚Ìƒoƒbƒtƒ@‚ÌƒTƒCƒYB
-	// @float in1, in2, out1, out2  cƒtƒBƒ‹ƒ^ŒvZ—p‚Ìƒoƒbƒtƒ@•Ï”B‰Šú’l‚Í0B
-	// @float a0, a1, a2, b0, b1, b2 cƒtƒBƒ‹ƒ^‚ÌŒW”B •Ê“rZo‚·‚éB
+	// ãã‚Œãã‚Œã®å¤‰æ•°ã¯ä¸‹è¨˜ã®ã¨ãŠã‚Šã¨ã™ã‚‹
+	// ã€€float input[]  â€¦å…¥åŠ›ä¿¡å·ã®æ ¼ç´ã•ã‚ŒãŸãƒãƒƒãƒ•ã‚¡ã€‚
+	// ã€€flaot output[] â€¦ãƒ•ã‚£ãƒ«ã‚¿å‡¦ç†ã—ãŸå€¤ã‚’æ›¸ãå‡ºã™å‡ºåŠ›ä¿¡å·ã®ãƒãƒƒãƒ•ã‚¡ã€‚
+	// ã€€int   size     â€¦å…¥åŠ›ä¿¡å·ãƒ»å‡ºåŠ›ä¿¡å·ã®ãƒãƒƒãƒ•ã‚¡ã®ã‚µã‚¤ã‚ºã€‚
+	// ã€€float in1, in2, out1, out2  â€¦ãƒ•ã‚£ãƒ«ã‚¿è¨ˆç®—ç”¨ã®ãƒãƒƒãƒ•ã‚¡å¤‰æ•°ã€‚åˆæœŸå€¤ã¯0ã€‚
+	// ã€€float a0, a1, a2, b0, b1, b2 â€¦ãƒ•ã‚£ãƒ«ã‚¿ã®ä¿‚æ•°ã€‚ åˆ¥é€”ç®—å‡ºã™ã‚‹ã€‚
 
 	nsfloat in1 = 0.0, in2 = 0.0, out1 = 0.0, out2 = 0.0;
 	for (size_t i = 0; i < out.size(); i++)
 	{
-		// “ü—ÍM†‚ÉƒtƒBƒ‹ƒ^‚ğ“K—p‚µAo—ÍM†‚Æ‚µ‚Ä‘‚«o‚·B
+		// å…¥åŠ›ä¿¡å·ã«ãƒ•ã‚£ãƒ«ã‚¿ã‚’é©ç”¨ã—ã€å‡ºåŠ›ä¿¡å·ã¨ã—ã¦æ›¸ãå‡ºã™ã€‚
 		out[i] = b0 / a0 * input[i] + b1 / a0 * in1 + b2 / a0 * in2
 			- a1 / a0 * out1 - a2 / a0 * out2;
 
-		in2 = in1;		// 2‚Â‘O‚Ì“ü—ÍM†‚ğXV
-		in1 = input[i];	// 1‚Â‘O‚Ì“ü—ÍM†‚ğXV
+		in2 = in1;		// 2ã¤å‰ã®å…¥åŠ›ä¿¡å·ã‚’æ›´æ–°
+		in1 = input[i];	// 1ã¤å‰ã®å…¥åŠ›ä¿¡å·ã‚’æ›´æ–°
 
-		out2 = out1;	// 2‚Â‘O‚Ìo—ÍM†‚ğXV
-		out1 = out[i];	// 1‚Â‘O‚Ìo—ÍM†‚ğXV
+		out2 = out1;	// 2ã¤å‰ã®å‡ºåŠ›ä¿¡å·ã‚’æ›´æ–°
+		out1 = out[i];	// 1ã¤å‰ã®å‡ºåŠ›ä¿¡å·ã‚’æ›´æ–°
 	}
 
 	return 0;
@@ -2185,10 +2183,10 @@ int mainMakeVoiseF::hipassFilter(std::vector<nsfloat> input, std::vector<nsfloat
 
 int mainMakeVoiseF::lowpassFilter(std::vector<nsfloat> input, std::vector<nsfloat>& out, nsfloat samplerate, nsfloat freq, nsfloat q)
 {
-	// ‚»‚ê‚¼‚ê‚Ì•Ï”‚Í‰º‹L‚Ì‚Æ‚¨‚è‚Æ‚·‚é
-	// float samplerate c ƒTƒ“ƒvƒŠƒ“ƒOü”g”
-	// float freq c ƒJƒbƒgƒIƒtü”g”
-	// float q    c ƒtƒBƒ‹ƒ^‚ÌQ’l
+	// ãã‚Œãã‚Œã®å¤‰æ•°ã¯ä¸‹è¨˜ã®ã¨ãŠã‚Šã¨ã™ã‚‹
+	// float samplerate â€¦ ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°å‘¨æ³¢æ•°
+	// float freq â€¦ ã‚«ãƒƒãƒˆã‚ªãƒ•å‘¨æ³¢æ•°
+	// float q    â€¦ ãƒ•ã‚£ãƒ«ã‚¿ã®Qå€¤
 	nsfloat omega = 2.0f * 3.14159265f * freq / samplerate;
 	nsfloat alpha = sin(omega) / (2.0f * q);
 
@@ -2199,25 +2197,25 @@ int mainMakeVoiseF::lowpassFilter(std::vector<nsfloat> input, std::vector<nsfloa
 	nsfloat b1 = 1.0f - cos(omega);
 	nsfloat b2 = (1.0f - cos(omega)) / 2.0f;
 
-	// ‚»‚ê‚¼‚ê‚Ì•Ï”‚Í‰º‹L‚Ì‚Æ‚¨‚è‚Æ‚·‚é
-	// @float input[]  c“ü—ÍM†‚ÌŠi”[‚³‚ê‚½ƒoƒbƒtƒ@B
-	// @flaot output[] cƒtƒBƒ‹ƒ^ˆ—‚µ‚½’l‚ğ‘‚«o‚·o—ÍM†‚Ìƒoƒbƒtƒ@B
-	// @int   size     c“ü—ÍM†Eo—ÍM†‚Ìƒoƒbƒtƒ@‚ÌƒTƒCƒYB
-	// @float in1, in2, out1, out2  cƒtƒBƒ‹ƒ^ŒvZ—p‚Ìƒoƒbƒtƒ@•Ï”B‰Šú’l‚Í0B
-	// @float a0, a1, a2, b0, b1, b2 cƒtƒBƒ‹ƒ^‚ÌŒW”B •Ê“rZo‚·‚éB
+	// ãã‚Œãã‚Œã®å¤‰æ•°ã¯ä¸‹è¨˜ã®ã¨ãŠã‚Šã¨ã™ã‚‹
+	// ã€€float input[]  â€¦å…¥åŠ›ä¿¡å·ã®æ ¼ç´ã•ã‚ŒãŸãƒãƒƒãƒ•ã‚¡ã€‚
+	// ã€€flaot output[] â€¦ãƒ•ã‚£ãƒ«ã‚¿å‡¦ç†ã—ãŸå€¤ã‚’æ›¸ãå‡ºã™å‡ºåŠ›ä¿¡å·ã®ãƒãƒƒãƒ•ã‚¡ã€‚
+	// ã€€int   size     â€¦å…¥åŠ›ä¿¡å·ãƒ»å‡ºåŠ›ä¿¡å·ã®ãƒãƒƒãƒ•ã‚¡ã®ã‚µã‚¤ã‚ºã€‚
+	// ã€€float in1, in2, out1, out2  â€¦ãƒ•ã‚£ãƒ«ã‚¿è¨ˆç®—ç”¨ã®ãƒãƒƒãƒ•ã‚¡å¤‰æ•°ã€‚åˆæœŸå€¤ã¯0ã€‚
+	// ã€€float a0, a1, a2, b0, b1, b2 â€¦ãƒ•ã‚£ãƒ«ã‚¿ã®ä¿‚æ•°ã€‚ åˆ¥é€”ç®—å‡ºã™ã‚‹ã€‚
 
 	nsfloat in1 = 0.0, in2 = 0.0, out1 = 0.0, out2 = 0.0;
 	for (size_t i = 0; i < out.size(); i++)
 	{
-		// “ü—ÍM†‚ÉƒtƒBƒ‹ƒ^‚ğ“K—p‚µAo—ÍM†‚Æ‚µ‚Ä‘‚«o‚·B
+		// å…¥åŠ›ä¿¡å·ã«ãƒ•ã‚£ãƒ«ã‚¿ã‚’é©ç”¨ã—ã€å‡ºåŠ›ä¿¡å·ã¨ã—ã¦æ›¸ãå‡ºã™ã€‚
 		out[i] = b0 / a0 * input[i] + b1 / a0 * in1 + b2 / a0 * in2
 			- a1 / a0 * out1 - a2 / a0 * out2;
 
-		in2 = in1;		// 2‚Â‘O‚Ì“ü—ÍM†‚ğXV
-		in1 = input[i];	// 1‚Â‘O‚Ì“ü—ÍM†‚ğXV
+		in2 = in1;		// 2ã¤å‰ã®å…¥åŠ›ä¿¡å·ã‚’æ›´æ–°
+		in1 = input[i];	// 1ã¤å‰ã®å…¥åŠ›ä¿¡å·ã‚’æ›´æ–°
 
-		out2 = out1;	// 2‚Â‘O‚Ìo—ÍM†‚ğXV
-		out1 = out[i];	// 1‚Â‘O‚Ìo—ÍM†‚ğXV
+		out2 = out1;	// 2ã¤å‰ã®å‡ºåŠ›ä¿¡å·ã‚’æ›´æ–°
+		out1 = out[i];	// 1ã¤å‰ã®å‡ºåŠ›ä¿¡å·ã‚’æ›´æ–°
 	}
 
 	return 0;
@@ -2225,10 +2223,10 @@ int mainMakeVoiseF::lowpassFilter(std::vector<nsfloat> input, std::vector<nsfloa
 
 int mainMakeVoiseF::notchpassFilter(std::vector<nsfloat> input, std::vector<nsfloat>& out, nsfloat samplerate, nsfloat freq, nsfloat bw)
 {
-	// ‚»‚ê‚¼‚ê‚Ì•Ï”‚Í‰º‹L‚Ì‚Æ‚¨‚è‚Æ‚·‚é
-	// float samplerate c ƒTƒ“ƒvƒŠƒ“ƒOü”g”
-	//float freq c ƒJƒbƒgƒIƒtü”g”
-	// float bw   c ‘Ñˆæ•
+	// ãã‚Œãã‚Œã®å¤‰æ•°ã¯ä¸‹è¨˜ã®ã¨ãŠã‚Šã¨ã™ã‚‹
+	// float samplerate â€¦ ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°å‘¨æ³¢æ•°
+	//float freq â€¦ ã‚«ãƒƒãƒˆã‚ªãƒ•å‘¨æ³¢æ•°
+	// float bw   â€¦ å¸¯åŸŸå¹…
 	nsfloat omega = 2.0f * 3.14159265f * freq / samplerate;
 	nsfloat alpha = sin(omega) * sinh(log(2.0f) / 2.0 * bw * omega / sin(omega));
 
@@ -2239,25 +2237,25 @@ int mainMakeVoiseF::notchpassFilter(std::vector<nsfloat> input, std::vector<nsfl
 	nsfloat b1 = -2.0f * cos(omega);
 	nsfloat b2 = 1.0f;
 
-	// ‚»‚ê‚¼‚ê‚Ì•Ï”‚Í‰º‹L‚Ì‚Æ‚¨‚è‚Æ‚·‚é
-	// @float input[]  c“ü—ÍM†‚ÌŠi”[‚³‚ê‚½ƒoƒbƒtƒ@B
-	// @flaot output[] cƒtƒBƒ‹ƒ^ˆ—‚µ‚½’l‚ğ‘‚«o‚·o—ÍM†‚Ìƒoƒbƒtƒ@B
-	// @int   size     c“ü—ÍM†Eo—ÍM†‚Ìƒoƒbƒtƒ@‚ÌƒTƒCƒYB
-	// @float in1, in2, out1, out2  cƒtƒBƒ‹ƒ^ŒvZ—p‚Ìƒoƒbƒtƒ@•Ï”B‰Šú’l‚Í0B
-	// @float a0, a1, a2, b0, b1, b2 cƒtƒBƒ‹ƒ^‚ÌŒW”B •Ê“rZo‚·‚éB
+	// ãã‚Œãã‚Œã®å¤‰æ•°ã¯ä¸‹è¨˜ã®ã¨ãŠã‚Šã¨ã™ã‚‹
+	// ã€€float input[]  â€¦å…¥åŠ›ä¿¡å·ã®æ ¼ç´ã•ã‚ŒãŸãƒãƒƒãƒ•ã‚¡ã€‚
+	// ã€€flaot output[] â€¦ãƒ•ã‚£ãƒ«ã‚¿å‡¦ç†ã—ãŸå€¤ã‚’æ›¸ãå‡ºã™å‡ºåŠ›ä¿¡å·ã®ãƒãƒƒãƒ•ã‚¡ã€‚
+	// ã€€int   size     â€¦å…¥åŠ›ä¿¡å·ãƒ»å‡ºåŠ›ä¿¡å·ã®ãƒãƒƒãƒ•ã‚¡ã®ã‚µã‚¤ã‚ºã€‚
+	// ã€€float in1, in2, out1, out2  â€¦ãƒ•ã‚£ãƒ«ã‚¿è¨ˆç®—ç”¨ã®ãƒãƒƒãƒ•ã‚¡å¤‰æ•°ã€‚åˆæœŸå€¤ã¯0ã€‚
+	// ã€€float a0, a1, a2, b0, b1, b2 â€¦ãƒ•ã‚£ãƒ«ã‚¿ã®ä¿‚æ•°ã€‚ åˆ¥é€”ç®—å‡ºã™ã‚‹ã€‚
 
 	nsfloat in1 = 0.0, in2 = 0.0, out1 = 0.0, out2 = 0.0;
 	for (size_t i = 0; i < out.size(); i++)
 	{
-		// “ü—ÍM†‚ÉƒtƒBƒ‹ƒ^‚ğ“K—p‚µAo—ÍM†‚Æ‚µ‚Ä‘‚«o‚·B
+		// å…¥åŠ›ä¿¡å·ã«ãƒ•ã‚£ãƒ«ã‚¿ã‚’é©ç”¨ã—ã€å‡ºåŠ›ä¿¡å·ã¨ã—ã¦æ›¸ãå‡ºã™ã€‚
 		out[i] = b0 / a0 * input[i] + b1 / a0 * in1 + b2 / a0 * in2
 			- a1 / a0 * out1 - a2 / a0 * out2;
 
-		in2 = in1;		// 2‚Â‘O‚Ì“ü—ÍM†‚ğXV
-		in1 = input[i];	// 1‚Â‘O‚Ì“ü—ÍM†‚ğXV
+		in2 = in1;		// 2ã¤å‰ã®å…¥åŠ›ä¿¡å·ã‚’æ›´æ–°
+		in1 = input[i];	// 1ã¤å‰ã®å…¥åŠ›ä¿¡å·ã‚’æ›´æ–°
 
-		out2 = out1;	// 2‚Â‘O‚Ìo—ÍM†‚ğXV
-		out1 = out[i];	// 1‚Â‘O‚Ìo—ÍM†‚ğXV
+		out2 = out1;	// 2ã¤å‰ã®å‡ºåŠ›ä¿¡å·ã‚’æ›´æ–°
+		out1 = out[i];	// 1ã¤å‰ã®å‡ºåŠ›ä¿¡å·ã‚’æ›´æ–°
 	}
 
 	return 0;
@@ -2265,9 +2263,9 @@ int mainMakeVoiseF::notchpassFilter(std::vector<nsfloat> input, std::vector<nsfl
 
 
 
-//	‰¹æ}—ë†‹@ ƒtƒ@ƒCƒ‹ƒvƒƒOƒ‰ƒ€
+//	éŸ³è«³é›¶å·æ©Ÿ ãƒ•ã‚¡ã‚¤ãƒ«ãƒ—ãƒ­ã‚°ãƒ©ãƒ 
 //	
-//	‰¹æ}—ë†‹@ŠÖŒW‚Ìƒtƒ@ƒCƒ‹‚ğ“Š‡‚µ‚ÄŠÇ—‚·‚éƒvƒƒOƒ‰ƒ€‚Å‚·B
+//	éŸ³è«³é›¶å·æ©Ÿé–¢ä¿‚ã®ãƒ•ã‚¡ã‚¤ãƒ«ã‚’çµ±æ‹¬ã—ã¦ç®¡ç†ã™ã‚‹ãƒ—ãƒ­ã‚°ãƒ©ãƒ ã§ã™ã€‚
 //  
 //  -----------------------------------------------------------------------------------------------
 // 
@@ -2275,12 +2273,12 @@ int mainMakeVoiseF::notchpassFilter(std::vector<nsfloat> input, std::vector<nsfl
 
 mainMakeVoiseF mvffMMVF;
 
-//=====“Ç‚İã‚°ŠÖŒW=====
+//=====èª­ã¿ä¸Šã’é–¢ä¿‚=====
 
-//‰¹æ} •——é‚ğg‚¤
+//éŸ³è«³ é¢¨éˆ´ã‚’ä½¿ã†
 int makeVoiseFromFile::setDefaulFurin() {
 
-	//‰¹æ}‚Ì•W€‰¹ºu‰¹æ} •——év‚Ì‰¹ºƒtƒ@ƒCƒ‹‚æ‚è”²ˆ
+	//éŸ³è«³ã®æ¨™æº–éŸ³å£°ã€ŒéŸ³è«³ é¢¨éˆ´ã€ã®éŸ³å£°ãƒ•ã‚¡ã‚¤ãƒ«ã‚ˆã‚ŠæŠœç²‹
 	char data[68] = { 0x44, 0x41, 0x54, 0x41, 0x62, 0x66, 0xB8, 0x01, 0x56, 0x46, 0x46, 0x41, 0x4C, 0x04, 0xA4, 0x06, 0xA0, 0x0F, 0x5C, 0x12, 0x56, 0x46, 0x46, 0x49, 0x80, 0x02, 0x42, 0x0E, 0xA0, 0x0F, 0x5C, 0x12, 0x56, 0x46, 0x46, 0x55, 0x58, 0x02, 0xEF, 0x06, 0xA0, 0x0F, 0x5C, 0x12, 0x56, 0x46, 0x46, 0x45, 0x0C, 0x03, 0x54, 0x0B, 0xA0, 0x0F, 0x5C, 0x12, 0x56, 0x46, 0x46, 0x4F, 0x20, 0x03, 0xDC, 0x05, 0xA0, 0x0F, 0x5C, 0x12 };
 
 	decodeVoise0(data);
@@ -2288,7 +2286,7 @@ int makeVoiseFromFile::setDefaulFurin() {
 	return 0;
 }
 
-//‰¹æ} Œ‰¹‚ğg‚¤
+//éŸ³è«³ è©éŸ³ã‚’ä½¿ã†
 int makeVoiseFromFile::setShion() {
 
 	char data[68] = { 0x44,0x41,0x54,0x41,0x62,0x66,0x88,0x01,0x56,0x46,0x46,0x41,0x54,0x04,0xA4,0x06,0x6F,0x0F,0x9A,0x14,0x56,0x46,0x46,0x49,0x93,0x02,0xC0,0x0D,0x6F,0x0F,0x9A,0x14,0x56,0x46,0x46,0x55,0x93,0x02,0xE0,0x06,0x6F,0x0F,0x9A,0x14,0x56,0x46,0x46,0x45,0x10,0x03,0x90,0x0B,0x6F,0x0F,0x9A,0x14,0x56,0x46,0x46,0x4F,0x10,0x03,0x75,0x05,0x6F,0x0F,0x9A,0x14 };
@@ -2298,16 +2296,16 @@ int makeVoiseFromFile::setShion() {
 	return 0;
 }
 
-//‰¹æ}‘®‚Å‘‚©‚ê‚½•¶Í‚ğ“Ç‚İ‚İ
+//éŸ³è«³æ›¸å¼ã§æ›¸ã‹ã‚ŒãŸæ–‡ç« ã‚’èª­ã¿è¾¼ã¿
 int makeVoiseFromFile::textread(const char* t) {
 
 	/*
-	* text...“Ç‚İã‚°•¶Í
-	* ‰¹æ}Œ`®‚Ìà–¾
-	* •¶š      ...•½‰¼–¼‚Ì‚İB‚ ‚ñ‚È‚Éƒ}ƒ‹ƒ`ƒoƒCƒgŒ™‚Á‚Ä‚¢‚½‚¯‚ÇA”¼ŠpƒJƒ^ƒJƒi‚¤‚Â‚Ì‚ß‚ñ‚Ç‚­‚È‚Á‚½B‚½‚¾‚µAŠ¿š‚É‚Í‘Î‰‚µ‚Ä‚¢‚Ü‚¹‚ñB’N‚©©‘RŒ¾Œêˆ—ƒvƒƒOƒ‰ƒ€ì‚Á‚Ä
-	* <S040>    ...ƒXƒs[ƒh‚Ì•ÏXBˆê•¶š‚Ì’·‚³‚ğw’èBÅ‘å256AÅ¬01
-	* <P}000>  ...ƒsƒbƒ`‚Ì•ÏXBbf‚©‚ç‚Ç‚Ì‚­‚ç‚¢—£‚ê‚é‚©B-128 ` +127
-	* <pu><pd>  ...ƒsƒbƒ`‚Ì•ÏXBpu‚Åƒsƒbƒ`‚ğ\ã‚°‚ÄApd‚Å\‰º‚ª‚éB
+	* text...èª­ã¿ä¸Šã’æ–‡ç« 
+	* éŸ³è«³å½¢å¼ã®èª¬æ˜
+	* æ–‡å­—      ...å¹³ä»®åã®ã¿ã€‚ã‚ã‚“ãªã«ãƒãƒ«ãƒãƒã‚¤ãƒˆå«Œã£ã¦ã„ãŸã‘ã©ã€åŠè§’ã‚«ã‚¿ã‚«ãƒŠã†ã¤ã®ã‚ã‚“ã©ããªã£ãŸã€‚ãŸã ã—ã€æ¼¢å­—ã«ã¯å¯¾å¿œã—ã¦ã„ã¾ã›ã‚“ã€‚èª°ã‹è‡ªç„¶è¨€èªå‡¦ç†ãƒ—ãƒ­ã‚°ãƒ©ãƒ ä½œã£ã¦
+	* <S040>    ...ã‚¹ãƒ”ãƒ¼ãƒ‰ã®å¤‰æ›´ã€‚ä¸€æ–‡å­—ã®é•·ã•ã‚’æŒ‡å®šã€‚æœ€å¤§256ã€æœ€å°01
+	* <PÂ±000>  ...ãƒ”ãƒƒãƒã®å¤‰æ›´ã€‚bfã‹ã‚‰ã©ã®ãã‚‰ã„é›¢ã‚Œã‚‹ã‹ã€‚-128 ï½ +127
+	* <pu><pd>  ...ãƒ”ãƒƒãƒã®å¤‰æ›´ã€‚puã§ãƒ”ãƒƒãƒã‚’åä¸Šã’ã¦ã€pdã§åä¸‹ãŒã‚‹ã€‚
 	*/
 
 	pstringdata = NSString(t);
@@ -2315,43 +2313,43 @@ int makeVoiseFromFile::textread(const char* t) {
 	return 0;
 }
 
-//textread‚Å“Ç‚İ‚ñ‚¾•¶Í‚ğ“Ç‚İã‚°
+//textreadã§èª­ã¿è¾¼ã‚“ã æ–‡ç« ã‚’èª­ã¿ä¸Šã’
 std::vector<nsfloat> makeVoiseFromFile::textreading() {
 
-	//‘S‘Ì‚ÌŠÔ[s]
+	//å…¨ä½“ã®æ™‚é–“[s]
 	const size_t alltime = pstringdata.alltime() * (size_t)CHANGETIMEMAGN;
 
-	//Š®¬•i
+	//å®Œæˆå“
 	std::vector<nsfloat> out;
 
-	//¡ˆ—‚µ‚Ä‚¢‚éŠÔ
+	//ä»Šå‡¦ç†ã—ã¦ã„ã‚‹æ™‚é–“
 	int targettime = 0;
 
-	//‘O‚Ì•¶šAƒXƒs[ƒhAƒsƒbƒ`
+	//å‰ã®æ–‡å­—ã€ã‚¹ãƒ”ãƒ¼ãƒ‰ã€ãƒ”ãƒƒãƒ
 	NSCHAR oldmoji = pstringdata[0].c;
 	int oldspeed = pstringdata[0].ctime;
 	int16_t oldpitch = pstringdata[0].pitch;
 
-	//¡‚Ì•¶šAƒXƒs[ƒhAƒsƒbƒ`
+	//ä»Šã®æ–‡å­—ã€ã‚¹ãƒ”ãƒ¼ãƒ‰ã€ãƒ”ãƒƒãƒ
 	NSCHAR nowmoji = 0;
 	int nowspeed = 0;
 	int16_t nowpitch = 0;
 
-	//Ÿ‚Ì•¶šAƒXƒs[ƒhAƒsƒbƒ`
+	//æ¬¡ã®æ–‡å­—ã€ã‚¹ãƒ”ãƒ¼ãƒ‰ã€ãƒ”ãƒƒãƒ
 	NSCHAR nextmoji = 0;
 	int nextspeed = 0;
 	int16_t nextpitch = 0;
 
-	//I—¹
+	//çµ‚äº†
 	bool fin = false;
 
-	//mvffMMVF‚ğ‰Šú‰»
+	//mvffMMVFã‚’åˆæœŸåŒ–
 	mvffMMVF.setSoftness(softness);
 
 	ftInit(MAXSHIONSPEED);
-	//ƒƒCƒ“ˆ—
+	//ãƒ¡ã‚¤ãƒ³å‡¦ç†
 	for (size_t nowmojinum = 0;nowmojinum < pstringdata.length();nowmojinum++) {
-		//‚»‚ê‚¼‚ê‚Ì•Ï”‚ğXV
+		//ãã‚Œãã‚Œã®å¤‰æ•°ã‚’æ›´æ–°
 		nowmoji = pstringdata[nowmojinum].c;
 		nowspeed = pstringdata[nowmojinum].ctime * CHANGETIMEMAGN;
 		nowpitch = pstringdata[nowmojinum].pitch;
@@ -2364,11 +2362,11 @@ std::vector<nsfloat> makeVoiseFromFile::textreading() {
 			nextmoji = nextspeed = nextpitch = 0;
 		}
 		targettime = out.size() + nowspeed;
-		//”{‰¹İ’è
+		//å€éŸ³è¨­å®š
 		mvffMMVF.makeHarmonicOvertone(privatebf + nowpitch);
 
 		nsfloat formantmagn = 0;
-		//º‚Ì‘O”¼•”ƒƒCƒ“(q‰¹•”)
+		//å£°ã®å‰åŠéƒ¨ãƒ¡ã‚¤ãƒ³(å­éŸ³éƒ¨)
 		switch (nowmoji) {
 		case NSNULL:
 			fin = true;
@@ -2378,8 +2376,8 @@ std::vector<nsfloat> makeVoiseFromFile::textreading() {
 		case NSu:
 		case NSe:
 		case NSo:
-			//‚ `‚¨
-			//q‰¹–³‚µ
+			//ã‚ï½ãŠ
+			//å­éŸ³ç„¡ã—
 			break;
 		case NSya:
 		case NSyu:
@@ -2389,18 +2387,18 @@ std::vector<nsfloat> makeVoiseFromFile::textreading() {
 		case NSwi:
 		case NSwe:
 		case NSwo:
-			//‚â`‚æA‚í`‚ğ
+			//ã‚„ï½ã‚ˆã€ã‚ï½ã‚’
 
 			textreadingHanboin(out, nowmoji, nowpitch, targettime);
 
 			break;
-			//==========‚©sE‚ªs===========
+			//==========ã‹è¡Œãƒ»ãŒè¡Œ===========
 		case NSka:
 		case NSki:
 		case NSku:
 		case NSke:
 		case NSko:
-			//‚©`‚±
+			//ã‹ï½ã“
 
 			textreadingHaretuon(out, nowmoji, nowmoji, nowpitch, targettime);
 
@@ -2409,7 +2407,7 @@ std::vector<nsfloat> makeVoiseFromFile::textreading() {
 		case NSkyu:
 		case NSkye:
 		case NSkyo:
-			//‚«‚á`‚«‚å
+			//ãã‚ƒï½ãã‚‡
 
 			textreadingHaretuon(out, nowmoji, 0x12, nowpitch, targettime);
 			textreadingHanboin(out, nowmoji & 0x0f, nowpitch, targettime);
@@ -2419,7 +2417,7 @@ std::vector<nsfloat> makeVoiseFromFile::textreading() {
 		case NSkwi:
 		case NSkwe:
 		case NSkwo:
-			//‚­‚Ÿ`‚­‚§
+			//ããï½ãã‰
 
 			textreadingHaretuon(out, nowmoji, 0x17, nowpitch, targettime);
 			textreadingHanboin(out, nowmoji & 0x0f, nowpitch, targettime);
@@ -2430,7 +2428,7 @@ std::vector<nsfloat> makeVoiseFromFile::textreading() {
 		case NSgu:
 		case NSge:
 		case NSgo:
-			//‚ª`‚²
+			//ãŒï½ã”
 
 			textreadingYuuseiHaretuon(out, nowmoji, nowmoji, nowpitch, targettime);
 
@@ -2439,7 +2437,7 @@ std::vector<nsfloat> makeVoiseFromFile::textreading() {
 		case NSgyu:
 		case NSgye:
 		case NSgyo:
-			//‚¬‚á`‚¬‚å
+			//ãã‚ƒï½ãã‚‡
 
 			textreadingYuuseiHaretuon(out, nowmoji, 0x22, nowpitch, targettime);
 			textreadingHanboin(out, nowmoji & 0x0f, nowpitch, targettime);
@@ -2449,19 +2447,19 @@ std::vector<nsfloat> makeVoiseFromFile::textreading() {
 		case NSgwi:
 		case NSgwe:
 		case NSgwo:
-			//‚®‚Ÿ`‚®‚§
+			//ããï½ãã‰
 
 			textreadingYuuseiHaretuon(out, nowmoji, 0x27, nowpitch, targettime);
 			textreadingHanboin(out, nowmoji & 0x0f, nowpitch, targettime);
 
 			break;
-			//==========‚³sE‚´s===========
+			//==========ã•è¡Œãƒ»ã–è¡Œ===========
 		case NSsa:
 		case NSsi:
 		case NSsu:
 		case NSse:
 		case NSso:
-			//‚³`‚»
+			//ã•ï½ã
 
 			textreadingMasatuon(out, nowmoji, nowmoji, nowpitch, targettime);
 
@@ -2470,7 +2468,7 @@ std::vector<nsfloat> makeVoiseFromFile::textreading() {
 		case NSsyu:
 		case NSsye:
 		case NSsyo:
-			//‚µ‚á`‚µ‚å
+			//ã—ã‚ƒï½ã—ã‚‡
 
 			textreadingMasatuon(out, nowmoji, 0x32, nowpitch, targettime);
 			textreadingHanboin(out, nowmoji & 0x0f, nowpitch, targettime);
@@ -2480,7 +2478,7 @@ std::vector<nsfloat> makeVoiseFromFile::textreading() {
 		case NSswi:
 		case NSswe:
 		case NSswo:
-			//‚·‚Ÿ`‚·‚§
+			//ã™ãï½ã™ã‰
 
 			textreadingMasatuon(out, nowmoji, 0x37, nowpitch, targettime);
 			textreadingHanboin(out, nowmoji & 0x0f, nowpitch, targettime);
@@ -2491,7 +2489,7 @@ std::vector<nsfloat> makeVoiseFromFile::textreading() {
 		case NSzu:
 		case NSze:
 		case NSzo:
-			//‚´`‚¼
+			//ã–ï½ã
 
 			textreadingYuuseiMasatuon(out, nowmoji, nowmoji, nowpitch, targettime);
 
@@ -2500,7 +2498,7 @@ std::vector<nsfloat> makeVoiseFromFile::textreading() {
 		case NSju:
 		case NSje:
 		case NSjo:
-			//‚¶‚á`‚¶‚å
+			//ã˜ã‚ƒï½ã˜ã‚‡
 
 			textreadingYuuseiMasatuon(out, nowmoji, 0x42, nowpitch, targettime);
 			textreadingHanboin(out, nowmoji & 0x0f, nowpitch, targettime);
@@ -2510,19 +2508,19 @@ std::vector<nsfloat> makeVoiseFromFile::textreading() {
 		case NSzwi:
 		case NSzwe:
 		case NSzwo:
-			//‚¶‚á`‚¶‚å
+			//ã˜ã‚ƒï½ã˜ã‚‡
 
 			textreadingYuuseiMasatuon(out, nowmoji, 0x47, nowpitch, targettime);
 			textreadingHanboin(out, nowmoji & 0x0f, nowpitch, targettime);
 
 			break;
-			//==========‚½sE‚¾s===========
+			//==========ãŸè¡Œãƒ»ã è¡Œ===========
 		case NSta:
 		case NSti:
 		case NStu:
 		case NSte:
 		case NSto:
-			//‚½`‚Æ
+			//ãŸï½ã¨
 
 			textreadingHaretuon(out, nowmoji, nowmoji, nowpitch, targettime);
 
@@ -2531,7 +2529,7 @@ std::vector<nsfloat> makeVoiseFromFile::textreading() {
 		case NStyu:
 		case NStye:
 		case NStyo:
-			//‚¿‚á`‚¿‚å
+			//ã¡ã‚ƒï½ã¡ã‚‡
 
 			textreadingHaretuon(out, nowmoji, 0x52, nowpitch, targettime);
 			textreadingHanboin(out, nowmoji & 0x0f, nowpitch, targettime);
@@ -2541,7 +2539,7 @@ std::vector<nsfloat> makeVoiseFromFile::textreading() {
 		case NStwi:
 		case NStwe:
 		case NStwo:
-			//‚Â‚Ÿ`‚Â‚§
+			//ã¤ãï½ã¤ã‰
 
 			textreadingHaretuon(out, nowmoji, 0x57, nowpitch, targettime);
 			textreadingHanboin(out, nowmoji & 0x0f, nowpitch, targettime);
@@ -2552,7 +2550,7 @@ std::vector<nsfloat> makeVoiseFromFile::textreading() {
 		case NSdu:
 		case NSde:
 		case NSdo:
-			//‚¾`‚Ç
+			//ã ï½ã©
 
 			textreadingYuuseiHaretuon(out, nowmoji, nowmoji, nowpitch, targettime, false);
 
@@ -2561,7 +2559,7 @@ std::vector<nsfloat> makeVoiseFromFile::textreading() {
 		case NSdyu:
 		case NSdye:
 		case NSdyo:
-			//‚À‚á`‚À‚å
+			//ã¢ã‚ƒï½ã¢ã‚‡
 
 			textreadingYuuseiHaretuon(out, nowmoji, 0x62, nowpitch, targettime, false);
 			textreadingHanboin(out, nowmoji & 0x0f, nowpitch, targettime);
@@ -2571,19 +2569,19 @@ std::vector<nsfloat> makeVoiseFromFile::textreading() {
 		case NSdwi:
 		case NSdwe:
 		case NSdwo:
-			//‚Ã‚Ÿ`‚Ã‚§
+			//ã¥ãï½ã¥ã‰
 
 			textreadingYuuseiHaretuon(out, nowmoji, 0x67, nowpitch, targettime, false);
 			textreadingHanboin(out, nowmoji & 0x0f, nowpitch, targettime);
 
 			break;
-			//==========‚ÏsE‚Îs===========
+			//==========ã±è¡Œãƒ»ã°è¡Œ===========
 		case NSpa:
 		case NSpi:
 		case NSpu:
 		case NSpe:
 		case NSpo:
-			//‚Ï`‚Û
+			//ã±ï½ã½
 
 			textreadingHaretuon(out, nowmoji, nowmoji, nowpitch, targettime);
 
@@ -2592,7 +2590,7 @@ std::vector<nsfloat> makeVoiseFromFile::textreading() {
 		case NSpyu:
 		case NSpye:
 		case NSpyo:
-			//‚Ò‚á`‚Ò‚å
+			//ã´ã‚ƒï½ã´ã‚‡
 
 			textreadingHaretuon(out, nowmoji, 0x72, nowpitch, targettime);
 			textreadingHanboin(out, nowmoji & 0x0f, nowpitch, targettime);
@@ -2602,7 +2600,7 @@ std::vector<nsfloat> makeVoiseFromFile::textreading() {
 		case NSpwi:
 		case NSpwe:
 		case NSpwo:
-			//‚Õ‚Ÿ`‚Õ‚§
+			//ã·ãï½ã·ã‰
 
 			textreadingHaretuon(out, nowmoji, 0x77, nowpitch, targettime);
 			textreadingHanboin(out, nowmoji & 0x0f, nowpitch, targettime);
@@ -2613,7 +2611,7 @@ std::vector<nsfloat> makeVoiseFromFile::textreading() {
 		case NSbu:
 		case NSbe:
 		case NSbo:
-			//‚Î`‚Ú
+			//ã°ï½ã¼
 
 			textreadingYuuseiHaretuon(out, nowmoji, nowmoji, nowpitch, targettime, false);
 
@@ -2622,7 +2620,7 @@ std::vector<nsfloat> makeVoiseFromFile::textreading() {
 		case NSbyu:
 		case NSbye:
 		case NSbyo:
-			//‚Ñ‚á`‚Ñ‚å
+			//ã³ã‚ƒï½ã³ã‚‡
 
 			textreadingYuuseiHaretuon(out, nowmoji, 0x82, nowpitch, targettime, false);
 			textreadingHanboin(out, nowmoji & 0x0f, nowpitch, targettime);
@@ -2632,19 +2630,19 @@ std::vector<nsfloat> makeVoiseFromFile::textreading() {
 		case NSbwi:
 		case NSbwe:
 		case NSbwo:
-			//‚Ô‚Ÿ`‚Ô‚§
+			//ã¶ãï½ã¶ã‰
 
 			textreadingYuuseiHaretuon(out, nowmoji, 0x87, nowpitch, targettime, false);
 			textreadingHanboin(out, nowmoji & 0x0f, nowpitch, targettime);
 
 			break;
-			//==========‚Ís==========
+			//==========ã¯è¡Œ==========
 		case NSha:
 		case NShi:
 		case NShu:
 		case NShe:
 		case NSho:
-			//‚Í`‚Ù
+			//ã¯ï½ã»
 
 			textreadingMASATUON(out, nowmoji, nowpitch, targettime);
 
@@ -2653,7 +2651,7 @@ std::vector<nsfloat> makeVoiseFromFile::textreading() {
 		case NShyu:
 		case NShye:
 		case NShyo:
-			//‚Ğ‚á`‚Ğ‚å
+			//ã²ã‚ƒï½ã²ã‚‡
 
 			textreadingMASATUON(out, 0x92, nowpitch, targettime);
 			textreadingHanboin(out, nowmoji & 0x0f, nowpitch, targettime);
@@ -2663,19 +2661,19 @@ std::vector<nsfloat> makeVoiseFromFile::textreading() {
 		case NShwi:
 		case NShwe:
 		case NShwo:
-			//‚Ó‚Ÿ`‚Ó‚§
+			//ãµãï½ãµã‰
 
 			textreadingMASATUON(out, 0x97, nowpitch, targettime);
 			textreadingHanboin(out, nowmoji & 0x0f, nowpitch, targettime);
 
 			break;
-			//==========‚ÈsE‚Üs==========
+			//==========ãªè¡Œãƒ»ã¾è¡Œ==========
 		case NSna:
 		case NSni:
 		case NSnu:
 		case NSne:
 		case NSno:
-			//‚È`‚Ì
+			//ãªï½ã®
 
 			textreadingBion(out, nowmoji, nowmoji, oldmoji, nowpitch, targettime);
 
@@ -2684,7 +2682,7 @@ std::vector<nsfloat> makeVoiseFromFile::textreading() {
 		case NSnyu:
 		case NSnye:
 		case NSnyo:
-			//‚É‚á`‚É‚å
+			//ã«ã‚ƒï½ã«ã‚‡
 
 			textreadingBion(out, nowmoji, 0xa2, oldmoji, nowpitch, targettime);
 			textreadingHanboin(out, nowmoji & 0x0f, nowpitch, targettime);
@@ -2694,7 +2692,7 @@ std::vector<nsfloat> makeVoiseFromFile::textreading() {
 		case NSnwi:
 		case NSnwe:
 		case NSnwo:
-			//‚Ê‚Ÿ`‚Ê‚§
+			//ã¬ãï½ã¬ã‰
 
 			textreadingBion(out, nowmoji, 0xa7, oldmoji, nowpitch, targettime);
 			textreadingHanboin(out, nowmoji & 0x0f, nowpitch, targettime);
@@ -2705,7 +2703,7 @@ std::vector<nsfloat> makeVoiseFromFile::textreading() {
 		case NSmu:
 		case NSme:
 		case NSmo:
-			//‚Ü`‚à
+			//ã¾ï½ã‚‚
 
 			textreadingBion(out, nowmoji, nowmoji, oldmoji, nowpitch, targettime);
 
@@ -2714,7 +2712,7 @@ std::vector<nsfloat> makeVoiseFromFile::textreading() {
 		case NSmyu:
 		case NSmye:
 		case NSmyo:
-			//‚İ‚á`‚İ‚å
+			//ã¿ã‚ƒï½ã¿ã‚‡
 
 			textreadingBion(out, nowmoji, 0xb2, oldmoji, nowpitch, targettime);
 			textreadingHanboin(out, nowmoji & 0x0f, nowpitch, targettime);
@@ -2724,19 +2722,19 @@ std::vector<nsfloat> makeVoiseFromFile::textreading() {
 		case NSmwi:
 		case NSmwe:
 		case NSmwo:
-			//‚Ş‚Ÿ`‚Ş‚§
+			//ã‚€ãï½ã‚€ã‰
 
 			textreadingBion(out, nowmoji, 0xb7, oldmoji, nowpitch, targettime);
 			textreadingHanboin(out, nowmoji & 0x0f, nowpitch, targettime);
 
 			break;
-			//==========‚çs==========
+			//==========ã‚‰è¡Œ==========
 		case NSra:
 		case NSri:
 		case NSru:
 		case NSre:
 		case NSro:
-			//‚ç`‚ë
+			//ã‚‰ï½ã‚
 
 			textreadingHajikion(out, nowmoji, nowmoji, oldmoji, nowpitch, targettime);
 
@@ -2745,7 +2743,7 @@ std::vector<nsfloat> makeVoiseFromFile::textreading() {
 		case NSryu:
 		case NSrye:
 		case NSryo:
-			//‚è‚á`‚è‚å
+			//ã‚Šã‚ƒï½ã‚Šã‚‡
 
 			textreadingHajikion(out, nowmoji, 0xc2, oldmoji, nowpitch, targettime);
 			textreadingHanboin(out, nowmoji & 0x0f, nowpitch, targettime);
@@ -2755,18 +2753,18 @@ std::vector<nsfloat> makeVoiseFromFile::textreading() {
 		case NSrwi:
 		case NSrwe:
 		case NSrwo:
-			//‚é‚Ÿ`‚é‚§
+			//ã‚‹ãï½ã‚‹ã‰
 
 			textreadingHajikion(out, nowmoji, 0xc7, oldmoji, nowpitch, targettime);
 			textreadingHanboin(out, nowmoji & 0x0f, nowpitch, targettime);
 
 			break;
 		case NSnn1:
-			//‚ñ
-			//q‰¹–³‚µ
+			//ã‚“
+			//å­éŸ³ç„¡ã—
 			break;
 		case NSspc:
-			//‹ó”’•¶š
+			//ç©ºç™½æ–‡å­—
 			for (int i = out.size(); i < targettime;i++)
 				out.push_back(0.0);
 			break;
@@ -2775,10 +2773,10 @@ std::vector<nsfloat> makeVoiseFromFile::textreading() {
 		}
 
 
-		//º‚Ì•ê‰¹•”ƒƒCƒ“(•ê‰¹‚¾‚¯)
+		//å£°ã®æ¯éŸ³éƒ¨ãƒ¡ã‚¤ãƒ³(æ¯éŸ³ã ã‘)
 		textreadingBoin1(out, nowmoji, nowpitch, targettime);
 
-		//º‚ÌŒã”¼•”ƒƒCƒ“(Ÿ‚Ì‰¹‚ÖŒü‚¯‚Ä‚ÌƒtƒHƒ‹ƒ}ƒ“ƒg•ÏˆÚ•”)
+		//å£°ã®å¾ŒåŠéƒ¨ãƒ¡ã‚¤ãƒ³(æ¬¡ã®éŸ³ã¸å‘ã‘ã¦ã®ãƒ•ã‚©ãƒ«ãƒãƒ³ãƒˆå¤‰ç§»éƒ¨)
 		if (nowmoji == NSspc)
 			unprocessed;
 		else {
@@ -2800,7 +2798,7 @@ std::vector<nsfloat> makeVoiseFromFile::textreading() {
 	return out;
 }
 
-//=====ºì¬(q‰¹)=====
+//=====å£°ä½œæˆ(å­éŸ³)=====
 
 void makeVoiseFromFile::textreadingHanboin(std::vector<nsfloat>& out, NSCHAR nowmoji, nsfloat pitch, int targettime) {
 	const int size = MAXYOUONSPEED;
@@ -2896,7 +2894,7 @@ void makeVoiseFromFile::textreadingYuuseiHaretuon(std::vector<nsfloat>& out, NSC
 
 void makeVoiseFromFile::textreadingMasatuon(std::vector<nsfloat>& out, NSCHAR nowmoji1, NSCHAR nowmoji2, nsfloat pitch, int targettime) {
 	const int size = MAXSHIONSPEED / 2;
-	//ƒzƒƒCƒgƒmƒCƒY
+	//ãƒ›ãƒ¯ã‚¤ãƒˆãƒã‚¤ã‚º
 	std::vector<nsfloat> voutw(MAXSHIONSPEED, 0.0);
 	std::vector<nsfloat> voutw2(MAXSHIONSPEED, 0.0);
 	std::vector<nsfloat> voutw3(MAXSHIONSPEED, 0.0);
@@ -2921,7 +2919,7 @@ void makeVoiseFromFile::textreadingMasatuon(std::vector<nsfloat>& out, NSCHAR no
 	for (int j = 0;j < (MAXSHIONSPEED - size) / 2;j++)
 		out.push_back(voutw[j] * ((nsfloat)j / (MAXSHIONSPEED - (nsfloat)size)) / 2.0);
 
-	std::vector<nsfloat> vout2(size + CTIME * 2, 1.0);   //•ê‰¹
+	std::vector<nsfloat> vout2(size + CTIME * 2, 1.0);   //æ¯éŸ³
 
 	mvffMMVF.setFormants(getMojiFormant(1, nowmoji2, 0) + pitch, getMojiFormant(1, nowmoji2, 1) + pitch, getMojiFormant(1, nowmoji2, 2) + pitch, getMojiFormant(1, nowmoji2, 3) + pitch);
 	mvffMMVF.makeSinWaveFromClass(vout2, out.size() - CTIME);
@@ -2934,8 +2932,8 @@ void makeVoiseFromFile::textreadingMasatuon(std::vector<nsfloat>& out, NSCHAR no
 void makeVoiseFromFile::textreadingYuuseiMasatuon(std::vector<nsfloat>& out, NSCHAR nowmoji1, NSCHAR nowmoji2, nsfloat pitch, int targettime) {
 	const int size = MAXSHIONSPEED / 2;
 	const int size2 = MAXSHIONSPEED / 4;
-	std::vector<nsfloat> vout2(size2 + CTIME * 2, 1.0);   //•ê‰¹
-	std::vector<nsfloat> vout3(size2 + CTIME * 2, 1.0);   //•@‰¹
+	std::vector<nsfloat> vout2(size2 + CTIME * 2, 1.0);   //æ¯éŸ³
+	std::vector<nsfloat> vout3(size2 + CTIME * 2, 1.0);   //é¼»éŸ³
 	mvffMMVF.setFormants(getMojiFormant(1, nowmoji1, 0) + pitch, getMojiFormant(1, nowmoji1, 1) + pitch, getMojiFormant(1, nowmoji1, 2) + pitch, getMojiFormant(1, nowmoji1, 3) + pitch);
 	mvffMMVF.makeSinWaveFromClass(vout2, out.size() - CTIME);
 	mvffMMVF.setFormants(getMojiFormant(0, 0xd1, 0) + pitch, getMojiFormant(0, 0xd1, 1) + pitch, getMojiFormant(0, 0xd1, 2) + pitch, getMojiFormant(0, 0xd1, 3) + pitch);
@@ -2944,7 +2942,7 @@ void makeVoiseFromFile::textreadingYuuseiMasatuon(std::vector<nsfloat>& out, NSC
 	for (int j = 0; j < size2;j++)
 		out.push_back((vout2[j + CTIME] * ((j < size2 / 2) ? ((nsfloat)j / size2) : ((size2 - (nsfloat)j) / size2)) + vout3[j + CTIME] * ((j < size2 / 2) ? ((nsfloat)j / size2) : ((size2 - (nsfloat)j) / size2))) / 4.0);
 
-	//ƒzƒƒCƒgƒmƒCƒY
+	//ãƒ›ãƒ¯ã‚¤ãƒˆãƒã‚¤ã‚º
 	std::vector<nsfloat> voutw(MAXSHIONSPEED, 0.0);
 	std::vector<nsfloat> voutw2(MAXSHIONSPEED, 0.0);
 
@@ -2981,8 +2979,8 @@ void makeVoiseFromFile::textreadingYuuseiMasatuon(std::vector<nsfloat>& out, NSC
 
 void makeVoiseFromFile::textreadingMASATUON(std::vector<nsfloat>& out, NSCHAR nowmoji, nsfloat pitch, int targettime) {
 	const int size = MAXSHIONSPEED;
-	std::vector<nsfloat> vout1(size + CTIME * 2, 1.0);   //–€E‰¹
-	std::vector<nsfloat> vout2(size + CTIME * 2, 1.0);   //•ê‰¹
+	std::vector<nsfloat> vout1(size + CTIME * 2, 1.0);   //æ‘©æ®ºéŸ³
+	std::vector<nsfloat> vout2(size + CTIME * 2, 1.0);   //æ¯éŸ³
 	FriKILLive h = {};
 	h.size = (size_t)(MAXFREQ / privatebf);
 	h.Hz.resize(h.size);
@@ -3005,8 +3003,8 @@ void makeVoiseFromFile::textreadingMASATUON(std::vector<nsfloat>& out, NSCHAR no
 void makeVoiseFromFile::textreadingBion(std::vector<nsfloat>& out, NSCHAR nowmoji1, NSCHAR nowmoji2, NSCHAR oldmoji, nsfloat pitch, int targettime) {
 	const int size = MAXSHIONSPEED;
 	const int ssize = MAXSHIONSPEED / 2 - NASALSPEED;int jtime = 0;
-	std::vector<nsfloat> vout1(size + CTIME * 2, 1.0);   //•@‰¹
-	std::vector<nsfloat> vout2(size + CTIME * 2, 1.0);   //•ê‰¹
+	std::vector<nsfloat> vout1(size + CTIME * 2, 1.0);   //é¼»éŸ³
+	std::vector<nsfloat> vout2(size + CTIME * 2, 1.0);   //æ¯éŸ³
 
 	mvffMMVF.setFormants(getMojiFormant(0, nowmoji1, 0) + pitch, getMojiFormant(0, nowmoji1, 1) + pitch, getMojiFormant(0, nowmoji1, 2) + pitch, getMojiFormant(0, nowmoji1, 3) + pitch);
 	mvffMMVF.makeSinWaveFromClass(vout1, out.size() - CTIME);
@@ -3038,8 +3036,8 @@ void makeVoiseFromFile::textreadingBion(std::vector<nsfloat>& out, NSCHAR nowmoj
 void makeVoiseFromFile::textreadingHajikion(std::vector<nsfloat>& out, NSCHAR nowmoji1, NSCHAR nowmoji2, NSCHAR oldmoji, nsfloat pitch, int targettime) {
 	const int size = MAXSHIONSPEED;
 	const int ssize = MAXSHIONSPEED / 2 - TAPSPEED;int jtime = 0;
-	std::vector<nsfloat> vout1(size + CTIME * 2, 1.0);   //•@‰¹
-	std::vector<nsfloat> vout2(size + CTIME * 2, 1.0);   //•ê‰¹
+	std::vector<nsfloat> vout1(size + CTIME * 2, 1.0);   //é¼»éŸ³
+	std::vector<nsfloat> vout2(size + CTIME * 2, 1.0);   //æ¯éŸ³
 
 	mvffMMVF.setFormants(getMojiFormant(0, nowmoji1, 0) + pitch, getMojiFormant(0, nowmoji1, 1) + pitch, getMojiFormant(0, nowmoji1, 2) + pitch, getMojiFormant(0, nowmoji1, 3) + pitch);
 	mvffMMVF.makeSinWaveFromClass(vout1, out.size() - CTIME);
@@ -3068,7 +3066,7 @@ void makeVoiseFromFile::textreadingHajikion(std::vector<nsfloat>& out, NSCHAR no
 	}
 }
 
-//=====º¶¬(•ê‰¹)=====
+//=====å£°ç”Ÿæˆ(æ¯éŸ³)=====
 
 void makeVoiseFromFile::textreadingBoin1(std::vector<nsfloat>& out, NSCHAR nowmoji, nsfloat pitch, int targettime) {
 	mvffMMVF.setFormants(getMojiFormant(1, nowmoji, 0) + pitch, getMojiFormant(1, nowmoji, 1) + pitch, getMojiFormant(1, nowmoji, 2) + pitch, getMojiFormant(1, nowmoji, 3) + pitch);
@@ -3084,7 +3082,7 @@ void makeVoiseFromFile::textreadingBoin1(std::vector<nsfloat>& out, NSCHAR nowmo
 }
 
 void makeVoiseFromFile::textreadingBoin2(std::vector<nsfloat>& out, NSCHAR nowmoji, NSCHAR nextmoji, nsfloat pitch, nsfloat nextpitch, int targettime) {
-	//I‚í‚è or ‹ó”’
+	//çµ‚ã‚ã‚Š or ç©ºç™½
 	if (nextmoji == NSNULL or nextmoji == NSspc) {
 		const int size = SEMIVOWELSPEED;
 		std::vector<nsfloat> vout(size + CTIME * 2, 1.0);
@@ -3094,7 +3092,7 @@ void makeVoiseFromFile::textreadingBoin2(std::vector<nsfloat>& out, NSCHAR nowmo
 		for (int j = 0; j < size;j++)
 			out.push_back(vout[j + CTIME] * ((size - (nsfloat)j) / size));
 	}
-	//”j—ô‰¹
+	//ç ´è£‚éŸ³
 	else if (doVoiselessPlosive(nextmoji) or doVoisedPlosive(nextmoji)) {
 		const int size = SEMIVOWELSPEED;
 		std::vector<nsfloat> vout1(size + CTIME * 2, 1.0);
@@ -3111,7 +3109,7 @@ void makeVoiseFromFile::textreadingBoin2(std::vector<nsfloat>& out, NSCHAR nowmo
 		for (int j = out.size();j < targettime;j++)
 			out.push_back(0.0);
 	}
-	//•@‰¹
+	//é¼»éŸ³
 	else if (doNasal(nextmoji)) {
 		const int size = SEMIVOWELSPEED;
 		std::vector<nsfloat> vout1(size + CTIME * 2, 1.0);
@@ -3125,7 +3123,7 @@ void makeVoiseFromFile::textreadingBoin2(std::vector<nsfloat>& out, NSCHAR nowmo
 		for (int j = 0; j < size;j++)
 			out.push_back(vout1[j + CTIME] * ((size - (nsfloat)j) / size) + vout2[j + CTIME] * ((nsfloat)j / size) / 2.0);
 	}
-	//‚Í‚¶‚«‰¹
+	//ã¯ã˜ãéŸ³
 	else if (doTap(nextmoji)) {
 		const int size = SEMIVOWELSPEED;
 		std::vector<nsfloat> vout1(size + CTIME * 2, 1.0);
@@ -3139,7 +3137,7 @@ void makeVoiseFromFile::textreadingBoin2(std::vector<nsfloat>& out, NSCHAR nowmo
 		for (int j = 0; j < size;j++)
 			out.push_back(vout1[j + CTIME] * ((size - (nsfloat)j) / size) + vout2[j + CTIME] * ((nsfloat)j / size));
 	}
-	//–€C‰¹
+	//æ‘©æ“¦éŸ³
 	else if (doVoiselessFricative(nextmoji)) {
 		const int size = SEMIVOWELSPEED;
 		std::vector<nsfloat> vout1(size + CTIME * 2, 1.0);
@@ -3150,10 +3148,10 @@ void makeVoiseFromFile::textreadingBoin2(std::vector<nsfloat>& out, NSCHAR nowmo
 		for (int j = 0; j < size;j++)
 			out.push_back(vout1[j + CTIME] * ((size - (nsfloat)j) / size));
 	}
-	//–€E‰¹(Î)
+	//æ‘©æ®ºéŸ³(ç¬‘)
 	else if (doFriKILLive(nextmoji)) {
 		const int size = SEMIVOWELSPEED;
-		//ƒzƒƒCƒgƒmƒCƒY
+		//ãƒ›ãƒ¯ã‚¤ãƒˆãƒã‚¤ã‚º
 		std::vector<nsfloat> voutw(MAXSHIONSPEED, 0.0);
 		std::vector<nsfloat> voutw2(MAXSHIONSPEED, 0.0);
 		ftInit(MAXSHIONSPEED);
@@ -3174,7 +3172,7 @@ void makeVoiseFromFile::textreadingBoin2(std::vector<nsfloat>& out, NSCHAR nowmo
 		for (int j = 0; j < size;j++)
 			out.push_back(vout1[j + CTIME] * ((size - (nsfloat)j) / size));// +(voutw[j] + vout2[j + CTIME] / 2) * ((nsfloat)j / size);
 	}
-	//‚»‚Ì‘¼
+	//ãã®ä»–
 	else {
 		const int size = SEMIVOWELSPEED;
 		std::vector<nsfloat> vout1(size + CTIME * 2, 1.0);
@@ -3192,34 +3190,34 @@ void makeVoiseFromFile::textreadingBoin2(std::vector<nsfloat>& out, NSCHAR nowmo
 }
 
 
-//=====ƒtƒ@ƒCƒ‹ŠÖŒW=====
+//=====ãƒ•ã‚¡ã‚¤ãƒ«é–¢ä¿‚=====
 
-//•¶š—ñ‚©‚çƒf[ƒ^‚ğ“Ç‚İ‚İ
+//æ–‡å­—åˆ—ã‹ã‚‰ãƒ‡ãƒ¼ã‚¿ã‚’èª­ã¿è¾¼ã¿
 int makeVoiseFromFile::loadFromChar(char* data) {
 
-	/* ‚¢‚Â‚©ì‚è‚Ü‚·B(SCP-___-J) */
+	/* ã„ã¤ã‹ä½œã‚Šã¾ã™ã€‚(SCP-___-J) */
 
 	return 0;
 }
 
-//=====ƒ[ƒJƒ‹•Ï”‚ğæ“¾=====
+//=====ãƒ­ãƒ¼ã‚«ãƒ«å¤‰æ•°ã‚’å–å¾—=====
 
-//ƒf[ƒ^•ÛŠÇŒÉ‚©‚çŠî‰¹ƒf[ƒ^‚ğ“Ç‚İ‚Ş
+//ãƒ‡ãƒ¼ã‚¿ä¿ç®¡åº«ã‹ã‚‰åŸºéŸ³ãƒ‡ãƒ¼ã‚¿ã‚’èª­ã¿è¾¼ã‚€
 nsfloat makeVoiseFromFile::getPrivatebf() {
 	return privatebf;
 }
 
-//ƒf[ƒ^•ÛŠÇŒÉ‚©‚çƒtƒHƒ‹ƒ}ƒ“ƒgƒf[ƒ^‚ğ“Ç‚İ‚Ş
+//ãƒ‡ãƒ¼ã‚¿ä¿ç®¡åº«ã‹ã‚‰ãƒ•ã‚©ãƒ«ãƒãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ã‚’èª­ã¿è¾¼ã‚€
 nsfloat makeVoiseFromFile::getPrivatebFormant(int b, int f) {
 	return privateFormant[b][f];
 }
 
-//=====ƒfƒR[ƒhŠÖ”=====
+//=====ãƒ‡ã‚³ãƒ¼ãƒ‰é–¢æ•°=====
 
-//—ë†‹@‚Ìƒf[ƒ^‚ğ“Ç‚İ‚Ş
+//é›¶å·æ©Ÿã®ãƒ‡ãƒ¼ã‚¿ã‚’èª­ã¿è¾¼ã‚€
 int makeVoiseFromFile::decodeVoise0(char* data) {
 
-	int ne = 0;                                         //¡‚Ì”z—ñ‚Ì—v‘f”Ô†
+	int ne = 0;                                         //ä»Šã®é…åˆ—ã®è¦ç´ ç•ªå·
 
 	privatebf = 0.0;
 	for (int i = 0; i < 5;i++)
@@ -3231,7 +3229,7 @@ int makeVoiseFromFile::decodeVoise0(char* data) {
 	if (data[ne++] != 'T') return 1;
 	if (data[ne++] != 'A') return 1;
 
-	//Šî‰¹
+	//åŸºéŸ³
 	if (data[ne++] != 'b') return 1;
 	if (data[ne++] != 'f') return 1;
 	short int pf = 0;
@@ -3239,7 +3237,7 @@ int makeVoiseFromFile::decodeVoise0(char* data) {
 	pf += (short int)(data[ne++] & 0xff) << 8;
 	privatebf = (nsfloat)pf;
 
-	//‚ 
+	//ã‚
 	if (data[ne++] != 'V') return 1;
 	if (data[ne++] != 'F') return 1;
 	if (data[ne++] != 'F') return 1;
@@ -3249,7 +3247,7 @@ int makeVoiseFromFile::decodeVoise0(char* data) {
 		privateFormant[0][i] += (__int64)(data[ne++] & 0xff) << 8;
 	}
 
-	//‚¢
+	//ã„
 	if (data[ne++] != 'V') return 1;
 	if (data[ne++] != 'F') return 1;
 	if (data[ne++] != 'F') return 1;
@@ -3259,7 +3257,7 @@ int makeVoiseFromFile::decodeVoise0(char* data) {
 		privateFormant[1][i] += (__int64)(data[ne++] & 0xff) << 8;
 	}
 
-	//‚¤
+	//ã†
 	if (data[ne++] != 'V') return 1;
 	if (data[ne++] != 'F') return 1;
 	if (data[ne++] != 'F') return 1;
@@ -3269,7 +3267,7 @@ int makeVoiseFromFile::decodeVoise0(char* data) {
 		privateFormant[2][i] += (__int64)(data[ne++] & 0xff) << 8;
 	}
 
-	//‚¦
+	//ãˆ
 	if (data[ne++] != 'V') return 1;
 	if (data[ne++] != 'F') return 1;
 	if (data[ne++] != 'F') return 1;
@@ -3279,7 +3277,7 @@ int makeVoiseFromFile::decodeVoise0(char* data) {
 		privateFormant[3][i] += (__int64)(data[ne++] & 0xff) << 8;
 	}
 
-	//‚¨
+	//ãŠ
 	if (data[ne++] != 'V') return 1;
 	if (data[ne++] != 'F') return 1;
 	if (data[ne++] != 'F') return 1;
@@ -3295,10 +3293,10 @@ int makeVoiseFromFile::decodeVoise0(char* data) {
 	return 0;
 }
 
-//—ë†‹@“óŒ^‚Ìƒf[ƒ^‚ğ“Ç‚İ‚Ş
+//é›¶å·æ©Ÿå¼å‹ã®ãƒ‡ãƒ¼ã‚¿ã‚’èª­ã¿è¾¼ã‚€
 int makeVoiseFromFile::decodeVoise2(char* data) {
 
-	int ne = 0;                                         //¡‚Ì”z—ñ‚Ì—v‘f”Ô†
+	int ne = 0;                                         //ä»Šã®é…åˆ—ã®è¦ç´ ç•ªå·
 
 	privatebf = 0.0;
 	for (int i = 0; i < 5;i++)
@@ -3310,7 +3308,7 @@ int makeVoiseFromFile::decodeVoise2(char* data) {
 	if (data[ne++] != 'T') return 1;
 	if (data[ne++] != 'A') return 1;
 
-	//Šî‰¹
+	//åŸºéŸ³
 	if (data[ne++] != 'b') return 1;
 	if (data[ne++] != 'f') return 1;
 	short int pf = 0;
@@ -3318,7 +3316,7 @@ int makeVoiseFromFile::decodeVoise2(char* data) {
 	pf += (short int)(data[ne++] & 0xff) << 8;
 	privatebf = (nsfloat)pf;
 
-	//ƒf[ƒ^
+	//ãƒ‡ãƒ¼ã‚¿
 	//NSallmojiFormant
 	if (data[ne++] != 'N') return 1;
 	if (data[ne++] != 'S') return 1;
@@ -3348,7 +3346,7 @@ int makeVoiseFromFile::decodeVoise2(char* data) {
 		}
 	}
 
-	//_‚ç‚©‚³
+	//æŸ”ã‚‰ã‹ã•
 	if (data[ne++] != 'S') return 1;
 	if (data[ne++] != 'O') return 1;
 	if (data[ne++] != 'F') return 1;
@@ -3361,15 +3359,15 @@ int makeVoiseFromFile::decodeVoise2(char* data) {
 	return 0;
 }
 
-//=====ƒtƒBƒ‹ƒ^[ŠÖ”=====
+//=====ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼é–¢æ•°=====
 
-//ƒnƒCƒpƒXƒtƒBƒ‹ƒ^
+//ãƒã‚¤ãƒ‘ã‚¹ãƒ•ã‚£ãƒ«ã‚¿
 int makeVoiseFromFile::hipassFilter(std::vector<nsfloat> input, std::vector<nsfloat>& out, nsfloat samplerate, nsfloat freq, nsfloat q) {
 
-	// ‚»‚ê‚¼‚ê‚Ì•Ï”‚Í‰º‹L‚Ì‚Æ‚¨‚è‚Æ‚·‚é
-	// float samplerate c ƒTƒ“ƒvƒŠƒ“ƒOü”g”
-	// float freq c ƒJƒbƒgƒIƒtü”g”
-	// float q    c ƒtƒBƒ‹ƒ^‚ÌQ’l
+	// ãã‚Œãã‚Œã®å¤‰æ•°ã¯ä¸‹è¨˜ã®ã¨ãŠã‚Šã¨ã™ã‚‹
+	// float samplerate â€¦ ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°å‘¨æ³¢æ•°
+	// float freq â€¦ ã‚«ãƒƒãƒˆã‚ªãƒ•å‘¨æ³¢æ•°
+	// float q    â€¦ ãƒ•ã‚£ãƒ«ã‚¿ã®Qå€¤
 	nsfloat omega = 2.0f * 3.14159265f * freq / samplerate;
 	nsfloat alpha = sin(omega) / (2.0f * q);
 
@@ -3380,37 +3378,37 @@ int makeVoiseFromFile::hipassFilter(std::vector<nsfloat> input, std::vector<nsfl
 	nsfloat b1 = -(1.0f + cos(omega));
 	nsfloat b2 = (1.0f + cos(omega)) / 2.0f;
 
-	// ‚»‚ê‚¼‚ê‚Ì•Ï”‚Í‰º‹L‚Ì‚Æ‚¨‚è‚Æ‚·‚é
-	// @float input[]  c“ü—ÍM†‚ÌŠi”[‚³‚ê‚½ƒoƒbƒtƒ@B
-	// @flaot output[] cƒtƒBƒ‹ƒ^ˆ—‚µ‚½’l‚ğ‘‚«o‚·o—ÍM†‚Ìƒoƒbƒtƒ@B
-	// @int   size     c“ü—ÍM†Eo—ÍM†‚Ìƒoƒbƒtƒ@‚ÌƒTƒCƒYB
-	// @float in1, in2, out1, out2  cƒtƒBƒ‹ƒ^ŒvZ—p‚Ìƒoƒbƒtƒ@•Ï”B‰Šú’l‚Í0B
-	// @float a0, a1, a2, b0, b1, b2 cƒtƒBƒ‹ƒ^‚ÌŒW”B •Ê“rZo‚·‚éB
+	// ãã‚Œãã‚Œã®å¤‰æ•°ã¯ä¸‹è¨˜ã®ã¨ãŠã‚Šã¨ã™ã‚‹
+	// ã€€float input[]  â€¦å…¥åŠ›ä¿¡å·ã®æ ¼ç´ã•ã‚ŒãŸãƒãƒƒãƒ•ã‚¡ã€‚
+	// ã€€flaot output[] â€¦ãƒ•ã‚£ãƒ«ã‚¿å‡¦ç†ã—ãŸå€¤ã‚’æ›¸ãå‡ºã™å‡ºåŠ›ä¿¡å·ã®ãƒãƒƒãƒ•ã‚¡ã€‚
+	// ã€€int   size     â€¦å…¥åŠ›ä¿¡å·ãƒ»å‡ºåŠ›ä¿¡å·ã®ãƒãƒƒãƒ•ã‚¡ã®ã‚µã‚¤ã‚ºã€‚
+	// ã€€float in1, in2, out1, out2  â€¦ãƒ•ã‚£ãƒ«ã‚¿è¨ˆç®—ç”¨ã®ãƒãƒƒãƒ•ã‚¡å¤‰æ•°ã€‚åˆæœŸå€¤ã¯0ã€‚
+	// ã€€float a0, a1, a2, b0, b1, b2 â€¦ãƒ•ã‚£ãƒ«ã‚¿ã®ä¿‚æ•°ã€‚ åˆ¥é€”ç®—å‡ºã™ã‚‹ã€‚
 
 	nsfloat in1 = 0.0, in2 = 0.0, out1 = 0.0, out2 = 0.0;
 	for (size_t i = 0; i < out.size(); i++)
 	{
-		// “ü—ÍM†‚ÉƒtƒBƒ‹ƒ^‚ğ“K—p‚µAo—ÍM†‚Æ‚µ‚Ä‘‚«o‚·B
+		// å…¥åŠ›ä¿¡å·ã«ãƒ•ã‚£ãƒ«ã‚¿ã‚’é©ç”¨ã—ã€å‡ºåŠ›ä¿¡å·ã¨ã—ã¦æ›¸ãå‡ºã™ã€‚
 		out[i] = b0 / a0 * input[i] + b1 / a0 * in1 + b2 / a0 * in2
 			- a1 / a0 * out1 - a2 / a0 * out2;
 
-		in2 = in1;		// 2‚Â‘O‚Ì“ü—ÍM†‚ğXV
-		in1 = input[i];	// 1‚Â‘O‚Ì“ü—ÍM†‚ğXV
+		in2 = in1;		// 2ã¤å‰ã®å…¥åŠ›ä¿¡å·ã‚’æ›´æ–°
+		in1 = input[i];	// 1ã¤å‰ã®å…¥åŠ›ä¿¡å·ã‚’æ›´æ–°
 
-		out2 = out1;	// 2‚Â‘O‚Ìo—ÍM†‚ğXV
-		out1 = out[i];	// 1‚Â‘O‚Ìo—ÍM†‚ğXV
+		out2 = out1;	// 2ã¤å‰ã®å‡ºåŠ›ä¿¡å·ã‚’æ›´æ–°
+		out1 = out[i];	// 1ã¤å‰ã®å‡ºåŠ›ä¿¡å·ã‚’æ›´æ–°
 	}
 
 	return 0;
 }
 
-//ƒ[ƒpƒXƒtƒBƒ‹ƒ^
+//ãƒ­ãƒ¼ãƒ‘ã‚¹ãƒ•ã‚£ãƒ«ã‚¿
 int makeVoiseFromFile::lowpassFilter(std::vector<nsfloat> input, std::vector<nsfloat>& out, nsfloat samplerate, nsfloat freq, nsfloat q)
 {
-	// ‚»‚ê‚¼‚ê‚Ì•Ï”‚Í‰º‹L‚Ì‚Æ‚¨‚è‚Æ‚·‚é
-	// float samplerate c ƒTƒ“ƒvƒŠƒ“ƒOü”g”
-	// float freq c ƒJƒbƒgƒIƒtü”g”
-	// float q    c ƒtƒBƒ‹ƒ^‚ÌQ’l
+	// ãã‚Œãã‚Œã®å¤‰æ•°ã¯ä¸‹è¨˜ã®ã¨ãŠã‚Šã¨ã™ã‚‹
+	// float samplerate â€¦ ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°å‘¨æ³¢æ•°
+	// float freq â€¦ ã‚«ãƒƒãƒˆã‚ªãƒ•å‘¨æ³¢æ•°
+	// float q    â€¦ ãƒ•ã‚£ãƒ«ã‚¿ã®Qå€¤
 	nsfloat omega = 2.0f * 3.14159265f * freq / samplerate;
 	nsfloat alpha = sin(omega) / (2.0f * q);
 
@@ -3421,37 +3419,37 @@ int makeVoiseFromFile::lowpassFilter(std::vector<nsfloat> input, std::vector<nsf
 	nsfloat b1 = 1.0f - cos(omega);
 	nsfloat b2 = (1.0f - cos(omega)) / 2.0f;
 
-	// ‚»‚ê‚¼‚ê‚Ì•Ï”‚Í‰º‹L‚Ì‚Æ‚¨‚è‚Æ‚·‚é
-	// @float input[]  c“ü—ÍM†‚ÌŠi”[‚³‚ê‚½ƒoƒbƒtƒ@B
-	// @flaot output[] cƒtƒBƒ‹ƒ^ˆ—‚µ‚½’l‚ğ‘‚«o‚·o—ÍM†‚Ìƒoƒbƒtƒ@B
-	// @int   size     c“ü—ÍM†Eo—ÍM†‚Ìƒoƒbƒtƒ@‚ÌƒTƒCƒYB
-	// @float in1, in2, out1, out2  cƒtƒBƒ‹ƒ^ŒvZ—p‚Ìƒoƒbƒtƒ@•Ï”B‰Šú’l‚Í0B
-	// @float a0, a1, a2, b0, b1, b2 cƒtƒBƒ‹ƒ^‚ÌŒW”B •Ê“rZo‚·‚éB
+	// ãã‚Œãã‚Œã®å¤‰æ•°ã¯ä¸‹è¨˜ã®ã¨ãŠã‚Šã¨ã™ã‚‹
+	// ã€€float input[]  â€¦å…¥åŠ›ä¿¡å·ã®æ ¼ç´ã•ã‚ŒãŸãƒãƒƒãƒ•ã‚¡ã€‚
+	// ã€€flaot output[] â€¦ãƒ•ã‚£ãƒ«ã‚¿å‡¦ç†ã—ãŸå€¤ã‚’æ›¸ãå‡ºã™å‡ºåŠ›ä¿¡å·ã®ãƒãƒƒãƒ•ã‚¡ã€‚
+	// ã€€int   size     â€¦å…¥åŠ›ä¿¡å·ãƒ»å‡ºåŠ›ä¿¡å·ã®ãƒãƒƒãƒ•ã‚¡ã®ã‚µã‚¤ã‚ºã€‚
+	// ã€€float in1, in2, out1, out2  â€¦ãƒ•ã‚£ãƒ«ã‚¿è¨ˆç®—ç”¨ã®ãƒãƒƒãƒ•ã‚¡å¤‰æ•°ã€‚åˆæœŸå€¤ã¯0ã€‚
+	// ã€€float a0, a1, a2, b0, b1, b2 â€¦ãƒ•ã‚£ãƒ«ã‚¿ã®ä¿‚æ•°ã€‚ åˆ¥é€”ç®—å‡ºã™ã‚‹ã€‚
 
 	nsfloat in1 = 0.0, in2 = 0.0, out1 = 0.0, out2 = 0.0;
 	for (size_t i = 0; i < out.size(); i++)
 	{
-		// “ü—ÍM†‚ÉƒtƒBƒ‹ƒ^‚ğ“K—p‚µAo—ÍM†‚Æ‚µ‚Ä‘‚«o‚·B
+		// å…¥åŠ›ä¿¡å·ã«ãƒ•ã‚£ãƒ«ã‚¿ã‚’é©ç”¨ã—ã€å‡ºåŠ›ä¿¡å·ã¨ã—ã¦æ›¸ãå‡ºã™ã€‚
 		out[i] = b0 / a0 * input[i] + b1 / a0 * in1 + b2 / a0 * in2
 			- a1 / a0 * out1 - a2 / a0 * out2;
 
-		in2 = in1;		// 2‚Â‘O‚Ì“ü—ÍM†‚ğXV
-		in1 = input[i];	// 1‚Â‘O‚Ì“ü—ÍM†‚ğXV
+		in2 = in1;		// 2ã¤å‰ã®å…¥åŠ›ä¿¡å·ã‚’æ›´æ–°
+		in1 = input[i];	// 1ã¤å‰ã®å…¥åŠ›ä¿¡å·ã‚’æ›´æ–°
 
-		out2 = out1;	// 2‚Â‘O‚Ìo—ÍM†‚ğXV
-		out1 = out[i];	// 1‚Â‘O‚Ìo—ÍM†‚ğXV
+		out2 = out1;	// 2ã¤å‰ã®å‡ºåŠ›ä¿¡å·ã‚’æ›´æ–°
+		out1 = out[i];	// 1ã¤å‰ã®å‡ºåŠ›ä¿¡å·ã‚’æ›´æ–°
 	}
 
 	return 0;
 }
 
-//ƒmƒbƒ`ƒtƒBƒ‹ƒ^[
+//ãƒãƒƒãƒãƒ•ã‚£ãƒ«ã‚¿ãƒ¼
 int makeVoiseFromFile::notchpassFilter(std::vector<nsfloat> input, std::vector<nsfloat>& out, nsfloat samplerate, nsfloat freq, nsfloat bw)
 {
-	// ‚»‚ê‚¼‚ê‚Ì•Ï”‚Í‰º‹L‚Ì‚Æ‚¨‚è‚Æ‚·‚é
-	// float samplerate c ƒTƒ“ƒvƒŠƒ“ƒOü”g”
-	//float freq c ƒJƒbƒgƒIƒtü”g”
-	// float bw   c ‘Ñˆæ•
+	// ãã‚Œãã‚Œã®å¤‰æ•°ã¯ä¸‹è¨˜ã®ã¨ãŠã‚Šã¨ã™ã‚‹
+	// float samplerate â€¦ ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°å‘¨æ³¢æ•°
+	//float freq â€¦ ã‚«ãƒƒãƒˆã‚ªãƒ•å‘¨æ³¢æ•°
+	// float bw   â€¦ å¸¯åŸŸå¹…
 	nsfloat omega = 2.0f * 3.14159265f * freq / samplerate;
 	nsfloat alpha = sin(omega) * sinh(log(2.0f) / 2.0 * bw * omega / sin(omega));
 
@@ -3462,33 +3460,33 @@ int makeVoiseFromFile::notchpassFilter(std::vector<nsfloat> input, std::vector<n
 	nsfloat b1 = -2.0f * cos(omega);
 	nsfloat b2 = 1.0f;
 
-	// ‚»‚ê‚¼‚ê‚Ì•Ï”‚Í‰º‹L‚Ì‚Æ‚¨‚è‚Æ‚·‚é
-	// @float input[]  c“ü—ÍM†‚ÌŠi”[‚³‚ê‚½ƒoƒbƒtƒ@B
-	// @flaot output[] cƒtƒBƒ‹ƒ^ˆ—‚µ‚½’l‚ğ‘‚«o‚·o—ÍM†‚Ìƒoƒbƒtƒ@B
-	// @int   size     c“ü—ÍM†Eo—ÍM†‚Ìƒoƒbƒtƒ@‚ÌƒTƒCƒYB
-	// @float in1, in2, out1, out2  cƒtƒBƒ‹ƒ^ŒvZ—p‚Ìƒoƒbƒtƒ@•Ï”B‰Šú’l‚Í0B
-	// @float a0, a1, a2, b0, b1, b2 cƒtƒBƒ‹ƒ^‚ÌŒW”B •Ê“rZo‚·‚éB
+	// ãã‚Œãã‚Œã®å¤‰æ•°ã¯ä¸‹è¨˜ã®ã¨ãŠã‚Šã¨ã™ã‚‹
+	// ã€€float input[]  â€¦å…¥åŠ›ä¿¡å·ã®æ ¼ç´ã•ã‚ŒãŸãƒãƒƒãƒ•ã‚¡ã€‚
+	// ã€€flaot output[] â€¦ãƒ•ã‚£ãƒ«ã‚¿å‡¦ç†ã—ãŸå€¤ã‚’æ›¸ãå‡ºã™å‡ºåŠ›ä¿¡å·ã®ãƒãƒƒãƒ•ã‚¡ã€‚
+	// ã€€int   size     â€¦å…¥åŠ›ä¿¡å·ãƒ»å‡ºåŠ›ä¿¡å·ã®ãƒãƒƒãƒ•ã‚¡ã®ã‚µã‚¤ã‚ºã€‚
+	// ã€€float in1, in2, out1, out2  â€¦ãƒ•ã‚£ãƒ«ã‚¿è¨ˆç®—ç”¨ã®ãƒãƒƒãƒ•ã‚¡å¤‰æ•°ã€‚åˆæœŸå€¤ã¯0ã€‚
+	// ã€€float a0, a1, a2, b0, b1, b2 â€¦ãƒ•ã‚£ãƒ«ã‚¿ã®ä¿‚æ•°ã€‚ åˆ¥é€”ç®—å‡ºã™ã‚‹ã€‚
 
 	nsfloat in1 = 0.0, in2 = 0.0, out1 = 0.0, out2 = 0.0;
 	for (size_t i = 0; i < out.size(); i++)
 	{
-		// “ü—ÍM†‚ÉƒtƒBƒ‹ƒ^‚ğ“K—p‚µAo—ÍM†‚Æ‚µ‚Ä‘‚«o‚·B
+		// å…¥åŠ›ä¿¡å·ã«ãƒ•ã‚£ãƒ«ã‚¿ã‚’é©ç”¨ã—ã€å‡ºåŠ›ä¿¡å·ã¨ã—ã¦æ›¸ãå‡ºã™ã€‚
 		out[i] = b0 / a0 * input[i] + b1 / a0 * in1 + b2 / a0 * in2
 			- a1 / a0 * out1 - a2 / a0 * out2;
 
-		in2 = in1;		// 2‚Â‘O‚Ì“ü—ÍM†‚ğXV
-		in1 = input[i];	// 1‚Â‘O‚Ì“ü—ÍM†‚ğXV
+		in2 = in1;		// 2ã¤å‰ã®å…¥åŠ›ä¿¡å·ã‚’æ›´æ–°
+		in1 = input[i];	// 1ã¤å‰ã®å…¥åŠ›ä¿¡å·ã‚’æ›´æ–°
 
-		out2 = out1;	// 2‚Â‘O‚Ìo—ÍM†‚ğXV
-		out1 = out[i];	// 1‚Â‘O‚Ìo—ÍM†‚ğXV
+		out2 = out1;	// 2ã¤å‰ã®å‡ºåŠ›ä¿¡å·ã‚’æ›´æ–°
+		out1 = out[i];	// 1ã¤å‰ã®å‡ºåŠ›ä¿¡å·ã‚’æ›´æ–°
 	}
 
 	return 0;
 }
 
-//=====‚»‚Ì‘¼=====
+//=====ãã®ä»–=====
 
-//privateFormant‚©‚çallmojiFormant‚ğì¬
+//privateFormantã‹ã‚‰allmojiFormantã‚’ä½œæˆ
 int makeVoiseFromFile::createAllMojiFromantFromClass() {
 
 	//NULL
@@ -3497,81 +3495,81 @@ int makeVoiseFromFile::createAllMojiFromantFromClass() {
 		allmojiFormant[1][0][0][i] = 0;
 	}
 
-	//•ê‰¹ƒtƒHƒ‹ƒ}ƒ“ƒg
+	//æ¯éŸ³ãƒ•ã‚©ãƒ«ãƒãƒ³ãƒˆ
 	for (int i = 0; i < 2;i++) {
-		//‚ 
+		//ã‚
 		for (int k = 0; k < 4;k++)
 			allmojiFormant[i][0][1][k] = privateFormant[0][k];
-		//‚¢
+		//ã„
 		for (int k = 0; k < 4;k++)
 			allmojiFormant[i][0][2][k] = privateFormant[1][k];
-		//‚¤
+		//ã†
 		for (int k = 0; k < 4;k++)
 			allmojiFormant[i][0][7][k] = privateFormant[2][k];
-		//‚¦
+		//ãˆ
 		for (int k = 0; k < 4;k++)
 			allmojiFormant[i][0][12][k] = privateFormant[3][k];
-		//‚¨
+		//ãŠ
 		for (int k = 0; k < 4;k++)
 			allmojiFormant[i][0][13][k] = privateFormant[4][k];
 	}
 
-	//”¼•ê‰¹
+	//åŠæ¯éŸ³
 	if (true) {
-		//‚â
+		//ã‚„
 		for (int k = 0; k < 4;k++)
 			allmojiFormant[0][0][3][k] = privateFormant[1][k];
 		for (int k = 0; k < 4;k++)
 			allmojiFormant[1][0][3][k] = privateFormant[0][k];
-		//‚ä
+		//ã‚†
 		for (int k = 0; k < 4;k++)
 			allmojiFormant[0][0][4][k] = privateFormant[1][k];
 		for (int k = 0; k < 4;k++)
 			allmojiFormant[1][0][4][k] = privateFormant[2][k];
-		//]
+		//æ±Ÿ
 		for (int k = 0; k < 4;k++)
 			allmojiFormant[0][0][5][k] = privateFormant[1][k];
 		for (int k = 0; k < 4;k++)
 			allmojiFormant[1][0][5][k] = privateFormant[3][k];
-		//‚æ
+		//ã‚ˆ
 		for (int k = 0; k < 4;k++)
 			allmojiFormant[0][0][6][k] = privateFormant[1][k];
 		for (int k = 0; k < 4;k++)
 			allmojiFormant[1][0][6][k] = privateFormant[4][k];
 
-		//‚í
+		//ã‚
 		for (int k = 0; k < 4;k++)
 			allmojiFormant[0][0][8][k] = privateFormant[2][k];
 		for (int k = 0; k < 4;k++)
 			allmojiFormant[1][0][8][k] = privateFormant[0][k];
-		//‚î
+		//ã‚
 		for (int k = 0; k < 4;k++)
 			allmojiFormant[0][0][9][k] = privateFormant[2][k];
 		for (int k = 0; k < 4;k++)
 			allmojiFormant[1][0][9][k] = privateFormant[1][k];
-		//‚ï
+		//ã‚‘
 		for (int k = 0; k < 4;k++)
 			allmojiFormant[0][0][10][k] = privateFormant[2][k];
 		for (int k = 0; k < 4;k++)
 			allmojiFormant[1][0][10][k] = privateFormant[3][k];
-		//‚ğ
+		//ã‚’
 		for (int k = 0; k < 4;k++)
 			allmojiFormant[0][0][11][k] = privateFormant[2][k];
 		for (int k = 0; k < 4;k++)
 			allmojiFormant[1][0][11][k] = privateFormant[4][k];
 	}
 
-	//“îŒûŠW”j—ô‰¹(‚©`‚²)(1x,2x)
+	//è»Ÿå£è“‹ç ´è£‚éŸ³(ã‹ï½ã”)(1x,2x)
 
 	if (true) {
-		//–³º“îŒûŠW”j—ô‰¹(‚©)
+		//ç„¡å£°è»Ÿå£è“‹ç ´è£‚éŸ³(ã‹)
 		allmojiFormant[0][1][1][0] = privateFormant[0][0];
 		allmojiFormant[0][1][1][1] = privateFormant[0][1];
 		allmojiFormant[0][1][1][2] = privateFormant[0][2] / 2.0;
 		allmojiFormant[0][1][1][3] = privateFormant[0][3];
 		for (int k = 0; k < 4;k++)
 			allmojiFormant[1][1][1][k] = allmojiFormant[1][0][1][k];
-		//–³º“îŒûŠW”j—ô‰¹(dŒû‚æ‚è)(‚«)
+		//ç„¡å£°è»Ÿå£è“‹ç ´è£‚éŸ³(ç¡¬å£ã‚ˆã‚Š)(ã)
 		for (int i = 2;i <= 6; i++) {
 			allmojiFormant[0][1][i][0] = privateFormant[1][0];
 			allmojiFormant[0][1][i][1] = privateFormant[1][1];
@@ -3580,7 +3578,7 @@ int makeVoiseFromFile::createAllMojiFromantFromClass() {
 			for (int k = 0; k < 4;k++)
 				allmojiFormant[1][1][i][k] = allmojiFormant[1][0][i][k];
 		}
-		//–³º“îŒûŠW”j—ô‰¹(‚­)
+		//ç„¡å£°è»Ÿå£è“‹ç ´è£‚éŸ³(ã)
 		for (int i = 7;i <= 11; i++) {
 			allmojiFormant[0][1][i][0] = privateFormant[2][0];
 			allmojiFormant[0][1][i][1] = privateFormant[2][1];
@@ -3589,14 +3587,14 @@ int makeVoiseFromFile::createAllMojiFromantFromClass() {
 			for (int k = 0; k < 4;k++)
 				allmojiFormant[1][1][i][k] = allmojiFormant[1][0][i][k];
 		}
-		//–³º“îŒûŠW”j—ô‰¹(‚¯)
+		//ç„¡å£°è»Ÿå£è“‹ç ´è£‚éŸ³(ã‘)
 		allmojiFormant[0][1][12][0] = privateFormant[3][0];
 		allmojiFormant[0][1][12][1] = privateFormant[3][1];
 		allmojiFormant[0][1][12][2] = privateFormant[3][2] / 2.0;
 		allmojiFormant[0][1][12][3] = privateFormant[3][3];
 		for (int k = 0; k < 4;k++)
 			allmojiFormant[1][1][12][k] = allmojiFormant[1][0][12][k];
-		//–³º“îŒûŠW”j—ô‰¹(‚±)
+		//ç„¡å£°è»Ÿå£è“‹ç ´è£‚éŸ³(ã“)
 		allmojiFormant[0][1][13][0] = privateFormant[4][0];
 		allmojiFormant[0][1][13][1] = privateFormant[4][1];
 		allmojiFormant[0][1][13][2] = privateFormant[4][2] / 2.0;
@@ -3605,14 +3603,14 @@ int makeVoiseFromFile::createAllMojiFromantFromClass() {
 			allmojiFormant[1][1][13][k] = allmojiFormant[1][0][13][k];
 
 
-		//—Lº“îŒûŠW”j—ô‰¹(‚ª)
+		//æœ‰å£°è»Ÿå£è“‹ç ´è£‚éŸ³(ãŒ)
 		allmojiFormant[0][2][1][0] = privateFormant[0][0];
 		allmojiFormant[0][2][1][1] = privateFormant[0][1];
 		allmojiFormant[0][2][1][2] = privateFormant[0][2] / 2.0;
 		allmojiFormant[0][2][1][3] = privateFormant[0][3];
 		for (int k = 0; k < 4;k++)
 			allmojiFormant[1][2][1][k] = allmojiFormant[1][0][1][k];
-		//—Lº“îŒûŠW”j—ô‰¹(dŒû‚æ‚è)(‚¬)
+		//æœ‰å£°è»Ÿå£è“‹ç ´è£‚éŸ³(ç¡¬å£ã‚ˆã‚Š)(ã)
 		for (int i = 2;i <= 6; i++) {
 			allmojiFormant[0][2][i][0] = privateFormant[1][0];
 			allmojiFormant[0][2][i][1] = privateFormant[1][1];
@@ -3621,7 +3619,7 @@ int makeVoiseFromFile::createAllMojiFromantFromClass() {
 			for (int k = 0; k < 4;k++)
 				allmojiFormant[1][2][i][k] = allmojiFormant[1][0][i][k];
 		}
-		//—Lº“îŒûŠW”j—ô‰¹(‚®)
+		//æœ‰å£°è»Ÿå£è“‹ç ´è£‚éŸ³(ã)
 		for (int i = 7;i <= 11; i++) {
 			allmojiFormant[0][2][i][0] = privateFormant[2][0];
 			allmojiFormant[0][2][i][1] = privateFormant[2][1];
@@ -3630,14 +3628,14 @@ int makeVoiseFromFile::createAllMojiFromantFromClass() {
 			for (int k = 0; k < 4;k++)
 				allmojiFormant[1][2][i][k] = allmojiFormant[1][0][i][k];
 		}
-		//—Lº“îŒûŠW”j—ô‰¹(‚°)
+		//æœ‰å£°è»Ÿå£è“‹ç ´è£‚éŸ³(ã’)
 		allmojiFormant[0][2][12][0] = privateFormant[3][0];
 		allmojiFormant[0][2][12][1] = privateFormant[3][1];
 		allmojiFormant[0][2][12][2] = privateFormant[3][2] / 2.0;
 		allmojiFormant[0][2][12][3] = privateFormant[3][3];
 		for (int k = 0; k < 4;k++)
 			allmojiFormant[1][2][12][k] = allmojiFormant[1][0][12][k];
-		//—Lº“îŒûŠW”j—ô‰¹(‚²)
+		//æœ‰å£°è»Ÿå£è“‹ç ´è£‚éŸ³(ã”)
 		allmojiFormant[0][2][13][0] = privateFormant[4][0];
 		allmojiFormant[0][2][13][1] = privateFormant[4][1];
 		allmojiFormant[0][2][13][2] = privateFormant[4][2] / 2.0;
@@ -3646,16 +3644,16 @@ int makeVoiseFromFile::createAllMojiFromantFromClass() {
 			allmojiFormant[1][2][13][k] = allmojiFormant[1][0][13][k];
 	}
 
-	//•Œs–€C‰¹(‚³`‚¼)(3x,4x)
+	//æ­¯èŒæ‘©æ“¦éŸ³(ã•ï½ã)(3x,4x)
 	if (true) {
-		//–³º•Œs–€C‰¹(‚³)
+		//ç„¡å£°æ­¯èŒæ‘©æ“¦éŸ³(ã•)
 		allmojiFormant[0][3][1][0] = privateFormant[0][0] / 1.5;
 		allmojiFormant[0][3][1][1] = privateFormant[0][1] / 2.3;
 		allmojiFormant[0][3][1][2] = privateFormant[0][2];
 		allmojiFormant[0][3][1][3] = privateFormant[0][3];
 		for (int k = 0; k < 4;k++)
 			allmojiFormant[1][3][1][k] = allmojiFormant[1][0][1][k];
-		//–³º•ŒsdŒûŠW–€C‰¹(‚µ)
+		//ç„¡å£°æ­¯èŒç¡¬å£è“‹æ‘©æ“¦éŸ³(ã—)
 		for (int i = 2;i <= 6; i++) {
 			allmojiFormant[0][3][i][0] = privateFormant[1][0] / 1.5;
 			allmojiFormant[0][3][i][1] = privateFormant[1][1] / 2.3;
@@ -3664,7 +3662,7 @@ int makeVoiseFromFile::createAllMojiFromantFromClass() {
 			for (int k = 0; k < 4;k++)
 				allmojiFormant[1][3][i][k] = allmojiFormant[1][0][i][k];
 		}
-		//–³º•Œs–€C‰¹(‚·)
+		//ç„¡å£°æ­¯èŒæ‘©æ“¦éŸ³(ã™)
 		for (int i = 7;i <= 11; i++) {
 			allmojiFormant[0][3][i][0] = privateFormant[2][0] / 1.5;
 			allmojiFormant[0][3][i][1] = privateFormant[2][1] / 2.3;
@@ -3673,14 +3671,14 @@ int makeVoiseFromFile::createAllMojiFromantFromClass() {
 			for (int k = 0; k < 4;k++)
 				allmojiFormant[1][3][i][k] = allmojiFormant[1][0][i][k];
 		}
-		//–³º•Œs–€C‰¹(‚¹)
+		//ç„¡å£°æ­¯èŒæ‘©æ“¦éŸ³(ã›)
 		allmojiFormant[0][3][12][0] = privateFormant[3][0] / 1.5;
 		allmojiFormant[0][3][12][1] = privateFormant[3][1] / 2.3;
 		allmojiFormant[0][3][12][2] = privateFormant[3][2];
 		allmojiFormant[0][3][12][3] = privateFormant[3][3];
 		for (int k = 0; k < 4;k++)
 			allmojiFormant[1][3][12][k] = allmojiFormant[1][0][12][k];
-		//–³º•Œs–€C‰¹(‚»)
+		//ç„¡å£°æ­¯èŒæ‘©æ“¦éŸ³(ã)
 		allmojiFormant[0][3][13][0] = privateFormant[4][0] / 1.5;
 		allmojiFormant[0][3][13][1] = privateFormant[4][1] / 2.3;
 		allmojiFormant[0][3][13][2] = privateFormant[4][2];
@@ -3689,14 +3687,14 @@ int makeVoiseFromFile::createAllMojiFromantFromClass() {
 			allmojiFormant[1][3][13][k] = allmojiFormant[1][0][13][k];
 
 
-		//—Lº•Œs–€C‰¹(‚´)
+		//æœ‰å£°æ­¯èŒæ‘©æ“¦éŸ³(ã–)
 		allmojiFormant[0][4][1][0] = privateFormant[0][0] / 1.5;
 		allmojiFormant[0][4][1][1] = privateFormant[0][1] / 2.3;
 		allmojiFormant[0][4][1][2] = privateFormant[0][2];
 		allmojiFormant[0][4][1][3] = privateFormant[0][3];
 		for (int k = 0; k < 4;k++)
 			allmojiFormant[1][4][1][k] = allmojiFormant[1][0][1][k];
-		//—Lº•ŒsdŒûŠW–€C‰¹(‚¶)
+		//æœ‰å£°æ­¯èŒç¡¬å£è“‹æ‘©æ“¦éŸ³(ã˜)
 		for (int i = 2;i <= 6; i++) {
 			allmojiFormant[0][4][i][0] = privateFormant[1][0] / 1.5;
 			allmojiFormant[0][4][i][1] = privateFormant[1][1] / 2.3;
@@ -3705,7 +3703,7 @@ int makeVoiseFromFile::createAllMojiFromantFromClass() {
 			for (int k = 0; k < 4;k++)
 				allmojiFormant[1][4][i][k] = allmojiFormant[1][0][i][k];
 		}
-		//—Lº•Œs–€C‰¹(‚¸)
+		//æœ‰å£°æ­¯èŒæ‘©æ“¦éŸ³(ãš)
 		for (int i = 7;i <= 11; i++) {
 			allmojiFormant[0][4][i][0] = privateFormant[2][0] / 1.5;
 			allmojiFormant[0][4][i][1] = privateFormant[2][1] / 2.3;
@@ -3714,14 +3712,14 @@ int makeVoiseFromFile::createAllMojiFromantFromClass() {
 			for (int k = 0; k < 4;k++)
 				allmojiFormant[1][4][i][k] = allmojiFormant[1][0][i][k];
 		}
-		//—Lº•Œs–€C‰¹(‚º)
+		//æœ‰å£°æ­¯èŒæ‘©æ“¦éŸ³(ãœ)
 		allmojiFormant[0][4][12][0] = privateFormant[3][0] / 1.5;
 		allmojiFormant[0][4][12][1] = privateFormant[3][1] / 2.3;
 		allmojiFormant[0][4][12][2] = privateFormant[3][2];
 		allmojiFormant[0][4][12][3] = privateFormant[3][3];
 		for (int k = 0; k < 4;k++)
 			allmojiFormant[1][4][12][k] = allmojiFormant[1][0][12][k];
-		//—Lº•Œs–€C‰¹(‚¼)
+		//æœ‰å£°æ­¯èŒæ‘©æ“¦éŸ³(ã)
 		allmojiFormant[0][4][13][0] = privateFormant[4][0] / 1.5;
 		allmojiFormant[0][4][13][1] = privateFormant[4][1] / 2.3;
 		allmojiFormant[0][4][13][2] = privateFormant[4][2];
@@ -3730,16 +3728,16 @@ int makeVoiseFromFile::createAllMojiFromantFromClass() {
 			allmojiFormant[1][4][13][k] = allmojiFormant[1][0][13][k];
 	}
 
-	//•Œs”j—ô‰¹(‚½`‚Ç)(5x,6x)
+	//æ­¯èŒç ´è£‚éŸ³(ãŸï½ã©)(5x,6x)
 	if (true) {
-		//–³º•Œs”j—ô‰¹(‚½)
+		//ç„¡å£°æ­¯èŒç ´è£‚éŸ³(ãŸ)
 		allmojiFormant[0][5][1][0] = privateFormant[0][0] / 1.5;
 		allmojiFormant[0][5][1][1] = privateFormant[0][1] / 2.3;
 		allmojiFormant[0][5][1][2] = privateFormant[0][2];
 		allmojiFormant[0][5][1][3] = privateFormant[0][3];
 		for (int k = 0; k < 4;k++)
 			allmojiFormant[1][5][1][k] = allmojiFormant[1][0][1][k];
-		//–³º•ŒsdŒûŠW”jC‰¹(‚¿)
+		//ç„¡å£°æ­¯èŒç¡¬å£è“‹ç ´æ“¦éŸ³(ã¡)
 		for (int i = 2;i <= 6; i++) {
 			allmojiFormant[0][5][i][0] = privateFormant[1][0] / 1.5;
 			allmojiFormant[0][5][i][1] = privateFormant[1][1] / 2.3;
@@ -3748,7 +3746,7 @@ int makeVoiseFromFile::createAllMojiFromantFromClass() {
 			for (int k = 0; k < 4;k++)
 				allmojiFormant[1][5][i][k] = allmojiFormant[1][0][i][k];
 		}
-		//–³º•Œs”jC‰¹(‚Â)
+		//ç„¡å£°æ­¯èŒç ´æ“¦éŸ³(ã¤)
 		for (int i = 7;i <= 11; i++) {
 			allmojiFormant[0][5][i][0] = privateFormant[2][0] / 1.5;
 			allmojiFormant[0][5][i][1] = privateFormant[2][1] / 2.3;
@@ -3757,14 +3755,14 @@ int makeVoiseFromFile::createAllMojiFromantFromClass() {
 			for (int k = 0; k < 4;k++)
 				allmojiFormant[1][5][i][k] = allmojiFormant[1][0][i][k];
 		}
-		//–³º•Œs”j—ô‰¹(‚Ä)
+		//ç„¡å£°æ­¯èŒç ´è£‚éŸ³(ã¦)
 		allmojiFormant[0][5][12][0] = privateFormant[3][0] / 1.5;
 		allmojiFormant[0][5][12][1] = privateFormant[3][1] / 2.3;
 		allmojiFormant[0][5][12][2] = privateFormant[3][2];
 		allmojiFormant[0][5][12][3] = privateFormant[3][3];
 		for (int k = 0; k < 4;k++)
 			allmojiFormant[1][5][12][k] = allmojiFormant[1][0][12][k];
-		//–³º•Œs”j—ô‰¹(‚Æ)
+		//ç„¡å£°æ­¯èŒç ´è£‚éŸ³(ã¨)
 		allmojiFormant[0][5][13][0] = privateFormant[4][0] / 1.5;
 		allmojiFormant[0][5][13][1] = privateFormant[4][1] / 2.3;
 		allmojiFormant[0][5][13][2] = privateFormant[4][2];
@@ -3773,14 +3771,14 @@ int makeVoiseFromFile::createAllMojiFromantFromClass() {
 			allmojiFormant[1][5][13][k] = allmojiFormant[1][0][13][k];
 
 
-		//—Lº•Œs”j—ô‰¹(‚¾)
+		//æœ‰å£°æ­¯èŒç ´è£‚éŸ³(ã )
 		allmojiFormant[0][6][1][0] = privateFormant[0][0] / 1.5;
 		allmojiFormant[0][6][1][1] = privateFormant[0][1] / 2.3;
 		allmojiFormant[0][6][1][2] = privateFormant[0][2];
 		allmojiFormant[0][6][1][3] = privateFormant[0][3];
 		for (int k = 0; k < 4;k++)
 			allmojiFormant[1][6][1][k] = allmojiFormant[1][0][1][k];
-		//—Lº•ŒsdŒûŠW”jC‰¹(‚À)
+		//æœ‰å£°æ­¯èŒç¡¬å£è“‹ç ´æ“¦éŸ³(ã¢)
 		for (int i = 2;i <= 6; i++) {
 			allmojiFormant[0][6][i][0] = privateFormant[1][0] / 1.5;
 			allmojiFormant[0][6][i][1] = privateFormant[1][1] / 2.3;
@@ -3789,7 +3787,7 @@ int makeVoiseFromFile::createAllMojiFromantFromClass() {
 			for (int k = 0; k < 4;k++)
 				allmojiFormant[1][6][i][k] = allmojiFormant[1][0][i][k];
 		}
-		//—Lº•Œs”jC‰¹(‚Ã)
+		//æœ‰å£°æ­¯èŒç ´æ“¦éŸ³(ã¥)
 		for (int i = 7;i <= 11; i++) {
 			allmojiFormant[0][6][i][0] = privateFormant[2][0] / 1.5;
 			allmojiFormant[0][6][i][1] = privateFormant[2][1] / 2.3;
@@ -3798,14 +3796,14 @@ int makeVoiseFromFile::createAllMojiFromantFromClass() {
 			for (int k = 0; k < 4;k++)
 				allmojiFormant[1][6][i][k] = allmojiFormant[1][0][i][k];
 		}
-		//—Lº•Œs”j—ô‰¹(‚Å)
+		//æœ‰å£°æ­¯èŒç ´è£‚éŸ³(ã§)
 		allmojiFormant[0][6][12][0] = privateFormant[3][0] / 1.5;
 		allmojiFormant[0][6][12][1] = privateFormant[3][1] / 2.3;
 		allmojiFormant[0][6][12][2] = privateFormant[3][2];
 		allmojiFormant[0][6][12][3] = privateFormant[3][3];
 		for (int k = 0; k < 4;k++)
 			allmojiFormant[1][6][12][k] = allmojiFormant[1][0][12][k];
-		//—Lº•Œs”j—ô‰¹(‚Ç)
+		//æœ‰å£°æ­¯èŒç ´è£‚éŸ³(ã©)
 		allmojiFormant[0][6][13][0] = privateFormant[4][0] / 1.5;
 		allmojiFormant[0][6][13][1] = privateFormant[4][1] / 2.3;
 		allmojiFormant[0][6][13][2] = privateFormant[4][2];
@@ -3814,16 +3812,16 @@ int makeVoiseFromFile::createAllMojiFromantFromClass() {
 			allmojiFormant[1][6][13][k] = allmojiFormant[1][0][13][k];
 	}
 
-	//—¼O”j—ô‰¹(‚Ï`‚Ú)(7x,8x)
+	//ä¸¡å”‡ç ´è£‚éŸ³(ã±ï½ã¼)(7x,8x)
 	if (true) {
-		//–³º—¼O”j—ô‰¹(‚Ï)
+		//ç„¡å£°ä¸¡å”‡ç ´è£‚éŸ³(ã±)
 		allmojiFormant[0][7][1][0] = privateFormant[0][0];
 		allmojiFormant[0][7][1][1] = privateFormant[0][1] / 2.0;
 		allmojiFormant[0][7][1][2] = privateFormant[0][2];
 		allmojiFormant[0][7][1][3] = privateFormant[0][3];
 		for (int k = 0; k < 4;k++)
 			allmojiFormant[1][7][1][k] = allmojiFormant[1][0][1][k];
-		//—Lº—¼OdŒûŠWÚ‹ß‰¹(‚Ò)
+		//æœ‰å£°ä¸¡å”‡ç¡¬å£è“‹æ¥è¿‘éŸ³(ã´)
 		for (int i = 2;i <= 6; i++) {
 			allmojiFormant[0][7][i][0] = privateFormant[1][0];
 			allmojiFormant[0][7][i][1] = privateFormant[1][1] / 2.0;
@@ -3832,7 +3830,7 @@ int makeVoiseFromFile::createAllMojiFromantFromClass() {
 			for (int k = 0; k < 4;k++)
 				allmojiFormant[1][7][i][k] = allmojiFormant[1][0][i][k];
 		}
-		//–³º—¼O”j—ô‰¹(‚Õ)
+		//ç„¡å£°ä¸¡å”‡ç ´è£‚éŸ³(ã·)
 		for (int i = 7;i <= 11; i++) {
 			allmojiFormant[0][7][i][0] = privateFormant[2][0];
 			allmojiFormant[0][7][i][1] = privateFormant[2][1] / 2.0;
@@ -3841,14 +3839,14 @@ int makeVoiseFromFile::createAllMojiFromantFromClass() {
 			for (int k = 0; k < 4;k++)
 				allmojiFormant[1][7][i][k] = allmojiFormant[1][0][i][k];
 		}
-		//–³º—¼O”j—ô‰¹(‚Ø)
+		//ç„¡å£°ä¸¡å”‡ç ´è£‚éŸ³(ãº)
 		allmojiFormant[0][7][12][0] = privateFormant[3][0];
 		allmojiFormant[0][7][12][1] = privateFormant[3][1] / 2.0;
 		allmojiFormant[0][7][12][2] = privateFormant[3][2];
 		allmojiFormant[0][7][12][3] = privateFormant[3][3];
 		for (int k = 0; k < 4;k++)
 			allmojiFormant[1][7][12][k] = allmojiFormant[1][0][12][k];
-		//–³º—¼O”j—ô‰¹(‚Û)
+		//ç„¡å£°ä¸¡å”‡ç ´è£‚éŸ³(ã½)
 		allmojiFormant[0][7][13][0] = privateFormant[4][0];
 		allmojiFormant[0][7][13][1] = privateFormant[4][1] / 2.0;
 		allmojiFormant[0][7][13][2] = privateFormant[4][2];
@@ -3857,14 +3855,14 @@ int makeVoiseFromFile::createAllMojiFromantFromClass() {
 			allmojiFormant[1][7][13][k] = allmojiFormant[1][0][13][k];
 
 
-		//—Lº—¼O”j—ô‰¹(‚Î)
+		//æœ‰å£°ä¸¡å”‡ç ´è£‚éŸ³(ã°)
 		allmojiFormant[0][8][1][0] = privateFormant[0][0];
 		allmojiFormant[0][8][1][1] = privateFormant[0][1] / 2.0;
 		allmojiFormant[0][8][1][2] = privateFormant[0][2];
 		allmojiFormant[0][8][1][3] = privateFormant[0][3];
 		for (int k = 0; k < 4;k++)
 			allmojiFormant[1][8][1][k] = allmojiFormant[1][0][1][k];
-		//—Lº—¼OdŒûŠW”j—ô‰¹(‚Ñ)
+		//æœ‰å£°ä¸¡å”‡ç¡¬å£è“‹ç ´è£‚éŸ³(ã³)
 		for (int i = 2;i <= 6; i++) {
 			allmojiFormant[0][8][i][0] = privateFormant[1][0];
 			allmojiFormant[0][8][i][1] = privateFormant[1][1] / 2.0;
@@ -3873,7 +3871,7 @@ int makeVoiseFromFile::createAllMojiFromantFromClass() {
 			for (int k = 0; k < 4;k++)
 				allmojiFormant[1][8][i][k] = allmojiFormant[1][0][i][k];
 		}
-		//—Lº—¼O”j—ô‰¹(‚Ô)
+		//æœ‰å£°ä¸¡å”‡ç ´è£‚éŸ³(ã¶)
 		for (int i = 7;i <= 11; i++) {
 			allmojiFormant[0][8][i][0] = privateFormant[2][0];
 			allmojiFormant[0][8][i][1] = privateFormant[2][1] / 2.0;
@@ -3882,14 +3880,14 @@ int makeVoiseFromFile::createAllMojiFromantFromClass() {
 			for (int k = 0; k < 4;k++)
 				allmojiFormant[1][8][i][k] = allmojiFormant[1][0][i][k];
 		}
-		//—Lº—¼O”j—ô‰¹(‚×)
+		//æœ‰å£°ä¸¡å”‡ç ´è£‚éŸ³(ã¹)
 		allmojiFormant[0][8][12][0] = privateFormant[3][0];
 		allmojiFormant[0][8][12][1] = privateFormant[3][1] / 2.0;
 		allmojiFormant[0][8][12][2] = privateFormant[3][2];
 		allmojiFormant[0][8][12][3] = privateFormant[3][3];
 		for (int k = 0; k < 4;k++)
 			allmojiFormant[1][8][12][k] = allmojiFormant[1][0][12][k];
-		//—Lº—¼O”j—ô‰¹(‚Ú)
+		//æœ‰å£°ä¸¡å”‡ç ´è£‚éŸ³(ã¼)
 		allmojiFormant[0][8][13][0] = privateFormant[4][0];
 		allmojiFormant[0][8][13][1] = privateFormant[4][1] / 2.0;
 		allmojiFormant[0][8][13][2] = privateFormant[4][2];
@@ -3898,29 +3896,29 @@ int makeVoiseFromFile::createAllMojiFromantFromClass() {
 			allmojiFormant[1][8][13][k] = allmojiFormant[1][0][13][k];
 	}
 
-	//–€E‰¹(Î)(‚Í`‚Ù)(9x)
+	//æ‘©æ®ºéŸ³(ç¬‘)(ã¯ï½ã»)(9x)
 	if (true) {
-		//–³ºº–å–€C‰¹(‚Í)
-		//–³ºdŒûŠW–€C‰¹(‚Ğ)
-		//–³º—¼O–€C‰¹(‚Ó)
-		//–³ºº–å–€C‰¹(‚Ö)
-		//–³ºº–å–€C‰¹(‚Ù)
+		//ç„¡å£°å£°é–€æ‘©æ“¦éŸ³(ã¯)
+		//ç„¡å£°ç¡¬å£è“‹æ‘©æ“¦éŸ³(ã²)
+		//ç„¡å£°ä¸¡å”‡æ‘©æ“¦éŸ³(ãµ)
+		//ç„¡å£°å£°é–€æ‘©æ“¦éŸ³(ã¸)
+		//ç„¡å£°å£°é–€æ‘©æ“¦éŸ³(ã»)
 		for (int i = 0;i < 15;i++)
 			for (int j = 0; j < 2;j++)
 				for (int k = 0; k < 4;k++)
 					allmojiFormant[j][9][i][k] = allmojiFormant[j][0][i][k];
 	}
 
-	//•Œs•@‰¹(‚È`‚Ì)(ax)
+	//æ­¯èŒé¼»éŸ³(ãªï½ã®)(ax)
 	if (true) {
-		//•Œs•@‰¹(‚È)
+		//æ­¯èŒé¼»éŸ³(ãª)
 		allmojiFormant[0][10][1][0] = privateFormant[0][0] / 2.0;
 		allmojiFormant[0][10][1][1] = privateFormant[0][1] / 3.0;
 		allmojiFormant[0][10][1][2] = privateFormant[0][2];
 		allmojiFormant[0][10][1][3] = privateFormant[0][3];
 		for (int k = 0; k < 4;k++)
 			allmojiFormant[1][10][1][k] = allmojiFormant[1][0][1][k];
-		//dŒûŠW•@‰¹(‚É)
+		//ç¡¬å£è“‹é¼»éŸ³(ã«)
 		for (int i = 2;i <= 6; i++) {
 			allmojiFormant[0][10][i][0] = privateFormant[1][0] / 2.0;
 			allmojiFormant[0][10][i][1] = privateFormant[1][1] / 3.0;
@@ -3929,7 +3927,7 @@ int makeVoiseFromFile::createAllMojiFromantFromClass() {
 			for (int k = 0; k < 4;k++)
 				allmojiFormant[1][10][i][k] = allmojiFormant[1][0][i][k];
 		}
-		//•Œs•@‰¹(‚Ê)
+		//æ­¯èŒé¼»éŸ³(ã¬)
 		for (int i = 7;i <= 11; i++) {
 			allmojiFormant[0][10][i][0] = privateFormant[2][0] / 2.0;
 			allmojiFormant[0][10][i][1] = privateFormant[2][1] / 3.0;
@@ -3938,14 +3936,14 @@ int makeVoiseFromFile::createAllMojiFromantFromClass() {
 			for (int k = 0; k < 4;k++)
 				allmojiFormant[1][10][i][k] = allmojiFormant[1][0][i][k];
 		}
-		//•Œs•@‰¹(‚Ë)
+		//æ­¯èŒé¼»éŸ³(ã­)
 		allmojiFormant[0][10][12][0] = privateFormant[3][0] / 2.0;
 		allmojiFormant[0][10][12][1] = privateFormant[3][1] / 3.0;
 		allmojiFormant[0][10][12][2] = privateFormant[3][2];
 		allmojiFormant[0][10][12][3] = privateFormant[3][3];
 		for (int k = 0; k < 4;k++)
 			allmojiFormant[1][10][12][k] = allmojiFormant[1][0][12][k];
-		//•Œs•@‰¹(‚Ì)
+		//æ­¯èŒé¼»éŸ³(ã®)
 		allmojiFormant[0][10][13][0] = privateFormant[4][0] / 2.0;
 		allmojiFormant[0][10][13][1] = privateFormant[4][1] / 3.0;
 		allmojiFormant[0][10][13][2] = privateFormant[4][2];
@@ -3954,16 +3952,16 @@ int makeVoiseFromFile::createAllMojiFromantFromClass() {
 			allmojiFormant[1][10][13][k] = allmojiFormant[1][0][13][k];
 	}
 
-	//—¼O•@‰¹(‚Ü`‚à)(bx)
+	//ä¸¡å”‡é¼»éŸ³(ã¾ï½ã‚‚)(bx)
 	if (true) {
-		//—¼O•@‰¹(‚Ü)
+		//ä¸¡å”‡é¼»éŸ³(ã¾)
 		allmojiFormant[0][11][1][0] = privateFormant[0][0] / 3.0;
 		allmojiFormant[0][11][1][1] = privateFormant[0][1] / 2.0;
 		allmojiFormant[0][11][1][2] = privateFormant[0][2];
 		allmojiFormant[0][11][1][3] = privateFormant[0][3];
 		for (int k = 0; k < 4;k++)
 			allmojiFormant[1][11][1][k] = allmojiFormant[1][0][1][k];
-		//—¼O•@‰¹(‚İ)
+		//ä¸¡å”‡é¼»éŸ³(ã¿)
 		for (int i = 2;i <= 6; i++) {
 			allmojiFormant[0][11][i][0] = privateFormant[1][0] / 3.0;
 			allmojiFormant[0][11][i][1] = privateFormant[1][1] / 2.0;
@@ -3972,7 +3970,7 @@ int makeVoiseFromFile::createAllMojiFromantFromClass() {
 			for (int k = 0; k < 4;k++)
 				allmojiFormant[1][11][i][k] = allmojiFormant[1][0][i][k];
 		}
-		//—¼O•@‰¹(‚Ş)
+		//ä¸¡å”‡é¼»éŸ³(ã‚€)
 		for (int i = 7;i <= 11; i++) {
 			allmojiFormant[0][11][i][0] = privateFormant[2][0] / 3.0;
 			allmojiFormant[0][11][i][1] = privateFormant[2][1] / 2.0;
@@ -3981,14 +3979,14 @@ int makeVoiseFromFile::createAllMojiFromantFromClass() {
 			for (int k = 0; k < 4;k++)
 				allmojiFormant[1][11][i][k] = allmojiFormant[1][0][i][k];
 		}
-		//—¼O•@‰¹(‚ß)
+		//ä¸¡å”‡é¼»éŸ³(ã‚)
 		allmojiFormant[0][11][12][0] = privateFormant[3][0] / 3.0;
 		allmojiFormant[0][11][12][1] = privateFormant[3][1] / 2.0;
 		allmojiFormant[0][11][12][2] = privateFormant[3][2];
 		allmojiFormant[0][11][12][3] = privateFormant[3][3];
 		for (int k = 0; k < 4;k++)
 			allmojiFormant[1][11][12][k] = allmojiFormant[1][0][12][k];
-		//—¼O•@‰¹(‚à)
+		//ä¸¡å”‡é¼»éŸ³(ã‚‚)
 		allmojiFormant[0][11][13][0] = privateFormant[4][0] / 3.0;
 		allmojiFormant[0][11][13][1] = privateFormant[4][1] / 2.0;
 		allmojiFormant[0][11][13][2] = privateFormant[4][2];
@@ -3997,16 +3995,16 @@ int makeVoiseFromFile::createAllMojiFromantFromClass() {
 			allmojiFormant[1][11][13][k] = allmojiFormant[1][0][13][k];
 	}
 
-	//—Lº•Œs‚Í‚¶‚«‰¹(‚ç`‚ë)(cx)
+	//æœ‰å£°æ­¯èŒã¯ã˜ãéŸ³(ã‚‰ï½ã‚)(cx)
 	if (true) {
-		//—Lº•Œs‚Í‚¶‚«‰¹(‚ç)
+		//æœ‰å£°æ­¯èŒã¯ã˜ãéŸ³(ã‚‰)
 		allmojiFormant[0][12][1][0] = privateFormant[0][0] / 1.5;
 		allmojiFormant[0][12][1][1] = privateFormant[0][1] / 2.3;
 		allmojiFormant[0][12][1][2] = privateFormant[0][2];
 		allmojiFormant[0][12][1][3] = privateFormant[0][3];
 		for (int k = 0; k < 4;k++)
 			allmojiFormant[1][12][1][k] = allmojiFormant[1][0][1][k];
-		//•ŒsdŒûŠW‚Í‚¶‚«‰¹(‚è)
+		//æ­¯èŒç¡¬å£è“‹ã¯ã˜ãéŸ³(ã‚Š)
 		for (int i = 2;i <= 6; i++) {
 			allmojiFormant[0][12][i][0] = privateFormant[1][0] / 1.5;
 			allmojiFormant[0][12][i][1] = privateFormant[1][1] / 2.3;
@@ -4015,7 +4013,7 @@ int makeVoiseFromFile::createAllMojiFromantFromClass() {
 			for (int k = 0; k < 4;k++)
 				allmojiFormant[1][12][i][k] = allmojiFormant[1][0][i][k];
 		}
-		//—Lº•Œs‚Í‚¶‚«‰¹(‚é)
+		//æœ‰å£°æ­¯èŒã¯ã˜ãéŸ³(ã‚‹)
 		for (int i = 7;i <= 11; i++) {
 			allmojiFormant[0][12][i][0] = privateFormant[2][0] / 1.5;
 			allmojiFormant[0][12][i][1] = privateFormant[2][1] / 2.3;
@@ -4024,14 +4022,14 @@ int makeVoiseFromFile::createAllMojiFromantFromClass() {
 			for (int k = 0; k < 4;k++)
 				allmojiFormant[1][12][i][k] = allmojiFormant[1][0][i][k];
 		}
-		//—Lº•Œs‚Í‚¶‚«‰¹(‚ê)
+		//æœ‰å£°æ­¯èŒã¯ã˜ãéŸ³(ã‚Œ)
 		allmojiFormant[0][12][12][0] = privateFormant[3][0] / 1.5;
 		allmojiFormant[0][12][12][1] = privateFormant[3][1] / 2.3;
 		allmojiFormant[0][12][12][2] = privateFormant[3][2];
 		allmojiFormant[0][12][12][3] = privateFormant[3][3];
 		for (int k = 0; k < 4;k++)
 			allmojiFormant[1][12][12][k] = allmojiFormant[1][0][12][k];
-		//—Lº•Œs‚Í‚¶‚«‰¹(‚ë)
+		//æœ‰å£°æ­¯èŒã¯ã˜ãéŸ³(ã‚)
 		allmojiFormant[0][12][13][0] = privateFormant[4][0] / 1.5;
 		allmojiFormant[0][12][13][1] = privateFormant[4][1] / 2.3;
 		allmojiFormant[0][12][13][2] = privateFormant[4][2];
@@ -4040,9 +4038,9 @@ int makeVoiseFromFile::createAllMojiFromantFromClass() {
 			allmojiFormant[1][12][13][k] = allmojiFormant[1][0][13][k];
 	}
 
-	//‚ñ
+	//ã‚“
 	if (true) {
-		//ŒûŠW‚•@‰¹(‚ñ)
+		//å£è“‹å‚é¼»éŸ³(ã‚“)
 		allmojiFormant[0][13][1][0] = allmojiFormant[1][13][1][0] = privateFormant[2][0] / 2.0;
 		allmojiFormant[0][13][1][1] = allmojiFormant[1][13][1][1] = privateFormant[2][1] / 3.0;
 		allmojiFormant[0][13][1][2] = allmojiFormant[1][13][1][2] = privateFormant[2][2];
@@ -4052,13 +4050,13 @@ int makeVoiseFromFile::createAllMojiFromantFromClass() {
 	return 0;
 }
 
-//‰¹æ}ƒR[ƒh‚©‚çƒtƒHƒ‹ƒ}ƒ“ƒgü”g”‚ğæ“¾
+//éŸ³è«³ã‚³ãƒ¼ãƒ‰ã‹ã‚‰ãƒ•ã‚©ãƒ«ãƒãƒ³ãƒˆå‘¨æ³¢æ•°ã‚’å–å¾—
 nsfloat makeVoiseFromFile::getMojiFormant(int f, int moji, int formant) {
 
 	return allmojiFormant[f][(moji & 0xf0) >> 4][(moji & 0x0f)][formant];
 }
 
-//–³º”j—ô‰¹‚©‚Ç‚¤‚©
+//ç„¡å£°ç ´è£‚éŸ³ã‹ã©ã†ã‹
 bool makeVoiseFromFile::doVoiselessPlosive(NSCHAR moji) {
 
 	if ((moji & 0xf0) == 0x10 or (moji & 0xf0) == 0x50 or (moji & 0xf0) == 0x70)
@@ -4066,7 +4064,7 @@ bool makeVoiseFromFile::doVoiselessPlosive(NSCHAR moji) {
 	return false;
 }
 
-//—Lº”j—ô‰¹‚©‚Ç‚¤‚©
+//æœ‰å£°ç ´è£‚éŸ³ã‹ã©ã†ã‹
 bool makeVoiseFromFile::doVoisedPlosive(NSCHAR moji) {
 
 	if ((moji & 0xf0) == 0x20 or (moji & 0xf0) == 0x60 or (moji & 0xf0) == 0x80)
@@ -4074,7 +4072,7 @@ bool makeVoiseFromFile::doVoisedPlosive(NSCHAR moji) {
 	return false;
 }
 
-//•@‰¹‚©‚Ç‚¤‚©
+//é¼»éŸ³ã‹ã©ã†ã‹
 bool makeVoiseFromFile::doNasal(NSCHAR moji) {
 
 	if ((moji & 0xf0) == 0xa0 or (moji & 0xf0) == 0xb0)
@@ -4082,7 +4080,7 @@ bool makeVoiseFromFile::doNasal(NSCHAR moji) {
 	return false;
 }
 
-//‚Í‚¶‚«‰¹‚©‚Ç‚¤‚©
+//ã¯ã˜ãéŸ³ã‹ã©ã†ã‹
 bool makeVoiseFromFile::doTap(NSCHAR moji) {
 
 	if ((moji & 0xf0) == 0xc0)
@@ -4090,7 +4088,7 @@ bool makeVoiseFromFile::doTap(NSCHAR moji) {
 	return false;
 }
 
-//–³º–€C‰¹‚©‚Ç‚¤‚©
+//ç„¡å£°æ‘©æ“¦éŸ³ã‹ã©ã†ã‹
 bool makeVoiseFromFile::doVoiselessFricative(NSCHAR moji) {
 
 	if ((moji & 0xf0) == 0x30)
@@ -4098,7 +4096,7 @@ bool makeVoiseFromFile::doVoiselessFricative(NSCHAR moji) {
 	return false;
 }
 
-//—Lº–€C‰¹‚©‚Ç‚¤‚©
+//æœ‰å£°æ‘©æ“¦éŸ³ã‹ã©ã†ã‹
 bool makeVoiseFromFile::doVoisedFricative(NSCHAR moji) {
 
 	if ((moji & 0xf0) == 0x40)
@@ -4106,7 +4104,7 @@ bool makeVoiseFromFile::doVoisedFricative(NSCHAR moji) {
 	return false;
 }
 
-//–€E‰¹‚©‚Ç‚¤‚©
+//æ‘©æ®ºéŸ³ã‹ã©ã†ã‹
 bool makeVoiseFromFile::doFriKILLive(NSCHAR moji) {
 
 	if ((moji & 0xf0) == 0x90)
@@ -4114,13 +4112,13 @@ bool makeVoiseFromFile::doFriKILLive(NSCHAR moji) {
 	return false;
 }
 
-//‰¹æ}Œ`®‚ÌŠÔ’PˆÊ‚©‚çº‚Ì’·‚³[•b]‚Ö•ÏŠ·
+//éŸ³è«³å½¢å¼ã®æ™‚é–“å˜ä½ã‹ã‚‰å£°ã®é•·ã•[ç§’]ã¸å¤‰æ›
 int makeVoiseFromFile::getTimeFromSpeed(char speed, char moji) {
 	char mojiboin = moji & 0x0f;
 	return (int)((nsfloat)SMPL * (10.0 / (nsfloat)speed) + ((mojiboin >= 0x03 and mojiboin <= 0x0b and mojiboin != 0x07 and (unsigned char)moji >= 0x10 and (nsfloat)SMPL * (10.0 / (nsfloat)speed) > MAXSHIONSPEED + MAXBYOUONSPEED + MAXYOUONSPEED) ? MAXBYOUONSPEED + MAXYOUONSPEED : 0));
 }
 
-//ƒzƒƒCƒgƒmƒCƒY‚Ì—”‚Ì“¯Šú‚ğ‰Šú‰»
+//ãƒ›ãƒ¯ã‚¤ãƒˆãƒã‚¤ã‚ºã®ä¹±æ•°ã®åŒæœŸã‚’åˆæœŸåŒ–
 int makeVoiseFromFile::ftInit(int size) {
 
 	ft = new nsfloat[size];
@@ -4131,7 +4129,7 @@ int makeVoiseFromFile::ftInit(int size) {
 	return 0;
 }
 
-//ƒzƒƒCƒgƒmƒCƒY‚ğì¬
+//ãƒ›ãƒ¯ã‚¤ãƒˆãƒã‚¤ã‚ºã‚’ä½œæˆ
 int makeVoiseFromFile::makeWhitenoise(std::vector<nsfloat> out, int time, nsfloat hz, nsfloat um) {
 
 	nsfloat magn = FRICATIVENOISEACC / (nsfloat)(MAXFREQ - hz);
@@ -4154,7 +4152,7 @@ int makeVoiseFromFile::makeWhitenoise(std::vector<nsfloat> out, int time, nsfloa
 	return 0;
 }
 
-//ƒzƒƒCƒgƒmƒCƒY‚ğì¬
+//ãƒ›ãƒ¯ã‚¤ãƒˆãƒã‚¤ã‚ºã‚’ä½œæˆ
 int makeVoiseFromFile::makeWhitenoise1(std::vector<nsfloat> out, int time, nsfloat hz) {
 
 	nsfloat magn = FRICATIVENOISEACC / (nsfloat)(MAXFREQ - hz);

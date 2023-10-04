@@ -1,8 +1,8 @@
-#include "../Nesora/Nesora_for_embedded_systems.h"
+﻿#include "../Nesora/Nesora_for_embedded_systems.h"
 
 // Copyright (c) MucchoSP
 
-// PC�p�̃e�X�g�p�̊֐��ł��B
+// PC用のテスト用の関数です。🐹
 inline int NesoraWave(std::string filename, std::vector<nsfloat> wave) {
 	std::ofstream file(filename, std::ios::out | std::ios::binary);
 	if (!file) return 1;
@@ -40,31 +40,32 @@ inline int NesoraWave(std::string filename, std::vector<nsfloat> wave) {
 }
 
 int main() {
-	// ���̖{�̂ƂȂ�C���X�^���X�ł��B
-	// �����ɐ��̃f�[�^���{�̃f�[�^�A���̐����Ɏg���N���X�̃C���X�^���X�Ȃ񂩂������Ă��܂��B
+	// 声の本体となるインスタンスです。
+	// ここに声のデータや台本のデータ、声の生成に使うクラスのインスタンスなんかが入っています。
 	makeVoiseFromFile MVFF;
 
-	// ���̊֐��Ő����������ł��܂��B
-	// ���}�́A�l�X�Ȑ����g����悤�ɐ����p�����[�^�Ƃ��Ď��悤�ɐ݌v����Ă���A
-	// windows�łł̓t�@�C���Ƃ��ēǂݍ��݂܂����A�g�ݍ��ݗp�Ȃ̂ł���Ő������������Ă��������B
-	// ���̒ǉ��͂������܂��B
+	// この関数で声を初期化できます。
+	// 音諳は、様々な声を使えるように声をパラメータとして持つように設計されており、
+	// windows版ではファイルとして読み込みますが、組み込み用なのでこれで声を初期化してください。
+	// 声の追加はいつかやります。
 	MVFF.setDefaulFurin();
-	//MVFF.setShion();	//������ƃ��C���ۂ���
+	//MVFF.setShion();	//ちょっとレイっぽい声
 
-	// �����ɒ��点�������͂���͂��܂��B
-	// �Ђ炪�Ȃ��g���ꍇ�Ashift-jis���g���Ă��������B
-	// shift-jis���g���Ȃ��ꍇ�́AEncoder_for_Nesora.hpp ���̴�԰�ł���֐����g��(�񐄏�)�����[�}���œ��͂��Ă��������B
-	// �ڍׂ͓��f�B���N�g���ɂ���sing.cpp���Q�ƁB
-	MVFF.textread("����ɂ��킠");
+	// ここに喋らせたい文章を入力します。
+	// ひらがなを使う場合、shift-jisを使ってください。
+	// shift-jisが使えない場合は、Encoder_for_Nesora.hpp 内のｴｲﾔｰできる関数を使う(非推奨)かローマ字で入力してください。
+	// 詳細は同ディレクトリにあるsing.cppを参照。
+	//MVFF.textread("こんにちわあ");
+	MVFF.textread("konnnitiwaa");
 
-	// ����Ŏ��ۂɐ������ꂽ�g�`���擾�ł��܂��B
-	// -1~1�͈̔͂ŏo�͂���܂��̂ŁA�ς�Ȃ�Ă��Ȃ肵�Ă��������B
-	// �Ȃ��A�W�{�����g����44100Hz�ł��B
-	// �ق��̎��g�����g�������ꍇ�A�w�b�_�[�t�@�C���̉��̕��ɂ���"SMPL"�Ƃ����萔��ς��邱�ƂŕύX�\�ł��B(������)
+	// これで実際に生成された波形を取得できます。
+	// -1~1の範囲で出力されますので、煮るなり焼くなりしてください。
+	// なお、標本化周波数は44100Hzです。
+	// ほかの周波数を使いたい場合、ヘッダーファイルの下の方にある"SMPL"という定数を変えることで変更可能です。(たしか)
 	std::vector<nsfloat> wave = MVFF.textreading();
 
-	// wav.�t�@�C���ɏo�͂���֐��ł��B
-	// windows�̕��p�B
+	// wav.ファイルに出力する関数です。
+	// windowsの方用。
 	NesoraWave("NesoraWave.wav", wave);
 
 	return 0;
