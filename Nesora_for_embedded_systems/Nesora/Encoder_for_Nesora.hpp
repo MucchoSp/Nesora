@@ -1,9 +1,10 @@
-#pragma once
+ï»¿#pragma once
 
 // Copyright (c) MucchoSP
+//ğŸ¹
 
-//utf8‚©‚ç–³—‚â‚è‰¹æ}‚Åg‚¦‚é•¶š—ñ‚É•ÏŠ·‚µ‚Ü‚·B
-//g—p‚Í”ñ„§‚Å‚·B
+//utf8ã‹ã‚‰ç„¡ç†ã‚„ã‚ŠéŸ³è«³ã§ä½¿ãˆã‚‹æ–‡å­—åˆ—ã«å¤‰æ›ã—ã¾ã™ã€‚
+//ä½¿ç”¨ã¯éæ¨å¥¨ã§ã™ã€‚
 int EncoderFromUTF8(const char* utf8, char* out) {
 	delete[] out;
 
