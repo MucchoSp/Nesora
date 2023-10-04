@@ -8,6 +8,10 @@ Visual studio 2019 のプロジェクトファイルごとｴｲ!しちゃった
 
 ## うさげ
 使い方です。
+ライブラリは以下のコードのようにヘッダーファイルを呼び出して使います。
+```
+#include "Nesora_for_embedded_systems/Nesora/Nesora_for_embedded_systems.h"
+```
 
 まあ、Example見てもらった方が早いと思いますが、基本的に以下のようにインスタンスにして使います。
 ```
@@ -109,3 +113,21 @@ std::vector<nsfloat> wave = MVFF.textreading();
 ```
 
 そんな感じ。
+
+
+## 声
+最後に声の種類だけ書いておきます。
+
+これが音諳 風鈴
+```
+MVFF.setDefaulFurin();
+```
+
+そしてこれが音諳 詞音
+```
+MVFF.setShion();
+```
+
+いまのところ二人だけです。
+仲良くしてあげてくださいね。
+以上！
