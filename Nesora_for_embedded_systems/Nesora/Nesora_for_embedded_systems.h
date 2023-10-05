@@ -545,8 +545,8 @@ public:
 	nsfloat getPrivatebf();																							//データ保管庫から基音データを読み込む
 	nsfloat getPrivatebFormant(int b, int f);																		//データ保管庫からフォルマントデータを読み込む
 
-	int decodeVoise0(char* data);																					//零号機のデータを読み込む
-	int decodeVoise2(char* data);																					//零号機のデータを読み込む
+	int decodeVoise0(unsigned char* data);																					//零号機のデータを読み込む
+	int decodeVoise2(unsigned char* data);																					//零号機のデータを読み込む
 
 private:
 
