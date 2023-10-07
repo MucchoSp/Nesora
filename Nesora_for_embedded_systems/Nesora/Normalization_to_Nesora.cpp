@@ -567,7 +567,7 @@ namespace Normalization_to_Nesora {
             out = "guramutonn";
             break;
         case CJK_COMPATIBILITY_SQUARE_KURUZEIRO:
-            out = "kuruzairo";
+            out = "kuruzeiro";
             break;
         case CJK_COMPATIBILITY_SQUARE_KUROONE:
             out = "kuroone";
@@ -641,7 +641,7 @@ namespace Normalization_to_Nesora {
             out = "biru";
             break;
         case CJK_COMPATIBILITY_SQUARE_HUARADDO:
-            out = "hwaraddo";
+            out = "hwaraltudo";
             break;
         case CJK_COMPATIBILITY_SQUARE_HUIITO:
             out = "hwiito";
@@ -880,7 +880,7 @@ namespace Normalization_to_Nesora {
             out = "kiroriltutoru";
             break;
         case CJK_COMPATIBILITY_SQUARE_FM:
-            out = "fwemutomeetoru";
+            out = "hwemutomeetoru";
             break;
         case CJK_COMPATIBILITY_SQUARE_NM:
             out = "nanomeetoru";
