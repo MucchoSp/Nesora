@@ -555,6 +555,43 @@ NSSTRINGDATA nsc::nsromajiencode(const unsigned char* str) {
 							nowmoji.c = NSkwo;
 					}
 				}
+				else if (str[i] == 'c' or str[i] == 'C') {
+					i++;
+					if (str[i] == 'a' or str[i] == 'A') //か
+						nowmoji.c = NSka;
+					else if (str[i] == 'i' or str[i] == 'I') //し
+						nowmoji.c = NSsi;
+					else if (str[i] == 'u' or str[i] == 'U') //く
+						nowmoji.c = NSku;
+					else if (str[i] == 'e' or str[i] == 'E') //せ
+						nowmoji.c = NSse;
+					else if (str[i] == 'o' or str[i] == 'O') //こ
+						nowmoji.c = NSko;
+					else if (str[i] == 'y' or str[i] == 'Y') {
+						i++;
+						if (str[i] == 'a' or str[i] == 'A') //ちゃ
+							nowmoji.c = NStya;
+						else if (str[i] == 'u' or str[i] == 'U') //ちゅ
+							nowmoji.c = NStyu;
+						else if (str[i] == 'e' or str[i] == 'E') //ちぇ
+							nowmoji.c = NStye;
+						else if (str[i] == 'o' or str[i] == 'O') //ちょ
+							nowmoji.c = NStyo;
+					}
+					else if (str[i] == 'h' or str[i] == 'H') {
+						i++;
+						if (str[i] == 'a' or str[i] == 'A') //ちゃ
+							nowmoji.c = NScha;
+						else if (str[i] == 'i' or str[i] == 'I') //ち
+							nowmoji.c = NSchi;
+						else if (str[i] == 'u' or str[i] == 'U') //ちゅ
+							nowmoji.c = NSchu;
+						else if (str[i] == 'e' or str[i] == 'E') //ちぇ
+							nowmoji.c = NSche;
+						else if (str[i] == 'o' or str[i] == 'O') //ちょ
+							nowmoji.c = NScho;
+					}
+				}
 				else if (str[i] == 'g' or str[i] == 'G') {
 					i++;
 					if (str[i] == 'a' or str[i] == 'A')
@@ -623,6 +660,19 @@ NSSTRINGDATA nsc::nsromajiencode(const unsigned char* str) {
 							nowmoji.c = NStwe;
 						else if (str[i] == 'o' or str[i] == 'O')
 							nowmoji.c = NStwo;
+					}
+					else if (str[i] == 's' or str[i] == 'S') {
+						i++;
+						if (str[i] == 'a' or str[i] == 'A')//
+							nowmoji.c = NStsa;
+						else if (str[i] == 'i' or str[i] == 'I')
+							nowmoji.c = NStsi;
+						else if (str[i] == 'u' or str[i] == 'U')
+							nowmoji.c = NStsu;
+						else if (str[i] == 'e' or str[i] == 'E')
+							nowmoji.c = NStse;
+						else if (str[i] == 'o' or str[i] == 'O')
+							nowmoji.c = NStso;
 					}
 				}
 				else if (str[i] == 'd' or str[i] == 'D') {
@@ -764,6 +814,19 @@ NSSTRINGDATA nsc::nsromajiencode(const unsigned char* str) {
 						else if (str[i] == 'o' or str[i] == 'O')
 							nowmoji.c = NSswo;
 					}
+					else if (str[i] == 'h' or str[i] == 'H') {
+						i++;
+						if (str[i] == 'a' or str[i] == 'A')
+							nowmoji.c = NSsha;
+						else if (str[i] == 'i' or str[i] == 'I')
+							nowmoji.c = NSshi;
+						else if (str[i] == 'u' or str[i] == 'U')
+							nowmoji.c = NSshu;
+						else if (str[i] == 'e' or str[i] == 'E')
+							nowmoji.c = NSshe;
+						else if (str[i] == 'o' or str[i] == 'O')
+							nowmoji.c = NSsho;
+					}
 				}
 				else if (str[i] == 'z' or str[i] == 'Z') {
 					i++;
@@ -800,6 +863,19 @@ NSSTRINGDATA nsc::nsromajiencode(const unsigned char* str) {
 							nowmoji.c = NSzwo;
 					}
 				}
+				else if (str[i] == 'j' or str[i] == 'J') {
+					i++;
+					if (str[i] == 'a' or str[i] == 'A')
+						nowmoji.c = NSja;
+					else if (str[i] == 'i' or str[i] == 'I')
+						nowmoji.c = NSji;
+					else if (str[i] == 'u' or str[i] == 'U')
+						nowmoji.c = NSju;
+					else if (str[i] == 'e' or str[i] == 'E')
+						nowmoji.c = NSje;
+					else if (str[i] == 'o' or str[i] == 'O')
+						nowmoji.c = NSjo;
+				}
 				else if (str[i] == 'h' or str[i] == 'H') {
 					i++;
 					if (str[i] == 'a' or str[i] == 'A')
@@ -834,6 +910,19 @@ NSSTRINGDATA nsc::nsromajiencode(const unsigned char* str) {
 						else if (str[i] == 'o' or str[i] == 'O')
 							nowmoji.c = NShwo;
 					}
+				}
+				else if (str[i] == 'f' or str[i] == 'F') {
+				i++;
+				if (str[i] == 'a' or str[i] == 'A')
+					nowmoji.c = NSfa;
+				else if (str[i] == 'i' or str[i] == 'I')
+					nowmoji.c = NSfi;
+				else if (str[i] == 'u' or str[i] == 'U')
+					nowmoji.c = NSfu;
+				else if (str[i] == 'e' or str[i] == 'E')
+					nowmoji.c = NSfe;
+				else if (str[i] == 'o' or str[i] == 'O')
+					nowmoji.c = NSfo;
 				}
 				else if (str[i] == 'n' or str[i] == 'N') {
 					i++;
@@ -964,6 +1053,57 @@ NSSTRINGDATA nsc::nsromajiencode(const unsigned char* str) {
 					else if (str[i] == 'o' or str[i] == 'O')
 						nowmoji.c = NSwo;
 				}
+				else if (str[i] == 'x' or str[i] == 'X' or str[i] == 'l' or str[i] == 'L') {
+					i++;
+					if (str[i] == 'a' or str[i] == 'A')
+						out[n-1].c += 1;
+					else if (str[i] == 'i' or str[i] == 'I')
+						out[n - 1].c += 2;
+					else if (str[i] == 'u' or str[i] == 'U')
+						out[n - 1].c += 2;
+					else if (str[i] == 'e' or str[i] == 'E')
+						out[n - 1].c += 3;
+					else if (str[i] == 'o' or str[i] == 'O')
+						out[n - 1].c += 4;
+					else if (str[i] == 'y' or str[i] == 'Y') {
+						i++;
+						if (str[i] == 'a' or str[i] == 'A')
+							out[n - 1].c += 1;
+						else if (str[i] == 'u' or str[i] == 'U')
+							out[n - 1].c += 2;
+						else if (str[i] == 'e' or str[i] == 'E')
+							out[n - 1].c += 3;
+						else if (str[i] == 'o' or str[i] == 'O')
+							out[n - 1].c += 4;
+					}
+					else if (str[i] == 'w' or str[i] == 'W') {
+						i++;
+						if (str[i] == 'a' or str[i] == 'A')
+							out[n - 1].c += 1;
+						else if (str[i] == 'i' or str[i] == 'I')
+							out[n - 1].c += 2;
+						else if (str[i] == 'e' or str[i] == 'E')
+							out[n - 1].c += 3;
+						else if (str[i] == 'o' or str[i] == 'O')
+							out[n - 1].c += 4;
+					}
+					else if (str[i] == 't' or str[i] == 'T') {
+						alltime -= out[n - 1].ctime;
+						out[n - 1].ctime = GEMINATE_CONSONANT_SPEED;
+						out[n - 1].time = alltime + out[n - 1].ctime;
+						nowmoji.c = NSspc;
+						nowmoji.pitch = pitch;
+						nowmoji.ctime = (unsigned char)(ctime * GEMINATE_CONSONANT_TMAG - GEMINATE_CONSONANT_SPEED);
+						alltime += GEMINATE_CONSONANT_SPEED + nowmoji.ctime;
+						nowmoji.time = alltime;
+						out[n] = nowmoji;
+						n++;i++;
+						if (str[i] == 's' or str[i] == 'S')
+							i++;
+					}
+					i++;
+					continue;
+				}
 
 				nowmoji.time = alltime;
 				nowmoji.ctime = ctime;
@@ -988,6 +1128,26 @@ NSSTRINGDATA nsc::nsromajiencode(const unsigned char* str) {
 				nowmoji.c = NSspc;
 				nowmoji.time = alltime;
 				nowmoji.ctime = ctime * 2;
+				nowmoji.pitch = pitch;
+				out[n] = nowmoji;
+				n++;alltime += ctime * 2;
+				i++;
+			}
+			else if (str[i] == '-') {
+				//伸ばし棒
+				nowmoji.c = out[n - 1].c & 0x0f;
+				if (nowmoji.c == NSya or nowmoji.c == NSwa)
+					nowmoji.c = NSa;
+				else if (nowmoji.c == NSwi)
+					nowmoji.c = NSi;
+				else if (nowmoji.c == NSyu)
+					nowmoji.c = NSu;
+				else if (nowmoji.c == NSye or nowmoji.c == NSwe)
+					nowmoji.c = NSe;
+				else if (nowmoji.c == NSyo or nowmoji.c == NSwo)
+					nowmoji.c = NSo;
+				nowmoji.time = alltime;
+				nowmoji.ctime = ctime;
 				nowmoji.pitch = pitch;
 				out[n] = nowmoji;
 				n++;alltime += ctime * 2;
@@ -1930,9 +2090,9 @@ int mainMakeVoiseF::makeSinWave(int num, std::vector<nsfloat> Hz, std::vector<ns
 		for (size_t i = 0;i < out.size();i++) {
 			for (int j = 0;j < num2;j++) {
 				if (formants[2] > out.size())
-					sinha = sin(((nsfloat)i + a) * 2.0 * (nsfloat)PI / ((nsfloat)SMPL / Hz[canUseHz[j]]));						//jの周波数のiの時のsin波の値を計算する。
+					sinha = sin(((nsfloat)i + a) * (nsfloat)2.0 * (nsfloat)PI / ((nsfloat)SMPL / Hz[canUseHz[j]]));						//jの周波数のiの時のsin波の値を計算する。
 				else
-					sinha = cos(((nsfloat)i + a) * 2.0 * (nsfloat)PI / ((nsfloat)SMPL / Hz[canUseHz[j]]));						//jの周波数のiの時のcos波の値を計算する。
+					sinha = cos(((nsfloat)i + a) * (nsfloat)2.0 * (nsfloat)PI / ((nsfloat)SMPL / Hz[canUseHz[j]]));						//jの周波数のiの時のcos波の値を計算する。
 				output1[i] = output1[i] + sinha * s[canUseHz[j]];															//sinhaを、それぞれの大きさでかけ合わせて足す。
 			}
 			output1[i] /= alls;																								//平均化して出力する。
@@ -1942,23 +2102,23 @@ int mainMakeVoiseF::makeSinWave(int num, std::vector<nsfloat> Hz, std::vector<ns
 		//1.ノッチフィルター無し	2.すべてにノッチフィルターを適用	3.ある程度距離があればノッチフィルターを適用
 		switch (3) {
 		case 1:
-			hipassFilter(output1, output2, SMPL, formants[0], 0.707);															//ハイパスフィルター
-			lowpassFilter(output2, out, SMPL, formants[3], 1.0);																//ローパスフィルター
+			hipassFilter(output1, output2, SMPL, formants[0], (nsfloat)0.707);															//ハイパスフィルター
+			lowpassFilter(output2, out, SMPL, formants[3], (nsfloat)1.0);																//ローパスフィルター
 			break;
 		case 2:
-			hipassFilter(output1, output2, SMPL, formants[0], 0.707);															//ハイパスフィルター
-			lowpassFilter(output2, output3, SMPL, formants[3], 1.0);															//ローパスフィルター
+			hipassFilter(output1, output2, SMPL, formants[0], (nsfloat)0.707);															//ハイパスフィルター
+			lowpassFilter(output2, output3, SMPL, formants[3], (nsfloat)1.0);															//ローパスフィルター
 			for (int i = 0; i < 3;i++)
-				notchpassFilter(output3, out, SMPL, (formants[i] + formants[i + 1]) / 3.0, formants[i + 1] / formants[i] / 4.0);	//ノッチパスフィルター
+				notchpassFilter(output3, out, SMPL, (formants[i] + formants[i + 1]) / (nsfloat)3.0, formants[i + 1] / formants[i] / (nsfloat)4.0);	//ノッチパスフィルター
 			break;
 		default:
 
-			hipassFilter(output1, output2, SMPL, formants[0], 0.707);															//ハイパスフィルター
-			lowpassFilter(output2, output3, SMPL, formants[3], 1.0);															//ローパスフィルター
+			hipassFilter(output1, output2, SMPL, formants[0], (nsfloat)0.707);															//ハイパスフィルター
+			lowpassFilter(output2, output3, SMPL, formants[3], (nsfloat)1.0);															//ローパスフィルター
 
 			for (int i = 0; i < 3;i++) {
 				if (formants[i] * 2 < formants[i + 1])
-					notchpassFilter(output3, out, SMPL, (formants[i] + formants[i + 1]) / 3.0, formants[i + 1] / formants[i] / 4.0);	//ノッチパスフィルター
+					notchpassFilter(output3, out, SMPL, (formants[i] + formants[i + 1]) / (nsfloat)3.0, formants[i + 1] / formants[i] / (nsfloat)4.0);	//ノッチパスフィルター
 			}
 		}
 	}
@@ -1966,13 +2126,13 @@ int mainMakeVoiseF::makeSinWave(int num, std::vector<nsfloat> Hz, std::vector<ns
 		//sin波の合成
 		for (size_t i = 0;i < out.size();i++) {
 			for (int j = 0;j < num2;j++) {
-				sinha = sin(((nsfloat)i + a) * 2.0 * (nsfloat)PI / ((nsfloat)SMPL / Hz[canUseHz[j]]));							//jの周波数のiの時のsin波の値を計算する。
+				sinha = sin(((nsfloat)i + a) * (nsfloat)2.0 * (nsfloat)PI / ((nsfloat)SMPL / Hz[canUseHz[j]]));							//jの周波数のiの時のsin波の値を計算する。
 				output1[i] = output1[i] + sinha * s[canUseHz[j]];															//sinhaを、それぞれの大きさでかけ合わせて足す。
 			}
 			output1[i] /= alls;																								//平均化して出力する。
 		}
-		hipassFilter(output1, output2, SMPL, Hz[0], 0.707);															//ハイパスフィルター
-		lowpassFilter(output2, out, SMPL, Hz[num - 1], 1.0);																//ローパスフィルター
+		hipassFilter(output1, output2, SMPL, Hz[0], (nsfloat)0.707);															//ハイパスフィルター
+		lowpassFilter(output2, out, SMPL, Hz[num - 1], (nsfloat)1.0);																//ローパスフィルター
 	}
 
 	return 0;
@@ -1985,8 +2145,8 @@ int mainMakeVoiseF::makeSinha(nsfloat Hz, nsfloat s, std::vector<nsfloat>& out) 
 	nsfloat t = SMPL / Hz;
 	nsfloat hr = 1 / t;		//変化量
 
-	for (int i = 0; i < out.size(); i++) {
-		sinha = sin(hr * i * 2 * PI);
+	for (size_t i = 0; i < out.size(); i++) {
+		sinha = sin(hr * (nsfloat)i * (nsfloat)2 * PI);
 		out[i] = sinha * s;
 	}
 
@@ -2051,9 +2211,9 @@ int mainMakeVoiseF::makeFilter() {
 			harmonictoneFilters[j] = harmonictoneFilters[j] + a;														//出した値を足す。
 		}
 		if (formants[0] < harmonicOvertones[j])																			//フォルマント1より小さいかどうか
-			harmonictoneFilters[j] = harmonictoneFilters[j] / 4.0 * (1.0 / ((nsfloat)j + formants[0] / harmonicOvertones[0] + 1.0)) * 12;	//フィルターの平均値を出し、jの反比例の形でフィルターをかけ、十二倍する。
+			harmonictoneFilters[j] = harmonictoneFilters[j] / (nsfloat)4.0 * ((nsfloat)1.0 / ((nsfloat)j + formants[0] / harmonicOvertones[0] + (nsfloat)1.0)) * (nsfloat)12;	//フィルターの平均値を出し、jの反比例の形でフィルターをかけ、十二倍する。
 		else
-			harmonictoneFilters[j] = harmonictoneFilters[j] / 4.0 * (1.0 / ((nsfloat)-j + formants[0] / harmonicOvertones[0] + 1.0)) * 12;	//フィルターの平均値を出し、-jの反比例の形でフィルターをかけ、十二倍する。
+			harmonictoneFilters[j] = harmonictoneFilters[j] / (nsfloat)4.0 * ((nsfloat)1.0 / ((nsfloat)-j + formants[0] / harmonicOvertones[0] + (nsfloat)1.0)) * (nsfloat)12;	//フィルターの平均値を出し、-jの反比例の形でフィルターをかけ、十二倍する。
 	}
 
 	//音の減衰
@@ -2070,7 +2230,8 @@ int mainMakeVoiseF::makeFilter() {
 			harmonictoneFilters[i] = 0;																					//0.01以下の小さな音は取り除く。
 		else {
 			//harmonictoneFilters[i] *= harmonictoneFilters[i] * 2;														//フィルターの差を広げる。
-			c = (int)(harmonictoneFilters[i] * 100);harmonictoneFilters[i] = (nsfloat)c / 100.0;							//フィルターの値を小数点第三位で切り捨てる。
+			c = (int)(harmonictoneFilters[i] * 100);
+			harmonictoneFilters[i] = (nsfloat)c / (nsfloat)100.0;														//フィルターの値を小数点第三位で切り捨てる。
 		}
 	}
 
@@ -2348,11 +2509,11 @@ std::vector<nsfloat> makeVoiseFromFile::textreading() {
 	for (size_t nowmojinum = 0;nowmojinum < pstringdata.length();nowmojinum++) {
 		//それぞれの変数を更新
 		nowmoji = pstringdata[nowmojinum].c;
-		nowspeed = pstringdata[nowmojinum].ctime * CHANGETIMEMAGN;
+		nowspeed = pstringdata[nowmojinum].ctime * (int)CHANGETIMEMAGN;
 		nowpitch = pstringdata[nowmojinum].pitch;
 		if (nowmojinum < pstringdata.length() - 1) {
 			nextmoji = pstringdata[nowmojinum + 1].c;
-			nextspeed = pstringdata[nowmojinum + 1].ctime * CHANGETIMEMAGN;
+			nextspeed = pstringdata[nowmojinum + 1].ctime * (int)CHANGETIMEMAGN;
 			nextpitch = pstringdata[nowmojinum + 1].pitch;
 		}
 		else {
@@ -2803,9 +2964,9 @@ void makeVoiseFromFile::textreadingHanboin(std::vector<nsfloat>& out, NSCHAR now
 	std::vector<nsfloat> vout2(size + CTIME * 2, 1.0);
 
 	mvffMMVF.setFormants(getMojiFormant(0, nowmoji, 0) + pitch, getMojiFormant(0, nowmoji, 1) + pitch, getMojiFormant(0, nowmoji, 2) + pitch, getMojiFormant(0, nowmoji, 3) + pitch);
-	mvffMMVF.makeSinWaveFromClass(vout1, out.size() - CTIME);
+	mvffMMVF.makeSinWaveFromClass(vout1, (nsfloat)out.size() - (nsfloat)CTIME);
 	mvffMMVF.setFormants(getMojiFormant(1, nowmoji, 0) + pitch, getMojiFormant(1, nowmoji, 1) + pitch, getMojiFormant(1, nowmoji, 2) + pitch, getMojiFormant(1, nowmoji, 3) + pitch);
-	mvffMMVF.makeSinWaveFromClass(vout2, out.size() - CTIME);
+	mvffMMVF.makeSinWaveFromClass(vout2, (nsfloat)out.size() - (nsfloat)CTIME);
 
 	for (int j = 0; j < MAXSHIONSPEED;j++)
 		out.push_back(vout1[j + CTIME] * ((MAXSHIONSPEED - (nsfloat)j) / MAXSHIONSPEED) + vout2[j + CTIME] * ((nsfloat)j / MAXSHIONSPEED));

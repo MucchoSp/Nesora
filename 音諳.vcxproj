@@ -145,13 +145,17 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Nesora_for_embedded_systems\Example\number.cpp" />
     <ClCompile Include="Nesora_for_embedded_systems\Example\sing.cpp" />
     <ClCompile Include="Nesora_for_embedded_systems\Example\speak.cpp" />
     <ClCompile Include="Nesora_for_embedded_systems\Nesora\Nesora_for_embedded_systems.cpp" />
+    <ClCompile Include="Nesora_for_embedded_systems\Nesora\Normalization_to_Nesora.cpp" />
+    <ClCompile Include="Nesora_for_embedded_systems\Nesora\Number_to_Nesora.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Nesora_for_embedded_systems\Nesora\Encoder_for_Nesora.hpp" />
     <ClInclude Include="Nesora_for_embedded_systems\Nesora\Nesora_for_embedded_systems.h" />
+    <ClInclude Include="Nesora_for_embedded_systems\Nesora\Normalization_to_Nesora.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

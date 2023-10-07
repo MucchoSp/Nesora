@@ -13,6 +13,7 @@
 #include <vector>
 
 
+
 // +--------------------------------------------------------------------------------------------+
 // |	音諳コード関係																			|
 // +--------------------------------------------------------------------------------------------+
@@ -489,7 +490,7 @@ public:
 
 #define SPACE						0xd3						//空白
 #define SPARETIME					441000						//予備時間
-#define CHANGETIMEMAGN				0.01 * SMPL					//時間の比率
+#define CHANGETIMEMAGN				(0.01 * SMPL)				//時間の比率
 
 struct FriKILLive {
 	std::vector<nsfloat> Hz, s;

@@ -24,12 +24,24 @@
     <ClCompile Include="Nesora_for_embedded_systems\Example\sing.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
+    <ClCompile Include="Nesora_for_embedded_systems\Example\number.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="Nesora_for_embedded_systems\Nesora\Number_to_Nesora.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="Nesora_for_embedded_systems\Nesora\Normalization_to_Nesora.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Nesora_for_embedded_systems\Nesora\Nesora_for_embedded_systems.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="Nesora_for_embedded_systems\Nesora\Encoder_for_Nesora.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Nesora_for_embedded_systems\Nesora\Normalization_to_Nesora.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>

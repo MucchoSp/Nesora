@@ -1,8 +1,9 @@
 ﻿#include "../Nesora/Nesora_for_embedded_systems.h"
+#include "../Nesora/Number_to_Nesora.hpp"
 
 // Copyright (c) MucchoSP
 
-// PC用のテスト用の関数です。
+// PC用のテスト用の関数です。🐹
 inline int NesoraWave(std::string filename, std::vector<nsfloat> wave) {
 	std::ofstream file(filename, std::ios::out | std::ios::binary);
 	if (!file) return 1;
@@ -39,32 +40,22 @@ inline int NesoraWave(std::string filename, std::vector<nsfloat> wave) {
 	file.close();
 }
 
-int main() {
+int ___main() {
 	// 声の本体となるインスタンスです。
 	// ここに声のデータや台本のデータ、声の生成に使うクラスのインスタンスなんかが入っています。
+	// 詳細は同ディレクトリにあるspeak.cppを参照。
 	makeVoiseFromFile MVFF;
-
-	// この関数で声を初期化できます。
-	// 音諳は、様々な声を使えるように声をパラメータとして持つように設計されており、
-	// windows版ではファイルとして読み込みますが、組み込み用なのでこれで声を初期化してください。
-	// 声の追加はいつかやります。
 	MVFF.setDefaulFurin();
-	//MVFF.setShion();	//ちょっとレイっぽい声
+	
 
 	// ここに喋らせたい文章を入力します。
 	// ひらがなを使う場合、shift-jisを使ってください。
 	// shift-jisが使えない場合は、Encoder_for_Nesora.hpp 内のｴｲﾔｰできる関数を使う(非推奨)かローマ字で入力してください。
 	// 詳細は同ディレクトリにあるsing.cppを参照。
-	MVFF.textread("こんにちわあ");
+	MVFF.textread(number_to_Nesora((float)0.0056).c_str());
 
-	// これで実際に生成された波形を取得できます。
-	// -1~1の範囲で出力されますので、煮るなり焼くなりしてください。
-	// なお、標本化周波数は44100Hzです。
-	// ほかの周波数を使いたい場合、ヘッダーファイルの下の方にある"SMPL"という定数を変えることで変更可能です。(たしか)
+
 	std::vector<nsfloat> wave = MVFF.textreading();
-
-	// wav.ファイルに出力する関数です。
-	// windowsの方用。
 	NesoraWave("NesoraWave.wav", wave);
 
 	return 0;
