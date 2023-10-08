@@ -18,17 +18,8 @@
     <ClCompile Include="Nesora_for_embedded_systems\Nesora\Nesora_for_embedded_systems.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="Nesora_for_embedded_systems\Example\speak.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="Nesora_for_embedded_systems\Example\sing.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
     <ClCompile Include="Nesora_for_embedded_systems\Example\number.cpp">
       <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="Nesora_for_embedded_systems\Nesora\Number_to_Nesora.hpp">
-      <Filter>ヘッダー ファイル</Filter>
     </ClCompile>
     <ClCompile Include="Nesora_for_embedded_systems\Nesora\Normalization_to_Nesora.cpp">
       <Filter>ソース ファイル</Filter>

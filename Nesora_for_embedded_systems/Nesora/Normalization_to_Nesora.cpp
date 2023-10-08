@@ -756,7 +756,83 @@ namespace Normalization_to_Nesora {
         case CJK_COMPATIBILITY_SQUARE_WATTO:
             out = "waltuto";
             break;
+        case CJK_COMPATIBILITY_IDEOGRAPHIC_TELEGRAPH_SYMBOL_FOR_HOUR_ZERO:
+            out = "reitenn";
+            break;
+        case CJK_COMPATIBILITY_IDEOGRAPHIC_TELEGRAPH_SYMBOL_FOR_HOUR_ONE:
+            out = "iltutenn";
+            break;
+        case CJK_COMPATIBILITY_IDEOGRAPHIC_TELEGRAPH_SYMBOL_FOR_HOUR_TWO:
+            out = "nitenn";
+            break;
+        case CJK_COMPATIBILITY_IDEOGRAPHIC_TELEGRAPH_SYMBOL_FOR_HOUR_THREE:
+            out = "sanntenn";
+            break;
+        case CJK_COMPATIBILITY_IDEOGRAPHIC_TELEGRAPH_SYMBOL_FOR_HOUR_FOUR:
+            out = "yonntenn";
+            break;
+        case CJK_COMPATIBILITY_IDEOGRAPHIC_TELEGRAPH_SYMBOL_FOR_HOUR_FIVE:
+            out = "gotenn";
+            break;
+        case CJK_COMPATIBILITY_IDEOGRAPHIC_TELEGRAPH_SYMBOL_FOR_HOUR_SIX:
+            out = "rokutenn";
+            break;
+        case CJK_COMPATIBILITY_IDEOGRAPHIC_TELEGRAPH_SYMBOL_FOR_HOUR_SEVEN:
+            out = "nanatenn";
+            break;
 
+        case CJK_COMPATIBILITY_IDEOGRAPHIC_TELEGRAPH_SYMBOL_FOR_HOUR_EIGHT:
+            out = "haltutenn";
+            break;
+        case CJK_COMPATIBILITY_IDEOGRAPHIC_TELEGRAPH_SYMBOL_FOR_HOUR_NINE:
+            out = "kyuutenn";
+            break;
+        case CJK_COMPATIBILITY_IDEOGRAPHIC_TELEGRAPH_SYMBOL_FOR_HOUR_TEN:
+            out = "zyultutenn";
+            break;
+        case CJK_COMPATIBILITY_IDEOGRAPHIC_TELEGRAPH_SYMBOL_FOR_HOUR_ELEVEN:
+            out = "zyuuititenn";
+            break;
+        case CJK_COMPATIBILITY_IDEOGRAPHIC_TELEGRAPH_SYMBOL_FOR_HOUR_TWELVE:
+            out = "zyuunitenn";
+            break;
+        case CJK_COMPATIBILITY_IDEOGRAPHIC_TELEGRAPH_SYMBOL_FOR_HOUR_THIRTEEN:
+            out = "zyuusanntenn";
+            break;
+        case CJK_COMPATIBILITY_IDEOGRAPHIC_TELEGRAPH_SYMBOL_FOR_HOUR_FOURTEEN:
+            out = "zyuuyonntenn";
+            break;
+        case CJK_COMPATIBILITY_IDEOGRAPHIC_TELEGRAPH_SYMBOL_FOR_HOUR_FIFTEEN:
+            out = "zyuugotenn";
+            break;
+        case CJK_COMPATIBILITY_IDEOGRAPHIC_TELEGRAPH_SYMBOL_FOR_HOUR_SIXTEEN:
+            out = "zyuurokutenn";
+            break;
+        case CJK_COMPATIBILITY_IDEOGRAPHIC_TELEGRAPH_SYMBOL_FOR_HOUR_SEVENTEEN:
+            out = "zyuunanatenn";
+            break;
+        case CJK_COMPATIBILITY_IDEOGRAPHIC_TELEGRAPH_SYMBOL_FOR_HOUR_EIGHTEEN:
+            out = "zyuuhaltutenn";
+            break;
+        case CJK_COMPATIBILITY_IDEOGRAPHIC_TELEGRAPH_SYMBOL_FOR_HOUR_NINETEEN:
+            out = "zyuukyuutenn";
+            break;
+        case CJK_COMPATIBILITY_IDEOGRAPHIC_TELEGRAPH_SYMBOL_FOR_HOUR_TWENTY:
+            out = "nizyuttenn";
+            break;
+        case CJK_COMPATIBILITY_IDEOGRAPHIC_TELEGRAPH_SYMBOL_FOR_HOUR_TWENTY_ONE:
+            out = "nizyuuititenn";
+            break;
+        case CJK_COMPATIBILITY_IDEOGRAPHIC_TELEGRAPH_SYMBOL_FOR_HOUR_TWENTY_TWO:
+            out = "nizyuunitenn";
+            break;
+        case CJK_COMPATIBILITY_IDEOGRAPHIC_TELEGRAPH_SYMBOL_FOR_HOUR_TWENTY_THREE:
+            out = "nizyuusanntenn";
+            break;
+
+        case CJK_COMPATIBILITY_IDEOGRAPHIC_TELEGRAPH_SYMBOL_FOR_HOUR_TWENTY_FOUR:
+            out = "nizyuuyonntenn";
+            break;
         case CJK_COMPATIBILITY_SQUARE_HPA:
             out = "hekitopasukaru";
             break;
@@ -901,6 +977,303 @@ namespace Normalization_to_Nesora {
             out = "heihoumirimeetoru";
             break;
 
+        case CJK_COMPATIBILITY_SQUARE_CM_SQUARED:
+            out = "heihousenntimeetoru";
+            break;
+        case CJK_COMPATIBILITY_SQUARE_M_SQUARED:
+            out = "heihoumeetoru";
+            break;
+        case CJK_COMPATIBILITY_SQUARE_KM_SQUARED:
+            out = "heihoukiromeetoru";
+            break;
+        case CJK_COMPATIBILITY_SQUARE_MM_CUBED:
+            out = "riltupoumirimeetoru";
+            break;
+        case CJK_COMPATIBILITY_SQUARE_CM_CUBED:
+            out = "riltupousenntimeetoru";
+            break;
+        case CJK_COMPATIBILITY_SQUARE_M_CUBED:
+            out = "riltupoumeetoru";
+            break;
+        case CJK_COMPATIBILITY_SQUARE_KM_CUBED:
+            out = "riltupoukiromeetoru";
+            break;
+        case CJK_COMPATIBILITY_SQUARE_M_OVER_S:
+            out = "meetorumaibyou";
+            break;
+        case CJK_COMPATIBILITY_SQUARE_M_OVER_S_SQUARED:
+            out = "meetorumaibyoumaibyou";
+            break;
+        case CJK_COMPATIBILITY_SQUARE_PA:
+            out = "pasukaru";
+            break;
+        case CJK_COMPATIBILITY_SQUARE_KPA:
+            out = "kiropasukaru";
+            break;
+        case CJK_COMPATIBILITY_SQUARE_MPA:
+            out = "megapasukaru";
+            break;
+        case CJK_COMPATIBILITY_SQUARE_GPA:
+            out = "gigapasukaru";
+            break;
+        case CJK_COMPATIBILITY_SQUARE_RAD:
+            out = "raziann";
+            break;
+        case CJK_COMPATIBILITY_SQUARE_RAD_OVER_S:
+            out = "raziannmaibyou";
+            break;
+        case CJK_COMPATIBILITY_SQUARE_RAD_OVER_S_SQUARED:
+            out = "raziannmaibyoumaibyou";
+            break;
+
+        case CJK_COMPATIBILITY_SQUARE_PS:
+            out = "pikobyou";
+            break;
+        case CJK_COMPATIBILITY_SQUARE_NS:
+            out = "nanobyou";
+            break;
+        case CJK_COMPATIBILITY_SQUARE_MU_S:
+            out = "maikurobyou";
+            break;
+        case CJK_COMPATIBILITY_SQUARE_MS:
+            out = "megabyou";
+            break;
+        case CJK_COMPATIBILITY_SQUARE_PV:
+            out = "pikoboruto";
+            break;
+        case CJK_COMPATIBILITY_SQUARE_NV:
+            out = "nanoboruto";
+            break;
+        case CJK_COMPATIBILITY_SQUARE_MU_V:
+            out = "maikuroboruto";
+            break;
+        case CJK_COMPATIBILITY_SQUARE_MV:
+            out = "miriboruto";
+            break;
+        case CJK_COMPATIBILITY_SQUARE_KV:
+            out = "kiroboruto";
+            break;
+        case CJK_COMPATIBILITY_SQUARE_MV_MEGA:
+            out = "megaboruto";
+            break;
+        case CJK_COMPATIBILITY_SQUARE_PW:
+            out = "pikowaltuto";
+            break;
+        case CJK_COMPATIBILITY_SQUARE_NW:
+            out = "nanowaltuto";
+            break;
+        case CJK_COMPATIBILITY_SQUARE_MU_W:
+            out = "maikurowaltuto";
+            break;
+        case CJK_COMPATIBILITY_SQUARE_MW:
+            out = "miriwaltuto";
+            break;
+        case CJK_COMPATIBILITY_SQUARE_KW:
+            out = "kirowaltuto";
+            break;
+        case CJK_COMPATIBILITY_SQUARE_MW_MWGA:
+            out = "megawaltuto";
+            break;
+
+        case CJK_COMPATIBILITY_SQUARE_K_OHM:
+            out = "kirooomu";
+            break;
+        case CJK_COMPATIBILITY_SQUARE_M_OHM:
+            out = "megaoomu";
+            break;
+        case CJK_COMPATIBILITY_SQUARE_AM:
+            out = "gozenn";
+            break;
+        case CJK_COMPATIBILITY_SQUARE_BQ:
+            out = "bekureru";
+            break;
+        case CJK_COMPATIBILITY_SQUARE_CC:
+            out = "riltupousenntimeetoru";
+            break;
+        case CJK_COMPATIBILITY_SQUARE_CD:
+            out = "kanndera";
+            break;
+        case CJK_COMPATIBILITY_SQUARE_C_OVER_KG:
+            out = "kuuronnmaikiroguramu";
+            break;
+        case CJK_COMPATIBILITY_SQUARE_CO:
+            out = "kaisya";
+            break;
+        case CJK_COMPATIBILITY_SQUARE_DB:
+            out = "desiberu";
+            break;
+        case CJK_COMPATIBILITY_SQUARE_GY:
+            out = "gurei";
+            break;
+        case CJK_COMPATIBILITY_SQUARE_HA:
+            out = "hekutaaru";
+            break;
+        case CJK_COMPATIBILITY_SQUARE_HP:
+            out = "bariki";
+            break;
+        case CJK_COMPATIBILITY_SQUARE_IN:
+            out = "innti";
+            break;
+        case CJK_COMPATIBILITY_SQUARE_KK:
+            out = "kabusikigaisya";
+            break;
+        case CJK_COMPATIBILITY_SQUARE_KM_CAPITAL:
+            out = "keeemu";
+            break;
+        case CJK_COMPATIBILITY_SQUARE_KT:
+            out = "noltuto";
+            break;
+
+        case CJK_COMPATIBILITY_SQUARE_LM:
+            out = "ruumenn";
+            break;
+        case CJK_COMPATIBILITY_SQUARE_LN:
+            out = "eruenu";
+            break;
+        case CJK_COMPATIBILITY_SQUARE_LOG:
+            out = "rogu";
+            break;
+        case CJK_COMPATIBILITY_SQUARE_LX:
+            out = "rukusu";
+            break;
+        case CJK_COMPATIBILITY_SQUARE_MB_SMALL:
+            out = "miribaaru";
+            break;
+        case CJK_COMPATIBILITY_SQUARE_MIL:
+            out = "mairu";
+            break;
+        case CJK_COMPATIBILITY_SQUARE_MOL:
+            out = "moru";
+            break;
+        case CJK_COMPATIBILITY_SQUARE_PH:
+            out = "peehaa";
+            break;
+        case CJK_COMPATIBILITY_SQUARE_PM:
+            out = "gogo";
+            break;
+        case CJK_COMPATIBILITY_SQUARE_PPM:
+            out = "paatupaamirionn";
+            break;
+        case CJK_COMPATIBILITY_SQUARE_PR:
+            out = "piiaaru";
+            break;
+        case CJK_COMPATIBILITY_SQUARE_SR:
+            out = "suterazuann";
+            break;
+        case CJK_COMPATIBILITY_SQUARE_SV:
+            out = "siiberuto";
+            break;
+        case CJK_COMPATIBILITY_SQUARE_WB:
+            out = "weebaa";
+            break;
+        case CJK_COMPATIBILITY_SQUARE_V_OVER_M:
+            out = "borutomaimeetoru";
+            break;
+        case CJK_COMPATIBILITY_SQUARE_A_OVER_M:
+            out = "annpeamaimeetoru";
+            break;
+
+        case CJK_COMPATIBILITY_IDEOGRAPHIC_TELEGRAPH_SYMBOL_FOR_DAY_ONE:
+            out = "tuitati";
+            break;
+        case CJK_COMPATIBILITY_IDEOGRAPHIC_TELEGRAPH_SYMBOL_FOR_DAY_TWO:
+            out = "futuka";
+            break;
+        case CJK_COMPATIBILITY_IDEOGRAPHIC_TELEGRAPH_SYMBOL_FOR_DAY_THREE:
+            out = "miltuka";
+            break;
+        case CJK_COMPATIBILITY_IDEOGRAPHIC_TELEGRAPH_SYMBOL_FOR_DAY_FOUR:
+            out = "yoltuka";
+            break;
+        case CJK_COMPATIBILITY_IDEOGRAPHIC_TELEGRAPH_SYMBOL_FOR_DAY_FIVE:
+            out = "ituka";
+            break;
+        case CJK_COMPATIBILITY_IDEOGRAPHIC_TELEGRAPH_SYMBOL_FOR_DAY_SIX:
+            out = "muika";
+            break;
+        case CJK_COMPATIBILITY_IDEOGRAPHIC_TELEGRAPH_SYMBOL_FOR_DAY_SEVEN:
+            out = "nanoka";
+            break;
+        case CJK_COMPATIBILITY_IDEOGRAPHIC_TELEGRAPH_SYMBOL_FOR_DAY_EIGHT:
+            out = "youka";
+            break;
+        case CJK_COMPATIBILITY_IDEOGRAPHIC_TELEGRAPH_SYMBOL_FOR_DAY_NINE:
+            out = "kokonoka";
+            break;
+        case CJK_COMPATIBILITY_IDEOGRAPHIC_TELEGRAPH_SYMBOL_FOR_DAY_TEN:
+            out = "tooka";
+            break;
+        case CJK_COMPATIBILITY_IDEOGRAPHIC_TELEGRAPH_SYMBOL_FOR_DAY_ELEVEN:
+            out = "zyuuitiniti";
+            break;
+        case CJK_COMPATIBILITY_IDEOGRAPHIC_TELEGRAPH_SYMBOL_FOR_DAY_TWELVE:
+            out = "zyuuniniti";
+            break;
+        case CJK_COMPATIBILITY_IDEOGRAPHIC_TELEGRAPH_SYMBOL_FOR_DAY_THIRTEEN:
+            out = "zyuusannniti";
+            break;
+        case CJK_COMPATIBILITY_IDEOGRAPHIC_TELEGRAPH_SYMBOL_FOR_DAY_FOURTEEN:
+            out = "zyuuyonltyka";
+            break;
+        case CJK_COMPATIBILITY_IDEOGRAPHIC_TELEGRAPH_SYMBOL_FOR_DAY_FIFTEEN:
+            out = "zyuugoniti";
+            break;
+        case CJK_COMPATIBILITY_IDEOGRAPHIC_TELEGRAPH_SYMBOL_FOR_DAY_SIXTEEN:
+            out = "zyuurokuniti";
+            break;
+
+        case CJK_COMPATIBILITY_IDEOGRAPHIC_TELEGRAPH_SYMBOL_FOR_DAY_SEVENTEEN:
+            out = "zyuusitiniti";
+            break;
+        case CJK_COMPATIBILITY_IDEOGRAPHIC_TELEGRAPH_SYMBOL_FOR_DAY_EIGHTEEN:
+            out = "zyuuhatiniti";
+            break;
+        case CJK_COMPATIBILITY_IDEOGRAPHIC_TELEGRAPH_SYMBOL_FOR_DAY_NINETEEN:
+            out = "zyuukuniti";
+            break;
+        case CJK_COMPATIBILITY_IDEOGRAPHIC_TELEGRAPH_SYMBOL_FOR_DAY_TWENTY:
+            out = "hatuka";
+            break;
+        case CJK_COMPATIBILITY_IDEOGRAPHIC_TELEGRAPH_SYMBOL_FOR_DAY_TWENTY_ONE:
+            out = "nizyuuitiniti";
+            break;
+        case CJK_COMPATIBILITY_IDEOGRAPHIC_TELEGRAPH_SYMBOL_FOR_DAY_TWENTY_TWO:
+            out = "nizyuuniniti";
+            break;
+        case CJK_COMPATIBILITY_IDEOGRAPHIC_TELEGRAPH_SYMBOL_FOR_DAY_TWENTY_THREE:
+            out = "nizyuusannniti";
+            break;
+        case CJK_COMPATIBILITY_IDEOGRAPHIC_TELEGRAPH_SYMBOL_FOR_DAY_TWENTY_FOUR:
+            out = "nizyuuyoltyka";
+            break;
+        case CJK_COMPATIBILITY_IDEOGRAPHIC_TELEGRAPH_SYMBOL_FOR_DAY_TWENTY_FIVE:
+            out = "nizyuugoniti";
+            break;
+        case CJK_COMPATIBILITY_IDEOGRAPHIC_TELEGRAPH_SYMBOL_FOR_DAY_TWENTY_SIX:
+            out = "nizyuurokuniti";
+            break;
+        case CJK_COMPATIBILITY_IDEOGRAPHIC_TELEGRAPH_SYMBOL_FOR_DAY_TWENTY_SEVEN:
+            out = "nizyuunananiti";
+            break;
+        case CJK_COMPATIBILITY_IDEOGRAPHIC_TELEGRAPH_SYMBOL_FOR_DAY_TWENTY_EIGHT:
+            out = "nizyuuhatiniti";
+            break;
+        case CJK_COMPATIBILITY_IDEOGRAPHIC_TELEGRAPH_SYMBOL_FOR_DAY_TWENTY_NINE:
+            out = "nizyuukuniti";
+            break;
+        case CJK_COMPATIBILITY_IDEOGRAPHIC_TELEGRAPH_SYMBOL_FOR_DAY_THIRTY:
+            out = "sannzyuuniti";
+            break;
+        case CJK_COMPATIBILITY_IDEOGRAPHIC_TELEGRAPH_SYMBOL_FOR_DAY_THIRTY_ONE:
+            out = "sannzyuuitiniti";
+            break;
+        case CJK_COMPATIBILITY_SQUARE_GAL:
+            out = "garu";
+            break;
+
+
+
+
 
 
         default:
@@ -949,4 +1322,234 @@ namespace Normalization_to_Nesora {
         }
         return out;
     }
+
+    std::string number_to_Nesora(const std::string& str) {
+        std::string out;
+
+        out = fraction_to_Nesora(str);
+
+        return out;
+    }
+
+    std::string integer_to_Nesora(const std::string& str) {
+        if (str == "0")return "zero";
+
+        std::string out;
+
+        if (str.front() == '-')out += "mainasu";
+        else if (str.front() == '+')out += "purasu";
+
+        for (size_t i = 0;i < str.length();i++) {
+            int nowketasu = str.size() - i - 1;
+            switch (str[i]) {
+            case '0':
+                break;
+            case '1':
+                if (nowketasu % 4 == 0)
+                    out += "iti";
+                else if (nowketasu % 4 == 1)
+                    out += "zyuu";
+                else if (nowketasu % 4 == 2)
+                    out += "hyaku";
+                else if (nowketasu % 4 == 3)
+                    out += "senn";
+                break;
+            case '2':
+                out += "ni";
+                if (nowketasu % 4 == 1)
+                    out += "zyuu";
+                else if (nowketasu % 4 == 2)
+                    out += "hyaku";
+                else if (nowketasu % 4 == 3)
+                    out += "senn";
+                break;
+            case '3':
+                out += "sann";
+                if (nowketasu % 4 == 1)
+                    out += "zyuu";
+                else if (nowketasu % 4 == 2)
+                    out += "byaku";
+                else if (nowketasu % 4 == 3)
+                    out += "zenn";
+                break;
+            case '4':
+                out += "yonn";
+                if (nowketasu % 4 == 1)
+                    out += "zyuu";
+                else if (nowketasu % 4 == 2)
+                    out += "hyaku";
+                else if (nowketasu % 4 == 3)
+                    out += "senn";
+                break;
+            case '5':
+                out += "go";
+                if (nowketasu % 4 == 1)
+                    out += "zyuu";
+                else if (nowketasu % 4 == 2)
+                    out += "hyaku";
+                else if (nowketasu % 4 == 3)
+                    out += "senn";
+                break;
+            case '6':
+                if (nowketasu % 4 == 0)
+                    out += "roku";
+                if (nowketasu % 4 == 1)
+                    out += "rokuzyuu";
+                else if (nowketasu % 4 == 2)
+                    out += "ro,pyaku";
+                else if (nowketasu % 4 == 3)
+                    out += "rokusenn";
+                break;
+            case '7':
+                out += "nana";
+                if (nowketasu % 4 == 1)
+                    out += "zyuu";
+                else if (nowketasu % 4 == 2)
+                    out += "hyaku";
+                else if (nowketasu % 4 == 3)
+                    out += "senn";
+                break;
+            case '8':
+                if (nowketasu % 4 == 0)
+                    out += "hati";
+                if (nowketasu % 4 == 1)
+                    out += "hatizyuu";
+                else if (nowketasu % 4 == 2)
+                    out += "ha,pyaku";
+                else if (nowketasu % 4 == 3)
+                    out += "ha,senn";
+                break;
+            case '9':
+                out += "kyuu";
+                if (nowketasu % 4 == 1)
+                    out += "zyuu";
+                else if (nowketasu % 4 == 2)
+                    out += "hyaku";
+                else if (nowketasu % 4 == 3)
+                    out += "senn";
+                break;
+            }
+
+            if (nowketasu % 4 == 0) {
+                if (nowketasu / 4 == 1)
+                    out += "mann,";
+                else if (nowketasu / 4 == 2)
+                    out += "oku,";
+                else if (nowketasu / 4 == 3)
+                    out += "tyou,";
+                else if (nowketasu / 4 == 4)
+                    out += "kei,";
+                else if (nowketasu / 4 == 5)
+                    out += "gai,";
+                else if (nowketasu / 4 == 6)
+                    out += "zyo,";
+                else if (nowketasu / 4 == 7)
+                    out += "zyou,";
+                else if (nowketasu / 4 == 8)
+                    out += "kou,";
+                else if (nowketasu / 4 == 9)
+                    out += "kann,";
+                else if (nowketasu / 4 == 10)
+                    out += "sei,";
+                else if (nowketasu / 4 == 11)
+                    out += "sai,";
+                else if (nowketasu / 4 == 12)
+                    out += "goku,";
+                else if (nowketasu / 4 == 13)
+                    out += "gougasya,";
+                else if (nowketasu / 4 == 14)
+                    out += "asougi,";
+                else if (nowketasu / 4 == 15)
+                    out += "nayuta,";
+                else if (nowketasu / 4 == 16)
+                    out += "fukasigi,";
+                else if (nowketasu / 4 == 17)
+                    out += "muryoutaisuu,";
+            }
+        }
+
+        return out;
+    }
+    std::string decimal_to_Nesora(const std::string& str) {
+        std::string out, integer;
+
+        size_t decimal_point = str.find(".");
+        if (decimal_point == std::string::npos) return integer_to_Nesora(str);
+        integer += str.substr(0, decimal_point);
+        out += integer_to_Nesora(integer);
+
+        if (str[decimal_point - 1] == '2')out += "i";
+        if (str[decimal_point - 1] == '5')out += "o";
+
+        out += "tenn";
+        if (str.size() - decimal_point > 2)out += ",";
+
+        for (int i = 0;i < str.size() - decimal_point;i++) {
+            switch (str[i + decimal_point + 1]) {
+            case '0':
+                out += "zero";
+                break;
+            case '1':
+                out += "iti";
+                break;
+            case '2':
+                out += "nii";
+                break;
+            case '3':
+                out += "sann";
+                break;
+            case '4':
+                out += "yonn";
+                break;
+            case '5':
+                out += "goo";
+                break;
+            case '6':
+                out += "roku";
+                break;
+            case '7':
+                out += "nana";
+                break;
+            case '8':
+                out += "hati";
+                break;
+            case '9':
+                out += "kyuu";
+                break;
+            }
+
+        }
+
+        return out;
+    }
+    std::string power_to_Nesora(const std::string& str) {
+        std::string out, mantissa, expoonent;
+
+        size_t power_point = str.find("e");
+        if (power_point == std::string::npos) return decimal_to_Nesora(str);
+        mantissa += str.substr(0, power_point);
+        expoonent += str.substr(power_point + 1);
+
+        out += power_to_Nesora(mantissa);
+        out += "kakeru,zyuuno";
+        out += power_to_Nesora(expoonent);
+        out += "zyou";
+
+        return out;
+    }
+    std::string fraction_to_Nesora(const std::string& str) {
+        std::string out, numerator, denominator;
+
+        size_t line_point = str.find("/");
+        if (line_point == std::string::npos) return power_to_Nesora(str);
+        numerator += str.substr(0, line_point);
+        denominator += str.substr(line_point + 1);
+
+        out += power_to_Nesora(denominator);
+        out += "bunnno,";
+        out += power_to_Nesora(numerator);
+
+        return out;
+    }
+
 }; // namespace ConvertHiragana

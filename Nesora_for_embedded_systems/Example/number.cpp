@@ -1,5 +1,5 @@
 ﻿#include "../Nesora/Nesora_for_embedded_systems.h"
-#include "../Nesora/Number_to_Nesora.hpp"
+#include "../Nesora/Normalization_to_Nesora.h"
 
 // Copyright (c) MucchoSP
 
@@ -40,7 +40,7 @@ inline int NesoraWave(std::string filename, std::vector<nsfloat> wave) {
 	file.close();
 }
 
-int ___main() {
+int main() {
 	// 声の本体となるインスタンスです。
 	// ここに声のデータや台本のデータ、声の生成に使うクラスのインスタンスなんかが入っています。
 	// 詳細は同ディレクトリにあるspeak.cppを参照。
@@ -52,8 +52,8 @@ int ___main() {
 	// ひらがなを使う場合、shift-jisを使ってください。
 	// shift-jisが使えない場合は、Encoder_for_Nesora.hpp 内のｴｲﾔｰできる関数を使う(非推奨)かローマ字で入力してください。
 	// 詳細は同ディレクトリにあるsing.cppを参照。
-	MVFF.textread(number_to_Nesora((float)0.0056).c_str());
-
+	//MVFF.textread(("<s17>," + Normalization_to_Nesora::number_to_Nesora("234567890123456789012345678901234567890123456789012345678901234567890")).c_str());
+	MVFF.textread(("<s10>," + Normalization_to_Nesora::number_to_Nesora("1.2345e9/-2.0e8") + ".").c_str());
 
 	std::vector<nsfloat> wave = MVFF.textreading();
 	NesoraWave("NesoraWave.wav", wave);

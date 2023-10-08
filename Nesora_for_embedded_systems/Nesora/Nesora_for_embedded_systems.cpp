@@ -2441,6 +2441,14 @@ int makeVoiseFromFile::setDefaulFurin() {
 
 	decodeVoise0(data);
 
+	textread("<s10>aiueokasatanahamayarawagazadabapa");
+	std::vector<nsfloat> test = textreading();
+
+	nsfloat max = (nsfloat)0.0;
+	for (auto t : test)
+		max = (abs(t) > max) ? abs(t) : max;
+	maxVolume = max;
+
 	return 0;
 }
 
@@ -2450,6 +2458,14 @@ int makeVoiseFromFile::setShion() {
 	unsigned char data[68] = { 0x44,0x41,0x54,0x41,0x62,0x66,0x88,0x01,0x56,0x46,0x46,0x41,0x54,0x04,0xA4,0x06,0x6F,0x0F,0x9A,0x14,0x56,0x46,0x46,0x49,0x93,0x02,0xC0,0x0D,0x6F,0x0F,0x9A,0x14,0x56,0x46,0x46,0x55,0x93,0x02,0xE0,0x06,0x6F,0x0F,0x9A,0x14,0x56,0x46,0x46,0x45,0x10,0x03,0x90,0x0B,0x6F,0x0F,0x9A,0x14,0x56,0x46,0x46,0x4F,0x10,0x03,0x75,0x05,0x6F,0x0F,0x9A,0x14 };
 
 	decodeVoise0(data);
+
+	textread("<s10>aiueokasatanahamayarawagazadabapa");
+	std::vector<nsfloat> test = textreading();
+
+	nsfloat max = (nsfloat)0.0;
+	for (auto t : test)
+		max = (abs(t) > max) ? abs(t) : max;
+	maxVolume = max;
 
 	return 0;
 }
@@ -2946,13 +2962,13 @@ std::vector<nsfloat> makeVoiseFromFile::textreading() {
 		if (fin)break;
 	}
 
-	nsfloat max = 0;
-	for (auto w : out)
-		if (max < abs(w))max = w;
-
-	max = (nsfloat)1.0 / max;
-	for (size_t i = 0;i < out.size();i++)
+	nsfloat max = (nsfloat)1.0 / maxVolume;
+	for (size_t i = 0;i < out.size();i++) {
 		out[i] *= max;
+		if (out[i] > (nsfloat)1.0) out[i] = (nsfloat)1.0;
+		else if (out[i] < (nsfloat)-1.0) out[i] = (nsfloat)-1.0;
+	}
+
 	return out;
 }
 

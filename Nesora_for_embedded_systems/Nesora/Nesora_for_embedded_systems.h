@@ -583,6 +583,8 @@ private:
 
 	time_t nextplaytime = 0;
 
+	nsfloat maxVolume;
+
 	//音諳合成関数群
 
 	void textreadingHanboin(std::vector<nsfloat>& out, NSCHAR nowmoji, nsfloat pitch, int targettime);
