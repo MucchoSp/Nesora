@@ -150,7 +150,6 @@
     <ClCompile Include="Nesora_for_embedded_systems\Nesora\Normalization_to_Nesora.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Nesora_for_embedded_systems\Nesora\Encoder_for_Nesora.hpp" />
     <ClInclude Include="Nesora_for_embedded_systems\Nesora\Nesora_for_embedded_systems.h" />
     <ClInclude Include="Nesora_for_embedded_systems\Nesora\Normalization_to_Nesora.h" />
   </ItemGroup>

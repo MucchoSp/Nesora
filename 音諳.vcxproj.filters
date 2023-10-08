@@ -29,9 +29,6 @@
     <ClInclude Include="Nesora_for_embedded_systems\Nesora\Nesora_for_embedded_systems.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="Nesora_for_embedded_systems\Nesora\Encoder_for_Nesora.hpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="Nesora_for_embedded_systems\Nesora\Normalization_to_Nesora.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
