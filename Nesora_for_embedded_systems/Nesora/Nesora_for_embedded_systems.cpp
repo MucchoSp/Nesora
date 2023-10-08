@@ -1088,6 +1088,7 @@ NSSTRINGDATA nsc::nsromajiencode(const unsigned char* str) {
 							out[n - 1].c += 4;
 					}
 					else if (str[i] == 't' or str[i] == 'T') {
+						/*
 						alltime -= out[n - 1].ctime;
 						out[n - 1].ctime = GEMINATE_CONSONANT_SPEED;
 						out[n - 1].time = alltime + out[n - 1].ctime;
@@ -1097,7 +1098,16 @@ NSSTRINGDATA nsc::nsromajiencode(const unsigned char* str) {
 						alltime += GEMINATE_CONSONANT_SPEED + nowmoji.ctime;
 						nowmoji.time = alltime;
 						out[n] = nowmoji;
-						n++;i++;
+						n++;i++;//*/
+						//*
+						nowmoji.c = NSspc;
+						nowmoji.time = alltime;
+						nowmoji.ctime = ctime;
+						nowmoji.pitch = pitch;
+						out[n] = nowmoji;
+						n++;alltime += ctime;
+						i++;
+						//*/
 						if (str[i] == 's' or str[i] == 'S')
 							i++;
 					}

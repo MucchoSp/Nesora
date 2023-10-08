@@ -449,6 +449,73 @@ namespace Normalization_to_Nesora {
             break;
 
 
+
+        case CJK_SYMBOLS_AND_PUNCTUATION_LEFT_ANGLE_BRACKET:
+            out = "yamakaltyko";
+            break;
+        case CJK_SYMBOLS_AND_PUNCTUATION_RIGHT_ANGLE_BRACKET:
+            out = "yamakaltukotozi";
+            break;
+        case CJK_SYMBOLS_AND_PUNCTUATION_LEFT_DOUBLE_ANGLE_BRACKET:
+            out = "nizyuuyamakaltuko";
+            break;
+        case CJK_SYMBOLS_AND_PUNCTUATION_RIGHT_DOUBLE_ANGLE_BRACKET:
+            out = "nizyuuyamakaltukotozi";
+            break;
+        case CJK_SYMBOLS_AND_PUNCTUATION_LEFT_CORNER_BRACKET:
+            out = "kagikaltuko";
+            break;
+        case CJK_SYMBOLS_AND_PUNCTUATION_RIGHT_CORNER_BRACKET:
+            out = "kagikaltukotozi";
+            break;
+        case CJK_SYMBOLS_AND_PUNCTUATION_LEFT_WHITE_CORNER_BRACKET:
+            out = "nizyuukagikaltuko";
+            break;
+        case CJK_SYMBOLS_AND_PUNCTUATION_RIGHT_WHITE_CORNER_BRACKET:
+            out = "nizyuukagikaltukotozi";
+            break;
+
+        case CJK_SYMBOLS_AND_PUNCTUATION_LEFT_BLACK_LENTICULAR_BRACKET:
+            out = "sumitukikaltuko";
+            break;
+        case CJK_SYMBOLS_AND_PUNCTUATION_RIGHT_BLACK_LENTICULAR_BRACKET:
+            out = "sumitukikaltukotozi";
+            break;
+        case CJK_SYMBOLS_AND_PUNCTUATION_POSTAL_MARK:
+            out = "yuubinnkigou";
+            break;
+        case CJK_SYMBOLS_AND_PUNCTUATION_GETA_MARK:
+            out = "getakigou";
+            break;
+        case CJK_SYMBOLS_AND_PUNCTUATION_LEFT_TORTOISE_SHELL_BRACKET:
+            out = "kiltukoukaltuko";
+            break;
+        case CJK_SYMBOLS_AND_PUNCTUATION_RIGHT_TORTOISE_SHELL_BRACKET:
+            out = "kiltukoukaltukotozi";
+            break;
+        case CJK_SYMBOLS_AND_PUNCTUATION_LEFT_WHITE_LENTICULAR_BRACKET:
+            out = "nizyuusumitukikaltuko";
+            break;
+        case CJK_SYMBOLS_AND_PUNCTUATION_RIGHT_WHITE_LENTICULAR_BRACKET:
+            out = "nizyuusumitukikaltukotozi";
+            break;
+        case CJK_SYMBOLS_AND_PUNCTUATION_LEFT_WHITE_TORTOISE_SHELL_BRACKET:
+            out = "nizyuukiltukoukaltuko";
+            break;
+        case CJK_SYMBOLS_AND_PUNCTUATION_RIGHT_WHITE_TORTOISE_SHELL_BRACKET:
+            out = "nizyuukiltukoukaltukotozi";
+            break;
+        case CJK_SYMBOLS_AND_PUNCTUATION_LEFT_WHITE_SQUARE_BRACKET:
+            out = "nizyuukakukaltuko";
+            break;
+        case CJK_SYMBOLS_AND_PUNCTUATION_RIGHT_WHITE_SQUARE_BRACKET:
+            out = "nizyuukakukaltukotozi";
+            break;
+        case CJK_SYMBOLS_AND_PUNCTUATION_WAVE_DASH:
+            out = "-";
+            break;
+
+
         case JPMONTH_1:
             out = "itigatu";
             break;
@@ -910,13 +977,13 @@ namespace Normalization_to_Nesora {
             out = "kirokarorii";
             break;
         case CJK_COMPATIBILITY_SQUARE_PF:
-            out = "pikohwaraddo";
+            out = "pikohwaraltudo";
             break;
         case CJK_COMPATIBILITY_SQUARE_NF:
-            out = "nanohwaraddo";
+            out = "nanohwaraltudo";
             break;
         case CJK_COMPATIBILITY_SQUARE_MU_F:
-            out = "maikurohwaraddo";
+            out = "maikurohwaraltudo";
             break;
         case CJK_COMPATIBILITY_SQUARE_MU_G:
             out = "maikuroguramu";
@@ -1323,6 +1390,8 @@ namespace Normalization_to_Nesora {
         return out;
     }
 
+
+
     std::string number_to_Nesora(const std::string& str) {
         std::string out;
 
@@ -1476,11 +1545,14 @@ namespace Normalization_to_Nesora {
         size_t decimal_point = str.find(".");
         if (decimal_point == std::string::npos) return integer_to_Nesora(str);
         integer += str.substr(0, decimal_point);
-        out += integer_to_Nesora(integer);
+        if (integer == "0")
+            out += "rei";
+        else {
+            out += integer_to_Nesora(integer);
 
-        if (str[decimal_point - 1] == '2')out += "i";
-        if (str[decimal_point - 1] == '5')out += "o";
-
+            if (str[decimal_point - 1] == '2')out += "i";
+            if (str[decimal_point - 1] == '5')out += "o";
+        }
         out += "tenn";
         if (str.size() - decimal_point > 2)out += ",";
 
