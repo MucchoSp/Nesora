@@ -54,7 +54,7 @@ int main() {
 	//MVFF.textread(("<s17>," + Normalization_to_Nesora::number_to_Nesora("234567890123456789012345678901234567890123456789012345678901234567890")).c_str());
 	//MVFF.textread(("<s15>," + Normalization_to_Nesora::number_to_Nesora("1.2345e9/-2.0e8") + ".").c_str());
 	MVFF.textread(Normalization_to_Nesora::hiraganaToRomaji(u8"<s12>," + Normalization_to_Nesora::number_to_Nesora("0.1") + u8"㎌" + Normalization_to_Nesora::number_to_Nesora("50") + u8"㌾のコンデンサ.").c_str());
-
+	
 	std::vector<nsfloat> wave = MVFF.textreading();
 	NesoraWave("NesoraWave.wav", wave);
 

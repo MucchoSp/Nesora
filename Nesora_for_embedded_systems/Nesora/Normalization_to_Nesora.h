@@ -137,18 +137,18 @@ namespace Normalization_to_Nesora {
 	constexpr uint32_t CJK_SYMBOLS_AND_PUNCTUATION_RIGHT_WHITE_SQUARE_BRACKET			= 0xE3809B;//〛
 	constexpr uint32_t CJK_SYMBOLS_AND_PUNCTUATION_WAVE_DASH							= 0xE3809C;//〜
 
-	constexpr uint32_t JPMONTH_1 = 0xE38B80;//㋀
-	constexpr uint32_t JPMONTH_2 = 0xE38B81;//㋁
-	constexpr uint32_t JPMONTH_3 = 0xE38B82;//㋂
-	constexpr uint32_t JPMONTH_4 = 0xE38B83;//㋃
-	constexpr uint32_t JPMONTH_5 = 0xE38B84;//㋄
-	constexpr uint32_t JPMONTH_6 = 0xE38B85;//㋅
-	constexpr uint32_t JPMONTH_7 = 0xE38B86;//㋆
-	constexpr uint32_t JPMONTH_8 = 0xE38B87;//㋇
-	constexpr uint32_t JPMONTH_9 = 0xE38B88;//㋈
-	constexpr uint32_t JPMONTH_10 = 0xE38B89;//㋉
-	constexpr uint32_t JPMONTH_11 = 0xE38B8A;//㋊
-	constexpr uint32_t JPMONTH_12 = 0xE38B8B;//㋋
+	constexpr uint32_t IDEOGRAPHIC_TELEGRAPH_SYMBOL_FOR_JANUARY		= 0xE38B80;//㋀
+	constexpr uint32_t IDEOGRAPHIC_TELEGRAPH_SYMBOL_FOR_FEBRUARY	= 0xE38B81;//㋁
+	constexpr uint32_t IDEOGRAPHIC_TELEGRAPH_SYMBOL_FOR_MARCH		= 0xE38B82;//㋂
+	constexpr uint32_t IDEOGRAPHIC_TELEGRAPH_SYMBOL_FOR_APRIL		= 0xE38B83;//㋃
+	constexpr uint32_t IDEOGRAPHIC_TELEGRAPH_SYMBOL_FOR_MAY			= 0xE38B84;//㋄
+	constexpr uint32_t IDEOGRAPHIC_TELEGRAPH_SYMBOL_FOR_JUNE		= 0xE38B85;//㋅
+	constexpr uint32_t IDEOGRAPHIC_TELEGRAPH_SYMBOL_FOR_JULY		= 0xE38B86;//㋆
+	constexpr uint32_t IDEOGRAPHIC_TELEGRAPH_SYMBOL_FOR_AUGUST		= 0xE38B87;//㋇
+	constexpr uint32_t IDEOGRAPHIC_TELEGRAPH_SYMBOL_FOR_SEPTEMBER	= 0xE38B88;//㋈
+	constexpr uint32_t IDEOGRAPHIC_TELEGRAPH_SYMBOL_FOR_OCTOBER		= 0xE38B89;//㋉
+	constexpr uint32_t IDEOGRAPHIC_TELEGRAPH_SYMBOL_FOR_NOVEMBER	= 0xE38B8A;//㋊
+	constexpr uint32_t IDEOGRAPHIC_TELEGRAPH_SYMBOL_FOR_DECEMBER	= 0xE38B8B;//㋋
 
 	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_APAATO		= 0xE38C80;//㌀
 	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_ARUHUA		= 0xE38C81;//㌁
@@ -422,6 +422,75 @@ namespace Normalization_to_Nesora {
 	constexpr uint32_t CJK_COMPATIBILITY_IDEOGRAPHIC_TELEGRAPH_SYMBOL_FOR_DAY_THIRTY_ONE	= 0xE38FBE;//㏾
 	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_GAL											= 0xE38FBF;//㏿
 
+	/*//TODO:やれ
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_ = 0xE38C90;//㈠	㈡	㈢	㈣	㈤	㈥	㈦	㈧	㈨	㈩	㈪	㈫	㈬	㈭	㈮	㈯
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_ = 0xE38C91;//㈠	㈡	㈢	㈣	㈤	㈥	㈦	㈧	㈨	㈩	㈪	㈫	㈬	㈭	㈮	㈯
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_ = 0xE38C92;//㈠	㈡	㈢	㈣	㈤	㈥	㈦	㈧	㈨	㈩	㈪	㈫	㈬	㈭	㈮	㈯
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_ = 0xE38C93;//㈠	㈡	㈢	㈣	㈤	㈥	㈦	㈧	㈨	㈩	㈪	㈫	㈬	㈭	㈮	㈯
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_ = 0xE38C94;//㈠	㈡	㈢	㈣	㈤	㈥	㈦	㈧	㈨	㈩	㈪	㈫	㈬	㈭	㈮	㈯
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_ = 0xE38C95;//㈠	㈡	㈢	㈣	㈤	㈥	㈦	㈧	㈨	㈩	㈪	㈫	㈬	㈭	㈮	㈯
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_ = 0xE38C96;//㈠	㈡	㈢	㈣	㈤	㈥	㈦	㈧	㈨	㈩	㈪	㈫	㈬	㈭	㈮	㈯
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_ = 0xE38C97;//㈠	㈡	㈢	㈣	㈤	㈥	㈦	㈧	㈨	㈩	㈪	㈫	㈬	㈭	㈮	㈯
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_ = 0xE38C98;//㈠	㈡	㈢	㈣	㈤	㈥	㈦	㈧	㈨	㈩	㈪	㈫	㈬	㈭	㈮	㈯
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_ = 0xE38C99;//㈠	㈡	㈢	㈣	㈤	㈥	㈦	㈧	㈨	㈩	㈪	㈫	㈬	㈭	㈮	㈯
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_ = 0xE38C9A;//㈠	㈡	㈢	㈣	㈤	㈥	㈦	㈧	㈨	㈩	㈪	㈫	㈬	㈭	㈮	㈯
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_ = 0xE38C9B;//㈠	㈡	㈢	㈣	㈤	㈥	㈦	㈧	㈨	㈩	㈪	㈫	㈬	㈭	㈮	㈯
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_ = 0xE38C9C;//㈠	㈡	㈢	㈣	㈤	㈥	㈦	㈧	㈨	㈩	㈪	㈫	㈬	㈭	㈮	㈯
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_ = 0xE38C9D;//㈠	㈡	㈢	㈣	㈤	㈥	㈦	㈧	㈨	㈩	㈪	㈫	㈬	㈭	㈮	㈯
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_ = 0xE38C9E;//㈠	㈡	㈢	㈣	㈤	㈥	㈦	㈧	㈨	㈩	㈪	㈫	㈬	㈭	㈮	㈯
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_ = 0xE38C9F;//㈠	㈡	㈢	㈣	㈤	㈥	㈦	㈧	㈨	㈩	㈪	㈫	㈬	㈭	㈮	㈯
+
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_ = 0xE38C90;//㈰	㈱	㈲	㈳	㈴	㈵	㈶	㈷	㈸	㈹	㈺	㈻	㈼	㈽	㈾	㈿
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_ = 0xE38C91;//㈰	㈱	㈲	㈳	㈴	㈵	㈶	㈷	㈸	㈹	㈺	㈻	㈼	㈽	㈾	㈿
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_ = 0xE38C92;//㈰	㈱	㈲	㈳	㈴	㈵	㈶	㈷	㈸	㈹	㈺	㈻	㈼	㈽	㈾	㈿
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_ = 0xE38C93;//㈰	㈱	㈲	㈳	㈴	㈵	㈶	㈷	㈸	㈹	㈺	㈻	㈼	㈽	㈾	㈿
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_ = 0xE38C94;//㈰	㈱	㈲	㈳	㈴	㈵	㈶	㈷	㈸	㈹	㈺	㈻	㈼	㈽	㈾	㈿
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_ = 0xE38C95;//㈰	㈱	㈲	㈳	㈴	㈵	㈶	㈷	㈸	㈹	㈺	㈻	㈼	㈽	㈾	㈿
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_ = 0xE38C96;//㈰	㈱	㈲	㈳	㈴	㈵	㈶	㈷	㈸	㈹	㈺	㈻	㈼	㈽	㈾	㈿
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_ = 0xE38C97;//㈰	㈱	㈲	㈳	㈴	㈵	㈶	㈷	㈸	㈹	㈺	㈻	㈼	㈽	㈾	㈿
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_ = 0xE38C98;//㈰	㈱	㈲	㈳	㈴	㈵	㈶	㈷	㈸	㈹	㈺	㈻	㈼	㈽	㈾	㈿
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_ = 0xE38C99;//㈰	㈱	㈲	㈳	㈴	㈵	㈶	㈷	㈸	㈹	㈺	㈻	㈼	㈽	㈾	㈿
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_ = 0xE38C9A;//㈰	㈱	㈲	㈳	㈴	㈵	㈶	㈷	㈸	㈹	㈺	㈻	㈼	㈽	㈾	㈿
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_ = 0xE38C9B;//㈰	㈱	㈲	㈳	㈴	㈵	㈶	㈷	㈸	㈹	㈺	㈻	㈼	㈽	㈾	㈿
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_ = 0xE38C9C;//㈰	㈱	㈲	㈳	㈴	㈵	㈶	㈷	㈸	㈹	㈺	㈻	㈼	㈽	㈾	㈿
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_ = 0xE38C9D;//㈰	㈱	㈲	㈳	㈴	㈵	㈶	㈷	㈸	㈹	㈺	㈻	㈼	㈽	㈾	㈿
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_ = 0xE38C9E;//㈰	㈱	㈲	㈳	㈴	㈵	㈶	㈷	㈸	㈹	㈺	㈻	㈼	㈽	㈾	㈿
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_ = 0xE38C9F;//㈰	㈱	㈲	㈳	㈴	㈵	㈶	㈷	㈸	㈹	㈺	㈻	㈼	㈽	㈾	㈿
+
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_ = 0xE38C90;//㉀	㉁	㉂	㉃	㉄	㉅	㉆	㉇	㉈	㉉	㉊	㉋	㉌	㉍	㉎	㉏
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_ = 0xE38C91;//㉀	㉁	㉂	㉃	㉄	㉅	㉆	㉇	㉈	㉉	㉊	㉋	㉌	㉍	㉎	㉏
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_ = 0xE38C92;//㉀	㉁	㉂	㉃	㉄	㉅	㉆	㉇	㉈	㉉	㉊	㉋	㉌	㉍	㉎	㉏
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_ = 0xE38C93;//㉀	㉁	㉂	㉃	㉄	㉅	㉆	㉇	㉈	㉉	㉊	㉋	㉌	㉍	㉎	㉏
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_ = 0xE38C94;//㉀	㉁	㉂	㉃	㉄	㉅	㉆	㉇	㉈	㉉	㉊	㉋	㉌	㉍	㉎	㉏
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_ = 0xE38C95;//㉀	㉁	㉂	㉃	㉄	㉅	㉆	㉇	㉈	㉉	㉊	㉋	㉌	㉍	㉎	㉏
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_ = 0xE38C96;//㉀	㉁	㉂	㉃	㉄	㉅	㉆	㉇	㉈	㉉	㉊	㉋	㉌	㉍	㉎	㉏
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_ = 0xE38C97;//㉀	㉁	㉂	㉃	㉄	㉅	㉆	㉇	㉈	㉉	㉊	㉋	㉌	㉍	㉎	㉏
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_ = 0xE38C98;//㉀	㉁	㉂	㉃	㉄	㉅	㉆	㉇	㉈	㉉	㉊	㉋	㉌	㉍	㉎	㉏
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_ = 0xE38C99;//㉀	㉁	㉂	㉃	㉄	㉅	㉆	㉇	㉈	㉉	㉊	㉋	㉌	㉍	㉎	㉏
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_ = 0xE38C9A;//㉀	㉁	㉂	㉃	㉄	㉅	㉆	㉇	㉈	㉉	㉊	㉋	㉌	㉍	㉎	㉏
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_ = 0xE38C9B;//㉀	㉁	㉂	㉃	㉄	㉅	㉆	㉇	㉈	㉉	㉊	㉋	㉌	㉍	㉎	㉏
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_ = 0xE38C9C;//㉀	㉁	㉂	㉃	㉄	㉅	㉆	㉇	㉈	㉉	㉊	㉋	㉌	㉍	㉎	㉏
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_ = 0xE38C9D;//㉀	㉁	㉂	㉃	㉄	㉅	㉆	㉇	㉈	㉉	㉊	㉋	㉌	㉍	㉎	㉏
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_ = 0xE38C9E;//㉀	㉁	㉂	㉃	㉄	㉅	㉆	㉇	㉈	㉉	㉊	㉋	㉌	㉍	㉎	㉏
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_ = 0xE38C9F;//㉀	㉁	㉂	㉃	㉄	㉅	㉆	㉇	㉈	㉉	㉊	㉋	㉌	㉍	㉎	㉏
+
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_ = 0xE38C90;//㉐	㉑	㉒	㉓	㉔	㉕	㉖	㉗	㉘	㉙	㉚	㉛	㉜	㉝	㉞	㉟
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_ = 0xE38C91;//㉐	㉑	㉒	㉓	㉔	㉕	㉖	㉗	㉘	㉙	㉚	㉛	㉜	㉝	㉞	㉟
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_ = 0xE38C92;//㉐	㉑	㉒	㉓	㉔	㉕	㉖	㉗	㉘	㉙	㉚	㉛	㉜	㉝	㉞	㉟
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_ = 0xE38C93;//㉐	㉑	㉒	㉓	㉔	㉕	㉖	㉗	㉘	㉙	㉚	㉛	㉜	㉝	㉞	㉟
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_ = 0xE38C94;//㉐	㉑	㉒	㉓	㉔	㉕	㉖	㉗	㉘	㉙	㉚	㉛	㉜	㉝	㉞	㉟
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_ = 0xE38C95;//㉐	㉑	㉒	㉓	㉔	㉕	㉖	㉗	㉘	㉙	㉚	㉛	㉜	㉝	㉞	㉟
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_ = 0xE38C96;//㉐	㉑	㉒	㉓	㉔	㉕	㉖	㉗	㉘	㉙	㉚	㉛	㉜	㉝	㉞	㉟
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_ = 0xE38C97;//㉐	㉑	㉒	㉓	㉔	㉕	㉖	㉗	㉘	㉙	㉚	㉛	㉜	㉝	㉞	㉟
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_ = 0xE38C98;//㉐	㉑	㉒	㉓	㉔	㉕	㉖	㉗	㉘	㉙	㉚	㉛	㉜	㉝	㉞	㉟
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_ = 0xE38C99;//㉐	㉑	㉒	㉓	㉔	㉕	㉖	㉗	㉘	㉙	㉚	㉛	㉜	㉝	㉞	㉟
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_ = 0xE38C9A;//㉐	㉑	㉒	㉓	㉔	㉕	㉖	㉗	㉘	㉙	㉚	㉛	㉜	㉝	㉞	㉟
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_ = 0xE38C9B;//㉐	㉑	㉒	㉓	㉔	㉕	㉖	㉗	㉘	㉙	㉚	㉛	㉜	㉝	㉞	㉟
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_ = 0xE38C9C;//㉐	㉑	㉒	㉓	㉔	㉕	㉖	㉗	㉘	㉙	㉚	㉛	㉜	㉝	㉞	㉟
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_ = 0xE38C9D;//㉐	㉑	㉒	㉓	㉔	㉕	㉖	㉗	㉘	㉙	㉚	㉛	㉜	㉝	㉞	㉟
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_ = 0xE38C9E;//㉐	㉑	㉒	㉓	㉔	㉕	㉖	㉗	㉘	㉙	㉚	㉛	㉜	㉝	㉞	㉟
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_ = 0xE38C9F;//㉐	㉑	㉒	㉓	㉔	㉕	㉖	㉗	㉘	㉙	㉚	㉛	㉜	㉝	㉞	㉟
+	//*/
 
 
 

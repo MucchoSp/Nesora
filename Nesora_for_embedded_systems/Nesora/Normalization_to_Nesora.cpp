@@ -516,40 +516,40 @@ namespace Normalization_to_Nesora {
             break;
 
 
-        case JPMONTH_1:
+        case IDEOGRAPHIC_TELEGRAPH_SYMBOL_FOR_JANUARY:
             out = "itigatu";
             break;
-        case JPMONTH_2:
+        case IDEOGRAPHIC_TELEGRAPH_SYMBOL_FOR_FEBRUARY:
             out = "nigatu";
             break;
-        case JPMONTH_3:
+        case IDEOGRAPHIC_TELEGRAPH_SYMBOL_FOR_MARCH:
             out = "sanngatu";
             break;
-        case JPMONTH_4:
+        case IDEOGRAPHIC_TELEGRAPH_SYMBOL_FOR_APRIL:
             out = "sigatu";
             break;
-        case JPMONTH_5:
+        case IDEOGRAPHIC_TELEGRAPH_SYMBOL_FOR_MAY:
             out = "gogatu";
             break;
-        case JPMONTH_6:
+        case IDEOGRAPHIC_TELEGRAPH_SYMBOL_FOR_JUNE:
             out = "rokugatu";
             break;
-        case JPMONTH_7:
+        case IDEOGRAPHIC_TELEGRAPH_SYMBOL_FOR_JULY:
             out = "sitigatu";
             break;
-        case JPMONTH_8:
+        case IDEOGRAPHIC_TELEGRAPH_SYMBOL_FOR_AUGUST:
             out = "hatigatu";
             break;
-        case JPMONTH_9:
+        case IDEOGRAPHIC_TELEGRAPH_SYMBOL_FOR_SEPTEMBER:
             out = "kugatu";
             break;
-        case JPMONTH_10:
+        case IDEOGRAPHIC_TELEGRAPH_SYMBOL_FOR_OCTOBER:
             out = "zyuugatu";
             break;
-        case JPMONTH_11:
+        case IDEOGRAPHIC_TELEGRAPH_SYMBOL_FOR_NOVEMBER:
             out = "zyuuitigatu";
             break;
-        case JPMONTH_12:
+        case IDEOGRAPHIC_TELEGRAPH_SYMBOL_FOR_DECEMBER:
             out = "zyuunigatu";
             break;
 
@@ -558,7 +558,7 @@ namespace Normalization_to_Nesora {
             out = "apaato";
             break;
         case CJK_COMPATIBILITY_SQUARE_ARUHUA:
-            out = "aruhwa";
+            out = "aruha";
             break;
         case CJK_COMPATIBILITY_SQUARE_ANPEA:
             out = "annpea";
@@ -708,7 +708,7 @@ namespace Normalization_to_Nesora {
             out = "biru";
             break;
         case CJK_COMPATIBILITY_SQUARE_HUARADDO:
-            out = "hwaraltudo";
+            out = "haraltudo";
             break;
         case CJK_COMPATIBILITY_SQUARE_HUIITO:
             out = "hwiito";
@@ -977,13 +977,13 @@ namespace Normalization_to_Nesora {
             out = "kirokarorii";
             break;
         case CJK_COMPATIBILITY_SQUARE_PF:
-            out = "pikohwaraltudo";
+            out = "pikoharaltudo";
             break;
         case CJK_COMPATIBILITY_SQUARE_NF:
-            out = "nanohwaraltudo";
+            out = "nanoharaltudo";
             break;
         case CJK_COMPATIBILITY_SQUARE_MU_F:
-            out = "maikurohwaraltudo";
+            out = "maikuroharaltudo";
             break;
         case CJK_COMPATIBILITY_SQUARE_MU_G:
             out = "maikuroguramu";
