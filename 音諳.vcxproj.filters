@@ -18,7 +18,7 @@
     <ClCompile Include="Nesora_for_embedded_systems\Nesora\Nesora_for_embedded_systems.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="Nesora_for_embedded_systems\Example\number.cpp">
+    <ClCompile Include="Nesora_for_embedded_systems\Example\example.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="Nesora_for_embedded_systems\Nesora\Normalization_to_Nesora.cpp">

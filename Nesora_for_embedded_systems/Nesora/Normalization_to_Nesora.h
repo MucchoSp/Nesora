@@ -1,6 +1,6 @@
 ﻿#pragma once
 
-//Copyright Ⓒ 2023 Gabuniku(https://github.com/Gabuniku) & MucchoSP
+//Copyright (c) 2023 Gabuniku(https://github.com/Gabuniku) & MucchoSP
 
 #ifndef NORMALIZATION_TO_NESORA_H
 #define NORMALIZATION_TO_NESORA_H
@@ -490,6 +490,143 @@ namespace Normalization_to_Nesora {
 	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_ = 0xE38C9D;//㉐	㉑	㉒	㉓	㉔	㉕	㉖	㉗	㉘	㉙	㉚	㉛	㉜	㉝	㉞	㉟
 	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_ = 0xE38C9E;//㉐	㉑	㉒	㉓	㉔	㉕	㉖	㉗	㉘	㉙	㉚	㉛	㉜	㉝	㉞	㉟
 	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_ = 0xE38C9F;//㉐	㉑	㉒	㉓	㉔	㉕	㉖	㉗	㉘	㉙	㉚	㉛	㉜	㉝	㉞	㉟
+
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_	= 0xE38C90;//㊀	㊁	㊂	㊃	㊄	㊅	㊆	㊇	㊈	㊉	㊊	㊋	㊌	㊍	㊎	㊏
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_	= 0xE38C91;//㊀	㊁	㊂	㊃	㊄	㊅	㊆	㊇	㊈	㊉	㊊	㊋	㊌	㊍	㊎	㊏
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_	= 0xE38C92;//㊀	㊁	㊂	㊃	㊄	㊅	㊆	㊇	㊈	㊉	㊊	㊋	㊌	㊍	㊎	㊏
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_	= 0xE38C93;//㊀	㊁	㊂	㊃	㊄	㊅	㊆	㊇	㊈	㊉	㊊	㊋	㊌	㊍	㊎	㊏
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_	= 0xE38C94;//㊀	㊁	㊂	㊃	㊄	㊅	㊆	㊇	㊈	㊉	㊊	㊋	㊌	㊍	㊎	㊏
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_	= 0xE38C95;//㊀	㊁	㊂	㊃	㊄	㊅	㊆	㊇	㊈	㊉	㊊	㊋	㊌	㊍	㊎	㊏
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_	= 0xE38C96;//㊀	㊁	㊂	㊃	㊄	㊅	㊆	㊇	㊈	㊉	㊊	㊋	㊌	㊍	㊎	㊏
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_	= 0xE38C97;//㊀	㊁	㊂	㊃	㊄	㊅	㊆	㊇	㊈	㊉	㊊	㊋	㊌	㊍	㊎	㊏
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_	= 0xE38C98;//㊀	㊁	㊂	㊃	㊄	㊅	㊆	㊇	㊈	㊉	㊊	㊋	㊌	㊍	㊎	㊏
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_	= 0xE38C99;//㊀	㊁	㊂	㊃	㊄	㊅	㊆	㊇	㊈	㊉	㊊	㊋	㊌	㊍	㊎	㊏
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_	= 0xE38C9A;//㊀	㊁	㊂	㊃	㊄	㊅	㊆	㊇	㊈	㊉	㊊	㊋	㊌	㊍	㊎	㊏
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_	= 0xE38C9B;//㊀	㊁	㊂	㊃	㊄	㊅	㊆	㊇	㊈	㊉	㊊	㊋	㊌	㊍	㊎	㊏
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_	= 0xE38C9C;//㊀	㊁	㊂	㊃	㊄	㊅	㊆	㊇	㊈	㊉	㊊	㊋	㊌	㊍	㊎	㊏
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_	= 0xE38C9D;//㊀	㊁	㊂	㊃	㊄	㊅	㊆	㊇	㊈	㊉	㊊	㊋	㊌	㊍	㊎	㊏
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_	= 0xE38C9E;//㊀	㊁	㊂	㊃	㊄	㊅	㊆	㊇	㊈	㊉	㊊	㊋	㊌	㊍	㊎	㊏
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_	= 0xE38C9F;//㊀	㊁	㊂	㊃	㊄	㊅	㊆	㊇	㊈	㊉	㊊	㊋	㊌	㊍	㊎	㊏
+
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_	= 0xE38C90;//㊐	㊑	㊒	㊓	㊔	㊕	㊖	㊗	㊘	㊙	㊚	㊛	㊜	㊝	㊞	㊟
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_	= 0xE38C91;//㊐	㊑	㊒	㊓	㊔	㊕	㊖	㊗	㊘	㊙	㊚	㊛	㊜	㊝	㊞	㊟
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_	= 0xE38C92;//㊐	㊑	㊒	㊓	㊔	㊕	㊖	㊗	㊘	㊙	㊚	㊛	㊜	㊝	㊞	㊟
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_	= 0xE38C93;//㊐	㊑	㊒	㊓	㊔	㊕	㊖	㊗	㊘	㊙	㊚	㊛	㊜	㊝	㊞	㊟
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_	= 0xE38C94;//㊐	㊑	㊒	㊓	㊔	㊕	㊖	㊗	㊘	㊙	㊚	㊛	㊜	㊝	㊞	㊟
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_	= 0xE38C95;//㊐	㊑	㊒	㊓	㊔	㊕	㊖	㊗	㊘	㊙	㊚	㊛	㊜	㊝	㊞	㊟
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_	= 0xE38C96;//㊐	㊑	㊒	㊓	㊔	㊕	㊖	㊗	㊘	㊙	㊚	㊛	㊜	㊝	㊞	㊟
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_	= 0xE38C97;//㊐	㊑	㊒	㊓	㊔	㊕	㊖	㊗	㊘	㊙	㊚	㊛	㊜	㊝	㊞	㊟
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_	= 0xE38C98;//㊐	㊑	㊒	㊓	㊔	㊕	㊖	㊗	㊘	㊙	㊚	㊛	㊜	㊝	㊞	㊟
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_	= 0xE38C99;//㊐	㊑	㊒	㊓	㊔	㊕	㊖	㊗	㊘	㊙	㊚	㊛	㊜	㊝	㊞	㊟
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_	= 0xE38C9A;//㊐	㊑	㊒	㊓	㊔	㊕	㊖	㊗	㊘	㊙	㊚	㊛	㊜	㊝	㊞	㊟
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_	= 0xE38C9B;//㊐	㊑	㊒	㊓	㊔	㊕	㊖	㊗	㊘	㊙	㊚	㊛	㊜	㊝	㊞	㊟
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_	= 0xE38C9C;//㊐	㊑	㊒	㊓	㊔	㊕	㊖	㊗	㊘	㊙	㊚	㊛	㊜	㊝	㊞	㊟
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_	= 0xE38C9D;//㊐	㊑	㊒	㊓	㊔	㊕	㊖	㊗	㊘	㊙	㊚	㊛	㊜	㊝	㊞	㊟
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_	= 0xE38C9E;//㊐	㊑	㊒	㊓	㊔	㊕	㊖	㊗	㊘	㊙	㊚	㊛	㊜	㊝	㊞	㊟
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_	= 0xE38C9F;//㊐	㊑	㊒	㊓	㊔	㊕	㊖	㊗	㊘	㊙	㊚	㊛	㊜	㊝	㊞	㊟
+
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_	= 0xE38C90;//㊠	㊡	㊢	㊣	㊤	㊥	㊦	㊧	㊨	㊩	㊪	㊫	㊬	㊭	㊮	㊯
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_	= 0xE38C91;//㊠	㊡	㊢	㊣	㊤	㊥	㊦	㊧	㊨	㊩	㊪	㊫	㊬	㊭	㊮	㊯
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_	= 0xE38C92;//㊠	㊡	㊢	㊣	㊤	㊥	㊦	㊧	㊨	㊩	㊪	㊫	㊬	㊭	㊮	㊯
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_	= 0xE38C93;//㊠	㊡	㊢	㊣	㊤	㊥	㊦	㊧	㊨	㊩	㊪	㊫	㊬	㊭	㊮	㊯
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_	= 0xE38C94;//㊠	㊡	㊢	㊣	㊤	㊥	㊦	㊧	㊨	㊩	㊪	㊫	㊬	㊭	㊮	㊯
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_	= 0xE38C95;//㊠	㊡	㊢	㊣	㊤	㊥	㊦	㊧	㊨	㊩	㊪	㊫	㊬	㊭	㊮	㊯
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_	= 0xE38C96;//㊠	㊡	㊢	㊣	㊤	㊥	㊦	㊧	㊨	㊩	㊪	㊫	㊬	㊭	㊮	㊯
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_	= 0xE38C97;//㊠	㊡	㊢	㊣	㊤	㊥	㊦	㊧	㊨	㊩	㊪	㊫	㊬	㊭	㊮	㊯
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_	= 0xE38C98;//㊠	㊡	㊢	㊣	㊤	㊥	㊦	㊧	㊨	㊩	㊪	㊫	㊬	㊭	㊮	㊯
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_	= 0xE38C99;//㊠	㊡	㊢	㊣	㊤	㊥	㊦	㊧	㊨	㊩	㊪	㊫	㊬	㊭	㊮	㊯
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_	= 0xE38C9A;//㊠	㊡	㊢	㊣	㊤	㊥	㊦	㊧	㊨	㊩	㊪	㊫	㊬	㊭	㊮	㊯
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_	= 0xE38C9B;//㊠	㊡	㊢	㊣	㊤	㊥	㊦	㊧	㊨	㊩	㊪	㊫	㊬	㊭	㊮	㊯
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_	= 0xE38C9C;//㊠	㊡	㊢	㊣	㊤	㊥	㊦	㊧	㊨	㊩	㊪	㊫	㊬	㊭	㊮	㊯
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_	= 0xE38C9D;//㊠	㊡	㊢	㊣	㊤	㊥	㊦	㊧	㊨	㊩	㊪	㊫	㊬	㊭	㊮	㊯
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_	= 0xE38C9E;//㊠	㊡	㊢	㊣	㊤	㊥	㊦	㊧	㊨	㊩	㊪	㊫	㊬	㊭	㊮	㊯
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_	= 0xE38C9F;//㊠	㊡	㊢	㊣	㊤	㊥	㊦	㊧	㊨	㊩	㊪	㊫	㊬	㊭	㊮	㊯
+
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_	= 0xE38C90;//㊰	㊱	㊲	㊳	㊴	㊵	㊶	㊷	㊸	㊹	㊺	㊻	㊼	㊽	㊾	㊿
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_	= 0xE38C91;//㊰	㊱	㊲	㊳	㊴	㊵	㊶	㊷	㊸	㊹	㊺	㊻	㊼	㊽	㊾	㊿
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_	= 0xE38C92;//㊰	㊱	㊲	㊳	㊴	㊵	㊶	㊷	㊸	㊹	㊺	㊻	㊼	㊽	㊾	㊿
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_	= 0xE38C93;//㊰	㊱	㊲	㊳	㊴	㊵	㊶	㊷	㊸	㊹	㊺	㊻	㊼	㊽	㊾	㊿
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_	= 0xE38C94;//㊰	㊱	㊲	㊳	㊴	㊵	㊶	㊷	㊸	㊹	㊺	㊻	㊼	㊽	㊾	㊿
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_	= 0xE38C95;//㊰	㊱	㊲	㊳	㊴	㊵	㊶	㊷	㊸	㊹	㊺	㊻	㊼	㊽	㊾	㊿
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_	= 0xE38C96;//㊰	㊱	㊲	㊳	㊴	㊵	㊶	㊷	㊸	㊹	㊺	㊻	㊼	㊽	㊾	㊿
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_	= 0xE38C97;//㊰	㊱	㊲	㊳	㊴	㊵	㊶	㊷	㊸	㊹	㊺	㊻	㊼	㊽	㊾	㊿
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_	= 0xE38C98;//㊰	㊱	㊲	㊳	㊴	㊵	㊶	㊷	㊸	㊹	㊺	㊻	㊼	㊽	㊾	㊿
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_	= 0xE38C99;//㊰	㊱	㊲	㊳	㊴	㊵	㊶	㊷	㊸	㊹	㊺	㊻	㊼	㊽	㊾	㊿
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_	= 0xE38C9A;//㊰	㊱	㊲	㊳	㊴	㊵	㊶	㊷	㊸	㊹	㊺	㊻	㊼	㊽	㊾	㊿
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_	= 0xE38C9B;//㊰	㊱	㊲	㊳	㊴	㊵	㊶	㊷	㊸	㊹	㊺	㊻	㊼	㊽	㊾	㊿
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_	= 0xE38C9C;//㊰	㊱	㊲	㊳	㊴	㊵	㊶	㊷	㊸	㊹	㊺	㊻	㊼	㊽	㊾	㊿
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_	= 0xE38C9D;//㊰	㊱	㊲	㊳	㊴	㊵	㊶	㊷	㊸	㊹	㊺	㊻	㊼	㊽	㊾	㊿
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_	= 0xE38C9E;//㊰	㊱	㊲	㊳	㊴	㊵	㊶	㊷	㊸	㊹	㊺	㊻	㊼	㊽	㊾	㊿
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_	= 0xE38C9F;//㊰	㊱	㊲	㊳	㊴	㊵	㊶	㊷	㊸	㊹	㊺	㊻	㊼	㊽	㊾	㊿
+
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_	= 0xE38C90;//㋀	㋁	㋂	㋃	㋄	㋅	㋆	㋇	㋈	㋉	㋊	㋋	㋌	㋍	㋎	㋏
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_	= 0xE38C91;//㋀	㋁	㋂	㋃	㋄	㋅	㋆	㋇	㋈	㋉	㋊	㋋	㋌	㋍	㋎	㋏
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_	= 0xE38C92;//㋀	㋁	㋂	㋃	㋄	㋅	㋆	㋇	㋈	㋉	㋊	㋋	㋌	㋍	㋎	㋏
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_	= 0xE38C93;//㋀	㋁	㋂	㋃	㋄	㋅	㋆	㋇	㋈	㋉	㋊	㋋	㋌	㋍	㋎	㋏
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_	= 0xE38C94;//㋀	㋁	㋂	㋃	㋄	㋅	㋆	㋇	㋈	㋉	㋊	㋋	㋌	㋍	㋎	㋏
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_	= 0xE38C95;//㋀	㋁	㋂	㋃	㋄	㋅	㋆	㋇	㋈	㋉	㋊	㋋	㋌	㋍	㋎	㋏
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_	= 0xE38C96;//㋀	㋁	㋂	㋃	㋄	㋅	㋆	㋇	㋈	㋉	㋊	㋋	㋌	㋍	㋎	㋏
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_	= 0xE38C97;//㋀	㋁	㋂	㋃	㋄	㋅	㋆	㋇	㋈	㋉	㋊	㋋	㋌	㋍	㋎	㋏
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_	= 0xE38C98;//㋀	㋁	㋂	㋃	㋄	㋅	㋆	㋇	㋈	㋉	㋊	㋋	㋌	㋍	㋎	㋏
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_	= 0xE38C99;//㋀	㋁	㋂	㋃	㋄	㋅	㋆	㋇	㋈	㋉	㋊	㋋	㋌	㋍	㋎	㋏
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_	= 0xE38C9A;//㋀	㋁	㋂	㋃	㋄	㋅	㋆	㋇	㋈	㋉	㋊	㋋	㋌	㋍	㋎	㋏
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_	= 0xE38C9B;//㋀	㋁	㋂	㋃	㋄	㋅	㋆	㋇	㋈	㋉	㋊	㋋	㋌	㋍	㋎	㋏
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_	= 0xE38C9C;//㋀	㋁	㋂	㋃	㋄	㋅	㋆	㋇	㋈	㋉	㋊	㋋	㋌	㋍	㋎	㋏
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_	= 0xE38C9D;//㋀	㋁	㋂	㋃	㋄	㋅	㋆	㋇	㋈	㋉	㋊	㋋	㋌	㋍	㋎	㋏
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_	= 0xE38C9E;//㋀	㋁	㋂	㋃	㋄	㋅	㋆	㋇	㋈	㋉	㋊	㋋	㋌	㋍	㋎	㋏
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_	= 0xE38C9F;//㋀	㋁	㋂	㋃	㋄	㋅	㋆	㋇	㋈	㋉	㋊	㋋	㋌	㋍	㋎	㋏
+
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_	= 0xE38C90;//㋐	㋑	㋒	㋓	㋔	㋕	㋖	㋗	㋘	㋙	㋚	㋛	㋜	㋝	㋞	㋟
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_	= 0xE38C91;//㋐	㋑	㋒	㋓	㋔	㋕	㋖	㋗	㋘	㋙	㋚	㋛	㋜	㋝	㋞	㋟
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_	= 0xE38C92;//㋐	㋑	㋒	㋓	㋔	㋕	㋖	㋗	㋘	㋙	㋚	㋛	㋜	㋝	㋞	㋟
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_	= 0xE38C93;//㋐	㋑	㋒	㋓	㋔	㋕	㋖	㋗	㋘	㋙	㋚	㋛	㋜	㋝	㋞	㋟
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_	= 0xE38C94;//㋐	㋑	㋒	㋓	㋔	㋕	㋖	㋗	㋘	㋙	㋚	㋛	㋜	㋝	㋞	㋟
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_	= 0xE38C95;//㋐	㋑	㋒	㋓	㋔	㋕	㋖	㋗	㋘	㋙	㋚	㋛	㋜	㋝	㋞	㋟
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_	= 0xE38C96;//㋐	㋑	㋒	㋓	㋔	㋕	㋖	㋗	㋘	㋙	㋚	㋛	㋜	㋝	㋞	㋟
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_	= 0xE38C97;//㋐	㋑	㋒	㋓	㋔	㋕	㋖	㋗	㋘	㋙	㋚	㋛	㋜	㋝	㋞	㋟
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_	= 0xE38C98;//㋐	㋑	㋒	㋓	㋔	㋕	㋖	㋗	㋘	㋙	㋚	㋛	㋜	㋝	㋞	㋟
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_	= 0xE38C99;//㋐	㋑	㋒	㋓	㋔	㋕	㋖	㋗	㋘	㋙	㋚	㋛	㋜	㋝	㋞	㋟
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_	= 0xE38C9A;//㋐	㋑	㋒	㋓	㋔	㋕	㋖	㋗	㋘	㋙	㋚	㋛	㋜	㋝	㋞	㋟
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_	= 0xE38C9B;//㋐	㋑	㋒	㋓	㋔	㋕	㋖	㋗	㋘	㋙	㋚	㋛	㋜	㋝	㋞	㋟
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_	= 0xE38C9C;//㋐	㋑	㋒	㋓	㋔	㋕	㋖	㋗	㋘	㋙	㋚	㋛	㋜	㋝	㋞	㋟
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_	= 0xE38C9D;//㋐	㋑	㋒	㋓	㋔	㋕	㋖	㋗	㋘	㋙	㋚	㋛	㋜	㋝	㋞	㋟
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_	= 0xE38C9E;//㋐	㋑	㋒	㋓	㋔	㋕	㋖	㋗	㋘	㋙	㋚	㋛	㋜	㋝	㋞	㋟
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_	= 0xE38C9F;//㋐	㋑	㋒	㋓	㋔	㋕	㋖	㋗	㋘	㋙	㋚	㋛	㋜	㋝	㋞	㋟
+
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_	= 0xE38C90;//㋠	㋡	㋢	㋣	㋤	㋥	㋦	㋧	㋨	㋩	㋪	㋫	㋬	㋭	㋮	㋯
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_	= 0xE38C91;//㋠	㋡	㋢	㋣	㋤	㋥	㋦	㋧	㋨	㋩	㋪	㋫	㋬	㋭	㋮	㋯
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_	= 0xE38C92;//㋠	㋡	㋢	㋣	㋤	㋥	㋦	㋧	㋨	㋩	㋪	㋫	㋬	㋭	㋮	㋯
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_	= 0xE38C93;//㋠	㋡	㋢	㋣	㋤	㋥	㋦	㋧	㋨	㋩	㋪	㋫	㋬	㋭	㋮	㋯
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_	= 0xE38C94;//㋠	㋡	㋢	㋣	㋤	㋥	㋦	㋧	㋨	㋩	㋪	㋫	㋬	㋭	㋮	㋯
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_	= 0xE38C95;//㋠	㋡	㋢	㋣	㋤	㋥	㋦	㋧	㋨	㋩	㋪	㋫	㋬	㋭	㋮	㋯
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_	= 0xE38C96;//㋠	㋡	㋢	㋣	㋤	㋥	㋦	㋧	㋨	㋩	㋪	㋫	㋬	㋭	㋮	㋯
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_	= 0xE38C97;//㋠	㋡	㋢	㋣	㋤	㋥	㋦	㋧	㋨	㋩	㋪	㋫	㋬	㋭	㋮	㋯
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_	= 0xE38C98;//㋠	㋡	㋢	㋣	㋤	㋥	㋦	㋧	㋨	㋩	㋪	㋫	㋬	㋭	㋮	㋯
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_	= 0xE38C99;//㋠	㋡	㋢	㋣	㋤	㋥	㋦	㋧	㋨	㋩	㋪	㋫	㋬	㋭	㋮	㋯
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_	= 0xE38C9A;//㋠	㋡	㋢	㋣	㋤	㋥	㋦	㋧	㋨	㋩	㋪	㋫	㋬	㋭	㋮	㋯
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_	= 0xE38C9B;//㋠	㋡	㋢	㋣	㋤	㋥	㋦	㋧	㋨	㋩	㋪	㋫	㋬	㋭	㋮	㋯
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_	= 0xE38C9C;//㋠	㋡	㋢	㋣	㋤	㋥	㋦	㋧	㋨	㋩	㋪	㋫	㋬	㋭	㋮	㋯
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_	= 0xE38C9D;//㋠	㋡	㋢	㋣	㋤	㋥	㋦	㋧	㋨	㋩	㋪	㋫	㋬	㋭	㋮	㋯
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_	= 0xE38C9E;//㋠	㋡	㋢	㋣	㋤	㋥	㋦	㋧	㋨	㋩	㋪	㋫	㋬	㋭	㋮	㋯
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_	= 0xE38C9F;//㋠	㋡	㋢	㋣	㋤	㋥	㋦	㋧	㋨	㋩	㋪	㋫	㋬	㋭	㋮	㋯
+
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_	= 0xE38C90;//㋰	㋱	㋲	㋳	㋴	㋵	㋶	㋷	㋸	㋹	㋺	㋻	㋼	㋽	㋾	㋿
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_	= 0xE38C91;//㋰	㋱	㋲	㋳	㋴	㋵	㋶	㋷	㋸	㋹	㋺	㋻	㋼	㋽	㋾	㋿
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_	= 0xE38C92;//㋰	㋱	㋲	㋳	㋴	㋵	㋶	㋷	㋸	㋹	㋺	㋻	㋼	㋽	㋾	㋿
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_	= 0xE38C93;//㋰	㋱	㋲	㋳	㋴	㋵	㋶	㋷	㋸	㋹	㋺	㋻	㋼	㋽	㋾	㋿
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_	= 0xE38C94;//㋰	㋱	㋲	㋳	㋴	㋵	㋶	㋷	㋸	㋹	㋺	㋻	㋼	㋽	㋾	㋿
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_	= 0xE38C95;//㋰	㋱	㋲	㋳	㋴	㋵	㋶	㋷	㋸	㋹	㋺	㋻	㋼	㋽	㋾	㋿
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_	= 0xE38C96;//㋰	㋱	㋲	㋳	㋴	㋵	㋶	㋷	㋸	㋹	㋺	㋻	㋼	㋽	㋾	㋿
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_	= 0xE38C97;//㋰	㋱	㋲	㋳	㋴	㋵	㋶	㋷	㋸	㋹	㋺	㋻	㋼	㋽	㋾	㋿
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_	= 0xE38C98;//㋰	㋱	㋲	㋳	㋴	㋵	㋶	㋷	㋸	㋹	㋺	㋻	㋼	㋽	㋾	㋿
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_	= 0xE38C99;//㋰	㋱	㋲	㋳	㋴	㋵	㋶	㋷	㋸	㋹	㋺	㋻	㋼	㋽	㋾	㋿
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_	= 0xE38C9A;//㋰	㋱	㋲	㋳	㋴	㋵	㋶	㋷	㋸	㋹	㋺	㋻	㋼	㋽	㋾	㋿
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_	= 0xE38C9B;//㋰	㋱	㋲	㋳	㋴	㋵	㋶	㋷	㋸	㋹	㋺	㋻	㋼	㋽	㋾	㋿
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_	= 0xE38C9C;//㋰	㋱	㋲	㋳	㋴	㋵	㋶	㋷	㋸	㋹	㋺	㋻	㋼	㋽	㋾	㋿
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_	= 0xE38C9D;//㋰	㋱	㋲	㋳	㋴	㋵	㋶	㋷	㋸	㋹	㋺	㋻	㋼	㋽	㋾	㋿
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_	= 0xE38C9E;//㋰	㋱	㋲	㋳	㋴	㋵	㋶	㋷	㋸	㋹	㋺	㋻	㋼	㋽	㋾	㋿
+	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_	= 0xE38C9F;//㋰	㋱	㋲	㋳	㋴	㋵	㋶	㋷	㋸	㋹	㋺	㋻	㋼	㋽	㋾	㋿
+
 	//*/
 
 
@@ -529,6 +666,7 @@ namespace Normalization_to_Nesora {
 	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_	= 0xE38C9E;//
 	constexpr uint32_t CJK_COMPATIBILITY_SQUARE_	= 0xE38C9F;//
 
+	囲みCJK文字・月
 U+322x	㈠	㈡	㈢	㈣	㈤	㈥	㈦	㈧	㈨	㈩	㈪	㈫	㈬	㈭	㈮	㈯
 U+323x	㈰	㈱	㈲	㈳	㈴	㈵	㈶	㈷	㈸	㈹	㈺	㈻	㈼	㈽	㈾	㈿
 U+324x	㉀	㉁	㉂	㉃	㉄	㉅	㉆	㉇	㉈	㉉	㉊	㉋	㉌	㉍	㉎	㉏

@@ -1,5 +1,5 @@
 ﻿
-//Copyright Ⓒ 2023 Gabuniku(https://github.com/Gabuniku) & MucchoSP
+//Copyright (c) 2023 Gabuniku(https://github.com/Gabuniku) & MucchoSP
 
 #include <cstdint>
 #include "Normalization_to_Nesora.h"
@@ -1500,39 +1500,39 @@ namespace Normalization_to_Nesora {
             }
 
             if (nowketasu % 4 == 0) {
-                if (nowketasu / 4 == 1)
+                if (nowketasu * 0.25 == 1)
                     out += "mann,";
-                else if (nowketasu / 4 == 2)
+                else if (nowketasu * 0.25 == 2)
                     out += "oku,";
-                else if (nowketasu / 4 == 3)
+                else if (nowketasu * 0.25 == 3)
                     out += "tyou,";
-                else if (nowketasu / 4 == 4)
+                else if (nowketasu * 0.25 == 4)
                     out += "kei,";
-                else if (nowketasu / 4 == 5)
+                else if (nowketasu * 0.25 == 5)
                     out += "gai,";
-                else if (nowketasu / 4 == 6)
+                else if (nowketasu * 0.25 == 6)
                     out += "zyo,";
-                else if (nowketasu / 4 == 7)
+                else if (nowketasu * 0.25 == 7)
                     out += "zyou,";
-                else if (nowketasu / 4 == 8)
+                else if (nowketasu * 0.25 == 8)
                     out += "kou,";
-                else if (nowketasu / 4 == 9)
+                else if (nowketasu * 0.25 == 9)
                     out += "kann,";
-                else if (nowketasu / 4 == 10)
+                else if (nowketasu * 0.25 == 10)
                     out += "sei,";
-                else if (nowketasu / 4 == 11)
+                else if (nowketasu * 0.25 == 11)
                     out += "sai,";
-                else if (nowketasu / 4 == 12)
+                else if (nowketasu * 0.25 == 12)
                     out += "goku,";
-                else if (nowketasu / 4 == 13)
+                else if (nowketasu * 0.25 == 13)
                     out += "gougasya,";
-                else if (nowketasu / 4 == 14)
+                else if (nowketasu * 0.25 == 14)
                     out += "asougi,";
-                else if (nowketasu / 4 == 15)
+                else if (nowketasu * 0.25 == 15)
                     out += "nayuta,";
-                else if (nowketasu / 4 == 16)
+                else if (nowketasu * 0.25 == 16)
                     out += "fukasigi,";
-                else if (nowketasu / 4 == 17)
+                else if (nowketasu * 0.25 == 17)
                     out += "muryoutaisuu,";
             }
         }
