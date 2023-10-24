@@ -9,12 +9,14 @@
 #include <cmath>
 #include <vector>
 #include <algorithm>
-#include <iostream>
+#include <stdint.h>
 
 
 //音諳で使う浮動小数点数型の定義
 //「doubleやlong doubleを使って音諳の計算精度をよくしてやるぜ!!」ってやりたい奴はここを変えれば一発です。
 using nsfloat = float;
+using nsint = int_fast32_t;
+using nsuint = uint_fast32_t;
 
 namespace Nesora {
 
@@ -442,16 +444,18 @@ namespace Nesora {
 
 
 
-	constexpr int SMPL = 44100;										//サンプリング周波数
-	constexpr nsfloat SMPL_INV = 1.0 / 44100.0;						//サンプリング周波数
-	constexpr int TRANSTIME = 5;									//?
-	constexpr int MAXFREQ = 20000;									//最大周波数
-	constexpr nsfloat DB = 1.0;										//wavファイルの上限、下限
-	constexpr int MAXTEXTS = 65536;									//最大文字列
+	constexpr nsint SMPL = 44100;										//サンプリング周波数
+	constexpr nsint SMPL_HALF = SMPL / 2;										//サンプリング周波数
+	constexpr nsint SMPL_QUAR = SMPL / 4;										//サンプリング周波数
+	constexpr nsfloat SMPL_INV = (nsfloat)1.0 / (nsfloat)SMPL;						//サンプリング周波数
+	constexpr nsint TRANSTIME = 5;									//?
+	constexpr nsint MAXFREQ = 20000;									//最大周波数
+	constexpr nsfloat DB = (nsfloat)1.0;										//wavファイルの上限、下限
+	constexpr nsint MAXTEXTS = 65536;									//最大文字列
 
-	constexpr int BIT = 8;											//wavファイル作成用
-	constexpr int FILTERWIDTH = 1000;								//フィルターの幅(フォルマント周波数からどの範囲までを通すか)
-	constexpr nsfloat FILTERWIDTH_INV = (nsfloat)(1.0 / FILTERWIDTH);
+	constexpr nsint BIT = 8;											//wavファイル作成用
+	constexpr nsint FILTERWIDTH = 1000;								//フィルターの幅(フォルマント周波数からどの範囲までを通すか)
+	constexpr nsfloat FILTERWIDTH_INV = (nsfloat)1.0 / (nsfloat)FILTERWIDTH;
 
 	//処理なし
 	constexpr void unprocessed() {}
@@ -460,53 +464,54 @@ namespace Nesora {
 
 	//constexpr GEMINATE_CONSONANT_SPEED	2							//「っ」の長さ
 	//constexpr GEMINATE_CONSONANT_TMAG		1.5							//「っ」のあとの長さの倍率
-	constexpr int MAXSHIONSPEED = 4410 / 2;								//子音の長さ
-	constexpr int MAXBYOUONSPEED = 2200;							//拗音の前の母音の長さ
-	constexpr int MAXYOUONSPEED = 2200;								//拗音の長さ
-	constexpr int SEMIVOWELSPEED = 882;								//声の後半の変化するところの長さ
-	constexpr int PLOSIVESPEED = 220 * 2;								//破裂音の長さ
+	constexpr nsint MAXSHIONSPEED = 4410 / 2;								//子音の長さ
+	constexpr nsfloat MAXSHIONSPEED_INV = (nsfloat)1 / (nsfloat)MAXSHIONSPEED;								//子音の長さ
+	constexpr nsint MAXBYOUONSPEED = 2200;							//拗音の前の母音の長さ
+	constexpr nsint MAXYOUONSPEED = 2200;								//拗音の長さ
+	constexpr nsint SEMIVOWELSPEED = 882;								//声の後半の変化するところの長さ
+	constexpr nsfloat SEMIVOWELSPEED_INV = (nsfloat)1 / (nsfloat)SEMIVOWELSPEED;								//声の後半の変化するところの長さ
+	constexpr nsint PLOSIVESPEED = 220 * 2;								//破裂音の長さ
 	constexpr nsfloat PLOSIVEPOWER = 1.0;							//破裂音の強さ
-	constexpr int NASALSPEED = 331 * 2;									//鼻音の長さ
-	constexpr int TAPSPEED = 331 * 2;									//はじき音の長さ
-	constexpr int FRICATIVENOISESCOPE = 50;							//摩擦音の雑音の範囲
+	constexpr nsint NASALSPEED = 331 * 2;									//鼻音の長さ
+	constexpr nsint TAPSPEED = 331 * 2;									//はじき音の長さ
+	constexpr nsint FRICATIVENOISESCOPE = 50;							//摩擦音の雑音の範囲
 	constexpr nsfloat FRICATIVENOISEACC = 200;						//摩擦音の雑音の精度
 	constexpr nsfloat FRICATIVEPOWER = 1.0;							//摩殺音の強さ
-	constexpr int CTIME = 4410;										//特定の長さの音を切り取るときの前後の余白
+	constexpr nsint CTIME = 4410;										//特定の長さの音を切り取るときの前後の余白
 
 	//constexpr SPACE			  0xd3								//空白
 	//constexpr SPARETIME					441000					//予備時間
-	constexpr int CHANGETIMEMAGN = (0.01 * SMPL);					//時間の比率
+	constexpr nsint CHANGETIMEMAGN = (nsint)(0.01 * SMPL);					//時間の比率
 
 	struct FriKILLive {
 		std::vector<nsfloat> Hz, s;
 		size_t size;
 	};
 
+	void hipassFilter(const std::vector<nsfloat>& input, std::vector<nsfloat>& out, nsfloat freq, nsfloat q);				//ハイパスフィルター
+	void lowpassFilter(const std::vector<nsfloat>& input, std::vector<nsfloat>& out, nsfloat freq, nsfloat q);				//ローパスフィルター
+	void notchpassFilter(const std::vector<nsfloat>& input, std::vector<nsfloat>& out, nsfloat freq, nsfloat bw);			//ノッチパスフィルター
 
 	class mainMakeVoiseF {
 	public:
 
-		int makeSinWave(int num, const std::vector<nsfloat>& Hz, const std::vector<nsfloat>& s, std::vector<nsfloat>& out, nsfloat a = 0.0, bool doformant = true);	//リストから合成されたsin波を生成
-		int makeSinha(nsfloat Hz, nsfloat s, std::vector<nsfloat>& out);													//単純なsin波を生成
+		void makeSinWave(nsint num, const std::vector<nsfloat>& Hz, const std::vector<nsfloat>& s, std::vector<nsfloat>& out, nsint a = 0, bool doformant = true);	//リストから合成されたsin波を生成
+		void makeSinha(nsfloat Hz, nsfloat s, std::vector<nsfloat>& out);													//単純なsin波を生成
 
-		int makeHarmonicOvertone(nsfloat bf);																			//基本倍音設定
-		int setFormants(nsfloat F1, nsfloat F2, nsfloat F3, nsfloat F4);													//フォルマントリストに周波数を設定
-		int makeFilter();																								//基本倍音の大きさを自動生成
-		int makeSinWaveFromClass(std::vector<nsfloat>& out, nsfloat a = 0.0);												//クラス内のパラメータからsin波を合成
+		void makeHarmonicOvertone(nsfloat bf);																			//基本倍音設定
+		void setFormants(nsfloat F1, nsfloat F2, nsfloat F3, nsfloat F4);													//フォルマントリストに周波数を設定
+		void makeFilter();																								//基本倍音の大きさを自動生成
+		void makeSinWaveFromClass(std::vector<nsfloat>& out, nsint a = 0);												//クラス内のパラメータからsin波を合成
 
-		nsfloat makeMomentSinWave(int num, const std::vector<nsfloat>& Hz, const std::vector<nsfloat>& s, int gets);												//特定の時間の周波数を取得
-		nsfloat makeMomentSinWaveFromClass(int t);																		//クラス内のパラメータから特定の時間の周波数を取得
+		nsfloat makeMomentSinWave(nsint num, const std::vector<nsfloat>& Hz, const std::vector<nsfloat>& s, nsint gets);												//特定の時間の周波数を取得
+		nsfloat makeMomentSinWaveFromClass(nsint t);																		//クラス内のパラメータから特定の時間の周波数を取得
 
 
-		int hipassFilter(std::vector<nsfloat> input, std::vector<nsfloat>& out, nsfloat samplerate, nsfloat freq, nsfloat q);				//ハイパスフィルター
-		int lowpassFilter(std::vector<nsfloat> input, std::vector<nsfloat>& out, nsfloat samplerate, nsfloat freq, nsfloat q);				//ローパスフィルター
-		int notchpassFilter(std::vector<nsfloat> input, std::vector<nsfloat>& out, nsfloat samplerate, nsfloat freq, nsfloat bw);			//ノッチパスフィルター
-
-		int getstate(int state);																						//現在のmainMakeVoiseF.cppの状態を取得する。
-		int setSoftness(nsfloat sn);																						//softness変数を変更
+		nsint getstate(nsint state);																						//現在のmainMakeVoiseF.cppの状態を取得する。
+		void setSoftness(nsfloat sn);																						//softness変数を変更
 	private:
 
-		int fsize = 4, hosize = 0;																						//フォルマントの数、倍音の数
+		nsint hosize = 0;																						//フォルマントの数、倍音の数
 		std::vector<nsfloat> formants = { 0.0,0.0,0.0,0.0 }, harmonicOvertones = { 0.0 }, harmonictoneFilters = { 0.0 };	//データ配列
 		nsfloat bf = 0;																									//基底周波数
 		nsfloat softness = 0;																							//柔らかさ
@@ -517,36 +522,32 @@ namespace Nesora {
 	class makeVoiseFromFile {
 	public:
 
-		int setDefaulFurin();																							//音諳 風鈴を使う
-		int setShion();																									//音諳 詞音を使う
+		void setDefaulFurin();																							//音諳 風鈴を使う
+		void setShion();																									//音諳 詞音を使う
 
 		//新
-		int textread(const char* text);																					//音諳書式で書かれた文章を読み込み
+		void textread(const char* text);																					//音諳書式で書かれた文章を読み込み
 		std::vector<nsfloat> textreading();																				//textreadで読み込んだ文章を読み上げ
 
-		int loadFromChar(char* data);																					//文字列からデータを読み込み
+		void loadFromChar(char* data);																					//文字列からデータを読み込み
 
 		nsfloat getPrivatebf();																							//データ保管庫から基音データを読み込む
-		nsfloat getPrivatebFormant(int b, int f);																		//データ保管庫からフォルマントデータを読み込む
+		nsfloat getPrivatebFormant(nsint b, nsint f);																		//データ保管庫からフォルマントデータを読み込む
 
-		int decodeVoise0(unsigned char* data);																					//零号機のデータを読み込む
-		int decodeVoise2(unsigned char* data);																					//零号機のデータを読み込む
+		nsint decodeVoise0(unsigned char* data);																					//零号機のデータを読み込む
+		nsint decodeVoise2(unsigned char* data);																					//零号機のデータを読み込む
 
 	private:
 
-		int makeWhitenoise(std::vector<nsfloat> out, int time, nsfloat hz, nsfloat um);									//ホワイトノイズを作成
-		int makeWhitenoise1(std::vector<nsfloat> out, int time, nsfloat hz);												//ホワイトノイズを作成
-
-		int hipassFilter(std::vector<nsfloat> input, std::vector<nsfloat>& out, nsfloat samplerate, nsfloat freq, nsfloat q);				//ハイパスフィルター
-		int lowpassFilter(std::vector<nsfloat> input, std::vector<nsfloat>& out, nsfloat samplerate, nsfloat freq, nsfloat q);				//ローパスフィルター
-		int notchpassFilter(std::vector<nsfloat> input, std::vector<nsfloat>& out, nsfloat samplerate, nsfloat freq, nsfloat bw);			//ノッチパスフィルター
+		void makeWhitenoise(std::vector<nsfloat> out, nsint time, nsfloat hz, nsfloat um);									//ホワイトノイズを作成
+		void makeWhitenoise1(std::vector<nsfloat> out, nsint time, nsfloat hz);												//ホワイトノイズを作成
 
 		nsfloat privatebf = 0, privateFormant[5][4] = { 0 };																//makeVoiseFromFileのデータ保管庫
 		nsfloat allmojiFormant[2][16][16][4] = { 0 };																	//文字のフォルマントの保管庫
 		nsfloat softness = 0;																							//柔らかさの保管庫
 
-		int createAllMojiFromantFromClass();																			//privateFormantからallmojiFormantを作成
-		nsfloat getMojiFormant(int f, int moji, int formant);															//allmojiFormantからフォルマントを取得
+		void createAllMojiFromantFromClass();																			//privateFormantからallmojiFormantを作成
+		nsfloat getMojiFormant(nsint f, nsint moji, nsint formant);															//allmojiFormantからフォルマントを取得
 
 		bool doVoiselessPlosive(nschar moji);																			//無声破裂音
 		bool doVoisedPlosive(nschar moji);																				//有声破裂音
@@ -556,10 +557,10 @@ namespace Nesora {
 		bool doVoisedFricative(nschar moji);																			//有声摩擦音
 		bool doFriKILLive(nschar moji);																					//摩殺音
 
-		int ftInit(int size);																							//破擦音の角度の初期化
-		nsfloat* ft;																										//破擦音の角度の保管庫
+		void ftInit(size_t size);																							//破擦音の角度の初期化
+		std::vector<nsfloat> ft;																										//破擦音の角度の保管庫
 
-		int getTimeFromSpeed(char speed, char moji = 0x00);																//音諳形式の時間単位から声の長さ[秒]へ変換
+		nsint getTimeFromSpeed(char speed, nschar moji = 0x00);																//音諳形式の時間単位から声の長さ[秒]へ変換
 
 		//新
 		NSString pstringdata = NSString();																				//読み上げ用のデータ保管庫
@@ -570,22 +571,23 @@ namespace Nesora {
 
 		//音諳合成関数群
 
-		void textreadingHanboin(std::vector<nsfloat>& out, nschar nowmoji, nsfloat pitch, int targettime);
-		void textreadingHaretuon(std::vector<nsfloat>& out, nschar nowmoji1, nschar nowmoji2, nsfloat pitch, int targettime);
-		void textreadingYuuseiHaretuon(std::vector<nsfloat>& out, nschar nowmoji1, nschar nowmoji2, nsfloat pitch, int targettime, bool select = true);
-		void textreadingMasatuon(std::vector<nsfloat>& out, nschar nowmoji1, nschar nowmoji2, nsfloat pitch, int targettime);
-		void textreadingYuuseiMasatuon(std::vector<nsfloat>& out, nschar nowmoji1, nschar nowmoji2, nsfloat pitch, int targettime);
-		void textreadingMASATUON(std::vector<nsfloat>& out, nschar nowmoji, nsfloat pitch, int targettime);
-		void textreadingBion(std::vector<nsfloat>& out, nschar nowmoji1, nschar nowmoji2, nschar oldmoji, nsfloat pitch, int targettime);
-		void textreadingHajikion(std::vector<nsfloat>& out, nschar nowmoji1, nschar nowmoji2, nschar oldmoji, nsfloat pitch, int targettime);
+		void textreadingHanboin(std::vector<nsfloat>& out, nschar nowmoji, nsfloat pitch, nsint targettime);
+		void textreadingHaretuon(std::vector<nsfloat>& out, nschar nowmoji1, nschar nowmoji2, nsfloat pitch, nsint targettime);
+		void textreadingYuuseiHaretuon(std::vector<nsfloat>& out, nschar nowmoji1, nschar nowmoji2, nsfloat pitch, nsint targettime, bool select = true);
+		void textreadingMasatuon(std::vector<nsfloat>& out, nschar nowmoji1, nschar nowmoji2, nsfloat pitch, nsint targettime);
+		void textreadingYuuseiMasatuon(std::vector<nsfloat>& out, nschar nowmoji1, nschar nowmoji2, nsfloat pitch, nsint targettime);
+		void textreadingMASATUON(std::vector<nsfloat>& out, nschar nowmoji, nsfloat pitch, nsint targettime);
+		void textreadingBion(std::vector<nsfloat>& out, nschar nowmoji1, nschar nowmoji2, nschar oldmoji, nsfloat pitch, nsint targettime);
+		void textreadingHajikion(std::vector<nsfloat>& out, nschar nowmoji1, nschar nowmoji2, nschar oldmoji, nsfloat pitch, nsint targettime);
 
-		void textreadingBoin1(std::vector<nsfloat>& out, nschar nowmoji, nsfloat pitch, int targettime);
-		void textreadingBoin2(std::vector<nsfloat>& out, nschar nowmoji, nschar nextmoji, nsfloat pitch, nsfloat nextpitch, int targettime);
+		void textreadingBoin1(std::vector<nsfloat>& out, nschar nowmoji, nsfloat pitch, nsint targettime);
+		void textreadingBoin2(std::vector<nsfloat>& out, nschar nowmoji, nschar nextmoji, nsfloat pitch, nsfloat nextpitch, nsint targettime);
 
 	};
 
-	constexpr nsfloat PI = 3.141592653589793238462643;				//円周率
-	constexpr nsfloat PI_INV = 1.0 / 3.141592653589793238462643;	//円周率の逆数
+	constexpr nsfloat PI = (nsfloat)3.141592653589793238462643;				//円周率
+	constexpr nsfloat PI_INV = (nsfloat)1.0 / PI;							//円周率の逆数
+	constexpr nsfloat PI_2 = PI * (nsfloat)2.0;								//円周率
 
 #ifndef NS_USE_STD_SIN//std::sin()を使うかnsSinTabl()を使うか。
 
@@ -758,13 +760,13 @@ namespace Nesora {
 		}
 
 #ifndef NS_USE_STD_SIN//std::sin()を使うかnsSinTabl()を使うか。
-		inline nsfloat sinTable(int t) {
+		inline nsfloat sinTable(nsint t) {
 			if (SMPL == 44100)
 				return sinTabel_44100[t];
 			else if (SMPL == 8000)
 				return sinTabel_8000[t];
 			else
-				return sin((nsfloat)t * 2.0 * PI / 8000.0);
+				return sin((nsfloat)t * PI_2 / (nsfloat)8000.0);
 		}
 
 		//テーブル化されたsin関数
@@ -786,13 +788,77 @@ namespace Nesora {
 				index = theta;
 
 			//0~0.25の範囲に調節
-			if (index >= (nsfloat)0.25)index = (nsfloat)0.5 - index;
+			if (index >= (nsfloat)0.25)
+				index = (nsfloat)0.5 - index;
 
-			if (index == 0.25)return (nsfloat)((theta >= (nsfloat)0.5) ? -1 : 1);
-			return sinTable((int)(index * (nsfloat)SMPL)) * (nsfloat)((theta >= (nsfloat)0.5) ? -1 : 1);
+			if (index == 0.25)
+				return (nsfloat)((theta >= (nsfloat)0.5) ? -1 : 1);
+			return sinTable((nsint)(index * (nsfloat)SMPL)) * (nsfloat)((theta >= (nsfloat)0.5) ? -1 : 1);
 		}
 		inline nsfloat nsCosTable(nsfloat t, nsfloat freq) {
-			return nsSinTable(t + (nsfloat)SMPL * (nsfloat)0.25, freq);
+			return nsSinTable(t + (nsfloat)SMPL_QUAR, freq);
+		}
+
+
+		//テーブル化されたsin関数
+		//引数には時間[s・SMPL]と周波数[Hz]を入れてください。
+		//
+		//nsFastSin(t,freq) == sin(t / freq * 2.0 * PI / SMPL)
+		inline nsfloat nsSinTable(nsint t, nsfloat freq) {
+#ifdef NS_USE_FAST_SIN_TABLE
+			nsint theta = 0, index = 0, a = (nsuint)(t * freq) % SMPL;									//fast
+#else
+			nsint theta = 0, index = 0, a = (nsint)((uint_fast64_t)((uint_fast64_t)t * freq) % SMPL);		//high quality in long readings
+#endif
+			if (a == 0 or a == SMPL_HALF)
+				return (nsfloat)0.0;
+			else
+				theta = index = a + ((t < 0) ? SMPL : 0);
+
+			//0~0.5の範囲に調節
+			if (theta >= SMPL_HALF)
+				index -= SMPL_HALF;
+
+			//0~0.25の範囲に調節
+			if (index >= SMPL_QUAR)
+				index = SMPL_HALF - index;
+
+			if (index == SMPL_QUAR)
+				return (nsfloat)((theta >= SMPL_HALF) ? -1 : 1);
+			return sinTable(index) * (nsfloat)((theta >= SMPL_HALF) ? -1 : 1);
+		}
+		inline nsfloat nsCosTable(nsint t, nsfloat freq) {
+			return nsSinTable(t + SMPL_QUAR, freq);
+		}
+
+
+		//テーブル化されたsin関数
+		//引数には時間[s・SMPL]と周波数[Hz]を入れてください。
+		//
+		//nsFastSin(t,freq) == sin(t / freq * 2.0 * PI / SMPL)
+		inline nsfloat nsSinTable(nsuint t, nsfloat freq) {
+#ifdef NS_USE_FAST_SIN_TABLE
+			nsuint theta = (nsuint)(t * freq) % SMPL, index = theta;									//fast
+#else
+			nsuint theta = (nsuint)((uint_fast64_t)((uint_fast64_t)t * freq) % SMPL), index = theta;	//high quality in long readings
+#endif
+			if (theta == 0 or theta == SMPL_HALF)
+				return (nsfloat)0.0;
+
+			//0~0.5の範囲に調節
+			if (theta >= SMPL_HALF)
+				index -= SMPL_HALF;
+
+			//0~0.25の範囲に調節
+			if (index >= SMPL_QUAR)
+				index = SMPL_HALF - index;
+
+			if (index == SMPL_QUAR)
+				return (nsfloat)((theta >= SMPL_HALF) ? -1 : 1);
+			return sinTable(index) * (nsfloat)((theta >= SMPL_HALF) ? -1 : 1);
+	}
+		inline nsfloat nsCosTable(nsuint t, nsfloat freq) {
+			return nsSinTable(t + SMPL_QUAR, freq);
 		}
 #else
 		//テーブル化されたsin関数を使いたくない場合

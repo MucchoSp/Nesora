@@ -13,6 +13,10 @@
 // +--------------------------------------------------------------------------------------------+
 //
 // 2023年に改造済み
+// 
+// これは、sinテーブルを使う時、速度を優先させるか、長時間の読み上げの時の質を優先させるか(オーバーフローしないようにするか)を選択するためのものです。
+// コメントを外すと、速度を優先させるようになります。
+//#define NS_USE_FAST_SIN_TABLE
 
 #include "Nesora_for_embedded_systems.h"
 
@@ -31,11 +35,11 @@ nsstringData nsc::nsromajiencode(const unsigned char* str) {
 	for (size_t i = 0;i < textlen + 1;i++)
 		out[i] = nscreateCharData(0, 0, 0, 0);
 
-	int i = 0;size_t n = 0;
+	nsint i = 0;size_t n = 0;
 	char nowmode = 0, nowmodepitchpm = 0;
 	nscharData nowmoji = {};
 	uint16_t ctime = NSDATAINIT_T;
-	uint32_t alltime = 0;
+	nsuint alltime = 0;
 	int16_t pitch = NSDATAINIT_P, baseFreq = 0;
 
 	while (str[i] != 0 and n < textlen + 1) {
@@ -824,11 +828,12 @@ nsstringData nsc::nsromajiencode(const char* str) {
 
 	size_t stringlen = strlen(str) + 1;
 	unsigned char* text = new unsigned char[stringlen];
-	for (size_t i = 0; i < stringlen;i++)text[i] = 0;
+	for (size_t i = 0; i < stringlen;i++)
+		text[i] = 0;
 
 	//char型の文字列をunsigned char型に変換
 	for (size_t i = 0; i < stringlen;i++)
-		text[i] = (unsigned char)((int)str[i] & 0xff);
+		text[i] = (unsigned char)((nsint)str[i] & 0xff);
 
 	return nsromajiencode(text);
 }
@@ -836,13 +841,16 @@ nsstringData nsc::nsromajiencode(const char* str) {
 //nscharData型の変数を作成
 nscharData nsc::nscreateCharData(uint32_t time, uint16_t ctime, nschar c, int16_t pitch) {
 	nscharData out = {};
-	out.c = c;out.ctime = ctime;out.pitch = pitch;out.time = time;
+	out.c = c;
+	out.ctime = ctime;
+	out.pitch = pitch;
+	out.time = time;
 	return out;
 }
 
 //nsstringData型の変数をコピー
 void nsc::nsstrcpy(nsstringData destination, const nsstringData& source) {
-	int i = 0;
+	nsint i = 0;
 	while (source[i].c != 0) {
 		destination[i].c = source[i].c;
 		destination[i].ctime = source[i].ctime;
@@ -1045,7 +1053,7 @@ size_t NSString::alltime() const {
 //=====音作成=====
 
 //リストから合成されたsin波を生成
-int mainMakeVoiseF::makeSinWave(int num, const std::vector<nsfloat>& Hz, const std::vector<nsfloat>& s, std::vector<nsfloat>& out, nsfloat a, bool doformant) {
+void mainMakeVoiseF::makeSinWave(nsint num, const std::vector<nsfloat>& Hz, const std::vector<nsfloat>& s, std::vector<nsfloat>& out, nsint a, bool doformant) {
 	//num...Hzやsの長さ Hz...倍音 s...各倍音の大きさ out...出力配列 size...出力配列のサイズ
 
 	nsfloat sinha = 0;
@@ -1054,25 +1062,25 @@ int mainMakeVoiseF::makeSinWave(int num, const std::vector<nsfloat>& Hz, const s
 	std::vector<nsfloat> output3(out.size(), 0.0);
 
 	//音の大きさが0でない場合のみ通す。
-	std::vector<int> canUseHz(0);
-	for (int i = 0;i < num;i++)
+	std::vector<nsint> canUseHz(0);
+	for (nsint i = 0;i < num;i++)
 		if (s[i])
 			canUseHz.push_back(i);
 
 	nsfloat alls = 0;
-	for (int i = 0;i < num;i++)alls += s[i];
+	for (nsint i = 0;i < num;i++)alls += s[i];
 	alls = (nsfloat)1 / (alls * (nsfloat)2);
 
 	if (doformant) {
 		//sin波の合成
 		for (size_t i = 0;i < out.size();i++) {
-			for (int j = 0;j < canUseHz.size();j++) {
+			for (size_t j = 0;j < canUseHz.size();j++) {
 				if (formants[2] > out.size())
 					//sinha = sin(((nsfloat)i + a) * (nsfloat)2.0 * (nsfloat)PI / ((nsfloat)SMPL / Hz[canUseHz[j]]));			//jの周波数のiの時のsin波の値を計算する。
-					sinha = nsMath::nsSinTable(((nsfloat)i + a), Hz[canUseHz[j]]);			//jの周波数のiの時のsin波の値を計算する。
+					sinha = nsMath::nsSinTable(i + (nsuint)a, Hz[canUseHz[j]]);			//jの周波数のiの時のsin波の値を計算する。
 				else
 					//sinha = cos(((nsfloat)i + a) * (nsfloat)2.0 * (nsfloat)PI / ((nsfloat)SMPL / Hz[canUseHz[j]]));			//jの周波数のiの時のsin波の値を計算する。
-					sinha = nsMath::nsCosTable(((nsfloat)i + a), Hz[canUseHz[j]]);			//jの周波数のiの時のcos波の値を計算する。
+					sinha = nsMath::nsCosTable(i + (nsuint)a, Hz[canUseHz[j]]);			//jの周波数のiの時のcos波の値を計算する。
 				output1[i] = output1[i] + sinha * s[canUseHz[j]];															//sinhaを、それぞれの大きさでかけ合わせて足す。
 			}
 			output1[i] *= alls;																								//平均化して出力する。
@@ -1082,55 +1090,55 @@ int mainMakeVoiseF::makeSinWave(int num, const std::vector<nsfloat>& Hz, const s
 		//1.ノッチフィルター無し	2.すべてにノッチフィルターを適用	3.ある程度距離があればノッチフィルターを適用
 		switch (3) {
 		case 1:
-			hipassFilter(output1, output2, SMPL, formants[0], (nsfloat)0.707);												//ハイパスフィルター
-			lowpassFilter(output2, out, SMPL, formants[3], (nsfloat)1.0);													//ローパスフィルター
+			hipassFilter(output1, output2, formants[0], (nsfloat)0.707);												//ハイパスフィルター
+			lowpassFilter(output2, out, formants[3], (nsfloat)1.0);													//ローパスフィルター
 			break;
 		case 2:
-			hipassFilter(output1, output2, SMPL, formants[0], (nsfloat)0.707);												//ハイパスフィルター
-			lowpassFilter(output2, output3, SMPL, formants[3], (nsfloat)1.0);												//ローパスフィルター
-			for (int i = 0; i < 3;i++)
-				notchpassFilter(output3, out, SMPL, (formants[i] + formants[i + 1]) / (nsfloat)3.0, formants[i + 1] / formants[i] * (nsfloat)0.25);	//ノッチパスフィルター
+			hipassFilter(output1, output2, formants[0], (nsfloat)0.707);												//ハイパスフィルター
+			lowpassFilter(output2, output3, formants[3], (nsfloat)1.0);												//ローパスフィルター
+			for (nsint i = 0; i < 3;i++)
+				notchpassFilter(output3, out, (formants[i] + formants[i + 1]) / (nsfloat)3.0, formants[i + 1] / formants[i] * (nsfloat)0.25);	//ノッチパスフィルター
 			break;
 		default:
 
-			hipassFilter(output1, output2, SMPL, formants[0], (nsfloat)0.707);												//ハイパスフィルター
-			lowpassFilter(output2, output3, SMPL, formants[3], (nsfloat)1.0);												//ローパスフィルター
+			hipassFilter(output1, output2, formants[0], (nsfloat)0.707);												//ハイパスフィルター
+			lowpassFilter(output2, output3, formants[3], (nsfloat)1.0);												//ローパスフィルター
 
-			for (int i = 0; i < 3;i++) {
+			for (nsint i = 0; i < 3;i++) {
 				if (formants[i] * 2 < formants[i + 1])
-					notchpassFilter(output3, out, SMPL, (formants[i] + formants[i + 1]) / (nsfloat)3.0, formants[i + 1] / formants[i] * (nsfloat)0.25);	//ノッチパスフィルター
+					notchpassFilter(output3, out, (formants[i] + formants[i + 1]) / (nsfloat)3.0, formants[i + 1] / formants[i] * (nsfloat)0.25);	//ノッチパスフィルター
 			}
 		}
 	}
 	else {
 		//sin波の合成
 		for (size_t i = 0;i < out.size();i++) {
-			for (int j = 0;j < canUseHz.size();j++) {
-				sinha = nsMath::nsSinTable(((nsfloat)i + a), Hz[canUseHz[j]]);							//jの周波数のiの時のsin波の値を計算する。
+			for (size_t j = 0;j < canUseHz.size();j++) {
+				sinha = nsMath::nsSinTable(i + (nsuint)a, Hz[canUseHz[j]]);							//jの周波数のiの時のsin波の値を計算する。
 				output1[i] = output1[i] + sinha * s[canUseHz[j]];															//sinhaを、それぞれの大きさでかけ合わせて足す。
 			}
 			output1[i] *= alls;																								//平均化して出力する。
 		}
-		hipassFilter(output1, output2, SMPL, Hz[0], (nsfloat)0.707);															//ハイパスフィルター
-		lowpassFilter(output2, out, SMPL, Hz[num - 1], (nsfloat)1.0);																//ローパスフィルター
+		hipassFilter(output1, output2, Hz[0], (nsfloat)0.707);															//ハイパスフィルター
+		lowpassFilter(output2, out, Hz[num - 1], (nsfloat)1.0);																//ローパスフィルター
 	}
 
-	return 0;
+	return ;
 }
 
 //単純なsin波を生成
-int mainMakeVoiseF::makeSinha(nsfloat Hz, nsfloat s, std::vector<nsfloat>& out) {
+void mainMakeVoiseF::makeSinha(nsfloat Hz, nsfloat s, std::vector<nsfloat>& out) {
 
 	for (size_t i = 0; i < out.size(); i++)
-		out[i] = nsMath::nsSinTable((nsfloat)i, Hz) * s;
+		out[i] = nsMath::nsSinTable(i, Hz) * s;
 
-	return 0;
+	return ;
 }
 
 //特定の時間の周波数を取得
-nsfloat mainMakeVoiseF::makeMomentSinWave(int num, const std::vector<nsfloat>& Hz, const std::vector<nsfloat>& s, int gets) {
+nsfloat mainMakeVoiseF::makeMomentSinWave(nsint num, const std::vector<nsfloat>& Hz, const std::vector<nsfloat>& s, nsint gets) {
 
-	int ho0 = SMPL * 0.5;//(int)(4.0 / (nsfloat)Hz[0] * SMPL);
+	nsint ho0 = (nsint)(SMPL * 0.5);//(nsint)(4.0 / (nsfloat)Hz[0] * SMPL);
 	std::vector<nsfloat> out(ho0, 0.0);
 
 	makeSinWave(num, Hz, s, out, ho0);
@@ -1141,43 +1149,43 @@ nsfloat mainMakeVoiseF::makeMomentSinWave(int num, const std::vector<nsfloat>& H
 }
 
 //基本倍音設定
-int mainMakeVoiseF::makeHarmonicOvertone(nsfloat bsf) {
+void mainMakeVoiseF::makeHarmonicOvertone(nsfloat bsf) {
 
-	hosize = (int)(MAXFREQ / bsf);
+	hosize = (nsint)(MAXFREQ / bsf);
 	harmonicOvertones.resize(hosize);
 	harmonictoneFilters.resize(hosize);
-	for (int i = 1; i <= hosize;i++)
+	for (nsint i = 1; i <= hosize;i++)
 		harmonicOvertones[i - 1] = bsf * i;		//倍音作成
 	bf = bsf;
-	return 0;
+	return;
 }
 
 //フォルマントリストに周波数を設定
-int mainMakeVoiseF::setFormants(nsfloat F1, nsfloat F2, nsfloat F3, nsfloat F4) {
+void mainMakeVoiseF::setFormants(nsfloat F1, nsfloat F2, nsfloat F3, nsfloat F4) {
 
 	formants[0] = F1;
 	formants[1] = F2;
 	formants[2] = F3;
 	formants[3] = F4;
 
-	return 0;
+	return;
 }
 
 //=====音自動生成=====
 
 //基本倍音の大きさを自動生成
-int mainMakeVoiseF::makeFilter() {
+void mainMakeVoiseF::makeFilter() {
 
 	nsfloat a = 0.0;
-	int c = 0;
+	nsint c = 0;
 
 	//フィルター初期化
 	std::fill(harmonictoneFilters.begin(), harmonictoneFilters.end(), (nsfloat)0.0);
 
 	//フィルター作成
-	for (int j = 0;j < hosize;j++) {
-		for (int i = 0;i < 4;i++) {
-			a = (-1.0 * std::cbrt(std::abs(((nsfloat)harmonicOvertones[j] - (nsfloat)formants[i]) * (nsfloat)FILTERWIDTH_INV)) + (nsfloat)1.0);	//サイクロイド関数を応用したフィルターの計算式
+	for (nsint j = 0;j < hosize;j++) {
+		for (nsint i = 0;i < 4;i++) {
+			a = (-(nsfloat)1.0 * std::cbrt(std::abs(((nsfloat)harmonicOvertones[j] - (nsfloat)formants[i]) * (nsfloat)FILTERWIDTH_INV)) + (nsfloat)1.0);	//サイクロイド関数を応用したフィルターの計算式
 			if (!isfinite(a) or (a < 0))
 				continue;																								//虚数の場合、飛ばす。
 			harmonictoneFilters[j] = harmonictoneFilters[j] + a;														//出した値を足す。
@@ -1185,31 +1193,31 @@ int mainMakeVoiseF::makeFilter() {
 		if (formants[0] < harmonicOvertones[j])																			//フォルマント1より小さいかどうか
 			harmonictoneFilters[j] = harmonictoneFilters[j] * (nsfloat)0.25 * ((nsfloat)1.0 / ((nsfloat)j + formants[0] / harmonicOvertones[0] + (nsfloat)1.0)) * (nsfloat)12;	//フィルターの平均値を出し、jの反比例の形でフィルターをかけ、十二倍する。
 		else
-			harmonictoneFilters[j] = harmonictoneFilters[j] * (nsfloat)0.25 * ((nsfloat)1.0 / ((nsfloat)-j + formants[0] / harmonicOvertones[0] + (nsfloat)1.0)) * (nsfloat)12;	//フィルターの平均値を出し、-jの反比例の形でフィルターをかけ、十二倍する。
+			harmonictoneFilters[j] = harmonictoneFilters[j] * (nsfloat)0.25 * ((nsfloat)1.0 / (-(nsfloat)j + formants[0] / harmonicOvertones[0] + (nsfloat)1.0)) * (nsfloat)12;	//フィルターの平均値を出し、-jの反比例の形でフィルターをかけ、十二倍する。
 	}
 
 	//音の減衰
 	if (softness)
-		for (int i = 0;i < hosize;i++)
+		for (nsint i = 0;i < hosize;i++)
 			harmonictoneFilters[i] = harmonictoneFilters[i] * log(softness / harmonicOvertones[i]) / log(softness / bf);
 
 	//フィルターのフィルター
-	for (int i = 0;i < hosize;i++) {
+	for (nsint i = 0;i < hosize;i++) {
 		if (harmonictoneFilters[i] < 0.01)
 			harmonictoneFilters[i] = 0;																					//0.01以下の小さな音は取り除く。
 		else {
-			c = (int)(harmonictoneFilters[i] * 100);
+			c = (nsint)(harmonictoneFilters[i] * 100);
 			harmonictoneFilters[i] = (nsfloat)c * (nsfloat)0.01;														//フィルターの値を小数点第三位で切り捨てる。
 		}
 	}
 
 
 
-	return 0;
+	return;
 }
 
 //クラス内のパラメータからsin波を合成
-int mainMakeVoiseF::makeSinWaveFromClass(std::vector<nsfloat>& out, nsfloat a) {
+void mainMakeVoiseF::makeSinWaveFromClass(std::vector<nsfloat>& out, nsint a) {
 	/*クラスの値から声を作成
 	* out	...出力配列
 	* size	...outの大きさ
@@ -1219,11 +1227,11 @@ int mainMakeVoiseF::makeSinWaveFromClass(std::vector<nsfloat>& out, nsfloat a) {
 
 	makeSinWave(hosize, harmonicOvertones, harmonictoneFilters, out, a);
 
-	return 0;
+	return;
 }
 
 //クラス内のパラメータから特定の時間の周波数を取得
-nsfloat mainMakeVoiseF::makeMomentSinWaveFromClass(int t) {
+nsfloat mainMakeVoiseF::makeMomentSinWaveFromClass(nsint t) {
 	/*クラスの値から声を作成
 	* out	...出力配列
 	* size	...outの大きさ
@@ -1235,7 +1243,7 @@ nsfloat mainMakeVoiseF::makeMomentSinWaveFromClass(int t) {
 }
 
 //現在のmainMakeVoiseF.cppの状態を取得する。
-int mainMakeVoiseF::getstate(int state) {
+nsint mainMakeVoiseF::getstate(nsint state) {
 
 	if (state == 0) {
 		if (formants.size())
@@ -1251,125 +1259,11 @@ int mainMakeVoiseF::getstate(int state) {
 }
 
 //softness変数を変更
-int mainMakeVoiseF::setSoftness(nsfloat sn) {
+void mainMakeVoiseF::setSoftness(nsfloat sn) {
 	softness = sn;
-	return 0;
+	return;
 }
 
-
-int mainMakeVoiseF::hipassFilter(std::vector<nsfloat> input, std::vector<nsfloat>& out, nsfloat samplerate, nsfloat freq, nsfloat q) {
-
-	// それぞれの変数は下記のとおりとする
-	// float samplerate … サンプリング周波数
-	// float freq … カットオフ周波数
-	// float q    … フィルタのQ値
-	nsfloat omega = 2.0f * 3.14159265f * freq / samplerate;
-	nsfloat alpha = sin(omega) / (2.0f * q);
-
-	nsfloat a0_inv = 1.0f / (1.0f + alpha);
-	nsfloat a1 = -2.0f * cos(omega);
-	nsfloat a2 = 1.0f - alpha;
-	nsfloat b0 = (1.0f + cos(omega)) * 0.5;
-	nsfloat b1 = -(1.0f + cos(omega));
-	nsfloat b2 = (1.0f + cos(omega)) * 0.5;
-
-	// それぞれの変数は下記のとおりとする
-	// 　float input[]  …入力信号の格納されたバッファ。
-	// 　flaot output[] …フィルタ処理した値を書き出す出力信号のバッファ。
-	// 　int   size     …入力信号・出力信号のバッファのサイズ。
-	// 　float in1, in2, out1, out2  …フィルタ計算用のバッファ変数。初期値は0。
-	// 　float a0, a1, a2, b0, b1, b2 …フィルタの係数。 別途算出する。
-
-	nsfloat in1 = 0.0, in2 = 0.0, out1 = 0.0, out2 = 0.0;
-	for (size_t i = 0; i < out.size(); i++)	{
-		// 入力信号にフィルタを適用し、出力信号として書き出す。
-		out[i] = (b0 * input[i] + b1 * in1 + b2 * in2 - a1 * out1 - a2 * out2) * a0_inv;
-
-		in2 = in1;		// 2つ前の入力信号を更新
-		in1 = input[i];	// 1つ前の入力信号を更新
-
-		out2 = out1;	// 2つ前の出力信号を更新
-		out1 = out[i];	// 1つ前の出力信号を更新
-	}
-
-	return 0;
-}
-
-int mainMakeVoiseF::lowpassFilter(std::vector<nsfloat> input, std::vector<nsfloat>& out, nsfloat samplerate, nsfloat freq, nsfloat q)
-{
-	// それぞれの変数は下記のとおりとする
-	// float samplerate … サンプリング周波数
-	// float freq … カットオフ周波数
-	// float q    … フィルタのQ値
-	nsfloat omega = 2.0f * 3.14159265f * freq / samplerate;
-	nsfloat alpha = sin(omega) / (2.0f * q);
-
-	nsfloat a0_inv = 1.0f / (1.0f + alpha);
-	nsfloat a1 = -2.0f * cos(omega);
-	nsfloat a2 = 1.0f - alpha;
-	nsfloat b0 = (1.0f - cos(omega)) * 0.5;
-	nsfloat b1 = 1.0f - cos(omega);
-	nsfloat b2 = (1.0f - cos(omega)) * 0.5;
-
-	// それぞれの変数は下記のとおりとする
-	// 　float input[]  …入力信号の格納されたバッファ。
-	// 　flaot output[] …フィルタ処理した値を書き出す出力信号のバッファ。
-	// 　int   size     …入力信号・出力信号のバッファのサイズ。
-	// 　float in1, in2, out1, out2  …フィルタ計算用のバッファ変数。初期値は0。
-	// 　float a0, a1, a2, b0, b1, b2 …フィルタの係数。 別途算出する。
-
-	nsfloat in1 = 0.0, in2 = 0.0, out1 = 0.0, out2 = 0.0;
-	for (size_t i = 0; i < out.size(); i++)	{
-		// 入力信号にフィルタを適用し、出力信号として書き出す。
-		out[i] = (b0 * input[i] + b1 * in1 + b2 * in2 - a1 * out1 - a2 * out2) * a0_inv;
-
-		in2 = in1;		// 2つ前の入力信号を更新
-		in1 = input[i];	// 1つ前の入力信号を更新
-
-		out2 = out1;	// 2つ前の出力信号を更新
-		out1 = out[i];	// 1つ前の出力信号を更新
-	}
-
-	return 0;
-}
-
-int mainMakeVoiseF::notchpassFilter(std::vector<nsfloat> input, std::vector<nsfloat>& out, nsfloat samplerate, nsfloat freq, nsfloat bw)
-{
-	// それぞれの変数は下記のとおりとする
-	// float samplerate … サンプリング周波数
-	//float freq … カットオフ周波数
-	// float bw   … 帯域幅
-	nsfloat omega = 2.0f * 3.14159265f * freq / samplerate;
-	nsfloat alpha = sin(omega) * sinh(log(2.0f) * 0.5 * bw * omega / sin(omega));
-
-	nsfloat a0_inv = 1.0f / (1.0f + alpha);
-	nsfloat a1 = -2.0f * cos(omega);
-	nsfloat a2 = 1.0f - alpha;
-	nsfloat b0 = 1.0f;
-	nsfloat b1 = -2.0f * cos(omega);
-	nsfloat b2 = 1.0f;
-
-	// それぞれの変数は下記のとおりとする
-	// 　float input[]  …入力信号の格納されたバッファ。
-	// 　flaot output[] …フィルタ処理した値を書き出す出力信号のバッファ。
-	// 　int   size     …入力信号・出力信号のバッファのサイズ。
-	// 　float in1, in2, out1, out2  …フィルタ計算用のバッファ変数。初期値は0。
-	// 　float a0, a1, a2, b0, b1, b2 …フィルタの係数。 別途算出する。
-
-	nsfloat in1 = 0.0, in2 = 0.0, out1 = 0.0, out2 = 0.0;
-	for (size_t i = 0; i < out.size(); i++)	{
-		// 入力信号にフィルタを適用し、出力信号として書き出す。
-		out[i] = (b0 * input[i] + b1 * in1 + b2 * in2 - a1 * out1 - a2 * out2) * a0_inv;
-
-		in2 = in1;		// 2つ前の入力信号を更新
-		in1 = input[i];	// 1つ前の入力信号を更新
-
-		out2 = out1;	// 2つ前の出力信号を更新
-		out1 = out[i];	// 1つ前の出力信号を更新
-	}
-
-	return 0;
-}
 
 
 
@@ -1386,7 +1280,7 @@ mainMakeVoiseF mvffMMVF;
 //=====読み上げ関係=====
 
 //音諳 風鈴を使う
-int makeVoiseFromFile::setDefaulFurin() {
+void makeVoiseFromFile::setDefaulFurin() {
 
 	//音諳の標準音声「音諳 風鈴」の音声ファイルより抜粋
 	unsigned char data[68] = { 0x44, 0x41, 0x54, 0x41, 0x62, 0x66, 0xB8, 0x01, 0x56, 0x46, 0x46, 0x41, 0x4C, 0x04, 0xA4, 0x06, 0xA0, 0x0F, 0x5C, 0x12, 0x56, 0x46, 0x46, 0x49, 0x80, 0x02, 0x42, 0x0E, 0xA0, 0x0F, 0x5C, 0x12, 0x56, 0x46, 0x46, 0x55, 0x58, 0x02, 0xEF, 0x06, 0xA0, 0x0F, 0x5C, 0x12, 0x56, 0x46, 0x46, 0x45, 0x0C, 0x03, 0x54, 0x0B, 0xA0, 0x0F, 0x5C, 0x12, 0x56, 0x46, 0x46, 0x4F, 0x20, 0x03, 0xDC, 0x05, 0xA0, 0x0F, 0x5C, 0x12 };
@@ -1402,11 +1296,11 @@ int makeVoiseFromFile::setDefaulFurin() {
 			max = abs(t);
 	maxVolume = max;
 
-	return 0;
+	return;
 }
 
 //音諳 詞音を使う
-int makeVoiseFromFile::setShion() {
+void makeVoiseFromFile::setShion() {
 
 	unsigned char data[68] = { 0x44,0x41,0x54,0x41,0x62,0x66,0x88,0x01,0x56,0x46,0x46,0x41,0x54,0x04,0xA4,0x06,0x6F,0x0F,0x9A,0x14,0x56,0x46,0x46,0x49,0x93,0x02,0xC0,0x0D,0x6F,0x0F,0x9A,0x14,0x56,0x46,0x46,0x55,0x93,0x02,0xE0,0x06,0x6F,0x0F,0x9A,0x14,0x56,0x46,0x46,0x45,0x10,0x03,0x90,0x0B,0x6F,0x0F,0x9A,0x14,0x56,0x46,0x46,0x4F,0x10,0x03,0x75,0x05,0x6F,0x0F,0x9A,0x14 };
 
@@ -1421,11 +1315,11 @@ int makeVoiseFromFile::setShion() {
 			max = abs(t);
 	maxVolume = max;
 
-	return 0;
+	return;
 }
 
 //音諳書式で書かれた文章を読み込み
-int makeVoiseFromFile::textread(const char* t) {
+void makeVoiseFromFile::textread(const char* t) {
 
 	/*
 	* text...読み上げ文章
@@ -1439,7 +1333,7 @@ int makeVoiseFromFile::textread(const char* t) {
 
 	pstringdata = NSString(t);
 
-	return 0;
+	return;
 }
 
 //textreadで読み込んだ文章を読み上げ
@@ -1452,21 +1346,21 @@ std::vector<nsfloat> makeVoiseFromFile::textreading() {
 	std::vector<nsfloat> out;
 
 	//今処理している時間
-	int targettime = 0;
+	nsint targettime = 0;
 
 	//前の文字、スピード、ピッチ
 	nschar oldmoji = pstringdata[0].c;
-	int oldspeed = pstringdata[0].ctime;
+	nsint oldspeed = pstringdata[0].ctime;
 	int16_t oldpitch = pstringdata[0].pitch;
 
 	//今の文字、スピード、ピッチ
 	nschar nowmoji = 0;
-	int nowspeed = 0;
+	nsint nowspeed = 0;
 	int16_t nowpitch = 0;
 
 	//次の文字、スピード、ピッチ
 	nschar nextmoji = 0;
-	int nextspeed = 0;
+	nsint nextspeed = 0;
 	int16_t nextpitch = 0;
 
 	//終了
@@ -1480,11 +1374,11 @@ std::vector<nsfloat> makeVoiseFromFile::textreading() {
 	for (size_t nowmojinum = 0;nowmojinum < pstringdata.length();nowmojinum++) {
 		//それぞれの変数を更新
 		nowmoji = pstringdata[nowmojinum].c;
-		nowspeed = pstringdata[nowmojinum].ctime * (int)CHANGETIMEMAGN;
+		nowspeed = pstringdata[nowmojinum].ctime * (nsint)CHANGETIMEMAGN;
 		nowpitch = pstringdata[nowmojinum].pitch;
 		if (nowmojinum < pstringdata.length() - 1) {
 			nextmoji = pstringdata[nowmojinum + 1].c;
-			nextspeed = pstringdata[nowmojinum + 1].ctime * (int)CHANGETIMEMAGN;
+			nextspeed = pstringdata[nowmojinum + 1].ctime * (nsint)CHANGETIMEMAGN;
 			nextpitch = pstringdata[nowmojinum + 1].pitch;
 		}
 		else {
@@ -1894,7 +1788,7 @@ std::vector<nsfloat> makeVoiseFromFile::textreading() {
 			break;
 		case NSspc:
 			//空白文字
-			for (int i = out.size(); i < targettime;i++)
+			for (nsint i = out.size(); i < targettime;i++)
 				out.push_back(0.0);
 			break;
 		default:
@@ -1929,25 +1823,24 @@ std::vector<nsfloat> makeVoiseFromFile::textreading() {
 
 //=====声作成(子音)=====
 
-void makeVoiseFromFile::textreadingHanboin(std::vector<nsfloat>& out, nschar nowmoji, nsfloat pitch, int targettime) {
-	const int size = MAXYOUONSPEED;
-	std::vector<nsfloat> vout1(size + CTIME * 2, 1.0);
-	std::vector<nsfloat> vout2(size + CTIME * 2, 1.0);
+void makeVoiseFromFile::textreadingHanboin(std::vector<nsfloat>& out, nschar nowmoji, nsfloat pitch, nsint targettime) {
+	std::vector<nsfloat> vout1(MAXYOUONSPEED + CTIME * 2, 1.0);
+	std::vector<nsfloat> vout2(MAXYOUONSPEED + CTIME * 2, 1.0);
 
 	mvffMMVF.setFormants(getMojiFormant(0, nowmoji, 0) + pitch, getMojiFormant(0, nowmoji, 1) + pitch, getMojiFormant(0, nowmoji, 2) + pitch, getMojiFormant(0, nowmoji, 3) + pitch);
-	mvffMMVF.makeSinWaveFromClass(vout1, (nsfloat)out.size() - (nsfloat)CTIME);
+	mvffMMVF.makeSinWaveFromClass(vout1, out.size() - CTIME);
 	mvffMMVF.setFormants(getMojiFormant(1, nowmoji, 0) + pitch, getMojiFormant(1, nowmoji, 1) + pitch, getMojiFormant(1, nowmoji, 2) + pitch, getMojiFormant(1, nowmoji, 3) + pitch);
-	mvffMMVF.makeSinWaveFromClass(vout2, (nsfloat)out.size() - (nsfloat)CTIME);
+	mvffMMVF.makeSinWaveFromClass(vout2, out.size() - CTIME);
 
-	for (int j = 0; j < MAXSHIONSPEED;j++)
-		out.push_back(vout1[j + CTIME] * ((MAXSHIONSPEED - (nsfloat)j) / MAXSHIONSPEED) + vout2[j + CTIME] * ((nsfloat)j / MAXSHIONSPEED));
+	for (nsint j = 0; j < MAXSHIONSPEED;j++)
+		out.push_back(vout1[j + CTIME] * ((nsfloat)(MAXSHIONSPEED - j) * MAXSHIONSPEED_INV) + vout2[j + CTIME] * ((nsfloat)j * MAXSHIONSPEED_INV));
 }
 
-void makeVoiseFromFile::textreadingHaretuon(std::vector<nsfloat>& out, nschar nowmoji1, nschar nowmoji2, nsfloat pitch, int targettime) {
-	for (int j = 0;j < MAXSHIONSPEED * 0.5;j++)
+void makeVoiseFromFile::textreadingHaretuon(std::vector<nsfloat>& out, nschar nowmoji1, nschar nowmoji2, nsfloat pitch, nsint targettime) {
+	for (nsint j = 0;j < MAXSHIONSPEED * 0.5;j++)
 		out.push_back(0.0);
 
-	const int size = MAXSHIONSPEED * 0.5;
+	const nsint size = (nsint)(MAXSHIONSPEED * 0.5);
 	std::vector<nsfloat> vout1(size + CTIME * 2, 1.0);
 	std::vector<nsfloat> vout2(size + CTIME * 2, 1.0);
 
@@ -1956,19 +1849,19 @@ void makeVoiseFromFile::textreadingHaretuon(std::vector<nsfloat>& out, nschar no
 	mvffMMVF.setFormants(getMojiFormant(1, nowmoji2, 0) + pitch, getMojiFormant(1, nowmoji2, 1) + pitch, getMojiFormant(1, nowmoji2, 2) + pitch, getMojiFormant(1, nowmoji2, 3) + pitch);
 	mvffMMVF.makeSinWaveFromClass(vout2, out.size() - CTIME);
 
-	for (int j = 0; j < size;j++)
-		out.push_back(((j < PLOSIVESPEED * 2) ? vout1[j + CTIME] * ((j < PLOSIVESPEED) ? ((nsfloat)j / PLOSIVESPEED * 2.0) : ((PLOSIVESPEED * 2.0 - (nsfloat)j) / PLOSIVESPEED * 2.0)) * PLOSIVEPOWER : 0) * 0.5 + vout2[j + CTIME] * ((nsfloat)j / (nsfloat)size));
+	for (nsint j = 0; j < size;j++)
+		out.push_back(((j < PLOSIVESPEED * 2) ? vout1[j + CTIME] * ((j < PLOSIVESPEED) ? ((nsfloat)j / (nsfloat)PLOSIVESPEED * (nsfloat)2.0) : ((nsfloat)(PLOSIVESPEED * 2 - j) / (nsfloat)PLOSIVESPEED * 2.0)) * (nsfloat)PLOSIVEPOWER : 0.0) * (nsfloat)0.5 + vout2[j + CTIME] * ((nsfloat)j / (nsfloat)size));
 
 
 }
 
-void makeVoiseFromFile::textreadingYuuseiHaretuon(std::vector<nsfloat>& out, nschar nowmoji1, nschar nowmoji2, nsfloat pitch, int targettime, bool select) {
+void makeVoiseFromFile::textreadingYuuseiHaretuon(std::vector<nsfloat>& out, nschar nowmoji1, nschar nowmoji2, nsfloat pitch, nsint targettime, bool select) {
 
 	if (select) {
-		for (int j = 0;j < MAXSHIONSPEED * 0.25;j++)
+		for (nsint j = 0;j < MAXSHIONSPEED * 0.25;j++)
 			out.push_back(0.0);
 
-		const int size = MAXSHIONSPEED * 0.25;
+		const nsint size = (nsint)(MAXSHIONSPEED * 0.25);
 		std::vector<nsfloat> vout2(size + CTIME * 2, 1.0);
 		std::vector<nsfloat> vout3(size + CTIME * 2, 1.0);
 		mvffMMVF.setFormants(getMojiFormant(1, nowmoji1, 0) + pitch, getMojiFormant(1, nowmoji1, 1) + pitch, getMojiFormant(1, nowmoji1, 2) + pitch, getMojiFormant(1, nowmoji1, 3) + pitch);
@@ -1976,12 +1869,12 @@ void makeVoiseFromFile::textreadingYuuseiHaretuon(std::vector<nsfloat>& out, nsc
 		mvffMMVF.setFormants(getMojiFormant(0, 0xd1, 0) + pitch, getMojiFormant(0, 0xd1, 1) + pitch, getMojiFormant(0, 0xd1, 2) + pitch, getMojiFormant(0, 0xd1, 3) + pitch);
 		mvffMMVF.makeSinWaveFromClass(vout3, out.size() - CTIME);
 
-		for (int j = 0; j < size;j++)
-			out.push_back((vout2[j + CTIME] * ((j < size * 0.5) ? ((nsfloat)j / size) : ((size - (nsfloat)j) / size)) + vout3[j + CTIME] * ((j < size * 0.5) ? ((nsfloat)j / size) : ((size - (nsfloat)j) / size))) * 0.25);
+		for (nsint j = 0; j < size;j++)
+			out.push_back((vout2[j + CTIME] * ((j < size * 0.5) ? ((nsfloat)j / size) : ((nsfloat)(size - j) / (nsfloat)size)) + vout3[j + CTIME] * ((j < size * 0.5) ? ((nsfloat)j / (nsfloat)size) : ((nsfloat)(size - j) / (nsfloat)size))) * (nsfloat)0.25);
 
 		std::vector<nsfloat> vout1(size + CTIME * 2, 1.0);
-		std::fill(vout2.begin(), vout2.end(), 1.0);
-		std::fill(vout3.begin(), vout3.end(), 1.0);
+		std::fill(vout2.begin(), vout2.end(), (nsfloat)1.0);
+		std::fill(vout3.begin(), vout3.end(), (nsfloat)1.0);
 
 		mvffMMVF.setFormants(getMojiFormant(0, nowmoji1, 0) + pitch, getMojiFormant(0, nowmoji1, 1) + pitch, getMojiFormant(0, nowmoji1, 2) + pitch, getMojiFormant(0, nowmoji1, 3) + pitch);
 		mvffMMVF.makeSinWaveFromClass(vout1, out.size() - CTIME);
@@ -1990,12 +1883,12 @@ void makeVoiseFromFile::textreadingYuuseiHaretuon(std::vector<nsfloat>& out, nsc
 		mvffMMVF.setFormants(getMojiFormant(0, 0xd1, 0) + pitch, getMojiFormant(0, 0xd1, 1) + pitch, getMojiFormant(0, 0xd1, 2) + pitch, getMojiFormant(0, 0xd1, 3) + pitch);
 		mvffMMVF.makeSinWaveFromClass(vout3, out.size() - CTIME);
 
-		for (int j = 0; j < size;j++)
-			out.push_back((nsfloat)((j < PLOSIVESPEED * 2) ? vout1[j + CTIME] * ((j < PLOSIVESPEED) ? ((nsfloat)j / (nsfloat)PLOSIVESPEED * (nsfloat)2.0) : (((nsfloat)PLOSIVESPEED * (nsfloat)2.0 - (nsfloat)j) / (nsfloat)PLOSIVESPEED * (nsfloat)2.0)) : 0.0) * (nsfloat)0.25 + (vout2[j + CTIME] * ((nsfloat)j / (nsfloat)size) + vout3[j + CTIME] * (((nsfloat)size - (nsfloat)j) / (nsfloat)size) / 3.0));
+		for (nsint j = 0; j < size;j++)
+			out.push_back((nsfloat)((j < PLOSIVESPEED * 2) ? vout1[j + CTIME] * ((j < PLOSIVESPEED) ? ((nsfloat)j / (nsfloat)PLOSIVESPEED * (nsfloat)2.0) : ((nsfloat)(PLOSIVESPEED * 2 - j) / (nsfloat)PLOSIVESPEED * (nsfloat)2.0)) : 0.0) * (nsfloat)0.25 + (vout2[j + CTIME] * ((nsfloat)j / (nsfloat)size) + vout3[j + CTIME] * ((nsfloat)(size - j) / (nsfloat)size) / (nsfloat)3.0));
 
 	}
 	else {
-		const int size = MAXSHIONSPEED * 0.5;
+		const nsint size = (nsint)(MAXSHIONSPEED * 0.5);
 		std::vector<nsfloat> vout1(size + CTIME * 2, 1.0);
 		std::vector<nsfloat> vout2(size + CTIME * 2, 1.0);
 		mvffMMVF.setFormants(getMojiFormant(1, nowmoji1, 0) + pitch, getMojiFormant(1, nowmoji1, 1) + pitch, getMojiFormant(1, nowmoji1, 2) + pitch, getMojiFormant(1, nowmoji1, 3) + pitch);
@@ -2003,26 +1896,26 @@ void makeVoiseFromFile::textreadingYuuseiHaretuon(std::vector<nsfloat>& out, nsc
 		mvffMMVF.setFormants(getMojiFormant(0, 0xd1, 0) + pitch, getMojiFormant(0, 0xd1, 1) + pitch, getMojiFormant(0, 0xd1, 2) + pitch, getMojiFormant(0, 0xd1, 3) + pitch);
 		mvffMMVF.makeSinWaveFromClass(vout1, out.size() - CTIME);
 
-		for (int j = 0; j < size;j++)
-			out.push_back((vout2[j + CTIME] * ((j < size * 0.5) ? ((nsfloat)j / size) : ((size - (nsfloat)j) / size)) + vout1[j + CTIME] * ((j < size * 0.5) ? ((nsfloat)j / size) : ((size - (nsfloat)j) / size))) * 0.25);
+		for (nsint j = 0; j < size;j++)
+			out.push_back((vout2[j + CTIME] * ((j < size * 0.5) ? ((nsfloat)j / (nsfloat)size) : ((nsfloat)(size - j) / (nsfloat)size)) + vout1[j + CTIME] * ((j < size * 0.5) ? ((nsfloat)j / (nsfloat)size) : ((nsfloat)(size - j) / (nsfloat)size))) * (nsfloat)0.25);
 
-		std::fill(vout1.begin(), vout1.end(), 1.0);
-		std::fill(vout2.begin(), vout2.end(), 1.0);
+		std::fill(vout1.begin(), vout1.end(), (nsfloat)1.0);
+		std::fill(vout2.begin(), vout2.end(), (nsfloat)1.0);
 
 		mvffMMVF.setFormants(getMojiFormant(0, nowmoji1, 0) + pitch, getMojiFormant(0, nowmoji1, 1) + pitch, getMojiFormant(0, nowmoji1, 2) + pitch, getMojiFormant(0, nowmoji1, 3) + pitch);
 		mvffMMVF.makeSinWaveFromClass(vout1, out.size() - CTIME);
 		mvffMMVF.setFormants(getMojiFormant(1, nowmoji2, 0) + pitch, getMojiFormant(1, nowmoji2, 1) + pitch, getMojiFormant(1, nowmoji2, 2) + pitch, getMojiFormant(1, nowmoji2, 3) + pitch);
 		mvffMMVF.makeSinWaveFromClass(vout2, out.size() - CTIME);
 
-		for (int j = 0; j < size;j++)
-			out.push_back(((j < PLOSIVESPEED * 2) ? vout1[j + CTIME] * ((j < PLOSIVESPEED) ? ((nsfloat)j / PLOSIVESPEED * 2.0) : ((PLOSIVESPEED * 2.0 - (nsfloat)j) / PLOSIVESPEED * 2.0)) * PLOSIVEPOWER : 0) * 0.5 + vout2[j + CTIME] * ((nsfloat)j / (nsfloat)size));
+		for (nsint j = 0; j < size;j++)
+			out.push_back(((j < PLOSIVESPEED * 2) ? vout1[j + CTIME] * ((j < PLOSIVESPEED) ? ((nsfloat)j / (nsfloat)PLOSIVESPEED * (nsfloat)2.0) : ((PLOSIVESPEED * 2.0 - j) / (nsfloat)PLOSIVESPEED * (nsfloat)2.0)) * (nsfloat)PLOSIVEPOWER : 0.0) * (nsfloat)0.5 + vout2[j + CTIME] * ((nsfloat)j / (nsfloat)size));
 
 	}
 
 }
 
-void makeVoiseFromFile::textreadingMasatuon(std::vector<nsfloat>& out, nschar nowmoji1, nschar nowmoji2, nsfloat pitch, int targettime) {
-	const int size = MAXSHIONSPEED * 0.5;
+void makeVoiseFromFile::textreadingMasatuon(std::vector<nsfloat>& out, nschar nowmoji1, nschar nowmoji2, nsfloat pitch, nsint targettime) {
+	const nsint size = (nsint)(MAXSHIONSPEED * 0.5);
 	//ホワイトノイズ
 	std::vector<nsfloat> voutw(MAXSHIONSPEED, 0.0);
 	std::vector<nsfloat> voutw2(MAXSHIONSPEED, 0.0);
@@ -2034,33 +1927,33 @@ void makeVoiseFromFile::textreadingMasatuon(std::vector<nsfloat>& out, nschar no
 	mvffMMVF.makeSinha(getMojiFormant(1, nowmoji1, 2), 0.5, voutw3);
 	mvffMMVF.makeSinha(getMojiFormant(1, nowmoji1, 3), 0.5, voutw4);
 
-	for (int i = 0; i < MAXSHIONSPEED;i++) {
-		voutw[i] += voutw2[i] * 0.5 + voutw3[i] + voutw4[i];
-		voutw[i] /= 4;
+	for (nsint i = 0; i < MAXSHIONSPEED;i++) {
+		voutw[i] += voutw2[i] * (nsfloat)0.5 + voutw3[i] + voutw4[i];
+		voutw[i] *= 0.25;
 		voutw2[i] = 0;
 	}
 
-	hipassFilter(voutw, voutw2, SMPL, getMojiFormant(1, nowmoji1, 1), 0.707);
-	for (int i = 0; i < MAXSHIONSPEED;i++)voutw[i] = 0.0;
-	lowpassFilter(voutw2, voutw, SMPL, getMojiFormant(1, nowmoji1, 0), 1.0);
+	hipassFilter(voutw, voutw2, getMojiFormant(1, nowmoji1, 1), 0.707);
+	for (nsint i = 0; i < MAXSHIONSPEED;i++)voutw[i] = 0.0;
+	lowpassFilter(voutw2, voutw, getMojiFormant(1, nowmoji1, 0), 1.0);
 
-	for (int j = 0; j < (MAXSHIONSPEED - size) * 0.5;j++)out.push_back(0.0);
-	for (int j = 0;j < (MAXSHIONSPEED - size) * 0.5;j++)
-		out.push_back(voutw[j] * ((nsfloat)j / (MAXSHIONSPEED - (nsfloat)size)) * 0.5);
+	for (nsint j = 0; j < (MAXSHIONSPEED - size) * 0.5;j++)out.push_back(0.0);
+	for (nsint j = 0;j < (MAXSHIONSPEED - size) * 0.5;j++)
+		out.push_back(voutw[j] * ((nsfloat)j / (nsfloat)(MAXSHIONSPEED - size)) * (nsfloat)0.5);
 
 	std::vector<nsfloat> vout2(size + CTIME * 2, 1.0);   //母音
 
 	mvffMMVF.setFormants(getMojiFormant(1, nowmoji2, 0) + pitch, getMojiFormant(1, nowmoji2, 1) + pitch, getMojiFormant(1, nowmoji2, 2) + pitch, getMojiFormant(1, nowmoji2, 3) + pitch);
 	mvffMMVF.makeSinWaveFromClass(vout2, out.size() - CTIME);
 
-	for (int j = 0; j < size;j++)
-		out.push_back(vout2[j + CTIME] * ((nsfloat)j / (nsfloat)size) + voutw[j + size] * (((nsfloat)size - (nsfloat)j) / (nsfloat)size) * 0.5);
+	for (nsint j = 0; j < size;j++)
+		out.push_back(vout2[j + CTIME] * ((nsfloat)j / (nsfloat)size) + voutw[j + size] * ((nsfloat)(size - j) / (nsfloat)size) * (nsfloat)0.5);
 
 }
 
-void makeVoiseFromFile::textreadingYuuseiMasatuon(std::vector<nsfloat>& out, nschar nowmoji1, nschar nowmoji2, nsfloat pitch, int targettime) {
-	const int size = MAXSHIONSPEED * 0.5;
-	const int size2 = MAXSHIONSPEED * 0.25;
+void makeVoiseFromFile::textreadingYuuseiMasatuon(std::vector<nsfloat>& out, nschar nowmoji1, nschar nowmoji2, nsfloat pitch, nsint targettime) {
+	const nsint size = (nsint)(MAXSHIONSPEED * 0.5);
+	const nsint size2 = (nsint)(MAXSHIONSPEED * 0.25);
 	std::vector<nsfloat> vout2(size2 + CTIME * 2, 1.0);   //母音
 	std::vector<nsfloat> vout3(size2 + CTIME * 2, 1.0);   //鼻音
 	mvffMMVF.setFormants(getMojiFormant(1, nowmoji1, 0) + pitch, getMojiFormant(1, nowmoji1, 1) + pitch, getMojiFormant(1, nowmoji1, 2) + pitch, getMojiFormant(1, nowmoji1, 3) + pitch);
@@ -2068,8 +1961,8 @@ void makeVoiseFromFile::textreadingYuuseiMasatuon(std::vector<nsfloat>& out, nsc
 	mvffMMVF.setFormants(getMojiFormant(0, 0xd1, 0) + pitch, getMojiFormant(0, 0xd1, 1) + pitch, getMojiFormant(0, 0xd1, 2) + pitch, getMojiFormant(0, 0xd1, 3) + pitch);
 	mvffMMVF.makeSinWaveFromClass(vout3, out.size() - CTIME);
 
-	for (int j = 0; j < size2;j++)
-		out.push_back((vout2[j + CTIME] * ((j < size2 * 0.5) ? ((nsfloat)j / size2) : ((size2 - (nsfloat)j) / size2)) + vout3[j + CTIME] * ((j < size2 * 0.5) ? ((nsfloat)j / size2) : ((size2 - (nsfloat)j) / size2))) * 0.25);
+	for (nsint j = 0; j < size2;j++)
+		out.push_back((vout2[j + CTIME] * ((j < size2 * 0.5) ? ((nsfloat)j / (nsfloat)size2) : ((nsfloat)(size2 - j) / (nsfloat)size2)) + vout3[j + CTIME] * ((j < size2 * 0.5) ? ((nsfloat)j / (nsfloat)size2) : ((nsfloat)(size2 - j) / (nsfloat)size2))) * (nsfloat)0.25);
 
 	//ホワイトノイズ
 	std::vector<nsfloat> voutw(MAXSHIONSPEED, 0.0);
@@ -2077,37 +1970,42 @@ void makeVoiseFromFile::textreadingYuuseiMasatuon(std::vector<nsfloat>& out, nsc
 
 	mvffMMVF.makeSinha(getMojiFormant(1, nowmoji1, 0), 0.5, voutw);
 	mvffMMVF.makeSinha(getMojiFormant(1, nowmoji1, 1), 0.5, voutw2);
-	for (int i = 0; i < MAXSHIONSPEED;i++) {
-		voutw[i] += voutw2[i];voutw2[i] = 0;
+	for (nsint i = 0; i < MAXSHIONSPEED;i++) {
+		voutw[i] += voutw2[i];
+		voutw2[i] = 0;
 	}
 	mvffMMVF.makeSinha(getMojiFormant(1, nowmoji1, 2), 0.5, voutw2);
-	for (int i = 0; i < MAXSHIONSPEED;i++) {
-		voutw[i] += voutw2[i];voutw2[i] = 0;
+	for (nsint i = 0; i < MAXSHIONSPEED;i++) {
+		voutw[i] += voutw2[i];
+		voutw2[i] = 0;
 	}
 	mvffMMVF.makeSinha(getMojiFormant(1, nowmoji1, 3), 0.5, voutw2);
-	for (int i = 0; i < MAXSHIONSPEED;i++) {
-		voutw[i] += voutw2[i];voutw[i] /= 4;voutw2[i] = 0;
+	for (nsint i = 0; i < MAXSHIONSPEED;i++) {
+		voutw[i] += voutw2[i];
+		voutw[i] *= 0.25;
+		voutw2[i] = 0;
 	}
 
-	hipassFilter(voutw, voutw2, SMPL, getMojiFormant(1, nowmoji1, 1), 0.707);
-	for (int i = 0; i < MAXSHIONSPEED;i++)voutw[i] = 0.0;
-	lowpassFilter(voutw2, voutw, SMPL, getMojiFormant(1, nowmoji1, 0), 1.0);
+	hipassFilter(voutw, voutw2, getMojiFormant(1, nowmoji1, 1), 0.707);
+	for (nsint i = 0; i < MAXSHIONSPEED;i++)
+		voutw[i] = 0.0;
+	lowpassFilter(voutw2, voutw, getMojiFormant(1, nowmoji1, 0), 1.0);
 
-	for (int j = 0;j < size * 0.5;j++)
-		out.push_back(voutw[j] * ((nsfloat)j / (MAXSHIONSPEED - (nsfloat)size)) * 0.5);
+	for (nsint j = 0;j < size * 0.5;j++)
+		out.push_back(voutw[j] * ((nsfloat)j / (nsfloat)(MAXSHIONSPEED - size)) * (nsfloat)0.5);
 
 	std::vector<nsfloat> vout1(size + CTIME * 2, 1.0);
 
 	mvffMMVF.setFormants(getMojiFormant(1, nowmoji2, 0) + pitch, getMojiFormant(1, nowmoji2, 1) + pitch, getMojiFormant(1, nowmoji2, 2) + pitch, getMojiFormant(1, nowmoji2, 3) + pitch);
 	mvffMMVF.makeSinWaveFromClass(vout1, out.size() - CTIME);
 
-	for (int j = 0; j < size;j++)
-		out.push_back(vout1[j + CTIME] * ((nsfloat)j / (nsfloat)size) + voutw[j + size] * (((nsfloat)size - (nsfloat)j) / (nsfloat)size) * 0.5);
+	for (nsint j = 0; j < size;j++)
+		out.push_back(vout1[j + CTIME] * ((nsfloat)j / (nsfloat)size) + voutw[j + size] * ((nsfloat)(size - j) / (nsfloat)size) * (nsfloat)0.5);
 
 }
 
-void makeVoiseFromFile::textreadingMASATUON(std::vector<nsfloat>& out, nschar nowmoji, nsfloat pitch, int targettime) {
-	const int size = MAXSHIONSPEED;
+void makeVoiseFromFile::textreadingMASATUON(std::vector<nsfloat>& out, nschar nowmoji, nsfloat pitch, nsint targettime) {
+	const nsint size = MAXSHIONSPEED;
 	std::vector<nsfloat> vout1(size + CTIME * 2, 1.0);   //摩殺音
 	std::vector<nsfloat> vout2(size + CTIME * 2, 1.0);   //母音
 	FriKILLive h = {};
@@ -2124,14 +2022,15 @@ void makeVoiseFromFile::textreadingMASATUON(std::vector<nsfloat>& out, nschar no
 	mvffMMVF.setFormants(getMojiFormant(0, nowmoji, 0) + pitch, getMojiFormant(0, nowmoji, 1) + pitch, getMojiFormant(0, nowmoji, 2) + pitch, getMojiFormant(0, nowmoji, 3) + pitch);
 	mvffMMVF.makeSinWaveFromClass(vout2, out.size() - CTIME);
 
-	for (int j = 0; j < size;j++)
-		out.push_back(((j < size) ? vout1[j + CTIME] * ((j < size * 0.5) ? ((nsfloat)j / (nsfloat)size) : (((nsfloat)size - (nsfloat)j) / (nsfloat)size)) : 0) * 0.25 + vout2[j + CTIME] * ((nsfloat)j / (nsfloat)size));
+	for (nsint j = 0; j < size;j++)
+		out.push_back(((j < size) ? vout1[j + CTIME] * ((j < size * 0.5) ? ((nsfloat)j / (nsfloat)size) : ((nsfloat)(size - j) / (nsfloat)size)) : 0) * (nsfloat)0.25 + vout2[j + CTIME] * ((nsfloat)j / (nsfloat)size));
 
 }
 
-void makeVoiseFromFile::textreadingBion(std::vector<nsfloat>& out, nschar nowmoji1, nschar nowmoji2, nschar oldmoji, nsfloat pitch, int targettime) {
-	const int size = MAXSHIONSPEED;
-	const int ssize = MAXSHIONSPEED * 0.5 - NASALSPEED;int jtime = 0;
+void makeVoiseFromFile::textreadingBion(std::vector<nsfloat>& out, nschar nowmoji1, nschar nowmoji2, nschar oldmoji, nsfloat pitch, nsint targettime) {
+	const nsint size = MAXSHIONSPEED;
+	const nsint ssize = (nsint)(MAXSHIONSPEED * 0.5) - NASALSPEED;
+	nsint jtime = 0;
 	std::vector<nsfloat> vout1(size + CTIME * 2, 1.0);   //鼻音
 	std::vector<nsfloat> vout2(size + CTIME * 2, 1.0);   //母音
 
@@ -2141,30 +2040,31 @@ void makeVoiseFromFile::textreadingBion(std::vector<nsfloat>& out, nschar nowmoj
 	mvffMMVF.makeSinWaveFromClass(vout2, out.size() - CTIME);
 
 	if (oldmoji == NSNULL or oldmoji == NSspc) {
-		for (int j = 0; j < ssize;j++) {
-			out.push_back(vout1[jtime + CTIME] * ((nsfloat)j / ssize) * 0.5);
+		for (nsint j = 0; j < ssize;j++) {
+			out.push_back(vout1[jtime + CTIME] * ((nsfloat)j / (nsfloat)ssize) * (nsfloat)0.5);
 			jtime++;
 		}
 	}
 	else {
-		for (int j = 0; j < ssize;j++) {
+		for (nsint j = 0; j < ssize;j++) {
 			out.push_back(vout1[jtime + CTIME] * 0.5);
 			jtime++;
 		}
 	}
-	for (int j = 0;j < NASALSPEED;j++) {
-		out.push_back(vout1[jtime + CTIME] * ((NASALSPEED - (nsfloat)j) / NASALSPEED) * 0.5 + vout2[jtime + CTIME] * ((nsfloat)j / NASALSPEED));
+	for (nsint j = 0;j < NASALSPEED;j++) {
+		out.push_back(vout1[jtime + CTIME] * ((nsfloat)(NASALSPEED - j) / (nsfloat)NASALSPEED) * (nsfloat)0.5 + vout2[jtime + CTIME] * ((nsfloat)j / (nsfloat)NASALSPEED));
 		jtime++;
 	}
-	for (int j = 0; jtime == size;j++) {
+	for (nsint j = 0; jtime == size;j++) {
 		out.push_back(vout2[jtime + CTIME]);
 		jtime++;
 	}
 }
 
-void makeVoiseFromFile::textreadingHajikion(std::vector<nsfloat>& out, nschar nowmoji1, nschar nowmoji2, nschar oldmoji, nsfloat pitch, int targettime) {
-	const int size = MAXSHIONSPEED;
-	const int ssize = MAXSHIONSPEED * 0.5 - TAPSPEED;int jtime = 0;
+void makeVoiseFromFile::textreadingHajikion(std::vector<nsfloat>& out, nschar nowmoji1, nschar nowmoji2, nschar oldmoji, nsfloat pitch, nsint targettime) {
+	const nsint size = MAXSHIONSPEED;
+	const nsint ssize = (nsint)(MAXSHIONSPEED * 0.5) - TAPSPEED;
+	nsint jtime = 0;
 	std::vector<nsfloat> vout1(size + CTIME * 2, 1.0);   //鼻音
 	std::vector<nsfloat> vout2(size + CTIME * 2, 1.0);   //母音
 
@@ -2174,22 +2074,22 @@ void makeVoiseFromFile::textreadingHajikion(std::vector<nsfloat>& out, nschar no
 	mvffMMVF.makeSinWaveFromClass(vout2, out.size() - CTIME);
 
 	if (oldmoji == NSNULL or oldmoji == NSspc) {
-		for (int j = 0; j < ssize;j++) {
-			out.push_back(vout1[jtime + CTIME] * ((nsfloat)j / ssize) * 0.5);
+		for (nsint j = 0; j < ssize;j++) {
+			out.push_back(vout1[jtime + CTIME] * ((nsfloat)j / (nsfloat)ssize) * (nsfloat)0.5);
 			jtime++;
 		}
 	}
 	else {
-		for (int j = 0; j < ssize;j++) {
-			out.push_back(vout1[jtime + CTIME] * 0.5);
+		for (nsint j = 0; j < ssize;j++) {
+			out.push_back(vout1[jtime + CTIME] * (nsfloat)0.5);
 			jtime++;
 		}
 	}
-	for (int j = 0;j < NASALSPEED;j++) {
-		out.push_back(vout1[jtime + CTIME] * ((TAPSPEED - (nsfloat)j) / TAPSPEED) * 0.5 + vout2[jtime + CTIME] * ((nsfloat)j / TAPSPEED));
+	for (nsint j = 0;j < NASALSPEED;j++) {
+		out.push_back(vout1[jtime + CTIME] * ((nsfloat)(TAPSPEED - j) / (nsfloat)TAPSPEED) * (nsfloat)0.5 + vout2[jtime + CTIME] * ((nsfloat)j / (nsfloat)TAPSPEED));
 		jtime++;
 	}
-	for (int j = 0; jtime == size;j++) {
+	for (nsint j = 0; jtime == size;j++) {
 		out.push_back(vout2[jtime + CTIME]);
 		jtime++;
 	}
@@ -2197,115 +2097,108 @@ void makeVoiseFromFile::textreadingHajikion(std::vector<nsfloat>& out, nschar no
 
 //=====声生成(母音)=====
 
-void makeVoiseFromFile::textreadingBoin1(std::vector<nsfloat>& out, nschar nowmoji, nsfloat pitch, int targettime) {
+void makeVoiseFromFile::textreadingBoin1(std::vector<nsfloat>& out, nschar nowmoji, nsfloat pitch, nsint targettime) {
 	mvffMMVF.setFormants(getMojiFormant(1, nowmoji, 0) + pitch, getMojiFormant(1, nowmoji, 1) + pitch, getMojiFormant(1, nowmoji, 2) + pitch, getMojiFormant(1, nowmoji, 3) + pitch);
-	const int size = targettime - SEMIVOWELSPEED - out.size();
+	const nsint size = targettime - SEMIVOWELSPEED - out.size();
 	if (size > 0) {
 		std::vector<nsfloat> vout(size + CTIME * 2, 1.0);
 
 		mvffMMVF.makeSinWaveFromClass(vout, out.size() - CTIME);
 
-		for (int j = 0; j < size;j++)
+		for (nsint j = 0; j < size;j++)
 			out.push_back(vout[j + CTIME]);
 	}
 }
 
-void makeVoiseFromFile::textreadingBoin2(std::vector<nsfloat>& out, nschar nowmoji, nschar nextmoji, nsfloat pitch, nsfloat nextpitch, int targettime) {
+void makeVoiseFromFile::textreadingBoin2(std::vector<nsfloat>& out, nschar nowmoji, nschar nextmoji, nsfloat pitch, nsfloat nextpitch, nsint targettime) {
 	//終わり or 空白
 	if (nextmoji == NSNULL or nextmoji == NSspc) {
-		const int size = SEMIVOWELSPEED;
-		std::vector<nsfloat> vout(size + CTIME * 2, 1.0);
+		std::vector<nsfloat> vout(SEMIVOWELSPEED + CTIME * 2, 1.0);
 
 		mvffMMVF.makeSinWaveFromClass(vout, out.size() - CTIME);
 
-		for (int j = 0; j < size;j++)
-			out.push_back(vout[j + CTIME] * ((size - (nsfloat)j) / size));
+		for (nsint j = 0; j < SEMIVOWELSPEED;j++)
+			out.push_back(vout[j + CTIME] * ((nsfloat)(SEMIVOWELSPEED - j) * SEMIVOWELSPEED_INV));
 	}
 	//破裂音
 	else if (doVoiselessPlosive(nextmoji) or doVoisedPlosive(nextmoji)) {
-		const int size = SEMIVOWELSPEED;
-		std::vector<nsfloat> vout1(size + CTIME * 2, 1.0);
-		std::vector<nsfloat> vout2(size + CTIME * 2, 1.0);
+		std::vector<nsfloat> vout1(SEMIVOWELSPEED + CTIME * 2, 1.0);
+		std::vector<nsfloat> vout2(SEMIVOWELSPEED + CTIME * 2, 1.0);
 
 		mvffMMVF.setFormants(getMojiFormant(1, nowmoji, 0) + pitch, getMojiFormant(1, nowmoji, 1) + pitch, getMojiFormant(1, nowmoji, 2) + pitch, getMojiFormant(1, nowmoji, 3) + pitch);
 		mvffMMVF.makeSinWaveFromClass(vout1, out.size() - CTIME);
 		mvffMMVF.setFormants(getMojiFormant(0, nextmoji, 0) + nextpitch, getMojiFormant(0, nextmoji, 1) + nextpitch, getMojiFormant(0, nextmoji, 2) + nextpitch, getMojiFormant(0, nextmoji, 3) + nextpitch);
 		mvffMMVF.makeSinWaveFromClass(vout2, out.size() - CTIME);
 
-		for (int j = 0; j < size * 0.5;j++)
-			out.push_back(vout1[j + CTIME] * ((size - (nsfloat)j) / size) + vout2[j + CTIME] * ((nsfloat)j / size));
+		for (nsint j = 0; j < SEMIVOWELSPEED * 0.5;j++)
+			out.push_back(vout1[j + CTIME] * ((nsfloat)(SEMIVOWELSPEED - j) * SEMIVOWELSPEED_INV) + vout2[j + CTIME] * ((nsfloat)j * SEMIVOWELSPEED_INV));
 
-		for (int j = out.size();j < targettime;j++)
+		for (nsint j = out.size();j < targettime;j++)
 			out.push_back(0.0);
 	}
 	//鼻音
 	else if (doNasal(nextmoji)) {
-		const int size = SEMIVOWELSPEED;
-		std::vector<nsfloat> vout1(size + CTIME * 2, 1.0);
-		std::vector<nsfloat> vout2(size + CTIME * 2, 1.0);
+		std::vector<nsfloat> vout1(SEMIVOWELSPEED + CTIME * 2, 1.0);
+		std::vector<nsfloat> vout2(SEMIVOWELSPEED + CTIME * 2, 1.0);
 
 		mvffMMVF.setFormants(getMojiFormant(1, nowmoji, 0) + pitch, getMojiFormant(1, nowmoji, 1) + pitch, getMojiFormant(1, nowmoji, 2) + pitch, getMojiFormant(1, nowmoji, 3) + pitch);
 		mvffMMVF.makeSinWaveFromClass(vout1, out.size() - CTIME);
 		mvffMMVF.setFormants(getMojiFormant(0, nextmoji, 0) + nextpitch, getMojiFormant(0, nextmoji, 1) + nextpitch, getMojiFormant(0, nextmoji, 2) + nextpitch, getMojiFormant(0, nextmoji, 3) + nextpitch);
 		mvffMMVF.makeSinWaveFromClass(vout2, out.size() - CTIME);
 
-		for (int j = 0; j < size;j++)
-			out.push_back(vout1[j + CTIME] * ((size - (nsfloat)j) / size) + vout2[j + CTIME] * ((nsfloat)j / size) * 0.5);
+		for (nsint j = 0; j < SEMIVOWELSPEED;j++)
+			out.push_back(vout1[j + CTIME] * ((nsfloat)(SEMIVOWELSPEED - j) * SEMIVOWELSPEED_INV) + vout2[j + CTIME] * ((nsfloat)j * SEMIVOWELSPEED_INV) * 0.5);
 	}
 	//はじき音
 	else if (doTap(nextmoji)) {
-		const int size = SEMIVOWELSPEED;
-		std::vector<nsfloat> vout1(size + CTIME * 2, 1.0);
-		std::vector<nsfloat> vout2(size + CTIME * 2, 1.0);
+		std::vector<nsfloat> vout1(SEMIVOWELSPEED + CTIME * 2, 1.0);
+		std::vector<nsfloat> vout2(SEMIVOWELSPEED + CTIME * 2, 1.0);
 
 		mvffMMVF.setFormants(getMojiFormant(1, nowmoji, 0) + pitch, getMojiFormant(1, nowmoji, 1) + pitch, getMojiFormant(1, nowmoji, 2) + pitch, getMojiFormant(1, nowmoji, 3) + pitch);
 		mvffMMVF.makeSinWaveFromClass(vout1, out.size() - CTIME);
 		mvffMMVF.setFormants(getMojiFormant(0, nextmoji, 0) + nextpitch, getMojiFormant(0, nextmoji, 1) + nextpitch, getMojiFormant(0, nextmoji, 2) + nextpitch, getMojiFormant(0, nextmoji, 3) + nextpitch);
 		mvffMMVF.makeSinWaveFromClass(vout2, out.size() - CTIME);
 
-		for (int j = 0; j < size;j++)
-			out.push_back(vout1[j + CTIME] * ((size - (nsfloat)j) / size) + vout2[j + CTIME] * ((nsfloat)j / size));
+		for (nsint j = 0; j < SEMIVOWELSPEED;j++)
+			out.push_back(vout1[j + CTIME] * ((nsfloat)(SEMIVOWELSPEED - j) * SEMIVOWELSPEED_INV) + vout2[j + CTIME] * ((nsfloat)j * SEMIVOWELSPEED_INV));
 	}
 	//摩擦音
 	else if (doVoiselessFricative(nextmoji)) {
-		const int size = SEMIVOWELSPEED;
-		std::vector<nsfloat> vout1(size + CTIME * 2, 1.0);
+		std::vector<nsfloat> vout1(SEMIVOWELSPEED + CTIME * 2, 1.0);
 
 		mvffMMVF.setFormants(getMojiFormant(1, nowmoji, 0) + pitch, getMojiFormant(1, nowmoji, 1) + pitch, getMojiFormant(1, nowmoji, 2) + pitch, getMojiFormant(1, nowmoji, 3) + pitch);
 		mvffMMVF.makeSinWaveFromClass(vout1, out.size() - CTIME);
 
-		for (int j = 0; j < size;j++)
-			out.push_back(vout1[j + CTIME] * ((size - (nsfloat)j) / size));
+		for (nsint j = 0; j < SEMIVOWELSPEED;j++)
+			out.push_back(vout1[j + CTIME] * ((nsfloat)(SEMIVOWELSPEED - j) * SEMIVOWELSPEED_INV));
 	}
 	//摩殺音(笑)
 	else if (doFriKILLive(nextmoji)) {
-		const int size = SEMIVOWELSPEED;
 		//ホワイトノイズ
 		std::vector<nsfloat> voutw(MAXSHIONSPEED, 0.0);
 		std::vector<nsfloat> voutw2(MAXSHIONSPEED, 0.0);
 		ftInit(MAXSHIONSPEED);
 		makeWhitenoise1(voutw, out.size(), getMojiFormant(1, nowmoji, 3));
 
-		hipassFilter(voutw, voutw2, SMPL, getMojiFormant(1, nowmoji, 3), 0.707);
-		for (int i = 0; i < MAXSHIONSPEED;i++)voutw[i] = 0.0;
-		lowpassFilter(voutw2, voutw, SMPL, getMojiFormant(1, nowmoji, 3), 1.0);
+		hipassFilter(voutw, voutw2, getMojiFormant(1, nowmoji, 3), 0.707);
+		for (nsint i = 0; i < MAXSHIONSPEED;i++)voutw[i] = 0.0;
+		lowpassFilter(voutw2, voutw, getMojiFormant(1, nowmoji, 3), 1.0);
 
-		std::vector<nsfloat> vout1(size + CTIME * 2, 1.0);
-		std::vector<nsfloat> vout2(size + CTIME * 2, 1.0);
+		std::vector<nsfloat> vout1(SEMIVOWELSPEED + CTIME * 2, 1.0);
+		std::vector<nsfloat> vout2(SEMIVOWELSPEED + CTIME * 2, 1.0);
 
 		mvffMMVF.setFormants(getMojiFormant(1, nowmoji, 0) + pitch, getMojiFormant(1, nowmoji, 1) + pitch, getMojiFormant(1, nowmoji, 2) + pitch, getMojiFormant(1, nowmoji, 3) + pitch);
 		mvffMMVF.makeSinWaveFromClass(vout1, out.size() - CTIME);
 		mvffMMVF.setFormants(getMojiFormant(0, nextmoji, 0) + nextpitch, getMojiFormant(0, nextmoji, 1) + nextpitch, getMojiFormant(0, nextmoji, 2) + nextpitch, getMojiFormant(0, nextmoji, 3) + nextpitch);
 		mvffMMVF.makeSinWaveFromClass(vout2, out.size() - CTIME);
 
-		for (int j = 0; j < size;j++)
-			out.push_back(vout1[j + CTIME] * ((size - (nsfloat)j) / size));// +(voutw[j] + vout2[j + CTIME] * 0.5) * ((nsfloat)j / size);
+		for (nsint j = 0; j < SEMIVOWELSPEED;j++)
+			out.push_back(vout1[j + CTIME] * ((nsfloat)(SEMIVOWELSPEED - j) * SEMIVOWELSPEED_INV));// +(voutw[j] + vout2[j + CTIME] * 0.5) * ((nsfloat)j / size);
 	}
 	//その他
 	else {
-		const int size = SEMIVOWELSPEED;
-		std::vector<nsfloat> vout1(size + CTIME * 2, 1.0);
-		std::vector<nsfloat> vout2(size + CTIME * 2, 1.0);
+		std::vector<nsfloat> vout1(SEMIVOWELSPEED + CTIME * 2, 1.0);
+		std::vector<nsfloat> vout2(SEMIVOWELSPEED + CTIME * 2, 1.0);
 
 
 		mvffMMVF.setFormants(getMojiFormant(1, nowmoji, 0) + pitch, getMojiFormant(1, nowmoji, 1) + pitch, getMojiFormant(1, nowmoji, 2) + pitch, getMojiFormant(1, nowmoji, 3) + pitch);
@@ -2313,8 +2206,8 @@ void makeVoiseFromFile::textreadingBoin2(std::vector<nsfloat>& out, nschar nowmo
 		mvffMMVF.setFormants(getMojiFormant(0, nextmoji, 0) + nextpitch, getMojiFormant(0, nextmoji, 1) + nextpitch, getMojiFormant(0, nextmoji, 2) + nextpitch, getMojiFormant(0, nextmoji, 3) + nextpitch);
 		mvffMMVF.makeSinWaveFromClass(vout2, out.size() - CTIME);
 
-		for (int j = 0; j < size;j++)
-			out.push_back(vout1[j + CTIME] * ((size - (nsfloat)j) / size) + vout2[j + CTIME] * ((nsfloat)j / size));
+		for (nsint j = 0; j < SEMIVOWELSPEED;j++)
+			out.push_back(vout1[j + CTIME] * ((nsfloat)(SEMIVOWELSPEED - j) * SEMIVOWELSPEED_INV) + vout2[j + CTIME] * ((nsfloat)j * SEMIVOWELSPEED_INV));
 	}
 }
 
@@ -2322,11 +2215,11 @@ void makeVoiseFromFile::textreadingBoin2(std::vector<nsfloat>& out, nschar nowmo
 //=====ファイル関係=====
 
 //文字列からデータを読み込み
-int makeVoiseFromFile::loadFromChar(char* data) {
+void makeVoiseFromFile::loadFromChar(char* data) {
 
 	/* いつか作ります。(SCP-___-J) */
 
-	return 0;
+	return;
 }
 
 //=====ローカル変数を取得=====
@@ -2337,20 +2230,20 @@ nsfloat makeVoiseFromFile::getPrivatebf() {
 }
 
 //データ保管庫からフォルマントデータを読み込む
-nsfloat makeVoiseFromFile::getPrivatebFormant(int b, int f) {
+nsfloat makeVoiseFromFile::getPrivatebFormant(nsint b, nsint f) {
 	return privateFormant[b][f];
 }
 
 //=====デコード関数=====
 
 //零号機のデータを読み込む
-int makeVoiseFromFile::decodeVoise0(unsigned char* data) {
+nsint makeVoiseFromFile::decodeVoise0(unsigned char* data) {
 
-	int ne = 0;                                         //今の配列の要素番号
+	nsint ne = 0;                                         //今の配列の要素番号
 
 	privatebf = 0.0;
-	for (int i = 0; i < 5;i++)
-		for (int j = 0; j < 4;j++)
+	for (nsint i = 0; i < 5;i++)
+		for (nsint j = 0; j < 4;j++)
 			privateFormant[i][j] = 0;
 
 	if (data[ne++] != 'D') return 1;
@@ -2361,9 +2254,9 @@ int makeVoiseFromFile::decodeVoise0(unsigned char* data) {
 	//基音
 	if (data[ne++] != 'b') return 1;
 	if (data[ne++] != 'f') return 1;
-	short int pf = 0;
-	pf += (short int)(data[ne++] & 0xff) << 0;
-	pf += (short int)(data[ne++] & 0xff) << 8;
+	uint16_t pf = 0;
+	pf += (uint16_t)(data[ne++] & 0xff) << 0;
+	pf += (uint16_t)(data[ne++] & 0xff) << 8;
 	privatebf = (nsfloat)pf;
 
 	//あ
@@ -2371,9 +2264,9 @@ int makeVoiseFromFile::decodeVoise0(unsigned char* data) {
 	if (data[ne++] != 'F') return 1;
 	if (data[ne++] != 'F') return 1;
 	if (data[ne++] != 'A') return 1;
-	for (int i = 0; i < 4;i++) {
-		privateFormant[0][i] += (__int64)(data[ne++] & 0xff) << 0;
-		privateFormant[0][i] += (__int64)(data[ne++] & 0xff) << 8;
+	for (nsint i = 0; i < 4;i++) {
+		privateFormant[0][i] += (int64_t)(data[ne++] & 0xff) << 0;
+		privateFormant[0][i] += (int64_t)(data[ne++] & 0xff) << 8;
 	}
 
 	//い
@@ -2381,9 +2274,9 @@ int makeVoiseFromFile::decodeVoise0(unsigned char* data) {
 	if (data[ne++] != 'F') return 1;
 	if (data[ne++] != 'F') return 1;
 	if (data[ne++] != 'I') return 1;
-	for (int i = 0; i < 4;i++) {
-		privateFormant[1][i] += (__int64)(data[ne++] & 0xff) << 0;
-		privateFormant[1][i] += (__int64)(data[ne++] & 0xff) << 8;
+	for (nsint i = 0; i < 4;i++) {
+		privateFormant[1][i] += (int64_t)(data[ne++] & 0xff) << 0;
+		privateFormant[1][i] += (int64_t)(data[ne++] & 0xff) << 8;
 	}
 
 	//う
@@ -2391,9 +2284,9 @@ int makeVoiseFromFile::decodeVoise0(unsigned char* data) {
 	if (data[ne++] != 'F') return 1;
 	if (data[ne++] != 'F') return 1;
 	if (data[ne++] != 'U') return 1;
-	for (int i = 0; i < 4;i++) {
-		privateFormant[2][i] += (__int64)(data[ne++] & 0xff) << 0;
-		privateFormant[2][i] += (__int64)(data[ne++] & 0xff) << 8;
+	for (nsint i = 0; i < 4;i++) {
+		privateFormant[2][i] += (int64_t)(data[ne++] & 0xff) << 0;
+		privateFormant[2][i] += (int64_t)(data[ne++] & 0xff) << 8;
 	}
 
 	//え
@@ -2401,9 +2294,9 @@ int makeVoiseFromFile::decodeVoise0(unsigned char* data) {
 	if (data[ne++] != 'F') return 1;
 	if (data[ne++] != 'F') return 1;
 	if (data[ne++] != 'E') return 1;
-	for (int i = 0; i < 4;i++) {
-		privateFormant[3][i] += (__int64)(data[ne++] & 0xff) << 0;
-		privateFormant[3][i] += (__int64)(data[ne++] & 0xff) << 8;
+	for (nsint i = 0; i < 4;i++) {
+		privateFormant[3][i] += (int64_t)(data[ne++] & 0xff) << 0;
+		privateFormant[3][i] += (int64_t)(data[ne++] & 0xff) << 8;
 	}
 
 	//お
@@ -2411,9 +2304,9 @@ int makeVoiseFromFile::decodeVoise0(unsigned char* data) {
 	if (data[ne++] != 'F') return 1;
 	if (data[ne++] != 'F') return 1;
 	if (data[ne++] != 'O') return 1;
-	for (int i = 0; i < 4;i++) {
-		privateFormant[4][i] += (__int64)(data[ne++] & 0xff) << 0;
-		privateFormant[4][i] += (__int64)(data[ne++] & 0xff) << 8;
+	for (nsint i = 0; i < 4;i++) {
+		privateFormant[4][i] += (int64_t)(data[ne++] & 0xff) << 0;
+		privateFormant[4][i] += (int64_t)(data[ne++] & 0xff) << 8;
 	}
 
 	createAllMojiFromantFromClass();
@@ -2423,13 +2316,13 @@ int makeVoiseFromFile::decodeVoise0(unsigned char* data) {
 }
 
 //零号機弐型のデータを読み込む
-int makeVoiseFromFile::decodeVoise2(unsigned char* data) {
+nsint makeVoiseFromFile::decodeVoise2(unsigned char* data) {
 
-	int ne = 0;                                         //今の配列の要素番号
+	nsint ne = 0;                                         //今の配列の要素番号
 
 	privatebf = 0.0;
-	for (int i = 0; i < 5;i++)
-		for (int j = 0; j < 4;j++)
+	for (nsint i = 0; i < 5;i++)
+		for (nsint j = 0; j < 4;j++)
 			privateFormant[i][j] = 0;
 
 	if (data[ne++] != 'D') return 1;
@@ -2440,9 +2333,9 @@ int makeVoiseFromFile::decodeVoise2(unsigned char* data) {
 	//基音
 	if (data[ne++] != 'b') return 1;
 	if (data[ne++] != 'f') return 1;
-	short int pf = 0;
-	pf += (short int)(data[ne++] & 0xff) << 0;
-	pf += (short int)(data[ne++] & 0xff) << 8;
+	uint16_t pf = 0;
+	pf += (uint16_t)(data[ne++] & 0xff) << 0;
+	pf += (uint16_t)(data[ne++] & 0xff) << 8;
 	privatebf = (nsfloat)pf;
 
 	//データ
@@ -2464,12 +2357,12 @@ int makeVoiseFromFile::decodeVoise2(unsigned char* data) {
 	if (data[ne++] != 'n') return 1;
 	if (data[ne++] != 't') return 1;
 
-	for (int i = 0;i < 2;i++) {
-		for (int j = 0;j < 16;j++) {
-			for (int k = 0;k < 16;k++) {
-				for (int l = 0;l < 4;l++) {
-					allmojiFormant[i][j][k][l] = (static_cast<unsigned __int64>(data[ne++] & 0xff) << 0);
-					allmojiFormant[i][j][k][l] += (static_cast<unsigned __int64>(data[ne++] & 0xff) << 8);
+	for (nsint i = 0;i < 2;i++) {
+		for (nsint j = 0;j < 16;j++) {
+			for (nsint k = 0;k < 16;k++) {
+				for (nsint l = 0;l < 4;l++) {
+					allmojiFormant[i][j][k][l] = (nsfloat)(uint64_t(data[ne++] & 0xff) << 0);
+					allmojiFormant[i][j][k][l] += (nsfloat)(uint64_t(data[ne++] & 0xff) << 8);
 				}
 			}
 		}
@@ -2480,135 +2373,10 @@ int makeVoiseFromFile::decodeVoise2(unsigned char* data) {
 	if (data[ne++] != 'O') return 1;
 	if (data[ne++] != 'F') return 1;
 	if (data[ne++] != 'T') return 1;
-	short sn = 0;
-	sn += (short)(data[ne++] & 0xff) << 0;
-	sn += (short)(data[ne++] & 0xff) << 8;
+	int16_t sn = 0;
+	sn += (int16_t)(data[ne++] & 0xff) << 0;
+	sn += (int16_t)(data[ne++] & 0xff) << 8;
 	softness = (nsfloat)sn;
-
-	return 0;
-}
-
-//=====フィルター関数=====
-
-//ハイパスフィルタ
-int makeVoiseFromFile::hipassFilter(std::vector<nsfloat> input, std::vector<nsfloat>& out, nsfloat samplerate, nsfloat freq, nsfloat q) {
-
-	// それぞれの変数は下記のとおりとする
-	// float samplerate … サンプリング周波数
-	// float freq … カットオフ周波数
-	// float q    … フィルタのQ値
-	nsfloat omega = 2.0f * 3.14159265f * freq / samplerate;
-	nsfloat alpha = sin(omega) / (2.0f * q);
-
-	nsfloat a0 = 1.0f + alpha;
-	nsfloat a1 = -2.0f * cos(omega);
-	nsfloat a2 = 1.0f - alpha;
-	nsfloat b0 = (1.0f + cos(omega)) * 0.5;
-	nsfloat b1 = -(1.0f + cos(omega));
-	nsfloat b2 = (1.0f + cos(omega)) * 0.5;
-
-	// それぞれの変数は下記のとおりとする
-	// 　float input[]  …入力信号の格納されたバッファ。
-	// 　flaot output[] …フィルタ処理した値を書き出す出力信号のバッファ。
-	// 　int   size     …入力信号・出力信号のバッファのサイズ。
-	// 　float in1, in2, out1, out2  …フィルタ計算用のバッファ変数。初期値は0。
-	// 　float a0, a1, a2, b0, b1, b2 …フィルタの係数。 別途算出する。
-
-	nsfloat in1 = 0.0, in2 = 0.0, out1 = 0.0, out2 = 0.0;
-	for (size_t i = 0; i < out.size(); i++)
-	{
-		// 入力信号にフィルタを適用し、出力信号として書き出す。
-		out[i] = b0 / a0 * input[i] + b1 / a0 * in1 + b2 / a0 * in2
-			- a1 / a0 * out1 - a2 / a0 * out2;
-
-		in2 = in1;		// 2つ前の入力信号を更新
-		in1 = input[i];	// 1つ前の入力信号を更新
-
-		out2 = out1;	// 2つ前の出力信号を更新
-		out1 = out[i];	// 1つ前の出力信号を更新
-	}
-
-	return 0;
-}
-
-//ローパスフィルタ
-int makeVoiseFromFile::lowpassFilter(std::vector<nsfloat> input, std::vector<nsfloat>& out, nsfloat samplerate, nsfloat freq, nsfloat q)
-{
-	// それぞれの変数は下記のとおりとする
-	// float samplerate … サンプリング周波数
-	// float freq … カットオフ周波数
-	// float q    … フィルタのQ値
-	nsfloat omega = 2.0f * 3.14159265f * freq / samplerate;
-	nsfloat alpha = sin(omega) / (2.0f * q);
-
-	nsfloat a0 = 1.0f + alpha;
-	nsfloat a1 = -2.0f * cos(omega);
-	nsfloat a2 = 1.0f - alpha;
-	nsfloat b0 = (1.0f - cos(omega)) * 0.5;
-	nsfloat b1 = 1.0f - cos(omega);
-	nsfloat b2 = (1.0f - cos(omega)) * 0.5;
-
-	// それぞれの変数は下記のとおりとする
-	// 　float input[]  …入力信号の格納されたバッファ。
-	// 　flaot output[] …フィルタ処理した値を書き出す出力信号のバッファ。
-	// 　int   size     …入力信号・出力信号のバッファのサイズ。
-	// 　float in1, in2, out1, out2  …フィルタ計算用のバッファ変数。初期値は0。
-	// 　float a0, a1, a2, b0, b1, b2 …フィルタの係数。 別途算出する。
-
-	nsfloat in1 = 0.0, in2 = 0.0, out1 = 0.0, out2 = 0.0;
-	for (size_t i = 0; i < out.size(); i++)
-	{
-		// 入力信号にフィルタを適用し、出力信号として書き出す。
-		out[i] = b0 / a0 * input[i] + b1 / a0 * in1 + b2 / a0 * in2
-			- a1 / a0 * out1 - a2 / a0 * out2;
-
-		in2 = in1;		// 2つ前の入力信号を更新
-		in1 = input[i];	// 1つ前の入力信号を更新
-
-		out2 = out1;	// 2つ前の出力信号を更新
-		out1 = out[i];	// 1つ前の出力信号を更新
-	}
-
-	return 0;
-}
-
-//ノッチフィルター
-int makeVoiseFromFile::notchpassFilter(std::vector<nsfloat> input, std::vector<nsfloat>& out, nsfloat samplerate, nsfloat freq, nsfloat bw)
-{
-	// それぞれの変数は下記のとおりとする
-	// float samplerate … サンプリング周波数
-	//float freq … カットオフ周波数
-	// float bw   … 帯域幅
-	nsfloat omega = 2.0f * 3.14159265f * freq / samplerate;
-	nsfloat alpha = sin(omega) * sinh(log(2.0f) * 0.5 * bw * omega / sin(omega));
-
-	nsfloat a0 = 1.0f + alpha;
-	nsfloat a1 = -2.0f * cos(omega);
-	nsfloat a2 = 1.0f - alpha;
-	nsfloat b0 = 1.0f;
-	nsfloat b1 = -2.0f * cos(omega);
-	nsfloat b2 = 1.0f;
-
-	// それぞれの変数は下記のとおりとする
-	// 　float input[]  …入力信号の格納されたバッファ。
-	// 　flaot output[] …フィルタ処理した値を書き出す出力信号のバッファ。
-	// 　int   size     …入力信号・出力信号のバッファのサイズ。
-	// 　float in1, in2, out1, out2  …フィルタ計算用のバッファ変数。初期値は0。
-	// 　float a0, a1, a2, b0, b1, b2 …フィルタの係数。 別途算出する。
-
-	nsfloat in1 = 0.0, in2 = 0.0, out1 = 0.0, out2 = 0.0;
-	for (size_t i = 0; i < out.size(); i++)
-	{
-		// 入力信号にフィルタを適用し、出力信号として書き出す。
-		out[i] = b0 / a0 * input[i] + b1 / a0 * in1 + b2 / a0 * in2
-			- a1 / a0 * out1 - a2 / a0 * out2;
-
-		in2 = in1;		// 2つ前の入力信号を更新
-		in1 = input[i];	// 1つ前の入力信号を更新
-
-		out2 = out1;	// 2つ前の出力信号を更新
-		out1 = out[i];	// 1つ前の出力信号を更新
-	}
 
 	return 0;
 }
@@ -2616,75 +2384,75 @@ int makeVoiseFromFile::notchpassFilter(std::vector<nsfloat> input, std::vector<n
 //=====その他=====
 
 //privateFormantからallmojiFormantを作成
-int makeVoiseFromFile::createAllMojiFromantFromClass() {
+void makeVoiseFromFile::createAllMojiFromantFromClass() {
 
 	//NULL
-	for (int i = 0; i < 4; i++) {
+	for (nsint i = 0; i < 4; i++) {
 		allmojiFormant[0][0][0][i] = 0;
 		allmojiFormant[1][0][0][i] = 0;
 	}
 
 	//母音フォルマント
-	for (int i = 0; i < 2;i++) {
+	for (nsint i = 0; i < 2;i++) {
 		//あ
-		for (int k = 0; k < 4;k++)
+		for (nsint k = 0; k < 4;k++)
 			allmojiFormant[i][0][1][k] = privateFormant[0][k];
 		//い
-		for (int k = 0; k < 4;k++)
+		for (nsint k = 0; k < 4;k++)
 			allmojiFormant[i][0][2][k] = privateFormant[1][k];
 		//う
-		for (int k = 0; k < 4;k++)
+		for (nsint k = 0; k < 4;k++)
 			allmojiFormant[i][0][7][k] = privateFormant[2][k];
 		//え
-		for (int k = 0; k < 4;k++)
+		for (nsint k = 0; k < 4;k++)
 			allmojiFormant[i][0][12][k] = privateFormant[3][k];
 		//お
-		for (int k = 0; k < 4;k++)
+		for (nsint k = 0; k < 4;k++)
 			allmojiFormant[i][0][13][k] = privateFormant[4][k];
 	}
 
 	//半母音
 	if (true) {
 		//や
-		for (int k = 0; k < 4;k++)
+		for (nsint k = 0; k < 4;k++)
 			allmojiFormant[0][0][3][k] = privateFormant[1][k];
-		for (int k = 0; k < 4;k++)
+		for (nsint k = 0; k < 4;k++)
 			allmojiFormant[1][0][3][k] = privateFormant[0][k];
 		//ゆ
-		for (int k = 0; k < 4;k++)
+		for (nsint k = 0; k < 4;k++)
 			allmojiFormant[0][0][4][k] = privateFormant[1][k];
-		for (int k = 0; k < 4;k++)
+		for (nsint k = 0; k < 4;k++)
 			allmojiFormant[1][0][4][k] = privateFormant[2][k];
 		//江
-		for (int k = 0; k < 4;k++)
+		for (nsint k = 0; k < 4;k++)
 			allmojiFormant[0][0][5][k] = privateFormant[1][k];
-		for (int k = 0; k < 4;k++)
+		for (nsint k = 0; k < 4;k++)
 			allmojiFormant[1][0][5][k] = privateFormant[3][k];
 		//よ
-		for (int k = 0; k < 4;k++)
+		for (nsint k = 0; k < 4;k++)
 			allmojiFormant[0][0][6][k] = privateFormant[1][k];
-		for (int k = 0; k < 4;k++)
+		for (nsint k = 0; k < 4;k++)
 			allmojiFormant[1][0][6][k] = privateFormant[4][k];
 
 		//わ
-		for (int k = 0; k < 4;k++)
+		for (nsint k = 0; k < 4;k++)
 			allmojiFormant[0][0][8][k] = privateFormant[2][k];
-		for (int k = 0; k < 4;k++)
+		for (nsint k = 0; k < 4;k++)
 			allmojiFormant[1][0][8][k] = privateFormant[0][k];
 		//ゐ
-		for (int k = 0; k < 4;k++)
+		for (nsint k = 0; k < 4;k++)
 			allmojiFormant[0][0][9][k] = privateFormant[2][k];
-		for (int k = 0; k < 4;k++)
+		for (nsint k = 0; k < 4;k++)
 			allmojiFormant[1][0][9][k] = privateFormant[1][k];
 		//ゑ
-		for (int k = 0; k < 4;k++)
+		for (nsint k = 0; k < 4;k++)
 			allmojiFormant[0][0][10][k] = privateFormant[2][k];
-		for (int k = 0; k < 4;k++)
+		for (nsint k = 0; k < 4;k++)
 			allmojiFormant[1][0][10][k] = privateFormant[3][k];
 		//を
-		for (int k = 0; k < 4;k++)
+		for (nsint k = 0; k < 4;k++)
 			allmojiFormant[0][0][11][k] = privateFormant[2][k];
-		for (int k = 0; k < 4;k++)
+		for (nsint k = 0; k < 4;k++)
 			allmojiFormant[1][0][11][k] = privateFormant[4][k];
 	}
 
@@ -2694,250 +2462,250 @@ int makeVoiseFromFile::createAllMojiFromantFromClass() {
 		//無声軟口蓋破裂音(か)
 		allmojiFormant[0][1][1][0] = privateFormant[0][0];
 		allmojiFormant[0][1][1][1] = privateFormant[0][1];
-		allmojiFormant[0][1][1][2] = privateFormant[0][2] * 0.5;
+		allmojiFormant[0][1][1][2] = privateFormant[0][2] * (nsfloat)0.5;
 		allmojiFormant[0][1][1][3] = privateFormant[0][3];
-		for (int k = 0; k < 4;k++)
+		for (nsint k = 0; k < 4;k++)
 			allmojiFormant[1][1][1][k] = allmojiFormant[1][0][1][k];
 		//無声軟口蓋破裂音(硬口より)(き)
-		for (int i = 2;i <= 6; i++) {
+		for (nsint i = 2;i <= 6; i++) {
 			allmojiFormant[0][1][i][0] = privateFormant[1][0];
 			allmojiFormant[0][1][i][1] = privateFormant[1][1];
-			allmojiFormant[0][1][i][2] = privateFormant[1][2] * 0.5;
+			allmojiFormant[0][1][i][2] = privateFormant[1][2] * (nsfloat)0.5;
 			allmojiFormant[0][1][i][3] = privateFormant[1][3];
-			for (int k = 0; k < 4;k++)
+			for (nsint k = 0; k < 4;k++)
 				allmojiFormant[1][1][i][k] = allmojiFormant[1][0][i][k];
 		}
 		//無声軟口蓋破裂音(く)
-		for (int i = 7;i <= 11; i++) {
+		for (nsint i = 7;i <= 11; i++) {
 			allmojiFormant[0][1][i][0] = privateFormant[2][0];
 			allmojiFormant[0][1][i][1] = privateFormant[2][1];
-			allmojiFormant[0][1][i][2] = privateFormant[2][2] * 0.5;
+			allmojiFormant[0][1][i][2] = privateFormant[2][2] * (nsfloat)0.5;
 			allmojiFormant[0][1][i][3] = privateFormant[2][3];
-			for (int k = 0; k < 4;k++)
+			for (nsint k = 0; k < 4;k++)
 				allmojiFormant[1][1][i][k] = allmojiFormant[1][0][i][k];
 		}
 		//無声軟口蓋破裂音(け)
 		allmojiFormant[0][1][12][0] = privateFormant[3][0];
 		allmojiFormant[0][1][12][1] = privateFormant[3][1];
-		allmojiFormant[0][1][12][2] = privateFormant[3][2] * 0.5;
+		allmojiFormant[0][1][12][2] = privateFormant[3][2] * (nsfloat)0.5;
 		allmojiFormant[0][1][12][3] = privateFormant[3][3];
-		for (int k = 0; k < 4;k++)
+		for (nsint k = 0; k < 4;k++)
 			allmojiFormant[1][1][12][k] = allmojiFormant[1][0][12][k];
 		//無声軟口蓋破裂音(こ)
 		allmojiFormant[0][1][13][0] = privateFormant[4][0];
 		allmojiFormant[0][1][13][1] = privateFormant[4][1];
-		allmojiFormant[0][1][13][2] = privateFormant[4][2] * 0.5;
+		allmojiFormant[0][1][13][2] = privateFormant[4][2] * (nsfloat)0.5;
 		allmojiFormant[0][1][13][3] = privateFormant[4][3];
-		for (int k = 0; k < 4;k++)
+		for (nsint k = 0; k < 4;k++)
 			allmojiFormant[1][1][13][k] = allmojiFormant[1][0][13][k];
 
 
 		//有声軟口蓋破裂音(が)
 		allmojiFormant[0][2][1][0] = privateFormant[0][0];
 		allmojiFormant[0][2][1][1] = privateFormant[0][1];
-		allmojiFormant[0][2][1][2] = privateFormant[0][2] * 0.5;
+		allmojiFormant[0][2][1][2] = privateFormant[0][2] * (nsfloat)0.5;
 		allmojiFormant[0][2][1][3] = privateFormant[0][3];
-		for (int k = 0; k < 4;k++)
+		for (nsint k = 0; k < 4;k++)
 			allmojiFormant[1][2][1][k] = allmojiFormant[1][0][1][k];
 		//有声軟口蓋破裂音(硬口より)(ぎ)
-		for (int i = 2;i <= 6; i++) {
+		for (nsint i = 2;i <= 6; i++) {
 			allmojiFormant[0][2][i][0] = privateFormant[1][0];
 			allmojiFormant[0][2][i][1] = privateFormant[1][1];
-			allmojiFormant[0][2][i][2] = privateFormant[1][2] * 0.5;
+			allmojiFormant[0][2][i][2] = privateFormant[1][2] * (nsfloat)0.5;
 			allmojiFormant[0][2][i][3] = privateFormant[1][3];
-			for (int k = 0; k < 4;k++)
+			for (nsint k = 0; k < 4;k++)
 				allmojiFormant[1][2][i][k] = allmojiFormant[1][0][i][k];
 		}
 		//有声軟口蓋破裂音(ぐ)
-		for (int i = 7;i <= 11; i++) {
+		for (nsint i = 7;i <= 11; i++) {
 			allmojiFormant[0][2][i][0] = privateFormant[2][0];
 			allmojiFormant[0][2][i][1] = privateFormant[2][1];
-			allmojiFormant[0][2][i][2] = privateFormant[2][2] * 0.5;
+			allmojiFormant[0][2][i][2] = privateFormant[2][2] * (nsfloat)0.5;
 			allmojiFormant[0][2][i][3] = privateFormant[2][3];
-			for (int k = 0; k < 4;k++)
+			for (nsint k = 0; k < 4;k++)
 				allmojiFormant[1][2][i][k] = allmojiFormant[1][0][i][k];
 		}
 		//有声軟口蓋破裂音(げ)
 		allmojiFormant[0][2][12][0] = privateFormant[3][0];
 		allmojiFormant[0][2][12][1] = privateFormant[3][1];
-		allmojiFormant[0][2][12][2] = privateFormant[3][2] * 0.5;
+		allmojiFormant[0][2][12][2] = privateFormant[3][2] * (nsfloat)0.5;
 		allmojiFormant[0][2][12][3] = privateFormant[3][3];
-		for (int k = 0; k < 4;k++)
+		for (nsint k = 0; k < 4;k++)
 			allmojiFormant[1][2][12][k] = allmojiFormant[1][0][12][k];
 		//有声軟口蓋破裂音(ご)
 		allmojiFormant[0][2][13][0] = privateFormant[4][0];
 		allmojiFormant[0][2][13][1] = privateFormant[4][1];
-		allmojiFormant[0][2][13][2] = privateFormant[4][2] * 0.5;
+		allmojiFormant[0][2][13][2] = privateFormant[4][2] * (nsfloat)0.5;
 		allmojiFormant[0][2][13][3] = privateFormant[4][3];
-		for (int k = 0; k < 4;k++)
+		for (nsint k = 0; k < 4;k++)
 			allmojiFormant[1][2][13][k] = allmojiFormant[1][0][13][k];
 	}
 
 	//歯茎摩擦音(さ～ぞ)(3x,4x)
 	if (true) {
 		//無声歯茎摩擦音(さ)
-		allmojiFormant[0][3][1][0] = privateFormant[0][0] / 1.5;
-		allmojiFormant[0][3][1][1] = privateFormant[0][1] / 2.3;
+		allmojiFormant[0][3][1][0] = privateFormant[0][0] / (nsfloat)1.5;
+		allmojiFormant[0][3][1][1] = privateFormant[0][1] / (nsfloat)2.3;
 		allmojiFormant[0][3][1][2] = privateFormant[0][2];
 		allmojiFormant[0][3][1][3] = privateFormant[0][3];
-		for (int k = 0; k < 4;k++)
+		for (nsint k = 0; k < 4;k++)
 			allmojiFormant[1][3][1][k] = allmojiFormant[1][0][1][k];
 		//無声歯茎硬口蓋摩擦音(し)
-		for (int i = 2;i <= 6; i++) {
-			allmojiFormant[0][3][i][0] = privateFormant[1][0] / 1.5;
-			allmojiFormant[0][3][i][1] = privateFormant[1][1] / 2.3;
+		for (nsint i = 2;i <= 6; i++) {
+			allmojiFormant[0][3][i][0] = privateFormant[1][0] / (nsfloat)1.5;
+			allmojiFormant[0][3][i][1] = privateFormant[1][1] / (nsfloat)2.3;
 			allmojiFormant[0][3][i][2] = privateFormant[1][2];
 			allmojiFormant[0][3][i][3] = privateFormant[1][3];
-			for (int k = 0; k < 4;k++)
+			for (nsint k = 0; k < 4;k++)
 				allmojiFormant[1][3][i][k] = allmojiFormant[1][0][i][k];
 		}
 		//無声歯茎摩擦音(す)
-		for (int i = 7;i <= 11; i++) {
-			allmojiFormant[0][3][i][0] = privateFormant[2][0] / 1.5;
-			allmojiFormant[0][3][i][1] = privateFormant[2][1] / 2.3;
+		for (nsint i = 7;i <= 11; i++) {
+			allmojiFormant[0][3][i][0] = privateFormant[2][0] / (nsfloat)1.5;
+			allmojiFormant[0][3][i][1] = privateFormant[2][1] / (nsfloat)2.3;
 			allmojiFormant[0][3][i][2] = privateFormant[2][2];
 			allmojiFormant[0][3][i][3] = privateFormant[2][3];
-			for (int k = 0; k < 4;k++)
+			for (nsint k = 0; k < 4;k++)
 				allmojiFormant[1][3][i][k] = allmojiFormant[1][0][i][k];
 		}
 		//無声歯茎摩擦音(せ)
-		allmojiFormant[0][3][12][0] = privateFormant[3][0] / 1.5;
-		allmojiFormant[0][3][12][1] = privateFormant[3][1] / 2.3;
+		allmojiFormant[0][3][12][0] = privateFormant[3][0] / (nsfloat)1.5;
+		allmojiFormant[0][3][12][1] = privateFormant[3][1] / (nsfloat)2.3;
 		allmojiFormant[0][3][12][2] = privateFormant[3][2];
 		allmojiFormant[0][3][12][3] = privateFormant[3][3];
-		for (int k = 0; k < 4;k++)
+		for (nsint k = 0; k < 4;k++)
 			allmojiFormant[1][3][12][k] = allmojiFormant[1][0][12][k];
 		//無声歯茎摩擦音(そ)
-		allmojiFormant[0][3][13][0] = privateFormant[4][0] / 1.5;
-		allmojiFormant[0][3][13][1] = privateFormant[4][1] / 2.3;
+		allmojiFormant[0][3][13][0] = privateFormant[4][0] / (nsfloat)1.5;
+		allmojiFormant[0][3][13][1] = privateFormant[4][1] / (nsfloat)2.3;
 		allmojiFormant[0][3][13][2] = privateFormant[4][2];
 		allmojiFormant[0][3][13][3] = privateFormant[4][3];
-		for (int k = 0; k < 4;k++)
+		for (nsint k = 0; k < 4;k++)
 			allmojiFormant[1][3][13][k] = allmojiFormant[1][0][13][k];
 
 
 		//有声歯茎摩擦音(ざ)
-		allmojiFormant[0][4][1][0] = privateFormant[0][0] / 1.5;
-		allmojiFormant[0][4][1][1] = privateFormant[0][1] / 2.3;
+		allmojiFormant[0][4][1][0] = privateFormant[0][0] / (nsfloat)1.5;
+		allmojiFormant[0][4][1][1] = privateFormant[0][1] / (nsfloat)2.3;
 		allmojiFormant[0][4][1][2] = privateFormant[0][2];
 		allmojiFormant[0][4][1][3] = privateFormant[0][3];
-		for (int k = 0; k < 4;k++)
+		for (nsint k = 0; k < 4;k++)
 			allmojiFormant[1][4][1][k] = allmojiFormant[1][0][1][k];
 		//有声歯茎硬口蓋摩擦音(じ)
-		for (int i = 2;i <= 6; i++) {
-			allmojiFormant[0][4][i][0] = privateFormant[1][0] / 1.5;
-			allmojiFormant[0][4][i][1] = privateFormant[1][1] / 2.3;
+		for (nsint i = 2;i <= 6; i++) {
+			allmojiFormant[0][4][i][0] = privateFormant[1][0] / (nsfloat)1.5;
+			allmojiFormant[0][4][i][1] = privateFormant[1][1] / (nsfloat)2.3;
 			allmojiFormant[0][4][i][2] = privateFormant[1][2];
 			allmojiFormant[0][4][i][3] = privateFormant[1][3];
-			for (int k = 0; k < 4;k++)
+			for (nsint k = 0; k < 4;k++)
 				allmojiFormant[1][4][i][k] = allmojiFormant[1][0][i][k];
 		}
 		//有声歯茎摩擦音(ず)
-		for (int i = 7;i <= 11; i++) {
-			allmojiFormant[0][4][i][0] = privateFormant[2][0] / 1.5;
-			allmojiFormant[0][4][i][1] = privateFormant[2][1] / 2.3;
+		for (nsint i = 7;i <= 11; i++) {
+			allmojiFormant[0][4][i][0] = privateFormant[2][0] / (nsfloat)1.5;
+			allmojiFormant[0][4][i][1] = privateFormant[2][1] / (nsfloat)2.3;
 			allmojiFormant[0][4][i][2] = privateFormant[2][2];
 			allmojiFormant[0][4][i][3] = privateFormant[2][3];
-			for (int k = 0; k < 4;k++)
+			for (nsint k = 0; k < 4;k++)
 				allmojiFormant[1][4][i][k] = allmojiFormant[1][0][i][k];
 		}
 		//有声歯茎摩擦音(ぜ)
-		allmojiFormant[0][4][12][0] = privateFormant[3][0] / 1.5;
-		allmojiFormant[0][4][12][1] = privateFormant[3][1] / 2.3;
+		allmojiFormant[0][4][12][0] = privateFormant[3][0] / (nsfloat)1.5;
+		allmojiFormant[0][4][12][1] = privateFormant[3][1] / (nsfloat)2.3;
 		allmojiFormant[0][4][12][2] = privateFormant[3][2];
 		allmojiFormant[0][4][12][3] = privateFormant[3][3];
-		for (int k = 0; k < 4;k++)
+		for (nsint k = 0; k < 4;k++)
 			allmojiFormant[1][4][12][k] = allmojiFormant[1][0][12][k];
 		//有声歯茎摩擦音(ぞ)
-		allmojiFormant[0][4][13][0] = privateFormant[4][0] / 1.5;
-		allmojiFormant[0][4][13][1] = privateFormant[4][1] / 2.3;
+		allmojiFormant[0][4][13][0] = privateFormant[4][0] / (nsfloat)1.5;
+		allmojiFormant[0][4][13][1] = privateFormant[4][1] / (nsfloat)2.3;
 		allmojiFormant[0][4][13][2] = privateFormant[4][2];
 		allmojiFormant[0][4][13][3] = privateFormant[4][3];
-		for (int k = 0; k < 4;k++)
+		for (nsint k = 0; k < 4;k++)
 			allmojiFormant[1][4][13][k] = allmojiFormant[1][0][13][k];
 	}
 
 	//歯茎破裂音(た～ど)(5x,6x)
 	if (true) {
 		//無声歯茎破裂音(た)
-		allmojiFormant[0][5][1][0] = privateFormant[0][0] / 1.5;
-		allmojiFormant[0][5][1][1] = privateFormant[0][1] / 2.3;
+		allmojiFormant[0][5][1][0] = privateFormant[0][0] / (nsfloat)1.5;
+		allmojiFormant[0][5][1][1] = privateFormant[0][1] / (nsfloat)2.3;
 		allmojiFormant[0][5][1][2] = privateFormant[0][2];
 		allmojiFormant[0][5][1][3] = privateFormant[0][3];
-		for (int k = 0; k < 4;k++)
+		for (nsint k = 0; k < 4;k++)
 			allmojiFormant[1][5][1][k] = allmojiFormant[1][0][1][k];
 		//無声歯茎硬口蓋破擦音(ち)
-		for (int i = 2;i <= 6; i++) {
-			allmojiFormant[0][5][i][0] = privateFormant[1][0] / 1.5;
-			allmojiFormant[0][5][i][1] = privateFormant[1][1] / 2.3;
+		for (nsint i = 2;i <= 6; i++) {
+			allmojiFormant[0][5][i][0] = privateFormant[1][0] / (nsfloat)1.5;
+			allmojiFormant[0][5][i][1] = privateFormant[1][1] / (nsfloat)2.3;
 			allmojiFormant[0][5][i][2] = privateFormant[1][2];
 			allmojiFormant[0][5][i][3] = privateFormant[1][3];
-			for (int k = 0; k < 4;k++)
+			for (nsint k = 0; k < 4;k++)
 				allmojiFormant[1][5][i][k] = allmojiFormant[1][0][i][k];
 		}
 		//無声歯茎破擦音(つ)
-		for (int i = 7;i <= 11; i++) {
-			allmojiFormant[0][5][i][0] = privateFormant[2][0] / 1.5;
-			allmojiFormant[0][5][i][1] = privateFormant[2][1] / 2.3;
+		for (nsint i = 7;i <= 11; i++) {
+			allmojiFormant[0][5][i][0] = privateFormant[2][0] / (nsfloat)1.5;
+			allmojiFormant[0][5][i][1] = privateFormant[2][1] / (nsfloat)2.3;
 			allmojiFormant[0][5][i][2] = privateFormant[2][2];
 			allmojiFormant[0][5][i][3] = privateFormant[2][3];
-			for (int k = 0; k < 4;k++)
+			for (nsint k = 0; k < 4;k++)
 				allmojiFormant[1][5][i][k] = allmojiFormant[1][0][i][k];
 		}
 		//無声歯茎破裂音(て)
-		allmojiFormant[0][5][12][0] = privateFormant[3][0] / 1.5;
-		allmojiFormant[0][5][12][1] = privateFormant[3][1] / 2.3;
+		allmojiFormant[0][5][12][0] = privateFormant[3][0] / (nsfloat)1.5;
+		allmojiFormant[0][5][12][1] = privateFormant[3][1] / (nsfloat)2.3;
 		allmojiFormant[0][5][12][2] = privateFormant[3][2];
 		allmojiFormant[0][5][12][3] = privateFormant[3][3];
-		for (int k = 0; k < 4;k++)
+		for (nsint k = 0; k < 4;k++)
 			allmojiFormant[1][5][12][k] = allmojiFormant[1][0][12][k];
 		//無声歯茎破裂音(と)
-		allmojiFormant[0][5][13][0] = privateFormant[4][0] / 1.5;
-		allmojiFormant[0][5][13][1] = privateFormant[4][1] / 2.3;
+		allmojiFormant[0][5][13][0] = privateFormant[4][0] / (nsfloat)1.5;
+		allmojiFormant[0][5][13][1] = privateFormant[4][1] / (nsfloat)2.3;
 		allmojiFormant[0][5][13][2] = privateFormant[4][2];
 		allmojiFormant[0][5][13][3] = privateFormant[4][3];
-		for (int k = 0; k < 4;k++)
+		for (nsint k = 0; k < 4;k++)
 			allmojiFormant[1][5][13][k] = allmojiFormant[1][0][13][k];
 
 
 		//有声歯茎破裂音(だ)
-		allmojiFormant[0][6][1][0] = privateFormant[0][0] / 1.5;
-		allmojiFormant[0][6][1][1] = privateFormant[0][1] / 2.3;
+		allmojiFormant[0][6][1][0] = privateFormant[0][0] / (nsfloat)1.5;
+		allmojiFormant[0][6][1][1] = privateFormant[0][1] / (nsfloat)2.3;
 		allmojiFormant[0][6][1][2] = privateFormant[0][2];
 		allmojiFormant[0][6][1][3] = privateFormant[0][3];
-		for (int k = 0; k < 4;k++)
+		for (nsint k = 0; k < 4;k++)
 			allmojiFormant[1][6][1][k] = allmojiFormant[1][0][1][k];
 		//有声歯茎硬口蓋破擦音(ぢ)
-		for (int i = 2;i <= 6; i++) {
-			allmojiFormant[0][6][i][0] = privateFormant[1][0] / 1.5;
-			allmojiFormant[0][6][i][1] = privateFormant[1][1] / 2.3;
+		for (nsint i = 2;i <= 6; i++) {
+			allmojiFormant[0][6][i][0] = privateFormant[1][0] / (nsfloat)1.5;
+			allmojiFormant[0][6][i][1] = privateFormant[1][1] / (nsfloat)2.3;
 			allmojiFormant[0][6][i][2] = privateFormant[1][2];
 			allmojiFormant[0][6][i][3] = privateFormant[1][3];
-			for (int k = 0; k < 4;k++)
+			for (nsint k = 0; k < 4;k++)
 				allmojiFormant[1][6][i][k] = allmojiFormant[1][0][i][k];
 		}
 		//有声歯茎破擦音(づ)
-		for (int i = 7;i <= 11; i++) {
-			allmojiFormant[0][6][i][0] = privateFormant[2][0] / 1.5;
-			allmojiFormant[0][6][i][1] = privateFormant[2][1] / 2.3;
+		for (nsint i = 7;i <= 11; i++) {
+			allmojiFormant[0][6][i][0] = privateFormant[2][0] / (nsfloat)1.5;
+			allmojiFormant[0][6][i][1] = privateFormant[2][1] / (nsfloat)2.3;
 			allmojiFormant[0][6][i][2] = privateFormant[2][2];
 			allmojiFormant[0][6][i][3] = privateFormant[2][3];
-			for (int k = 0; k < 4;k++)
+			for (nsint k = 0; k < 4;k++)
 				allmojiFormant[1][6][i][k] = allmojiFormant[1][0][i][k];
 		}
 		//有声歯茎破裂音(で)
-		allmojiFormant[0][6][12][0] = privateFormant[3][0] / 1.5;
-		allmojiFormant[0][6][12][1] = privateFormant[3][1] / 2.3;
+		allmojiFormant[0][6][12][0] = privateFormant[3][0] / (nsfloat)1.5;
+		allmojiFormant[0][6][12][1] = privateFormant[3][1] / (nsfloat)2.3;
 		allmojiFormant[0][6][12][2] = privateFormant[3][2];
 		allmojiFormant[0][6][12][3] = privateFormant[3][3];
-		for (int k = 0; k < 4;k++)
+		for (nsint k = 0; k < 4;k++)
 			allmojiFormant[1][6][12][k] = allmojiFormant[1][0][12][k];
 		//有声歯茎破裂音(ど)
-		allmojiFormant[0][6][13][0] = privateFormant[4][0] / 1.5;
-		allmojiFormant[0][6][13][1] = privateFormant[4][1] / 2.3;
+		allmojiFormant[0][6][13][0] = privateFormant[4][0] / (nsfloat)1.5;
+		allmojiFormant[0][6][13][1] = privateFormant[4][1] / (nsfloat)2.3;
 		allmojiFormant[0][6][13][2] = privateFormant[4][2];
 		allmojiFormant[0][6][13][3] = privateFormant[4][3];
-		for (int k = 0; k < 4;k++)
+		for (nsint k = 0; k < 4;k++)
 			allmojiFormant[1][6][13][k] = allmojiFormant[1][0][13][k];
 	}
 
@@ -2945,83 +2713,83 @@ int makeVoiseFromFile::createAllMojiFromantFromClass() {
 	if (true) {
 		//無声両唇破裂音(ぱ)
 		allmojiFormant[0][7][1][0] = privateFormant[0][0];
-		allmojiFormant[0][7][1][1] = privateFormant[0][1] * 0.5;
+		allmojiFormant[0][7][1][1] = privateFormant[0][1] * (nsfloat)0.5;
 		allmojiFormant[0][7][1][2] = privateFormant[0][2];
 		allmojiFormant[0][7][1][3] = privateFormant[0][3];
-		for (int k = 0; k < 4;k++)
+		for (nsint k = 0; k < 4;k++)
 			allmojiFormant[1][7][1][k] = allmojiFormant[1][0][1][k];
 		//有声両唇硬口蓋接近音(ぴ)
-		for (int i = 2;i <= 6; i++) {
+		for (nsint i = 2;i <= 6; i++) {
 			allmojiFormant[0][7][i][0] = privateFormant[1][0];
-			allmojiFormant[0][7][i][1] = privateFormant[1][1] * 0.5;
+			allmojiFormant[0][7][i][1] = privateFormant[1][1] * (nsfloat)0.5;
 			allmojiFormant[0][7][i][2] = privateFormant[1][2];
 			allmojiFormant[0][7][i][3] = privateFormant[1][3];
-			for (int k = 0; k < 4;k++)
+			for (nsint k = 0; k < 4;k++)
 				allmojiFormant[1][7][i][k] = allmojiFormant[1][0][i][k];
 		}
 		//無声両唇破裂音(ぷ)
-		for (int i = 7;i <= 11; i++) {
+		for (nsint i = 7;i <= 11; i++) {
 			allmojiFormant[0][7][i][0] = privateFormant[2][0];
-			allmojiFormant[0][7][i][1] = privateFormant[2][1] * 0.5;
+			allmojiFormant[0][7][i][1] = privateFormant[2][1] * (nsfloat)0.5;
 			allmojiFormant[0][7][i][2] = privateFormant[2][2];
 			allmojiFormant[0][7][i][3] = privateFormant[2][3];
-			for (int k = 0; k < 4;k++)
+			for (nsint k = 0; k < 4;k++)
 				allmojiFormant[1][7][i][k] = allmojiFormant[1][0][i][k];
 		}
 		//無声両唇破裂音(ぺ)
 		allmojiFormant[0][7][12][0] = privateFormant[3][0];
-		allmojiFormant[0][7][12][1] = privateFormant[3][1] * 0.5;
+		allmojiFormant[0][7][12][1] = privateFormant[3][1] * (nsfloat)0.5;
 		allmojiFormant[0][7][12][2] = privateFormant[3][2];
 		allmojiFormant[0][7][12][3] = privateFormant[3][3];
-		for (int k = 0; k < 4;k++)
+		for (nsint k = 0; k < 4;k++)
 			allmojiFormant[1][7][12][k] = allmojiFormant[1][0][12][k];
 		//無声両唇破裂音(ぽ)
 		allmojiFormant[0][7][13][0] = privateFormant[4][0];
-		allmojiFormant[0][7][13][1] = privateFormant[4][1] * 0.5;
+		allmojiFormant[0][7][13][1] = privateFormant[4][1] * (nsfloat)0.5;
 		allmojiFormant[0][7][13][2] = privateFormant[4][2];
 		allmojiFormant[0][7][13][3] = privateFormant[4][3];
-		for (int k = 0; k < 4;k++)
+		for (nsint k = 0; k < 4;k++)
 			allmojiFormant[1][7][13][k] = allmojiFormant[1][0][13][k];
 
 
 		//有声両唇破裂音(ば)
 		allmojiFormant[0][8][1][0] = privateFormant[0][0];
-		allmojiFormant[0][8][1][1] = privateFormant[0][1] * 0.5;
+		allmojiFormant[0][8][1][1] = privateFormant[0][1] * (nsfloat)0.5;
 		allmojiFormant[0][8][1][2] = privateFormant[0][2];
 		allmojiFormant[0][8][1][3] = privateFormant[0][3];
-		for (int k = 0; k < 4;k++)
+		for (nsint k = 0; k < 4;k++)
 			allmojiFormant[1][8][1][k] = allmojiFormant[1][0][1][k];
 		//有声両唇硬口蓋破裂音(び)
-		for (int i = 2;i <= 6; i++) {
+		for (nsint i = 2;i <= 6; i++) {
 			allmojiFormant[0][8][i][0] = privateFormant[1][0];
-			allmojiFormant[0][8][i][1] = privateFormant[1][1] * 0.5;
+			allmojiFormant[0][8][i][1] = privateFormant[1][1] * (nsfloat)0.5;
 			allmojiFormant[0][8][i][2] = privateFormant[1][2];
 			allmojiFormant[0][8][i][3] = privateFormant[1][3];
-			for (int k = 0; k < 4;k++)
+			for (nsint k = 0; k < 4;k++)
 				allmojiFormant[1][8][i][k] = allmojiFormant[1][0][i][k];
 		}
 		//有声両唇破裂音(ぶ)
-		for (int i = 7;i <= 11; i++) {
+		for (nsint i = 7;i <= 11; i++) {
 			allmojiFormant[0][8][i][0] = privateFormant[2][0];
-			allmojiFormant[0][8][i][1] = privateFormant[2][1] * 0.5;
+			allmojiFormant[0][8][i][1] = privateFormant[2][1] * (nsfloat)0.5;
 			allmojiFormant[0][8][i][2] = privateFormant[2][2];
 			allmojiFormant[0][8][i][3] = privateFormant[2][3];
-			for (int k = 0; k < 4;k++)
+			for (nsint k = 0; k < 4;k++)
 				allmojiFormant[1][8][i][k] = allmojiFormant[1][0][i][k];
 		}
 		//有声両唇破裂音(べ)
 		allmojiFormant[0][8][12][0] = privateFormant[3][0];
-		allmojiFormant[0][8][12][1] = privateFormant[3][1] * 0.5;
+		allmojiFormant[0][8][12][1] = privateFormant[3][1] * (nsfloat)0.5;
 		allmojiFormant[0][8][12][2] = privateFormant[3][2];
 		allmojiFormant[0][8][12][3] = privateFormant[3][3];
-		for (int k = 0; k < 4;k++)
+		for (nsint k = 0; k < 4;k++)
 			allmojiFormant[1][8][12][k] = allmojiFormant[1][0][12][k];
 		//有声両唇破裂音(ぼ)
 		allmojiFormant[0][8][13][0] = privateFormant[4][0];
-		allmojiFormant[0][8][13][1] = privateFormant[4][1] * 0.5;
+		allmojiFormant[0][8][13][1] = privateFormant[4][1] * (nsfloat)0.5;
 		allmojiFormant[0][8][13][2] = privateFormant[4][2];
 		allmojiFormant[0][8][13][3] = privateFormant[4][3];
-		for (int k = 0; k < 4;k++)
+		for (nsint k = 0; k < 4;k++)
 			allmojiFormant[1][8][13][k] = allmojiFormant[1][0][13][k];
 	}
 
@@ -3032,278 +2800,375 @@ int makeVoiseFromFile::createAllMojiFromantFromClass() {
 		//無声両唇摩擦音(ふ)
 		//無声声門摩擦音(へ)
 		//無声声門摩擦音(ほ)
-		for (int i = 0;i < 15;i++)
-			for (int j = 0; j < 2;j++)
-				for (int k = 0; k < 4;k++)
+		for (nsint i = 0;i < 15;i++)
+			for (nsint j = 0; j < 2;j++)
+				for (nsint k = 0; k < 4;k++)
 					allmojiFormant[j][9][i][k] = allmojiFormant[j][0][i][k];
 	}
 
 	//歯茎鼻音(な～の)(ax)
 	if (true) {
 		//歯茎鼻音(な)
-		allmojiFormant[0][10][1][0] = privateFormant[0][0] * 0.5;
-		allmojiFormant[0][10][1][1] = privateFormant[0][1] / 3.0;
+		allmojiFormant[0][10][1][0] = privateFormant[0][0] * (nsfloat)0.5;
+		allmojiFormant[0][10][1][1] = privateFormant[0][1] / (nsfloat)3.0;
 		allmojiFormant[0][10][1][2] = privateFormant[0][2];
 		allmojiFormant[0][10][1][3] = privateFormant[0][3];
-		for (int k = 0; k < 4;k++)
+		for (nsint k = 0; k < 4;k++)
 			allmojiFormant[1][10][1][k] = allmojiFormant[1][0][1][k];
 		//硬口蓋鼻音(に)
-		for (int i = 2;i <= 6; i++) {
-			allmojiFormant[0][10][i][0] = privateFormant[1][0] * 0.5;
-			allmojiFormant[0][10][i][1] = privateFormant[1][1] / 3.0;
+		for (nsint i = 2;i <= 6; i++) {
+			allmojiFormant[0][10][i][0] = privateFormant[1][0] * (nsfloat)0.5;
+			allmojiFormant[0][10][i][1] = privateFormant[1][1] / (nsfloat)3.0;
 			allmojiFormant[0][10][i][2] = privateFormant[1][2];
 			allmojiFormant[0][10][i][3] = privateFormant[1][3];
-			for (int k = 0; k < 4;k++)
+			for (nsint k = 0; k < 4;k++)
 				allmojiFormant[1][10][i][k] = allmojiFormant[1][0][i][k];
 		}
 		//歯茎鼻音(ぬ)
-		for (int i = 7;i <= 11; i++) {
-			allmojiFormant[0][10][i][0] = privateFormant[2][0] * 0.5;
-			allmojiFormant[0][10][i][1] = privateFormant[2][1] / 3.0;
+		for (nsint i = 7;i <= 11; i++) {
+			allmojiFormant[0][10][i][0] = privateFormant[2][0] * (nsfloat)0.5;
+			allmojiFormant[0][10][i][1] = privateFormant[2][1] / (nsfloat)3.0;
 			allmojiFormant[0][10][i][2] = privateFormant[2][2];
 			allmojiFormant[0][10][i][3] = privateFormant[2][3];
-			for (int k = 0; k < 4;k++)
+			for (nsint k = 0; k < 4;k++)
 				allmojiFormant[1][10][i][k] = allmojiFormant[1][0][i][k];
 		}
 		//歯茎鼻音(ね)
-		allmojiFormant[0][10][12][0] = privateFormant[3][0] * 0.5;
-		allmojiFormant[0][10][12][1] = privateFormant[3][1] / 3.0;
+		allmojiFormant[0][10][12][0] = privateFormant[3][0] * (nsfloat)0.5;
+		allmojiFormant[0][10][12][1] = privateFormant[3][1] / (nsfloat)3.0;
 		allmojiFormant[0][10][12][2] = privateFormant[3][2];
 		allmojiFormant[0][10][12][3] = privateFormant[3][3];
-		for (int k = 0; k < 4;k++)
+		for (nsint k = 0; k < 4;k++)
 			allmojiFormant[1][10][12][k] = allmojiFormant[1][0][12][k];
 		//歯茎鼻音(の)
-		allmojiFormant[0][10][13][0] = privateFormant[4][0] * 0.5;
-		allmojiFormant[0][10][13][1] = privateFormant[4][1] / 3.0;
+		allmojiFormant[0][10][13][0] = privateFormant[4][0] * (nsfloat)0.5;
+		allmojiFormant[0][10][13][1] = privateFormant[4][1] / (nsfloat)3.0;
 		allmojiFormant[0][10][13][2] = privateFormant[4][2];
 		allmojiFormant[0][10][13][3] = privateFormant[4][3];
-		for (int k = 0; k < 4;k++)
+		for (nsint k = 0; k < 4;k++)
 			allmojiFormant[1][10][13][k] = allmojiFormant[1][0][13][k];
 	}
 
 	//両唇鼻音(ま～も)(bx)
 	if (true) {
 		//両唇鼻音(ま)
-		allmojiFormant[0][11][1][0] = privateFormant[0][0] / 3.0;
-		allmojiFormant[0][11][1][1] = privateFormant[0][1] * 0.5;
+		allmojiFormant[0][11][1][0] = privateFormant[0][0] / (nsfloat)3.0;
+		allmojiFormant[0][11][1][1] = privateFormant[0][1] * (nsfloat)0.5;
 		allmojiFormant[0][11][1][2] = privateFormant[0][2];
 		allmojiFormant[0][11][1][3] = privateFormant[0][3];
-		for (int k = 0; k < 4;k++)
+		for (nsint k = 0; k < 4;k++)
 			allmojiFormant[1][11][1][k] = allmojiFormant[1][0][1][k];
 		//両唇鼻音(み)
-		for (int i = 2;i <= 6; i++) {
-			allmojiFormant[0][11][i][0] = privateFormant[1][0] / 3.0;
-			allmojiFormant[0][11][i][1] = privateFormant[1][1] * 0.5;
+		for (nsint i = 2;i <= 6; i++) {
+			allmojiFormant[0][11][i][0] = privateFormant[1][0] / (nsfloat)3.0;
+			allmojiFormant[0][11][i][1] = privateFormant[1][1] * (nsfloat)0.5;
 			allmojiFormant[0][11][i][2] = privateFormant[1][2];
 			allmojiFormant[0][11][i][3] = privateFormant[1][3];
-			for (int k = 0; k < 4;k++)
+			for (nsint k = 0; k < 4;k++)
 				allmojiFormant[1][11][i][k] = allmojiFormant[1][0][i][k];
 		}
 		//両唇鼻音(む)
-		for (int i = 7;i <= 11; i++) {
-			allmojiFormant[0][11][i][0] = privateFormant[2][0] / 3.0;
-			allmojiFormant[0][11][i][1] = privateFormant[2][1] * 0.5;
+		for (nsint i = 7;i <= 11; i++) {
+			allmojiFormant[0][11][i][0] = privateFormant[2][0] / (nsfloat)3.0;
+			allmojiFormant[0][11][i][1] = privateFormant[2][1] * (nsfloat)0.5;
 			allmojiFormant[0][11][i][2] = privateFormant[2][2];
 			allmojiFormant[0][11][i][3] = privateFormant[2][3];
-			for (int k = 0; k < 4;k++)
+			for (nsint k = 0; k < 4;k++)
 				allmojiFormant[1][11][i][k] = allmojiFormant[1][0][i][k];
 		}
 		//両唇鼻音(め)
-		allmojiFormant[0][11][12][0] = privateFormant[3][0] / 3.0;
-		allmojiFormant[0][11][12][1] = privateFormant[3][1] * 0.5;
+		allmojiFormant[0][11][12][0] = privateFormant[3][0] / (nsfloat)3.0;
+		allmojiFormant[0][11][12][1] = privateFormant[3][1] * (nsfloat)0.5;
 		allmojiFormant[0][11][12][2] = privateFormant[3][2];
 		allmojiFormant[0][11][12][3] = privateFormant[3][3];
-		for (int k = 0; k < 4;k++)
+		for (nsint k = 0; k < 4;k++)
 			allmojiFormant[1][11][12][k] = allmojiFormant[1][0][12][k];
 		//両唇鼻音(も)
-		allmojiFormant[0][11][13][0] = privateFormant[4][0] / 3.0;
-		allmojiFormant[0][11][13][1] = privateFormant[4][1] * 0.5;
+		allmojiFormant[0][11][13][0] = privateFormant[4][0] / (nsfloat)3.0;
+		allmojiFormant[0][11][13][1] = privateFormant[4][1] * (nsfloat)0.5;
 		allmojiFormant[0][11][13][2] = privateFormant[4][2];
 		allmojiFormant[0][11][13][3] = privateFormant[4][3];
-		for (int k = 0; k < 4;k++)
+		for (nsint k = 0; k < 4;k++)
 			allmojiFormant[1][11][13][k] = allmojiFormant[1][0][13][k];
 	}
 
 	//有声歯茎はじき音(ら～ろ)(cx)
 	if (true) {
 		//有声歯茎はじき音(ら)
-		allmojiFormant[0][12][1][0] = privateFormant[0][0] / 1.5;
-		allmojiFormant[0][12][1][1] = privateFormant[0][1] / 2.3;
+		allmojiFormant[0][12][1][0] = privateFormant[0][0] / (nsfloat)1.5;
+		allmojiFormant[0][12][1][1] = privateFormant[0][1] / (nsfloat)2.3;
 		allmojiFormant[0][12][1][2] = privateFormant[0][2];
 		allmojiFormant[0][12][1][3] = privateFormant[0][3];
-		for (int k = 0; k < 4;k++)
+		for (nsint k = 0; k < 4;k++)
 			allmojiFormant[1][12][1][k] = allmojiFormant[1][0][1][k];
 		//歯茎硬口蓋はじき音(り)
-		for (int i = 2;i <= 6; i++) {
-			allmojiFormant[0][12][i][0] = privateFormant[1][0] / 1.5;
-			allmojiFormant[0][12][i][1] = privateFormant[1][1] / 2.3;
+		for (nsint i = 2;i <= 6; i++) {
+			allmojiFormant[0][12][i][0] = privateFormant[1][0] / (nsfloat)1.5;
+			allmojiFormant[0][12][i][1] = privateFormant[1][1] / (nsfloat)2.3;
 			allmojiFormant[0][12][i][2] = privateFormant[1][2];
 			allmojiFormant[0][12][i][3] = privateFormant[1][3];
-			for (int k = 0; k < 4;k++)
+			for (nsint k = 0; k < 4;k++)
 				allmojiFormant[1][12][i][k] = allmojiFormant[1][0][i][k];
 		}
 		//有声歯茎はじき音(る)
-		for (int i = 7;i <= 11; i++) {
-			allmojiFormant[0][12][i][0] = privateFormant[2][0] / 1.5;
-			allmojiFormant[0][12][i][1] = privateFormant[2][1] / 2.3;
+		for (nsint i = 7;i <= 11; i++) {
+			allmojiFormant[0][12][i][0] = privateFormant[2][0] / (nsfloat)1.5;
+			allmojiFormant[0][12][i][1] = privateFormant[2][1] / (nsfloat)2.3;
 			allmojiFormant[0][12][i][2] = privateFormant[2][2];
 			allmojiFormant[0][12][i][3] = privateFormant[2][3];
-			for (int k = 0; k < 4;k++)
+			for (nsint k = 0; k < 4;k++)
 				allmojiFormant[1][12][i][k] = allmojiFormant[1][0][i][k];
 		}
 		//有声歯茎はじき音(れ)
-		allmojiFormant[0][12][12][0] = privateFormant[3][0] / 1.5;
-		allmojiFormant[0][12][12][1] = privateFormant[3][1] / 2.3;
+		allmojiFormant[0][12][12][0] = privateFormant[3][0] / (nsfloat)1.5;
+		allmojiFormant[0][12][12][1] = privateFormant[3][1] / (nsfloat)2.3;
 		allmojiFormant[0][12][12][2] = privateFormant[3][2];
 		allmojiFormant[0][12][12][3] = privateFormant[3][3];
-		for (int k = 0; k < 4;k++)
+		for (nsint k = 0; k < 4;k++)
 			allmojiFormant[1][12][12][k] = allmojiFormant[1][0][12][k];
 		//有声歯茎はじき音(ろ)
-		allmojiFormant[0][12][13][0] = privateFormant[4][0] / 1.5;
-		allmojiFormant[0][12][13][1] = privateFormant[4][1] / 2.3;
+		allmojiFormant[0][12][13][0] = privateFormant[4][0] / (nsfloat)1.5;
+		allmojiFormant[0][12][13][1] = privateFormant[4][1] / (nsfloat)2.3;
 		allmojiFormant[0][12][13][2] = privateFormant[4][2];
 		allmojiFormant[0][12][13][3] = privateFormant[4][3];
-		for (int k = 0; k < 4;k++)
+		for (nsint k = 0; k < 4;k++)
 			allmojiFormant[1][12][13][k] = allmojiFormant[1][0][13][k];
 	}
 
 	//ん
 	if (true) {
 		//口蓋垂鼻音(ん)
-		allmojiFormant[0][13][1][0] = allmojiFormant[1][13][1][0] = privateFormant[2][0] * 0.5;
-		allmojiFormant[0][13][1][1] = allmojiFormant[1][13][1][1] = privateFormant[2][1] / 3.0;
+		allmojiFormant[0][13][1][0] = allmojiFormant[1][13][1][0] = privateFormant[2][0] * (nsfloat)0.5;
+		allmojiFormant[0][13][1][1] = allmojiFormant[1][13][1][1] = privateFormant[2][1] / (nsfloat)3.0;
 		allmojiFormant[0][13][1][2] = allmojiFormant[1][13][1][2] = privateFormant[2][2];
 		allmojiFormant[0][13][1][3] = allmojiFormant[1][13][1][3] = privateFormant[2][3];
 	}
 
-	return 0;
+	return;
 }
 
 //音諳コードからフォルマント周波数を取得
-nsfloat makeVoiseFromFile::getMojiFormant(int f, int moji, int formant) {
+nsfloat makeVoiseFromFile::getMojiFormant(nsint f, nsint moji, nsint formant) {
 
 	return allmojiFormant[f][(moji & 0xf0) >> 4][(moji & 0x0f)][formant];
 }
 
 //無声破裂音かどうか
 bool makeVoiseFromFile::doVoiselessPlosive(nschar moji) {
-
-	if ((moji & 0xf0) == 0x10 or (moji & 0xf0) == 0x50 or (moji & 0xf0) == 0x70)
-		return true;
-	return false;
+	return ((moji & 0xf0) == 0x10 or (moji & 0xf0) == 0x50 or (moji & 0xf0) == 0x70);
 }
 
 //有声破裂音かどうか
 bool makeVoiseFromFile::doVoisedPlosive(nschar moji) {
-
-	if ((moji & 0xf0) == 0x20 or (moji & 0xf0) == 0x60 or (moji & 0xf0) == 0x80)
-		return true;
-	return false;
+	return ((moji & 0xf0) == 0x20 or (moji & 0xf0) == 0x60 or (moji & 0xf0) == 0x80);
 }
 
 //鼻音かどうか
 bool makeVoiseFromFile::doNasal(nschar moji) {
-
-	if ((moji & 0xf0) == 0xa0 or (moji & 0xf0) == 0xb0)
-		return true;
-	return false;
+	return ((moji & 0xf0) == 0xa0 or (moji & 0xf0) == 0xb0);
 }
 
 //はじき音かどうか
 bool makeVoiseFromFile::doTap(nschar moji) {
-
-	if ((moji & 0xf0) == 0xc0)
-		return true;
-	return false;
+	return ((moji & 0xf0) == 0xc0);
 }
 
 //無声摩擦音かどうか
 bool makeVoiseFromFile::doVoiselessFricative(nschar moji) {
-
-	if ((moji & 0xf0) == 0x30)
-		return true;
-	return false;
+	return ((moji & 0xf0) == 0x30);
 }
 
 //有声摩擦音かどうか
 bool makeVoiseFromFile::doVoisedFricative(nschar moji) {
-
-	if ((moji & 0xf0) == 0x40)
-		return true;
-	return false;
+	return ((moji & 0xf0) == 0x40);
 }
 
 //摩殺音かどうか
 bool makeVoiseFromFile::doFriKILLive(nschar moji) {
-
-	if ((moji & 0xf0) == 0x90)
-		return true;
-	return false;
+	return ((moji & 0xf0) == 0x90);
 }
 
 //音諳形式の時間単位から声の長さ[秒]へ変換
-int makeVoiseFromFile::getTimeFromSpeed(char speed, char moji) {
+nsint makeVoiseFromFile::getTimeFromSpeed(char speed, nschar moji) {
 	char mojiboin = moji & 0x0f;
-	return (int)((nsfloat)SMPL * (10.0 / (nsfloat)speed) + ((mojiboin >= 0x03 and mojiboin <= 0x0b and mojiboin != 0x07 and (unsigned char)moji >= 0x10 and (nsfloat)SMPL * (10.0 / (nsfloat)speed) > MAXSHIONSPEED + MAXBYOUONSPEED + MAXYOUONSPEED) ? MAXBYOUONSPEED + MAXYOUONSPEED : 0));
+	return (nsint)((nsfloat)SMPL * ((nsfloat)10.0 / (nsfloat)speed) + ((mojiboin >= 0x03 and mojiboin <= 0x0b and mojiboin != 0x07 and moji >= 0x10 and (nsfloat)SMPL * ((nsfloat)10.0 / (nsfloat)speed) > MAXSHIONSPEED + MAXBYOUONSPEED + MAXYOUONSPEED) ? MAXBYOUONSPEED + MAXYOUONSPEED : 0));
 }
 
 //ホワイトノイズの乱数の同期を初期化
-int makeVoiseFromFile::ftInit(int size) {
+void makeVoiseFromFile::ftInit(size_t size) {
 
-	ft = new nsfloat[size];
+	ft.resize(size);
 
-	for (int i = 0; i < size;i++)
-		ft[i] = (nsfloat)rand() / RAND_MAX * 2.0 * PI;
+	nsfloat RandMax_inv = 1.0 / (nsfloat)RAND_MAX * PI_2;
+	for (size_t i = 0; i < size;i++)
+		ft[i] = (nsfloat)rand() * RandMax_inv;
 
-	return 0;
+	return;
 }
 
 //ホワイトノイズを作成
-int makeVoiseFromFile::makeWhitenoise(std::vector<nsfloat> out, int time, nsfloat hz, nsfloat um) {
+void makeVoiseFromFile::makeWhitenoise(std::vector<nsfloat> out, nsint time, nsfloat hz, nsfloat um) {
 
-	nsfloat magn = FRICATIVENOISEACC / (nsfloat)(MAXFREQ - hz);
+	nsfloat magn = FRICATIVENOISEACC / ((nsfloat)MAXFREQ - hz);
 
 	std::vector<nsfloat> out1(out.size(), 0.0), out2(out.size(), 0.0);
 
-	for (int j = 0; j < out.size();j++) {
-		for (int i = (int)hz; i < MAXFREQ;i += FRICATIVENOISEACC)
+	for (size_t j = 0; j < out.size();j++) {
+		for (nsint i = (nsint)hz; i < MAXFREQ;i += (nsint)FRICATIVENOISEACC)
 			out1[j] += nsMath::nsSinTable(((nsfloat)i + (nsfloat)time + ft[i]), (nsfloat)i);
 	}
 	nsfloat max = *std::max_element(out1.begin(), out1.end());
-	magn = 1.0 / max;
-	for (int i = 0; i < out.size();i++)
+	magn = (nsfloat)1.0 / max;
+	for (size_t i = 0; i < out.size();i++)
 		out1[i] *= magn;
 
 
-	hipassFilter(out1, out2, SMPL, hz, 0.707);
-	lowpassFilter(out2, out, SMPL, um, 1.0);
+	hipassFilter(out1, out2, hz, 0.707);
+	lowpassFilter(out2, out, um, 1.0);
 
-	return 0;
+	return;
 }
 
 //ホワイトノイズを作成
-int makeVoiseFromFile::makeWhitenoise1(std::vector<nsfloat> out, int time, nsfloat hz) {
+void makeVoiseFromFile::makeWhitenoise1(std::vector<nsfloat> out, nsint time, nsfloat hz) {
 
-	nsfloat magn = FRICATIVENOISEACC / (nsfloat)(MAXFREQ - hz);
+	nsfloat magn = FRICATIVENOISEACC / ((nsfloat)MAXFREQ - hz);
 
 	std::vector<nsfloat> out1(out.size(), 0.0), out2(out.size(), 0.0);
 
-	for (int j = 0; j < out.size();j++) {
-		for (int i = (int)hz; i < MAXFREQ;i += FRICATIVENOISEACC)
+	for (size_t j = 0; j < out.size();j++) {
+		for (nsint i = (nsint)hz; i < MAXFREQ;i += (nsint)FRICATIVENOISEACC)
 			out1[j] += (nsMath::pow2(nsMath::nsSinTable(((nsfloat)i + (nsfloat)time + ft[j]), (nsfloat)i)) / nsMath::pow2(i + hz));
 	}
 	nsfloat max = *std::max_element(out1.begin(), out1.end());
-	magn = 1.0 / max;
-	for (int i = 0; i < out.size();i++)
+	magn = (nsfloat)1.0 / max;
+	for (size_t i = 0; i < out.size();i++)
 		out1[i] *= magn;
 
-	hipassFilter(out1, out2, SMPL, hz - FRICATIVENOISESCOPE, 0.707);
-	lowpassFilter(out2, out, SMPL, hz - FRICATIVENOISESCOPE, 1.0);
+	hipassFilter(out1, out2, hz - FRICATIVENOISESCOPE, 0.707);
+	lowpassFilter(out2, out, hz - FRICATIVENOISESCOPE, 1.0);
 
-	return 0;
+	return;
 }
 
 
+
+//=====フィルター関数=====
+
+//ハイパスフィルタ
+void hipassFilter(const std::vector<nsfloat>& input, std::vector<nsfloat>& out, nsfloat freq, nsfloat q) {
+
+	// それぞれの変数は下記のとおりとする
+	// float samplerate … サンプリング周波数
+	// float freq … カットオフ周波数
+	// float q    … フィルタのQ値
+	nsfloat omega = PI_2 * freq * SMPL_INV;
+	nsfloat alpha = sin(omega) / ((nsfloat)2.0 * q);
+
+	nsfloat a0_inv = (nsfloat)1.0 / ((nsfloat)1.0 + alpha);
+	nsfloat a1 = -(nsfloat)2.0 * cos(omega);
+	nsfloat a2 = (nsfloat)1.0 - alpha;
+	nsfloat b0 = ((nsfloat)1.0 + cos(omega)) * (nsfloat)0.5;
+	nsfloat b1 = -((nsfloat)1.0 + cos(omega));
+	nsfloat b2 = ((nsfloat)1.0 + cos(omega)) * (nsfloat)0.5;
+
+	// それぞれの変数は下記のとおりとする
+	// 　float input[]  …入力信号の格納されたバッファ。
+	// 　flaot output[] …フィルタ処理した値を書き出す出力信号のバッファ。
+	// 　nsint   size     …入力信号・出力信号のバッファのサイズ。
+	// 　float in1, in2, out1, out2  …フィルタ計算用のバッファ変数。初期値は0。
+	// 　float a0, a1, a2, b0, b1, b2 …フィルタの係数。 別途算出する。
+
+	nsfloat in1 = 0.0, in2 = 0.0, out1 = 0.0, out2 = 0.0;
+	for (size_t i = 0; i < out.size(); i++) {
+		// 入力信号にフィルタを適用し、出力信号として書き出す。
+		out[i] = (b0 * input[i] + b1 * in1 + b2 * in2 - a1 * out1 - a2 * out2) * a0_inv;
+
+		in2 = in1;		// 2つ前の入力信号を更新
+		in1 = input[i];	// 1つ前の入力信号を更新
+
+		out2 = out1;	// 2つ前の出力信号を更新
+		out1 = out[i];	// 1つ前の出力信号を更新
+	}
+
+	return;
+}
+
+//ローパスフィルタ
+void lowpassFilter(const std::vector<nsfloat>& input, std::vector<nsfloat>& out, nsfloat freq, nsfloat q) {
+	// それぞれの変数は下記のとおりとする
+	// float samplerate … サンプリング周波数
+	// float freq … カットオフ周波数
+	// float q    … フィルタのQ値
+	nsfloat omega = PI_2 * freq * SMPL_INV;
+	nsfloat alpha = sin(omega) / ((nsfloat)2.0 * q);
+
+	nsfloat a0_inv = (nsfloat)1.0 / ((nsfloat)1.0 + alpha);
+	nsfloat a1 = -(nsfloat)2.0 * cos(omega);
+	nsfloat a2 = (nsfloat)1.0 - alpha;
+	nsfloat b0 = ((nsfloat)1.0 - cos(omega)) * (nsfloat)0.5;
+	nsfloat b1 = (nsfloat)1.0 - cos(omega);
+	nsfloat b2 = ((nsfloat)1.0 - cos(omega)) * (nsfloat)0.5;
+
+	// それぞれの変数は下記のとおりとする
+	// 　float input[]  …入力信号の格納されたバッファ。
+	// 　flaot output[] …フィルタ処理した値を書き出す出力信号のバッファ。
+	// 　nsint   size     …入力信号・出力信号のバッファのサイズ。
+	// 　float in1, in2, out1, out2  …フィルタ計算用のバッファ変数。初期値は0。
+	// 　float a0, a1, a2, b0, b1, b2 …フィルタの係数。 別途算出する。
+
+	nsfloat in1 = 0.0, in2 = 0.0, out1 = 0.0, out2 = 0.0;
+	for (size_t i = 0; i < out.size(); i++) {
+		// 入力信号にフィルタを適用し、出力信号として書き出す。
+		out[i] = (b0 * input[i] + b1 * in1 + b2 * in2 - a1 * out1 - a2 * out2) * a0_inv;
+
+		in2 = in1;		// 2つ前の入力信号を更新
+		in1 = input[i];	// 1つ前の入力信号を更新
+
+		out2 = out1;	// 2つ前の出力信号を更新
+		out1 = out[i];	// 1つ前の出力信号を更新
+	}
+
+	return;
+}
+
+//ノッチフィルター
+void notchpassFilter(const std::vector<nsfloat>& input, std::vector<nsfloat>& out, nsfloat freq, nsfloat bw) {
+	// それぞれの変数は下記のとおりとする
+	// float samplerate … サンプリング周波数
+	//float freq … カットオフ周波数
+	// float bw   … 帯域幅
+	nsfloat omega = PI_2 * freq * SMPL_INV;
+	nsfloat alpha = sin(omega) * sinh(log((nsfloat)2.0) * (nsfloat)0.5 * bw * omega / sin(omega));
+
+	nsfloat a0_inv = (nsfloat)1.0 / ((nsfloat)1.0 + alpha);
+	nsfloat a1 = -(nsfloat)2.0 * cos(omega);
+	nsfloat a2 = (nsfloat)1.0 - alpha;
+	nsfloat b0 = (nsfloat)1.0;
+	nsfloat b1 = -(nsfloat)2.0 * cos(omega);
+	nsfloat b2 = (nsfloat)1.0;
+
+	// それぞれの変数は下記のとおりとする
+	// 　float input[]  …入力信号の格納されたバッファ。
+	// 　flaot output[] …フィルタ処理した値を書き出す出力信号のバッファ。
+	// 　nsint   size     …入力信号・出力信号のバッファのサイズ。
+	// 　float in1, in2, out1, out2  …フィルタ計算用のバッファ変数。初期値は0。
+	// 　float a0, a1, a2, b0, b1, b2 …フィルタの係数。 別途算出する。
+
+	nsfloat in1 = 0.0, in2 = 0.0, out1 = 0.0, out2 = 0.0;
+	for (size_t i = 0; i < out.size(); i++) {
+		// 入力信号にフィルタを適用し、出力信号として書き出す。
+		out[i] = (b0 * input[i] + b1 * in1 + b2 * in2 - a1 * out1 - a2 * out2) * a0_inv;
+
+		in2 = in1;		// 2つ前の入力信号を更新
+		in1 = input[i];	// 1つ前の入力信号を更新
+
+		out2 = out1;	// 2つ前の出力信号を更新
+		out1 = out[i];	// 1つ前の出力信号を更新
+	}
+
+	return;
+}
 
 }//namespace Nesora
 
